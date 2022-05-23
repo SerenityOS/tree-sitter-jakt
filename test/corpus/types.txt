@@ -1,0 +1,10 @@
+========================================
+Primitive types
+========================================
+
+let x: i8 = 125
+
+---
+
+(source_file
+  (let_declaration (identifier) (primitive_type) (integer_literal)))
