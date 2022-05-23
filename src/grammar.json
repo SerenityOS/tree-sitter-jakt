@@ -202,9 +202,30 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "unary_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_literal"
         }
       ]
+    },
+    "unary_expression": {
+      "type": "PREC",
+      "value": 11,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "-"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        ]
+      }
     },
     "_literal": {
       "type": "CHOICE",
@@ -224,6 +245,10 @@
         {
           "type": "SYMBOL",
           "name": "integer_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "float_literal"
         }
       ]
     },
@@ -347,6 +372,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "float_literal"
+        },
+        {
+          "type": "SYMBOL",
           "name": "negative_literal"
         }
       ]
@@ -359,8 +388,17 @@
           "value": "-"
         },
         {
-          "type": "SYMBOL",
-          "name": "integer_literal"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "integer_literal"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "float_literal"
+            }
+          ]
         }
       ]
     },
@@ -486,6 +524,10 @@
               {
                 "type": "SYMBOL",
                 "name": "escape_sequence"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_string_content"
               }
             ]
           }
@@ -658,8 +700,24 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "_string_content"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "float_literal"
+    }
+  ],
   "inline": [],
-  "supertypes": []
+  "supertypes": [
+    "_expression",
+    "_type",
+    "_literal",
+    "_literal_pattern",
+    "_declaration_statement",
+    "_pattern"
+  ]
 }
 

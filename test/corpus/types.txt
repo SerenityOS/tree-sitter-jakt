@@ -2,9 +2,112 @@
 Primitive types
 ========================================
 
+let foo: bool = true
+let bar: bool = false
 let x: i8 = 125
+let y: i16 = 125
+let z: i32 = 125
+let a: i64 = -125
+let b: i128 = -126
+
+let y2: u16 = 125
+let z3: u32 = 126
+let a4: u64 = 127
+let a5: u128 = 128
+let b1: f32 = 1.0
+let b2: f64 = 0.25
+
+let cint: c_int = 1
+let str1: c_char = 10
+
+let usz: usize = 0
+let isz: isize = -1
 
 ---
 
 (source_file
-  (let_declaration (identifier) (primitive_type) (integer_literal)))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (boolean_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (boolean_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (unary_expression
+      (integer_literal)))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (unary_expression
+      (integer_literal)))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (float_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (float_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (char_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (unary_expression
+      (integer_literal))))
+
+========================================
+String type
+========================================
+
+let str_type: String = "well, hello friends"
+
+---
+
+(source_file
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (string_literal)))

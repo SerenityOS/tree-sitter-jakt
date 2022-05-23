@@ -1,3 +1,7 @@
+const PREC = {
+  unary: 11,
+}
+
 const numeric_types = [
   'u8',
   'i8',
@@ -22,6 +26,20 @@ module.exports = grammar({
   name: 'jakt',
 
   word: $ => $.identifier,
+
+  externals: $ => [
+    $._string_content,
+    $.float_literal,
+  ],
+
+  supertypes: $ => [
+    $._expression,
+    $._type,
+    $._literal,
+    $._literal_pattern,
+    $._declaration_statement,
+    $._pattern,
+  ],
 
   rules: {
     // TODO: add the actual grammar rules
@@ -58,8 +76,13 @@ module.exports = grammar({
     mutable_specifier: $ => 'mutable',
 
     _expression: $ => choice(
-              $._literal,
+        $.unary_expression,
+        $._literal,
     ),
+
+    unary_expression: $ => prec(PREC.unary, seq(
+      '-', $._expression
+    )),
 
     _literal: $ => choice(
       $.string_literal,
@@ -67,7 +90,7 @@ module.exports = grammar({
       $.char_literal,
       $.boolean_literal,
       $.integer_literal,
-      // $.float_literal,
+      $.float_literal,
     ),
 
     _pattern: $ => choice(
@@ -83,14 +106,19 @@ module.exports = grammar({
       $.char_literal,
       $.boolean_literal,
       $.integer_literal,
-      // $.float_literal,
+      $.float_literal,
       $.negative_literal,
     ),
 
-    // negative_literal: $ => seq('-', choice($.integer_literal, $.float_literal)),
-    negative_literal: $ => seq('-', $.integer_literal),
+    negative_literal: $ => seq('-', choice($.integer_literal, $.float_literal)),
+    // negative_literal: $ => seq('-', choice($.integer_literal)),
 
-    // float_literal: $ => token(),
+    // float_literal: $ => token(seq(
+    //   choice(
+    //     /[0-9_]*/,
+    //   ),
+    //   // optional(choice(...numeric_types))
+    // )),
 
     integer_literal: $ => token(seq(
       choice(
@@ -106,7 +134,7 @@ module.exports = grammar({
       alias(/b?"/, '"'),
       repeat(choice(
         $.escape_sequence,
-        // $._string_content
+        $._string_content
       )),
       token.immediate('"')
     ),
