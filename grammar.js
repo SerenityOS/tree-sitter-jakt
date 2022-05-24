@@ -94,12 +94,18 @@ module.exports = grammar({
 
     _expression: $ => choice(
         $.unary_expression,
+        $.return_expression,
         $._literal,
     ),
 
     unary_expression: $ => prec(PREC.unary, seq(
       '-', $._expression
     )),
+
+    return_expression: $ => choice(
+      prec.left(seq('return', $._expression)),
+      prec(-1, 'return'),
+    ),
 
     _literal: $ => choice(
       $.string_literal,

@@ -74,3 +74,28 @@ function foo() -> [String] {
     (array_type
       (primitive_type))
     (block)))
+
+========================================
+Function declaration with params
+========================================
+
+function foo(boo: i32, baz: f32) -> bool {
+    return false
+}
+
+---
+
+(source_file
+  (function_item
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (primitive_type)
+    (block
+      (return_expression
+        (boolean_literal)))))

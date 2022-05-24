@@ -239,6 +239,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "return_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_literal"
         }
       ]
@@ -259,6 +263,36 @@
           }
         ]
       }
+    },
+    "return_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PREC_LEFT",
+          "value": 0,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "return"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_expression"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC",
+          "value": -1,
+          "content": {
+            "type": "STRING",
+            "value": "return"
+          }
+        }
+      ]
     },
     "_literal": {
       "type": "CHOICE",
