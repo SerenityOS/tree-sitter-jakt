@@ -41,9 +41,17 @@ module.exports = grammar({
     $._pattern,
   ],
 
+  inline: $ => [
+    $._type_identifier,
+    $._declaration_statement,
+  ],
+
+  conflicts: $ => [
+    [$._type, $._pattern],
+    [$.parameters, $._pattern],
+  ],
+
   rules: {
-    // TODO: add the actual grammar rules
-    // source_file: $ => 'hello',
     source_file: $ => repeat($._statement),
 
     _statement: $ => choice(
@@ -53,10 +61,19 @@ module.exports = grammar({
 
     _declaration_statement: $ => choice(
       $.let_declaration,
+      $.function_item,
     ),
 
     _type: $ => choice(
+      $.array_type,
+      $._type_identifier,
       alias(choice(...primitive_types), $.primitive_type)
+    ),
+
+    array_type: $ => seq(
+      '[',
+      field('element', $._type),
+      ']'
     ),
 
     let_declaration: $ => seq(
@@ -86,7 +103,6 @@ module.exports = grammar({
 
     _literal: $ => choice(
       $.string_literal,
-      // $.raw_string_literal,
       $.char_literal,
       $.boolean_literal,
       $.integer_literal,
@@ -97,12 +113,11 @@ module.exports = grammar({
       $._literal_pattern,
       alias(choice(...primitive_types), $.identifier),
       $.identifier,
-      '_'
+      // '_'
     ),
 
     _literal_pattern: $ => choice(
       $.string_literal,
-      // $.raw_string_literal,
       $.char_literal,
       $.boolean_literal,
       $.integer_literal,
@@ -111,14 +126,6 @@ module.exports = grammar({
     ),
 
     negative_literal: $ => seq('-', choice($.integer_literal, $.float_literal)),
-    // negative_literal: $ => seq('-', choice($.integer_literal)),
-
-    // float_literal: $ => token(seq(
-    //   choice(
-    //     /[0-9_]*/,
-    //   ),
-    //   // optional(choice(...numeric_types))
-    // )),
 
     integer_literal: $ => token(seq(
       choice(
@@ -162,7 +169,52 @@ module.exports = grammar({
           /u{[0-9a-fA-F]+}/,
           /x[0-9a-fA-F]{2}/
         )
+    )),
+
+    function_item: $ => seq(
+      // optional($.visibility_modifier),
+      // optional($.function_modifiers),
+      'function',
+      field('name', $.identifier),
+      // field('type_parameters', optional($.type_parameters)),
+      field('parameters', $.parameters),
+      optional(seq('->', field('return_type', $._type))),
+      // optional($.where_clause),
+      field('body', $.block)
+    ),
+
+    parameters: $ => seq(
+      '(',
+      sepBy(',', seq(
+        // optional($.attribute_item),
+        choice(
+          $.parameter,
+          // $.self_parameter,
+          // $.variadic_parameter,
+          // '_',
+          // $._type
+        ))),
+      optional(','),
+      ')'
+    ),
+
+    parameter: $ => seq(
+      optional($.mutable_specifier),
+      field('pattern', choice(
+        $._pattern,
+        // $.self,
+        // $._reserved_identifier,
       )),
+      ':',
+      field('type', $._type)
+    ),
+
+    block: $ => seq(
+      '{',
+      repeat($._statement),
+      optional($._expression),
+      '}'
+    ),
 
     boolean_literal: $ => choice('true', 'false'),
 
@@ -175,7 +227,15 @@ module.exports = grammar({
       '//', /.*/
     )),
 
-    identifier: $ => /(r#)?[_\p{XID_Start}][_\p{XID_Continue}]*/,
+    identifier: $ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
+    _type_identifier: $ => alias($.identifier, $.type_identifier),
   }
 });
 
+function sepBy1(sep, rule) {
+  return seq(rule, repeat(seq(sep, rule)))
+}
+
+function sepBy(sep, rule) {
+  return optional(sepBy1(sep, rule))
+}

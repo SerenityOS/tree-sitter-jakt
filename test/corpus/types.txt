@@ -87,7 +87,7 @@ let isz: isize = -1
   (let_declaration
     (identifier)
     (primitive_type)
-    (char_literal))
+    (integer_literal))
   (let_declaration
     (identifier)
     (primitive_type)
