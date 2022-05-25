@@ -1,4 +1,5 @@
 const PREC = {
+  call: 12,
   unary: 11,
   multiplicative: 10,
   additive: 9,
@@ -78,6 +79,10 @@ module.exports = grammar({
         $.block,
         $.if_statement,
         $.return_statement,
+        $.while_statement,
+        $.increment_statement,
+        $.decrement_statement,
+        $.continue_statement,
     ),
 
     declaration: $ => choice(
@@ -89,6 +94,37 @@ module.exports = grammar({
         $.binary_expression,
         $._literal,
         $.identifier,
+        $.call_expression,
+    ),
+
+    while_statement: $ => seq(
+      'while',
+      field('condition', $._expression),
+      field('body', $.block)
+    ),
+
+    increment_statement: $ => seq(
+      $._expression,
+      '++'
+    ),
+
+    decrement_statement: $ => seq(
+      $._expression,
+      '--'
+    ),
+
+    continue_statement: $ => seq('continue'),
+
+    call_expression: $ => prec(PREC.call, seq(
+      field('function', $._expression),
+      field('arguments', $.arguments)
+    )),
+
+    arguments: $ => seq(
+      '(',
+      sepBy(',', seq(repeat($.parameter), $._expression)),
+      optional(','),
+      ')'
     ),
 
     _top_level_declaration: $ => choice(
@@ -255,7 +291,7 @@ module.exports = grammar({
 
     if_statement: $ => seq(
       'if',
-      field('condition', seq( '(', $._expression, ')')),
+      field('condition', seq($._expression)),
       field('consequence', $.block),
       optional(field("alternative", $.else_clause))
 

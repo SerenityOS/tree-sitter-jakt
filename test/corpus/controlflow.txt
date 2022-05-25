@@ -1,0 +1,47 @@
+=======================================================
+While loop with continue
+=======================================================
+
+function main() {
+    let mutable i = 0
+    while i < 10 {
+        i++
+        if i % 2 == 0 {
+            continue
+        }
+        println("{}", i)
+    }
+}
+
+-------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (declaration
+        (let_declaration
+          (mutable_specifier)
+          (identifier)
+          (integer_literal)))
+      (while_statement
+        (binary_expression
+          (identifier)
+          (integer_literal))
+        (block
+          (increment_statement
+            (identifier))
+          (if_statement
+            (binary_expression
+              (binary_expression
+                (identifier)
+                (integer_literal))
+              (integer_literal))
+            (block
+              (continue_statement)))
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (identifier))))))))
