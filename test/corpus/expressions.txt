@@ -1,15 +1,15 @@
-===============================================
-Function decl with params and return expression
-===============================================
+================================================================================
+Function declaration with params and return expression
+================================================================================
 
 function foo(boo: i32, baz: f32) -> bool {
     return false
 }
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-  (function_item
+  (function_declaration
     (identifier)
     (parameters
       (parameter
@@ -20,5 +20,58 @@ function foo(boo: i32, baz: f32) -> bool {
         (primitive_type)))
     (primitive_type)
     (block
-      (return_expression
+      (return_statement
         (boolean_literal)))))
+
+================================================================================
+Binary operator expressions
+================================================================================
+
+a * b
+a / b
+a % b
+a + b
+a - b
+a >> b
+a << b
+a == b
+a & b
+a | b
+a ^ b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (binary_expression
+    (identifier)
+    (identifier))
+  (binary_expression
+    (identifier)
+    (identifier))
+  (binary_expression
+    (identifier)
+    (identifier))
+  (binary_expression
+    (identifier)
+    (identifier))
+  (binary_expression
+    (identifier)
+    (identifier))
+  (binary_expression
+    (identifier)
+    (identifier))
+  (binary_expression
+    (identifier)
+    (identifier))
+  (binary_expression
+    (identifier)
+    (identifier))
+  (binary_expression
+    (identifier)
+    (identifier))
+  (binary_expression
+    (identifier)
+    (identifier))
+  (binary_expression
+    (identifier)
+    (identifier)))

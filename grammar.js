@@ -1,5 +1,15 @@
 const PREC = {
   unary: 11,
+  multiplicative: 10,
+  additive: 9,
+  shift: 8,
+  bitand: 7,
+  bitxor: 6,
+  bitor: 5,
+  comparative: 4,
+  and: 3,
+  or: 2,
+  assign: 0,
 }
 
 const numeric_types = [
@@ -22,6 +32,9 @@ const numeric_types = [
 
 const primitive_types = numeric_types.concat(['bool', 'String', 'c_char'])
 
+const newline = '\n'
+terminator = choice(newline, ';')
+
 module.exports = grammar({
   name: 'jakt',
 
@@ -37,13 +50,13 @@ module.exports = grammar({
     $._type,
     $._literal,
     $._literal_pattern,
-    $._declaration_statement,
+    $._statement,
     $._pattern,
   ],
 
   inline: $ => [
     $._type_identifier,
-    $._declaration_statement,
+    $._statement,
   ],
 
   conflicts: $ => [
@@ -52,16 +65,34 @@ module.exports = grammar({
   ],
 
   rules: {
-    source_file: $ => repeat($._statement),
+
+    source_file: $ => repeat(choice(
+      // Terminator ';' is not a language feature. It's only here to aid in testing.
+      seq($._statement, terminator),
+      $._top_level_declaration,
+    )),
 
     _statement: $ => choice(
-      // $.expression_statement,
-      $._declaration_statement
+        $.declaration,
+        $._expression,
+        $.block,
+        $.if_statement,
+        $.return_statement,
     ),
 
-    _declaration_statement: $ => choice(
+    declaration: $ => choice(
       $.let_declaration,
-      $.function_item,
+    ),
+
+    _expression: $ => choice(
+        $.unary_expression,
+        $.binary_expression,
+        $._literal,
+        $.identifier,
+    ),
+
+    _top_level_declaration: $ => choice(
+      $.function_declaration,
     ),
 
     _type: $ => choice(
@@ -92,20 +123,32 @@ module.exports = grammar({
 
     mutable_specifier: $ => 'mutable',
 
-    _expression: $ => choice(
-        $.unary_expression,
-        $.return_expression,
-        $._literal,
-    ),
-
     unary_expression: $ => prec(PREC.unary, seq(
       '-', $._expression
     )),
 
-    return_expression: $ => choice(
+    return_statement: $ => choice(
       prec.left(seq('return', $._expression)),
       prec(-1, 'return'),
     ),
+
+    binary_expression: $ => {
+      const table = [
+        [PREC.bitand, '&'],
+        [PREC.bitor, '|'],
+        [PREC.bitxor, '^'],
+        [PREC.comparative, choice('==', '!=', '<', '<=', '>', '>=')],
+        [PREC.shift, choice('<<', '>>')],
+        [PREC.additive, choice('+', '-')],
+        [PREC.multiplicative, choice('*', '/', '%')],
+      ];
+
+      return choice(...table.map(([precedence, operator]) => prec.left(precedence, seq(
+        field('left', $._expression),
+        field('operator', operator),
+        field('right', $._expression),
+      ))));
+    },
 
     _literal: $ => choice(
       $.string_literal,
@@ -119,7 +162,6 @@ module.exports = grammar({
       $._literal_pattern,
       alias(choice(...primitive_types), $.identifier),
       $.identifier,
-      // '_'
     ),
 
     _literal_pattern: $ => choice(
@@ -177,28 +219,19 @@ module.exports = grammar({
         )
     )),
 
-    function_item: $ => seq(
-      // optional($.visibility_modifier),
-      // optional($.function_modifiers),
+    function_declaration: $ => seq(
       'function',
       field('name', $.identifier),
-      // field('type_parameters', optional($.type_parameters)),
       field('parameters', $.parameters),
       optional(seq('->', field('return_type', $._type))),
-      // optional($.where_clause),
       field('body', $.block)
     ),
 
     parameters: $ => seq(
       '(',
       sepBy(',', seq(
-        // optional($.attribute_item),
         choice(
           $.parameter,
-          // $.self_parameter,
-          // $.variadic_parameter,
-          // '_',
-          // $._type
         ))),
       optional(','),
       ')'
@@ -208,8 +241,6 @@ module.exports = grammar({
       optional($.mutable_specifier),
       field('pattern', choice(
         $._pattern,
-        // $.self,
-        // $._reserved_identifier,
       )),
       ':',
       field('type', $._type)
@@ -218,15 +249,30 @@ module.exports = grammar({
     block: $ => seq(
       '{',
       repeat($._statement),
-      optional($._expression),
+      // optional($._expression),
       '}'
+    ),
+
+    if_statement: $ => seq(
+      'if',
+      field('condition', seq( '(', $._expression, ')')),
+      field('consequence', $.block),
+      optional(field("alternative", $.else_clause))
+
+    ),
+
+    else_clause: $ => seq(
+      'else',
+      choice(
+        $.block,
+        $.if_statement,
+      )
     ),
 
     boolean_literal: $ => choice('true', 'false'),
 
     comment: $ => choice(
       $.line_comment,
-      // $.block_comment
     ),
 
     line_comment: $ => token(seq(

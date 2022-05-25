@@ -1,6 +1,6 @@
-========================================
+================================================================================
 Primitive types
-========================================
+================================================================================
 
 let foo: bool = true
 let bar: bool = false
@@ -23,91 +23,109 @@ let str1: c_char = 10
 let usz: usize = 0
 let isz: isize = -1
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (boolean_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (boolean_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (unary_expression
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (boolean_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (boolean_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
       (integer_literal)))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (unary_expression
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
       (integer_literal)))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (float_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (float_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (unary_expression
-      (integer_literal))))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (integer_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (unary_expression
+        (integer_literal))))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (unary_expression
+        (integer_literal))))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (integer_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (integer_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (integer_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (integer_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (float_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (float_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (integer_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (integer_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (integer_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (unary_expression
+        (integer_literal)))))
 
-========================================
+================================================================================
 String type
-========================================
+================================================================================
 
 let str_type: String = "well, hello friends"
 
----
+--------------------------------------------------------------------------------
 
 (source_file
-  (let_declaration
-    (identifier)
-    (primitive_type)
-    (string_literal)))
+  (declaration
+    (let_declaration
+      (identifier)
+      (primitive_type)
+      (string_literal))))
