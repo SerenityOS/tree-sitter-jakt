@@ -10,8 +10,11 @@ Work in progress.
 
 ## How to run tests
 
+The [tree-sitter
+cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) is required to run tests.
+
 ```
-tree-sitter generate && tree-sitter test -d -f "Primitive types"
+tree-sitter generate && tree-sitter test
 ```
 
 ## How to install in Neovim
