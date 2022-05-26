@@ -1,4 +1,5 @@
 const PREC = {
+  range: 13,
   call: 12,
   unary: 11,
   multiplicative: 10,
@@ -58,6 +59,8 @@ module.exports = grammar({
   inline: $ => [
     $._type_identifier,
     $._statement,
+    // TODO: re-enable, will prob require many test fixes
+    // $.declaration,
   ],
 
   conflicts: $ => [
@@ -95,6 +98,8 @@ module.exports = grammar({
         $._literal,
         $.identifier,
         $.call_expression,
+        $.range_expression,
+        $.for_expression,
     ),
 
     while_statement: $ => seq(
@@ -115,9 +120,25 @@ module.exports = grammar({
 
     continue_statement: $ => seq('continue'),
 
+    for_expression: $ => seq(
+      // optional(seq($.loop_label, ':')),
+      'for',
+      field('pattern', $._pattern),
+      'in',
+      field('value', $._expression),
+      field('body', $.block)
+    ),
+
     call_expression: $ => prec(PREC.call, seq(
       field('function', $._expression),
       field('arguments', $.arguments)
+    )),
+
+    range_expression: $ => prec.left(PREC.range, choice(
+      seq($._expression, choice('..'), $._expression),
+      // seq($._expression, '..'),
+      // seq('..', $._expression),
+      '..'
     )),
 
     arguments: $ => seq(
