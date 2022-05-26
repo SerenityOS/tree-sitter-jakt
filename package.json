@@ -3,6 +3,15 @@
   "version": "0.0.1",
   "description": "jakt grammar for tree-sitter",
   "main": "bindings/node",
+  "tree-sitter": [
+    {
+      "scope": "source.jakt",
+      "injection-regex": "jakt",
+      "file-types": [
+        "jakt"
+      ]
+    }
+  ],
   "keywords": [
     "parsing",
     "incremental"
