@@ -1,0 +1,35 @@
+=======================================================
+Simple enum
+=======================================================
+
+enum Simple {
+    A
+    B
+    C
+}
+
+-------------------------------------------------------
+
+(source_file
+  (declaration
+    (enum_declaration
+      (type_identifier)
+      (block
+        (identifier)
+        (identifier)
+        (identifier)))))
+
+=======================================================
+Enum on single line
+=======================================================
+
+enum Apple { GrannySmith }
+
+-------------------------------------------------------
+
+(source_file
+  (declaration
+    (enum_declaration
+      (type_identifier)
+      (block
+        (identifier)))))

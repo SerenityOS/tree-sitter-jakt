@@ -90,6 +90,7 @@ module.exports = grammar({
 
     declaration: $ => choice(
       $.let_declaration,
+      $.enum_declaration,
     ),
 
     _expression: $ => choice(
@@ -176,6 +177,13 @@ module.exports = grammar({
         '=',
         field('value', $._expression)
       )),
+    ),
+
+    enum_declaration: $ => seq(
+      'enum',
+      field('name', $._type_identifier),
+      optional(field('type_parameters', optional($.parameters))),
+      field('body', $.block)
     ),
 
     mutable_specifier: $ => 'mutable',
