@@ -16,6 +16,8 @@ tree-sitter generate && tree-sitter test -d -f "Primitive types"
 
 ## How to install in Neovim
 
+Note: this step is only temporary. The highlighter will eventually be added to the nvim-tressitter project to be included with neovim.
+
 1. Add the following to the neovim config:
 
    ```
@@ -35,9 +37,6 @@ tree-sitter generate && tree-sitter test -d -f "Primitive types"
 1. Manually install the highlighter
 
    [See nvim-treesitter instructions](https://github.com/nvim-treesitter/nvim-treesitter#adding-queries)
-
-   Note: this step is only temporary. The highlighter will eventually be added to the
-         nvim-tressitter project to be included with neovim.
 
    `highlights.scm` is contained in the tree-sitter-jakt repository.
 
