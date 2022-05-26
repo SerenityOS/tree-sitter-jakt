@@ -14,10 +14,33 @@ enum Simple {
   (declaration
     (enum_declaration
       (type_identifier)
-      (block
+      (enum_block
         (identifier)
         (identifier)
         (identifier)))))
+
+=======================================================
+Simple enum with type
+=======================================================
+
+enum SimpleWithType {
+    A(i32)
+    B(u32)
+}
+
+-------------------------------------------------------
+
+(source_file
+  (declaration
+    (enum_declaration
+      (type_identifier)
+      (enum_block
+        (enum_integral
+          (identifier)
+          (primitive_type))
+        (enum_integral
+          (identifier)
+          (primitive_type))))))
 
 =======================================================
 Enum on single line
@@ -31,5 +54,5 @@ enum Apple { GrannySmith }
   (declaration
     (enum_declaration
       (type_identifier)
-      (block
+      (enum_block
         (identifier)))))

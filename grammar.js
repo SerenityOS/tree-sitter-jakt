@@ -183,8 +183,30 @@ module.exports = grammar({
       'enum',
       field('name', $._type_identifier),
       optional(field('type_parameters', optional($.parameters))),
-      field('body', $.block)
+      field('body', $.enum_block)
     ),
+
+    enum_block: $ => seq(
+      '{',
+        repeat(choice(
+          $.identifier,
+          $.enum_integral,
+        )),
+      '}'
+    ),
+
+    enum_integral: $ => seq($.identifier, choice(
+      field("boo", seq(
+        '(',
+         alias(choice(...primitive_types), $.primitive_type),
+        ')',
+      )),
+      field("struct_declaration", seq(
+        '(',
+        $.parameters,
+        ')',
+      )),
+    )),
 
     mutable_specifier: $ => 'mutable',
 
