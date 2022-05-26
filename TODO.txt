@@ -1,1 +1,5 @@
 * add tests for optional types
+
+* submit queries to https://github.com/nvim-treesitter/nvim-treesitter
+
+    https://github.com/nvim-treesitter/nvim-treesitter/issues/2282

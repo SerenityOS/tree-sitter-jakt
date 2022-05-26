@@ -14,19 +14,50 @@ tree-sitter generate && tree-sitter test -d -f "Primitive types"
 
 ## How to install in Neovim
 
-Add the following to the neovim config:
+1. Add the following to the neovim config:
 
 ```
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.jakt = {
   install_info = {
-    url = "~/projects/tree-sitter-zimbu", -- local path or git repo
-    files = {"src/parser.c"},
+    url = "https://github.com/demizer/tree-sitter-jakt.git", -- local path or git repo
+    files = {"src/parser.c", "src/scanner.c"},
     -- optional entries:
     branch = "main", -- default branch in case of git repo if different from master
     generate_requires_npm = false, -- if stand-alone parser without npm dependencies
     requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
   },
-  filetype = "zu", -- if filetype does not match the parser name
 }
 ```
+
+1. Manually install the highlighter
+
+   [See nvim-treesitter instructions](https://github.com/nvim-treesitter/nvim-treesitter#adding-queries)
+
+   Note: this step is only temporary. The highlighter will eventually be added to the
+         nvim-tressitter project to be included with neovim.
+
+   `highlights.scm` is contained in the tree-sitter-jakt repository.
+
+   ```
+   mkdir -p ~/.config/nvim/queries/jakt
+   cp queries/highlights.scm ~/.config/nvim/queries/jakt/
+   ```
+
+1. Install tree-sitter-jakt using neovim
+
+   ```
+   :TSInstall jakt
+   ```
+
+1. checkhealth in neovim
+
+   ```
+   :checkhealth
+   ```
+
+1. `jakt` should be contained in the tree-sitter parsers and should it should have a check
+   under `highlight`.
+
+1. Load a jakt source file and set filetype to jakt and enjoy
+
