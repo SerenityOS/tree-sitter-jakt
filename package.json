@@ -6,7 +6,6 @@
   "tree-sitter": [
     {
       "scope": "source.jakt",
-      "injection-regex": "jakt",
       "file-types": [
         "jakt"
       ]
