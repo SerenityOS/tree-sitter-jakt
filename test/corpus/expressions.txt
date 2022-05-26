@@ -82,10 +82,16 @@ Increment and decrement
 
 i++
 i--
+++x
+--x
 
 -------------------------------------------------------
 
 (source_file
+  (increment_statement
+    (identifier))
+  (decrement_statement
+    (identifier))
   (increment_statement
     (identifier))
   (decrement_statement

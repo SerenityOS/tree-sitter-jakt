@@ -1,8 +1,8 @@
-# Tree Sitter Jakt
+# Tree-Sitter Jakt
 
 [Jakt](https://github.com/SerenityOS/jakt) grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter)
 
-Jakt is a memory safe programming language built for SerenityOS that transpiles to C++.
+Jakt is a memory safe programming language created for SerenityOS that transpiles to C++.
 
 Work in progress.
 
@@ -23,7 +23,7 @@ tree-sitter generate && tree-sitter test
 
 Note: this step is only temporary. The highlighter will eventually be added to the nvim-tressitter project to be included with neovim.
 
-1. Add the following to the neovim config:
+1. Add the following to the neovim (lua) config:
 
    ```
    local parser_config = require "nvim-treesitter.parsers".get_parser_configs()

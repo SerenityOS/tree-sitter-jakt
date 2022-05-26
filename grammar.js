@@ -108,15 +108,15 @@ module.exports = grammar({
       field('body', $.block)
     ),
 
-    increment_statement: $ => seq(
-      $._expression,
-      '++'
-    ),
+    increment_statement: $ => prec(1, choice(
+        seq($._expression, '++'),
+        seq('++', $._expression),
+    )),
 
-    decrement_statement: $ => seq(
-      $._expression,
-      '--'
-    ),
+    decrement_statement: $ => prec(1, choice(
+        seq($._expression, '--'),
+        seq('--', $._expression),
+    )),
 
     continue_statement: $ => seq('continue'),
 
