@@ -6,6 +6,8 @@ Jakt is a memory safe programming language built for SerenityOS that transpiles 
 
 Work in progress.
 
+## Screenshot
+
 ![screenshot](/assets/screenshot-20220525.png)
 
 ## How to run tests
