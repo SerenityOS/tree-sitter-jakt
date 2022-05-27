@@ -11,13 +11,12 @@ enum Simple {
 -------------------------------------------------------
 
 (source_file
-  (declaration
-    (enum_declaration
-      (type_identifier)
-      (enum_block
-        (identifier)
-        (identifier)
-        (identifier)))))
+  (enum_declaration
+    (type_identifier)
+    (enum_block
+      (identifier)
+      (identifier)
+      (identifier))))
 
 =======================================================
 Simple enum with type
@@ -31,16 +30,15 @@ enum SimpleWithType {
 -------------------------------------------------------
 
 (source_file
-  (declaration
-    (enum_declaration
-      (type_identifier)
-      (enum_block
-        (enum_integral
-          (identifier)
-          (primitive_type))
-        (enum_integral
-          (identifier)
-          (primitive_type))))))
+  (enum_declaration
+    (type_identifier)
+    (enum_block
+      (enum_integral_type
+        (identifier)
+        (primitive_type))
+      (enum_integral_type
+        (identifier)
+        (primitive_type)))))
 
 
 
@@ -83,8 +81,7 @@ enum Apple { GrannySmith }
 -------------------------------------------------------
 
 (source_file
-  (declaration
-    (enum_declaration
-      (type_identifier)
-      (enum_block
-        (identifier)))))
+  (enum_declaration
+    (type_identifier)
+    (enum_block
+      (identifier))))

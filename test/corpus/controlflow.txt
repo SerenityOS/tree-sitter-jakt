@@ -20,11 +20,10 @@ function main() {
     (identifier)
     (parameters)
     (block
-      (declaration
-        (let_declaration
-          (mutable_specifier)
-          (identifier)
-          (integer_literal)))
+      (let_declaration
+        (mutable_specifier)
+        (identifier)
+        (integer_literal))
       (while_statement
         (binary_expression
           (identifier)
