@@ -677,7 +677,11 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "enum_integral"
+                "name": "enum_integral_type"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "enum_struct_integral_type"
               }
             ]
           }
@@ -688,7 +692,7 @@
         }
       ]
     },
-    "enum_integral": {
+    "enum_integral_type": {
       "type": "SEQ",
       "members": [
         {
@@ -696,129 +700,150 @@
           "name": "identifier"
         },
         {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "u8"
+              },
+              {
+                "type": "STRING",
+                "value": "i8"
+              },
+              {
+                "type": "STRING",
+                "value": "u16"
+              },
+              {
+                "type": "STRING",
+                "value": "i16"
+              },
+              {
+                "type": "STRING",
+                "value": "u32"
+              },
+              {
+                "type": "STRING",
+                "value": "i32"
+              },
+              {
+                "type": "STRING",
+                "value": "u64"
+              },
+              {
+                "type": "STRING",
+                "value": "i64"
+              },
+              {
+                "type": "STRING",
+                "value": "u128"
+              },
+              {
+                "type": "STRING",
+                "value": "i128"
+              },
+              {
+                "type": "STRING",
+                "value": "isize"
+              },
+              {
+                "type": "STRING",
+                "value": "usize"
+              },
+              {
+                "type": "STRING",
+                "value": "f32"
+              },
+              {
+                "type": "STRING",
+                "value": "f64"
+              },
+              {
+                "type": "STRING",
+                "value": "c_int"
+              },
+              {
+                "type": "STRING",
+                "value": "bool"
+              },
+              {
+                "type": "STRING",
+                "value": "String"
+              },
+              {
+                "type": "STRING",
+                "value": "c_char"
+              }
+            ]
+          },
+          "named": true,
+          "value": "primitive_type"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "enum_struct_integral_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "FIELD",
-              "name": "boo",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "("
-                  },
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "STRING",
-                          "value": "u8"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "i8"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "u16"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "i16"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "u32"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "i32"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "u64"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "i64"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "u128"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "i128"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "isize"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "usize"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "f32"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "f64"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "c_int"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "bool"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "String"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "c_char"
-                        }
-                      ]
-                    },
-                    "named": true,
-                    "value": "primitive_type"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ")"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "parameter"
                   }
-                ]
-              }
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "\\n"
+                      },
+                      {
+                        "type": "REPEAT",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "parameter"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
             },
             {
-              "type": "FIELD",
-              "name": "struct_declaration",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "("
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "parameters"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ")"
-                  }
-                ]
-              }
+              "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
@@ -1930,7 +1955,8 @@
   ],
   "inline": [
     "_type_identifier",
-    "_statement"
+    "_statement",
+    "declaration"
   ],
   "supertypes": [
     "_expression",

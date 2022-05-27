@@ -59,8 +59,7 @@ module.exports = grammar({
   inline: $ => [
     $._type_identifier,
     $._statement,
-    // TODO: re-enable, will prob require many test fixes
-    // $.declaration,
+    $.declaration,
   ],
 
   conflicts: $ => [
@@ -190,23 +189,25 @@ module.exports = grammar({
       '{',
         repeat(choice(
           $.identifier,
-          $.enum_integral,
+          $.enum_integral_type,
+          $.enum_struct_integral_type,
         )),
       '}'
     ),
 
-    enum_integral: $ => seq($.identifier, choice(
-      field("boo", seq(
-        '(',
-         alias(choice(...primitive_types), $.primitive_type),
-        ')',
-      )),
-      field("struct_declaration", seq(
-        '(',
-        $.parameters,
-        ')',
-      )),
-    )),
+    enum_integral_type: $ => seq(
+      $.identifier,
+      '(',
+       alias(choice(...primitive_types), $.primitive_type),
+      ')',
+    ),
+
+    enum_struct_integral_type: $ => seq(
+      $.identifier,
+      '(',
+      sepBy('\\n', repeat($.parameter)),
+      ')',
+    ),
 
     mutable_specifier: $ => 'mutable',
 

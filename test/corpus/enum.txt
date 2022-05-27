@@ -42,6 +42,38 @@ enum SimpleWithType {
           (identifier)
           (primitive_type))))))
 
+
+
+=======================================================
+Simple enum with struct type
+=======================================================
+
+enum SimpleWithStructType {
+    A (
+        a: i32
+        b: u32
+    )
+    B(i32)
+}
+
+-------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_block
+      (enum_struct_integral_type
+        (identifier)
+        (parameter
+          (identifier)
+          (primitive_type))
+        (parameter
+          (identifier)
+          (primitive_type)))
+      (enum_integral_type
+        (identifier)
+        (primitive_type)))))
+
 =======================================================
 Enum on single line
 =======================================================
