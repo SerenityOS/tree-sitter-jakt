@@ -182,30 +182,40 @@ module.exports = grammar({
       'enum',
       field('name', $._type_identifier),
       optional(field('type_parameters', optional($.parameters))),
-      field('body', $.enum_block)
+      field('body', $.enum_variant_list)
     ),
 
-    enum_block: $ => seq(
+    enum_variant_list: $ => seq(
       '{',
-        repeat(choice(
-          $.identifier,
-          $.enum_integral_type,
-          $.enum_struct_integral_type,
-        )),
+      sepBy('\\n', repeat($.enum_variant)),
       '}'
     ),
 
-    enum_integral_type: $ => seq(
-      $.identifier,
-      '(',
-       alias(choice(...primitive_types), $.primitive_type),
-      ')',
+    enum_variant: $ => seq(
+      field('name', $.identifier),
+      field('body', optional(choice(
+        $.field_declaration_list,
+        $.ordered_field_declaration_list
+      ))),
     ),
 
-    enum_struct_integral_type: $ => seq(
-      $.identifier,
+    field_declaration_list: $ => seq(
       '(',
-      sepBy('\\n', repeat($.parameter)),
+      sepBy('\\n', seq(repeat($.field_declaration))),
+      ')'
+    ),
+
+    field_declaration: $ => seq(
+      field('name', $._field_identifier),
+      ':',
+      field('type', $._type)
+    ),
+
+    _field_identifier: $ => alias($.identifier, $.field_identifier),
+
+    ordered_field_declaration_list: $ => seq(
+      '(',
+       alias(choice(...primitive_types), $.primitive_type),
       ')',
     ),
 
