@@ -180,9 +180,14 @@ module.exports = grammar({
 
     enum_declaration: $ => seq(
       'enum',
-      field('name', $._type_identifier),
-      optional(field('type_parameters', optional($.parameters))),
+      field('name', choice($._type_identifier, optional($.enum_integral_type))),
       field('body', $.enum_variant_list)
+    ),
+
+    enum_integral_type: $ => seq(
+        $.identifier,
+        ':',
+        $._type,
     ),
 
     enum_variant_list: $ => seq(
@@ -197,6 +202,10 @@ module.exports = grammar({
         $.field_declaration_list,
         $.ordered_field_declaration_list
       ))),
+      optional(seq(
+        '=',
+        field('value', $._expression)
+      ))
     ),
 
     field_declaration_list: $ => seq(

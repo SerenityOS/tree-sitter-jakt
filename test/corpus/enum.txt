@@ -116,3 +116,29 @@ enum SimpleWithStructType {
           (primitive_type)))
       (enum_variant
         (identifier)))))
+
+================================================================================
+Enum with underlying type
+================================================================================
+
+enum IntegralWithUnderlyingType: i32 {
+    Zero
+    One = 2
+    Two
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (enum_integral_type
+      (identifier)
+      (primitive_type))
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier)
+        (integer_literal))
+      (enum_variant
+        (identifier)))))
