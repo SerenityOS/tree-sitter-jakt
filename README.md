@@ -4,7 +4,7 @@
 
 Jakt is a memory safe programming language created for SerenityOS that transpiles to C++.
 
-Work in progress.
+**Work in progress. Jakt is under heavy development.**
 
 ## Screenshot
 
