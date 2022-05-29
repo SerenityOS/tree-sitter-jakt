@@ -142,3 +142,36 @@ enum IntegralWithUnderlyingType: i32 {
         (integer_literal))
       (enum_variant
         (identifier)))))
+
+================================================================================
+Ref counted recursive enum
+================================================================================
+
+ref enum AST {
+    Int(i64)
+    BinaryOperation(lhs: AST, op: Operation, rhs: AST)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (reference_modifier)
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier)
+        (ordered_field_declaration_list
+          (primitive_type)))
+      (enum_variant
+        (identifier)
+        (ordered_field_declaration_list
+          (field_declaration
+            (field_identifier)
+            (type_identifier))
+          (field_declaration
+            (field_identifier)
+            (type_identifier))
+          (field_declaration
+            (field_identifier)
+            (type_identifier)))))))

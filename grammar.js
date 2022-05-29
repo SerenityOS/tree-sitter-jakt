@@ -65,6 +65,7 @@ module.exports = grammar({
   conflicts: $ => [
     [$._type, $._pattern],
     [$.parameters, $._pattern],
+    [$.field_declaration_list, $.ordered_field_declaration_list],
   ],
 
   rules: {
@@ -178,7 +179,10 @@ module.exports = grammar({
       )),
     ),
 
+    reference_modifier: $ => seq('ref'),
+
     enum_declaration: $ => seq(
+      optional($.reference_modifier),
       'enum',
       field('name', choice($._type_identifier, optional($.enum_integral_type))),
       field('body', $.enum_variant_list)
@@ -224,7 +228,10 @@ module.exports = grammar({
 
     ordered_field_declaration_list: $ => seq(
       '(',
-       alias(choice(...primitive_types), $.primitive_type),
+      choice(
+        alias(choice(...primitive_types), $.primitive_type),
+        sepBy(',', $.field_declaration),
+      ),
       ')',
     ),
 
