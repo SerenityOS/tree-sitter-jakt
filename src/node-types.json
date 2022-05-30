@@ -38,6 +38,10 @@
     "named": true,
     "subtypes": [
       {
+        "type": "binary_literal",
+        "named": true
+      },
+      {
         "type": "boolean_literal",
         "named": true
       },
@@ -1035,6 +1039,10 @@
   {
     "type": "^",
     "named": false
+  },
+  {
+    "type": "binary_literal",
+    "named": true
   },
   {
     "type": "char_literal",

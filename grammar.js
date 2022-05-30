@@ -42,6 +42,8 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 
+  extras: $ => [/\s/, $.line_comment],
+
   externals: $ => [
     $._string_content,
     $.float_literal,
@@ -269,6 +271,7 @@ module.exports = grammar({
       $.char_literal,
       $.boolean_literal,
       $.integer_literal,
+      $.binary_literal,
       $.float_literal,
     ),
 
@@ -293,10 +296,16 @@ module.exports = grammar({
       choice(
         /[0-9][0-9_]*/,
         /0x[0-9a-fA-F_]+/,
-        /0b[01_]+/,
         /0o[0-7_]+/
       ),
       optional(choice(...numeric_types))
+    )),
+
+    binary_literal: $ => token(seq(
+      choice(
+        /0b[01_]+/,
+      ),
+      // optional(choice(...numeric_types))
     )),
 
     string_literal: $ => seq(
@@ -385,9 +394,7 @@ module.exports = grammar({
 
     boolean_literal: $ => choice('true', 'false'),
 
-    comment: $ => choice(
-      $.line_comment,
-    ),
+    comment: $ => $.line_comment,
 
     line_comment: $ => token(seq(
       '//', /.*/
