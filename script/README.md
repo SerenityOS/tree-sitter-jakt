@@ -12,7 +12,7 @@ A script to compare Jakt Samples with implemented tree-sitter-jakt tests to ensu
 is missed.
 
 This is necessary because jakt is new and does not have a spec yet. There are already (as
-of Jun 2022 a few hundred tests and that number will only increase.
+of Jun 2022) almost two hundred tests and that number will only increase.
 
 ### How to run tests for roadmapgen
 

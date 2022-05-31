@@ -49,7 +49,8 @@ def main(
 ):
     """A tool for keeping track of Jakt parsing implementation."""
     console.log("Started")
-    build_test_list(jakt_path)
+    for file in build_test_list(jakt_path):
+        console.log(file)
 
 
 if __name__ == "__main__":
