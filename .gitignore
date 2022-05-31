@@ -10,3 +10,4 @@ Cargo.lock
 **/*.rs.bk
 log.html
 jsconfig.json
+__pycache__/
