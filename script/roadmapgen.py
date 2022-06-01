@@ -56,11 +56,23 @@ def build_corpus_list() -> dict[str, list]:
     pattern: str = r"=+\n(.*)\n=+\n\s+"
     for root, _, files in os.walk(pathlib.Path("test", "corpus"), topdown=True):
         for name in files:
-            console.log(name)
-            file_text = pathlib.Path(root, name).read_text()
-            # console.log(file_text)
-            for x in re.findall(pattern, file_text):
-                console.log(f"have: {x}")
+            console.log(f"Test: {root.replace('test/corpus/', '')}/{name}")
+            file_path = pathlib.Path(root, name)
+            file_path_posix = file_path.as_posix()
+            file_text = file_path.read_text()
+
+            # Strip out scheme comments
+            #
+            # WARNING: This will strip all semicolons out of the text, but that's okay because we
+            #          are only looking for tree-sitter test "headers"
+            #
+            stripped_text = file_text.replace("; ", "").replace(";", "")
+
+            for x in re.findall(pattern, stripped_text):
+                console.log(f"have: '{x}'")
+                if not file_path_posix in list_of_tests:
+                    list_of_tests[file_path_posix] = []
+                list_of_tests[file_path_posix].append(x)
 
     return list_of_tests
 
