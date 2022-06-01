@@ -610,12 +610,12 @@
         }
       ]
     },
-    "reference_modifier": {
+    "boxed_modifier": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "ref"
+          "value": "boxed"
         }
       ]
     },
@@ -627,7 +627,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "reference_modifier"
+              "name": "boxed_modifier"
             },
             {
               "type": "BLANK"

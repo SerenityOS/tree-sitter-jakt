@@ -323,6 +323,11 @@
     "fields": {}
   },
   {
+    "type": "boxed_modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "call_expression",
     "named": true,
     "fields": {
@@ -421,7 +426,7 @@
       "required": false,
       "types": [
         {
-          "type": "reference_modifier",
+          "type": "boxed_modifier",
           "named": true
         }
       ]
@@ -826,11 +831,6 @@
     }
   },
   {
-    "type": "reference_modifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "return_statement",
     "named": true,
     "fields": {},
@@ -1045,6 +1045,10 @@
     "named": true
   },
   {
+    "type": "boxed",
+    "named": false
+  },
+  {
     "type": "char_literal",
     "named": true
   },
@@ -1115,10 +1119,6 @@
   {
     "type": "primitive_type",
     "named": true
-  },
-  {
-    "type": "ref",
-    "named": false
   },
   {
     "type": "return",

@@ -181,10 +181,10 @@ module.exports = grammar({
       )),
     ),
 
-    reference_modifier: $ => seq('ref'),
+    boxed_modifier: $ => seq('boxed'),
 
     enum_declaration: $ => seq(
-      optional($.reference_modifier),
+      optional($.boxed_modifier),
       'enum',
       field('name', choice($._type_identifier, optional($.enum_integral_type))),
       field('body', $.enum_variant_list)

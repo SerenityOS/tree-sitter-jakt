@@ -11,7 +11,7 @@ boxed enum AST {
 
 (source_file
   (enum_declaration
-    (reference_modifier)
+    (boxed_modifier)
     (type_identifier)
     (enum_variant_list
       (enum_variant

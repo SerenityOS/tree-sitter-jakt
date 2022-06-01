@@ -53,7 +53,7 @@ enum {
   anon_sym_let = 34,
   anon_sym_COLON = 35,
   anon_sym_EQ = 36,
-  anon_sym_ref = 37,
+  anon_sym_boxed = 37,
   anon_sym_enum = 38,
   anon_sym_LBRACE = 39,
   anon_sym_BSLASHn = 40,
@@ -105,7 +105,7 @@ enum {
   sym__type = 86,
   sym_array_type = 87,
   sym_let_declaration = 88,
-  sym_reference_modifier = 89,
+  sym_boxed_modifier = 89,
   sym_enum_declaration = 90,
   sym_enum_integral_type = 91,
   sym_enum_variant_list = 92,
@@ -182,7 +182,7 @@ static const char * const ts_symbol_names[] = {
   [anon_sym_let] = "let",
   [anon_sym_COLON] = ":",
   [anon_sym_EQ] = "=",
-  [anon_sym_ref] = "ref",
+  [anon_sym_boxed] = "boxed",
   [anon_sym_enum] = "enum",
   [anon_sym_LBRACE] = "{",
   [anon_sym_BSLASHn] = "\\n",
@@ -234,7 +234,7 @@ static const char * const ts_symbol_names[] = {
   [sym__type] = "_type",
   [sym_array_type] = "array_type",
   [sym_let_declaration] = "let_declaration",
-  [sym_reference_modifier] = "reference_modifier",
+  [sym_boxed_modifier] = "boxed_modifier",
   [sym_enum_declaration] = "enum_declaration",
   [sym_enum_integral_type] = "enum_integral_type",
   [sym_enum_variant_list] = "enum_variant_list",
@@ -311,7 +311,7 @@ static const TSSymbol ts_symbol_map[] = {
   [anon_sym_let] = anon_sym_let,
   [anon_sym_COLON] = anon_sym_COLON,
   [anon_sym_EQ] = anon_sym_EQ,
-  [anon_sym_ref] = anon_sym_ref,
+  [anon_sym_boxed] = anon_sym_boxed,
   [anon_sym_enum] = anon_sym_enum,
   [anon_sym_LBRACE] = anon_sym_LBRACE,
   [anon_sym_BSLASHn] = anon_sym_BSLASHn,
@@ -363,7 +363,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym__type] = sym__type,
   [sym_array_type] = sym_array_type,
   [sym_let_declaration] = sym_let_declaration,
-  [sym_reference_modifier] = sym_reference_modifier,
+  [sym_boxed_modifier] = sym_boxed_modifier,
   [sym_enum_declaration] = sym_enum_declaration,
   [sym_enum_integral_type] = sym_enum_integral_type,
   [sym_enum_variant_list] = sym_enum_variant_list,
@@ -551,7 +551,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = false,
   },
-  [anon_sym_ref] = {
+  [anon_sym_boxed] = {
     .visible = true,
     .named = false,
   },
@@ -761,7 +761,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [sym_reference_modifier] = {
+  [sym_boxed_modifier] = {
     .visible = true,
     .named = true,
   },
@@ -4592,44 +4592,45 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 14:
       if (lookahead == 'o') ADVANCE(42);
+      if (lookahead == 'x') ADVANCE(43);
       END_STATE();
     case 15:
-      if (lookahead == 'c') ADVANCE(43);
-      if (lookahead == 'i') ADVANCE(44);
+      if (lookahead == 'c') ADVANCE(44);
+      if (lookahead == 'i') ADVANCE(45);
       END_STATE();
     case 16:
-      if (lookahead == 'n') ADVANCE(45);
+      if (lookahead == 'n') ADVANCE(46);
       END_STATE();
     case 17:
-      if (lookahead == 's') ADVANCE(46);
+      if (lookahead == 's') ADVANCE(47);
       END_STATE();
     case 18:
-      if (lookahead == 'u') ADVANCE(47);
+      if (lookahead == 'u') ADVANCE(48);
       END_STATE();
     case 19:
-      if (lookahead == '2') ADVANCE(48);
+      if (lookahead == '2') ADVANCE(49);
       END_STATE();
     case 20:
-      if (lookahead == '4') ADVANCE(49);
+      if (lookahead == '4') ADVANCE(50);
       END_STATE();
     case 21:
-      if (lookahead == 'l') ADVANCE(50);
+      if (lookahead == 'l') ADVANCE(51);
       END_STATE();
     case 22:
-      if (lookahead == 'r') ADVANCE(51);
+      if (lookahead == 'r') ADVANCE(52);
       END_STATE();
     case 23:
-      if (lookahead == 'n') ADVANCE(52);
+      if (lookahead == 'n') ADVANCE(53);
       END_STATE();
     case 24:
-      if (lookahead == '2') ADVANCE(53);
-      if (lookahead == '6') ADVANCE(54);
+      if (lookahead == '2') ADVANCE(54);
+      if (lookahead == '6') ADVANCE(55);
       END_STATE();
     case 25:
-      if (lookahead == '2') ADVANCE(55);
+      if (lookahead == '2') ADVANCE(56);
       END_STATE();
     case 26:
-      if (lookahead == '4') ADVANCE(56);
+      if (lookahead == '4') ADVANCE(57);
       END_STATE();
     case 27:
       ACCEPT_TOKEN(anon_sym_i8);
@@ -4641,16 +4642,15 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(anon_sym_in);
       END_STATE();
     case 30:
-      if (lookahead == 'i') ADVANCE(57);
+      if (lookahead == 'i') ADVANCE(58);
       END_STATE();
     case 31:
-      if (lookahead == 't') ADVANCE(58);
-      END_STATE();
-    case 32:
       if (lookahead == 't') ADVANCE(59);
       END_STATE();
+    case 32:
+      if (lookahead == 't') ADVANCE(60);
+      END_STATE();
     case 33:
-      if (lookahead == 'f') ADVANCE(60);
       if (lookahead == 't') ADVANCE(61);
       END_STATE();
     case 34:
@@ -4682,67 +4682,67 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
       if (lookahead == 'l') ADVANCE(70);
       END_STATE();
     case 43:
-      if (lookahead == 'h') ADVANCE(71);
+      if (lookahead == 'e') ADVANCE(71);
       END_STATE();
     case 44:
-      if (lookahead == 'n') ADVANCE(72);
+      if (lookahead == 'h') ADVANCE(72);
       END_STATE();
     case 45:
-      if (lookahead == 't') ADVANCE(73);
+      if (lookahead == 'n') ADVANCE(73);
       END_STATE();
     case 46:
-      if (lookahead == 'e') ADVANCE(74);
+      if (lookahead == 't') ADVANCE(74);
       END_STATE();
     case 47:
-      if (lookahead == 'm') ADVANCE(75);
+      if (lookahead == 'e') ADVANCE(75);
       END_STATE();
     case 48:
-      ACCEPT_TOKEN(anon_sym_f32);
+      if (lookahead == 'm') ADVANCE(76);
       END_STATE();
     case 49:
-      ACCEPT_TOKEN(anon_sym_f64);
+      ACCEPT_TOKEN(anon_sym_f32);
       END_STATE();
     case 50:
-      if (lookahead == 's') ADVANCE(76);
+      ACCEPT_TOKEN(anon_sym_f64);
       END_STATE();
     case 51:
-      ACCEPT_TOKEN(anon_sym_for);
+      if (lookahead == 's') ADVANCE(77);
       END_STATE();
     case 52:
-      if (lookahead == 'c') ADVANCE(77);
+      ACCEPT_TOKEN(anon_sym_for);
       END_STATE();
     case 53:
-      if (lookahead == '8') ADVANCE(78);
+      if (lookahead == 'c') ADVANCE(78);
       END_STATE();
     case 54:
-      ACCEPT_TOKEN(anon_sym_i16);
+      if (lookahead == '8') ADVANCE(79);
       END_STATE();
     case 55:
-      ACCEPT_TOKEN(anon_sym_i32);
+      ACCEPT_TOKEN(anon_sym_i16);
       END_STATE();
     case 56:
-      ACCEPT_TOKEN(anon_sym_i64);
+      ACCEPT_TOKEN(anon_sym_i32);
       END_STATE();
     case 57:
-      if (lookahead == 'z') ADVANCE(79);
+      ACCEPT_TOKEN(anon_sym_i64);
       END_STATE();
     case 58:
-      ACCEPT_TOKEN(anon_sym_let);
+      if (lookahead == 'z') ADVANCE(80);
       END_STATE();
     case 59:
-      if (lookahead == 'a') ADVANCE(80);
+      ACCEPT_TOKEN(anon_sym_let);
       END_STATE();
     case 60:
-      ACCEPT_TOKEN(anon_sym_ref);
+      if (lookahead == 'a') ADVANCE(81);
       END_STATE();
     case 61:
-      if (lookahead == 'u') ADVANCE(81);
+      if (lookahead == 'u') ADVANCE(82);
       END_STATE();
     case 62:
-      if (lookahead == 'e') ADVANCE(82);
+      if (lookahead == 'e') ADVANCE(83);
       END_STATE();
     case 63:
-      if (lookahead == '8') ADVANCE(83);
+      if (lookahead == '8') ADVANCE(84);
       END_STATE();
     case 64:
       ACCEPT_TOKEN(anon_sym_u16);
@@ -4754,126 +4754,132 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(anon_sym_u64);
       END_STATE();
     case 67:
-      if (lookahead == 'z') ADVANCE(84);
+      if (lookahead == 'z') ADVANCE(85);
       END_STATE();
     case 68:
-      if (lookahead == 'l') ADVANCE(85);
+      if (lookahead == 'l') ADVANCE(86);
       END_STATE();
     case 69:
-      if (lookahead == 'n') ADVANCE(86);
+      if (lookahead == 'n') ADVANCE(87);
       END_STATE();
     case 70:
       ACCEPT_TOKEN(anon_sym_bool);
       END_STATE();
     case 71:
-      if (lookahead == 'a') ADVANCE(87);
+      if (lookahead == 'd') ADVANCE(88);
       END_STATE();
     case 72:
-      if (lookahead == 't') ADVANCE(88);
+      if (lookahead == 'a') ADVANCE(89);
       END_STATE();
     case 73:
-      if (lookahead == 'i') ADVANCE(89);
+      if (lookahead == 't') ADVANCE(90);
       END_STATE();
     case 74:
-      ACCEPT_TOKEN(anon_sym_else);
+      if (lookahead == 'i') ADVANCE(91);
       END_STATE();
     case 75:
-      ACCEPT_TOKEN(anon_sym_enum);
+      ACCEPT_TOKEN(anon_sym_else);
       END_STATE();
     case 76:
-      if (lookahead == 'e') ADVANCE(90);
+      ACCEPT_TOKEN(anon_sym_enum);
       END_STATE();
     case 77:
-      if (lookahead == 't') ADVANCE(91);
-      END_STATE();
-    case 78:
-      ACCEPT_TOKEN(anon_sym_i128);
-      END_STATE();
-    case 79:
       if (lookahead == 'e') ADVANCE(92);
       END_STATE();
+    case 78:
+      if (lookahead == 't') ADVANCE(93);
+      END_STATE();
+    case 79:
+      ACCEPT_TOKEN(anon_sym_i128);
+      END_STATE();
     case 80:
-      if (lookahead == 'b') ADVANCE(93);
+      if (lookahead == 'e') ADVANCE(94);
       END_STATE();
     case 81:
-      if (lookahead == 'r') ADVANCE(94);
+      if (lookahead == 'b') ADVANCE(95);
       END_STATE();
     case 82:
-      ACCEPT_TOKEN(anon_sym_true);
+      if (lookahead == 'r') ADVANCE(96);
       END_STATE();
     case 83:
-      ACCEPT_TOKEN(anon_sym_u128);
+      ACCEPT_TOKEN(anon_sym_true);
       END_STATE();
     case 84:
-      if (lookahead == 'e') ADVANCE(95);
+      ACCEPT_TOKEN(anon_sym_u128);
       END_STATE();
     case 85:
-      if (lookahead == 'e') ADVANCE(96);
+      if (lookahead == 'e') ADVANCE(97);
       END_STATE();
     case 86:
-      if (lookahead == 'g') ADVANCE(97);
+      if (lookahead == 'e') ADVANCE(98);
       END_STATE();
     case 87:
-      if (lookahead == 'r') ADVANCE(98);
+      if (lookahead == 'g') ADVANCE(99);
       END_STATE();
     case 88:
-      ACCEPT_TOKEN(anon_sym_c_int);
+      ACCEPT_TOKEN(anon_sym_boxed);
       END_STATE();
     case 89:
-      if (lookahead == 'n') ADVANCE(99);
+      if (lookahead == 'r') ADVANCE(100);
       END_STATE();
     case 90:
-      ACCEPT_TOKEN(anon_sym_false);
+      ACCEPT_TOKEN(anon_sym_c_int);
       END_STATE();
     case 91:
-      if (lookahead == 'i') ADVANCE(100);
+      if (lookahead == 'n') ADVANCE(101);
       END_STATE();
     case 92:
-      ACCEPT_TOKEN(anon_sym_isize);
+      ACCEPT_TOKEN(anon_sym_false);
       END_STATE();
     case 93:
-      if (lookahead == 'l') ADVANCE(101);
+      if (lookahead == 'i') ADVANCE(102);
       END_STATE();
     case 94:
-      if (lookahead == 'n') ADVANCE(102);
+      ACCEPT_TOKEN(anon_sym_isize);
       END_STATE();
     case 95:
-      ACCEPT_TOKEN(anon_sym_usize);
+      if (lookahead == 'l') ADVANCE(103);
       END_STATE();
     case 96:
-      ACCEPT_TOKEN(anon_sym_while);
+      if (lookahead == 'n') ADVANCE(104);
       END_STATE();
     case 97:
-      ACCEPT_TOKEN(anon_sym_String);
+      ACCEPT_TOKEN(anon_sym_usize);
       END_STATE();
     case 98:
-      ACCEPT_TOKEN(anon_sym_c_char);
+      ACCEPT_TOKEN(anon_sym_while);
       END_STATE();
     case 99:
-      if (lookahead == 'u') ADVANCE(103);
+      ACCEPT_TOKEN(anon_sym_String);
       END_STATE();
     case 100:
-      if (lookahead == 'o') ADVANCE(104);
+      ACCEPT_TOKEN(anon_sym_c_char);
       END_STATE();
     case 101:
-      if (lookahead == 'e') ADVANCE(105);
+      if (lookahead == 'u') ADVANCE(105);
       END_STATE();
     case 102:
-      ACCEPT_TOKEN(anon_sym_return);
+      if (lookahead == 'o') ADVANCE(106);
       END_STATE();
     case 103:
-      if (lookahead == 'e') ADVANCE(106);
+      if (lookahead == 'e') ADVANCE(107);
       END_STATE();
     case 104:
-      if (lookahead == 'n') ADVANCE(107);
+      ACCEPT_TOKEN(anon_sym_return);
       END_STATE();
     case 105:
-      ACCEPT_TOKEN(sym_mutable_specifier);
+      if (lookahead == 'e') ADVANCE(108);
       END_STATE();
     case 106:
-      ACCEPT_TOKEN(anon_sym_continue);
+      if (lookahead == 'n') ADVANCE(109);
       END_STATE();
     case 107:
+      ACCEPT_TOKEN(sym_mutable_specifier);
+      END_STATE();
+    case 108:
+      ACCEPT_TOKEN(anon_sym_continue);
+      END_STATE();
+    case 109:
       ACCEPT_TOKEN(anon_sym_function);
       END_STATE();
     default:
@@ -5387,7 +5393,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_let] = ACTIONS(1),
     [anon_sym_COLON] = ACTIONS(1),
     [anon_sym_EQ] = ACTIONS(1),
-    [anon_sym_ref] = ACTIONS(1),
+    [anon_sym_boxed] = ACTIONS(1),
     [anon_sym_enum] = ACTIONS(1),
     [anon_sym_LBRACE] = ACTIONS(1),
     [anon_sym_BSLASHn] = ACTIONS(1),
@@ -5438,7 +5444,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_range_expression] = STATE(196),
     [sym__top_level_declaration] = STATE(19),
     [sym_let_declaration] = STATE(409),
-    [sym_reference_modifier] = STATE(419),
+    [sym_boxed_modifier] = STATE(419),
     [sym_enum_declaration] = STATE(409),
     [sym_unary_expression] = STATE(196),
     [sym_return_statement] = STATE(409),
@@ -5459,7 +5465,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_for] = ACTIONS(17),
     [anon_sym_DOT_DOT] = ACTIONS(19),
     [anon_sym_let] = ACTIONS(21),
-    [anon_sym_ref] = ACTIONS(23),
+    [anon_sym_boxed] = ACTIONS(23),
     [anon_sym_enum] = ACTIONS(25),
     [anon_sym_LBRACE] = ACTIONS(27),
     [anon_sym_DASH] = ACTIONS(29),
@@ -6178,7 +6184,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(118), 1,
       anon_sym_let,
     ACTIONS(121), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(124), 1,
       anon_sym_enum,
     ACTIONS(127), 1,
@@ -6198,7 +6204,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(130), 1,
       sym__expression,
     STATE(419), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(151), 2,
       anon_sym_true,
       anon_sym_false,
@@ -6652,7 +6658,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(21), 1,
       anon_sym_let,
     ACTIONS(23), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(25), 1,
       anon_sym_enum,
     ACTIONS(27), 1,
@@ -6674,7 +6680,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(130), 1,
       sym__expression,
     STATE(419), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(43), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7100,7 +7106,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_line_comment,
     ACTIONS(23), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(168), 1,
       sym_identifier,
     ACTIONS(170), 1,
@@ -7136,7 +7142,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(52), 1,
       sym__expression,
     STATE(423), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(202), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7169,7 +7175,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_line_comment,
     ACTIONS(23), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(168), 1,
       sym_identifier,
     ACTIONS(170), 1,
@@ -7205,7 +7211,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(52), 1,
       sym__expression,
     STATE(423), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(202), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7238,7 +7244,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_line_comment,
     ACTIONS(23), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(168), 1,
       sym_identifier,
     ACTIONS(170), 1,
@@ -7274,7 +7280,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(52), 1,
       sym__expression,
     STATE(423), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(202), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7323,7 +7329,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(229), 1,
       anon_sym_let,
     ACTIONS(232), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(235), 1,
       anon_sym_enum,
     ACTIONS(238), 1,
@@ -7343,7 +7349,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(52), 1,
       sym__expression,
     STATE(423), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(261), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7376,7 +7382,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_line_comment,
     ACTIONS(23), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(168), 1,
       sym_identifier,
     ACTIONS(170), 1,
@@ -7412,7 +7418,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(52), 1,
       sym__expression,
     STATE(423), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(202), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7445,7 +7451,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_line_comment,
     ACTIONS(23), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(168), 1,
       sym_identifier,
     ACTIONS(170), 1,
@@ -7481,7 +7487,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(52), 1,
       sym__expression,
     STATE(423), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(202), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7514,7 +7520,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_line_comment,
     ACTIONS(23), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(168), 1,
       sym_identifier,
     ACTIONS(170), 1,
@@ -7550,7 +7556,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(52), 1,
       sym__expression,
     STATE(423), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(202), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7583,7 +7589,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_line_comment,
     ACTIONS(23), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(168), 1,
       sym_identifier,
     ACTIONS(170), 1,
@@ -7619,7 +7625,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(52), 1,
       sym__expression,
     STATE(423), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(202), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7652,7 +7658,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_line_comment,
     ACTIONS(23), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(168), 1,
       sym_identifier,
     ACTIONS(170), 1,
@@ -7688,7 +7694,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(52), 1,
       sym__expression,
     STATE(423), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(202), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7721,7 +7727,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_line_comment,
     ACTIONS(23), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(168), 1,
       sym_identifier,
     ACTIONS(170), 1,
@@ -7757,7 +7763,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(52), 1,
       sym__expression,
     STATE(423), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(202), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7790,7 +7796,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_line_comment,
     ACTIONS(23), 1,
-      anon_sym_ref,
+      anon_sym_boxed,
     ACTIONS(168), 1,
       sym_identifier,
     ACTIONS(170), 1,
@@ -7826,7 +7832,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(52), 1,
       sym__expression,
     STATE(423), 1,
-      sym_reference_modifier,
+      sym_boxed_modifier,
     ACTIONS(202), 2,
       anon_sym_true,
       anon_sym_false,
@@ -7864,7 +7870,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_for,
       anon_sym_let,
       anon_sym_EQ,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -7909,7 +7915,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_for,
       anon_sym_let,
       anon_sym_EQ,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -7954,7 +7960,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_for,
       anon_sym_let,
       anon_sym_EQ,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -8038,7 +8044,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       sym_integer_literal,
@@ -8065,7 +8071,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -8143,7 +8149,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       sym_integer_literal,
@@ -8199,7 +8205,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       sym_integer_literal,
@@ -8232,7 +8238,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       anon_sym_LT,
@@ -8301,7 +8307,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       anon_sym_LT,
@@ -8355,7 +8361,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       anon_sym_LT,
@@ -8373,7 +8379,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -8431,7 +8437,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       anon_sym_LT,
@@ -8473,7 +8479,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -8516,7 +8522,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -8599,7 +8605,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       sym_integer_literal,
@@ -8657,7 +8663,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       sym_integer_literal,
@@ -8713,7 +8719,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       sym_integer_literal,
@@ -8748,7 +8754,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       anon_sym_LT,
@@ -8787,7 +8793,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -8828,7 +8834,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -8912,7 +8918,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       sym_integer_literal,
@@ -8968,7 +8974,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       sym_integer_literal,
@@ -8984,7 +8990,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -9027,7 +9033,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -9070,7 +9076,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -9113,7 +9119,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -9156,7 +9162,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -9199,7 +9205,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -9242,7 +9248,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -9285,7 +9291,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -9328,7 +9334,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -9371,7 +9377,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -9875,7 +9881,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_while,
       anon_sym_continue,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_return,
       anon_sym_if,
@@ -10870,7 +10876,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -10899,7 +10905,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -10988,7 +10994,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11019,7 +11025,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11048,7 +11054,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11224,7 +11230,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11311,7 +11317,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11427,7 +11433,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11485,7 +11491,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11546,7 +11552,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11615,7 +11621,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11643,7 +11649,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11735,7 +11741,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11762,7 +11768,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11825,7 +11831,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -11882,7 +11888,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -12073,7 +12079,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -12474,7 +12480,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -12531,7 +12537,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -12558,7 +12564,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -12682,7 +12688,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -12709,7 +12715,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -12736,7 +12742,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -12793,7 +12799,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -12860,7 +12866,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -12887,7 +12893,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -12984,7 +12990,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -13011,7 +13017,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -13038,7 +13044,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -13133,7 +13139,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -13382,7 +13388,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -13536,7 +13542,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_continue,
       anon_sym_for,
       anon_sym_let,
-      anon_sym_ref,
+      anon_sym_boxed,
       anon_sym_enum,
       anon_sym_DASH,
       anon_sym_return,
@@ -19083,7 +19089,7 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [996] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_enum_integral_type, 3),
   [998] = {.entry = {.count = 1, .reusable = true}}, SHIFT(174),
   [1000] = {.entry = {.count = 1, .reusable = true}}, SHIFT(236),
-  [1002] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_reference_modifier, 1),
+  [1002] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_boxed_modifier, 1),
   [1004] = {.entry = {.count = 1, .reusable = true}}, SHIFT(234),
   [1006] = {.entry = {.count = 1, .reusable = true}}, SHIFT(233),
   [1008] = {.entry = {.count = 1, .reusable = true}}, SHIFT(135),
