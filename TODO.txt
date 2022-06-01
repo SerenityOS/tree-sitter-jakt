@@ -3,3 +3,10 @@
 * submit queries to https://github.com/nvim-treesitter/nvim-treesitter
 
     https://github.com/nvim-treesitter/nvim-treesitter/issues/2282
+
+* add github actions
+
+    * pytest tests
+    * mypy on the python scripts
+    * tree-sitter tests
+    * roadmap.py does not flag any tests as out-of-date

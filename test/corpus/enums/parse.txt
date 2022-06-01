@@ -78,26 +78,11 @@ enum SimpleWithStructType {
           (primitive_type))))))
 
 ================================================================================
-Enum on single line
-================================================================================
-
-enum Apple { GrannySmith }
-
---------------------------------------------------------------------------------
-
-(source_file
-  (enum_declaration
-    (type_identifier)
-    (enum_variant_list
-      (enum_variant
-        (identifier)))))
-
-================================================================================
 Simple enum with mixed variants
 ================================================================================
 
 enum SimpleWithStructType {
-    A 
+    A
     B(i32)
     C
 }
@@ -116,6 +101,32 @@ enum SimpleWithStructType {
           (primitive_type)))
       (enum_variant
         (identifier)))))
+
+; ================================================================================
+; NOT IMPLEMENTED Simple enum with Type Parameter
+; ================================================================================
+;
+; enum SimpleWithTypeParameter<T> {
+;     A(T)
+;     B
+; }
+;
+; --------------------------------------------------------------------------------
+;
+; (source_file)
+
+; ================================================================================
+; NOT IMPLEMENTED Simple enum with multiple Type Parameters
+; ================================================================================
+;
+; enum SimpleWithMultipleTypeParameters<T, U> {
+;     A(T)
+;     B(U)
+; }
+;
+; --------------------------------------------------------------------------------
+;
+; (source_file)
 
 ================================================================================
 Enum with underlying type
@@ -142,36 +153,3 @@ enum IntegralWithUnderlyingType: i32 {
         (integer_literal))
       (enum_variant
         (identifier)))))
-
-================================================================================
-Ref counted recursive enum
-================================================================================
-
-ref enum AST {
-    Int(i64)
-    BinaryOperation(lhs: AST, op: Operation, rhs: AST)
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (enum_declaration
-    (reference_modifier)
-    (type_identifier)
-    (enum_variant_list
-      (enum_variant
-        (identifier)
-        (ordered_field_declaration_list
-          (primitive_type)))
-      (enum_variant
-        (identifier)
-        (ordered_field_declaration_list
-          (field_declaration
-            (field_identifier)
-            (type_identifier))
-          (field_declaration
-            (field_identifier)
-            (type_identifier))
-          (field_declaration
-            (field_identifier)
-            (type_identifier)))))))

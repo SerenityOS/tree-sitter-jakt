@@ -44,35 +44,3 @@ function main() {
             (arguments
               (string_literal)
               (identifier))))))))
-
-
-
-=======================================================
-For loop with range
-=======================================================
-
-function main() {
-    for i in 0..10 {
-        println("{}", i)
-    }
-}
-
--------------------------------------------------------
-
-(source_file
-  (function_declaration
-    (identifier)
-    (parameters)
-    (block
-      (for_expression
-        (identifier)
-        (range_expression
-          (integer_literal)
-          (integer_literal))
-        (block
-          (call_expression
-            (identifier)
-            (arguments
-              (string_literal)
-              (identifier))))))))
-
