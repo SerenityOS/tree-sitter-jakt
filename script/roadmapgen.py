@@ -1,10 +1,10 @@
-"""A helper script to build a roadmap for testmy_filmy_filmy_filemy_fileeeing Jakt parsing.
+"""A helper script to build a roadmap for testing Jakt parsing.
 
-Jakt does not have a spec, but a large cache of tests that describe how the language
+Jakt does not have a spec, but a large cache of "samples" that describe how the language
 works.
 
 This script is an effort to ensure the tree-sitter-jakt parser touches as much of those
-parser tests as possible.
+sample tests as possible.
 
 Not every test in the samples cache is suitable for tree-sitter-jakt, so this script also
 provides a mechanism for marking those tests as implemented.
@@ -59,7 +59,6 @@ def build_corpus_list() -> dict[str, list]:
     pattern: str = r"=+\n(.*)\n=+\n\s+"
     for root, _, files in os.walk(pathlib.Path("test", "corpus"), topdown=True):
         for name in files:
-            # console.log(f"Test: {root.replace('test/corpus/', '')}/{name}")
             file_path = pathlib.Path(root, name)
             file_path_posix = file_path.as_posix()
             file_text = file_path.read_text()
@@ -72,7 +71,6 @@ def build_corpus_list() -> dict[str, list]:
             stripped_text = file_text.replace("; ", "").replace(";", "")
 
             for x in re.findall(pattern, stripped_text):
-                # console.log(f"have: '{x}'")
                 if not file_path_posix in list_of_tests:
                     list_of_tests[file_path_posix] = []
                 list_of_tests[file_path_posix].append(x)
