@@ -1,0 +1,1283 @@
+[[map]]
+name = "cat.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/apps/cat.jakt"
+jakt_sample_hash = "baecac0551f40acd22b124908646a766"
+
+[[map]]
+name = "crc32.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/apps/crc32.jakt"
+jakt_sample_hash = "8ae914da99fd9812bbb45693ccc331d3"
+
+[[map]]
+name = "cat-std.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/apps/cat-std.jakt"
+jakt_sample_hash = "562af39a90324279b82eb6577d8cc783"
+
+[[map]]
+name = "json.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/apps/json.jakt"
+jakt_sample_hash = "d639dea32206e074339472201b3f0848"
+
+[[map]]
+name = "array1.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/array1.jakt"
+jakt_sample_hash = "1f954b931e08056bc3643257fe4e4181"
+
+[[map]]
+name = "array2.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/array2.jakt"
+jakt_sample_hash = "d0d62ff506da7ffbbdb3120a31022c33"
+
+[[map]]
+name = "array_bad.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/array_bad.jakt"
+jakt_sample_hash = "3f5ab51cb4c9358441a77649f9420018"
+
+[[map]]
+name = "array_bad2.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/array_bad2.jakt"
+jakt_sample_hash = "654f62001319e7bb3472607dfd850199"
+
+[[map]]
+name = "array_iterator.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/array_iterator.jakt"
+jakt_sample_hash = "c2d0c149e8ca26b8393be732705f31ae"
+
+[[map]]
+name = "array_param.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/array_param.jakt"
+jakt_sample_hash = "f3f5d66b5197a1d00534b0c823e4af73"
+
+[[map]]
+name = "array_pop.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/array_pop.jakt"
+jakt_sample_hash = "6b558c2b46c7f1845ce2f21c5ccaa1df"
+
+[[map]]
+name = "array_push.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/array_push.jakt"
+jakt_sample_hash = "cfd265847b6fa1f8cdc0fdefec35f164"
+
+[[map]]
+name = "array_shorthand.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/array_shorthand.jakt"
+jakt_sample_hash = "b4abeef5fb332214154887a5766ccf33"
+
+[[map]]
+name = "contains.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/contains.jakt"
+jakt_sample_hash = "1208b95a4ee52feeb7cd05c03eed979c"
+
+[[map]]
+name = "empty_infer_call.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/empty_infer_call.jakt"
+jakt_sample_hash = "6226f372f69b4d3481eb3e4292c2afeb"
+
+[[map]]
+name = "empty_infer_call_bad.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/empty_infer_call_bad.jakt"
+jakt_sample_hash = "6b2a4bcd04f79f352c09ca26f5389b31"
+
+[[map]]
+name = "empty_literal_without_hint.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/empty_literal_without_hint.jakt"
+jakt_sample_hash = "b826ffd0f4415f2ea3d917beb86cf2ca"
+
+[[map]]
+name = "inference_empty.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/inference_empty.jakt"
+jakt_sample_hash = "779f8915984aa0461d460045f7d51c91"
+
+[[map]]
+name = "lvalue.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/lvalue.jakt"
+jakt_sample_hash = "4b939cffb7e83414aef8728da0b395c0"
+
+[[map]]
+name = "lvalue_bad.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/lvalue_bad.jakt"
+jakt_sample_hash = "95c51ecf9cfbfc03d4ac7eb1c4aad012"
+
+[[map]]
+name = "multidimension_array.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/multidimension_array.jakt"
+jakt_sample_hash = "9003438ae5bd9d2ee00a14cc0b175e65"
+
+[[map]]
+name = "pop_class_instance.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/pop_class_instance.jakt"
+jakt_sample_hash = "f15c4962f45babd4835cc94a6428270c"
+
+[[map]]
+name = "prefill.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/prefill.jakt"
+jakt_sample_hash = "a3b0decccabe22a98a383d9e0a6755b4"
+
+[[map]]
+name = "reference_semantics.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/reference_semantics.jakt"
+jakt_sample_hash = "567dd16e1a04014fba6148c81406fa8b"
+
+[[map]]
+name = "shorthand_optional.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/shorthand_optional.jakt"
+jakt_sample_hash = "85425bf7a769f86ecde6d41033d11c0a"
+
+[[map]]
+name = "size.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/arrays/size.jakt"
+jakt_sample_hash = "1f1daa22a27e68cde95fa9d6e5c2545f"
+
+[[map]]
+name = "binary_literals.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/binary_literals.jakt"
+jakt_sample_hash = "557abd6523ab71cc0f722906cfa700c4"
+
+[[map]]
+name = "bubble_sort.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/bubble_sort.jakt"
+jakt_sample_hash = "42377ab2530b6587822142087798a059"
+
+[[map]]
+name = "byte_literals.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/byte_literals.jakt"
+jakt_sample_hash = "0b43a68313d7777d45547a618843282a"
+
+[[map]]
+name = "comments.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/comments.jakt"
+jakt_sample_hash = "5a7c46800ace2f69f9c62f6ac3fdeb76"
+
+[[map]]
+name = "error.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/error.jakt"
+jakt_sample_hash = "7fa5c72d9a8a5436cb0ed0ec8682c426"
+
+[[map]]
+name = "escape_sequence.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/escape_sequence.jakt"
+jakt_sample_hash = "b4b9ea20c50c2edc6396d24444548f72"
+
+[[map]]
+name = "float_literals.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/float_literals.jakt"
+jakt_sample_hash = "b3310fec21acda61f3fe18ba31f306eb"
+
+[[map]]
+name = "format.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/format.jakt"
+jakt_sample_hash = "0dac3a6e7ed4c75a60a77444983471ec"
+
+[[map]]
+name = "hello.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/hello.jakt"
+jakt_sample_hash = "c9d440b1cfc5b1fd7c7ddef3638f1d35"
+
+[[map]]
+name = "hello_number.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/hello_number.jakt"
+jakt_sample_hash = "f3d180733dc0bbf782f8a52488786b6e"
+
+[[map]]
+name = "hex_literals.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/hex_literals.jakt"
+jakt_sample_hash = "28c3f0fa97493aa9061b05d56ac16e51"
+
+[[map]]
+name = "is.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/is.jakt"
+jakt_sample_hash = "1a0c391ac446ea33a8cf969cd6b07678"
+
+[[map]]
+name = "numeric_literal_suffixes.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/numeric_literal_suffixes.jakt"
+jakt_sample_hash = "95a366a1326fd5d6c8a83f3505f71f34"
+
+[[map]]
+name = "octal_literals.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/octal_literals.jakt"
+jakt_sample_hash = "bfb413e77313b280c6fa07e0703201e2"
+
+[[map]]
+name = "opening_curly_brace_on_newline.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/basics/opening_curly_brace_on_newline.jakt"
+jakt_sample_hash = "27d761427c4926c0e12f585e4b4a74aa"
+
+[[map]]
+name = "logical_and.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/boolean/logical_and.jakt"
+jakt_sample_hash = "ef1e1e59177d878254da6fb3d120c740"
+
+[[map]]
+name = "logical_not.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/boolean/logical_not.jakt"
+jakt_sample_hash = "d5f59994f2420250271017b8ebf8ea2a"
+
+[[map]]
+name = "logical_or.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/boolean/logical_or.jakt"
+jakt_sample_hash = "1409ea282e32635b67ef193d2ffd3e86"
+
+[[map]]
+name = "call_private_from_public.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/classes/call_private_from_public.jakt"
+jakt_sample_hash = "83934e7fdb7eed4b7914766b5298b97a"
+
+[[map]]
+name = "class.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/classes/class.jakt"
+jakt_sample_hash = "fb229e807a0fefc190db7ab1755d6d9a"
+
+[[map]]
+name = "class_with_move_only_enum_member.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/classes/class_with_move_only_enum_member.jakt"
+jakt_sample_hash = "2176d9ec30bae895f2d8de4c73d4c65b"
+
+[[map]]
+name = "method.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/classes/method.jakt"
+jakt_sample_hash = "5f53bf4f39c9a616268317e6f615dfdb"
+
+[[map]]
+name = "mutating_method_called_on_immutable_object_instance.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/classes/mutating_method_called_on_immutable_object_instance.jakt"
+jakt_sample_hash = "9f39e2eb029ce00bf4209701329af655"
+
+[[map]]
+name = "restricted_method.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/classes/restricted_method.jakt"
+jakt_sample_hash = "219afbda743bc811af43bc9b6362158a"
+
+[[map]]
+name = "restricted_method_inaccessible.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/classes/restricted_method_inaccessible.jakt"
+jakt_sample_hash = "29bbe1d73ad3715bbc5473db1f0fe1e1"
+
+[[map]]
+name = "static_method.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/classes/static_method.jakt"
+jakt_sample_hash = "3658c59ca4c28dbe9d3a03a0603c135f"
+
+[[map]]
+name = "static_method_called_on_object_instance.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/classes/static_method_called_on_object_instance.jakt"
+jakt_sample_hash = "e45b47f120fdbaa9c5a1127231fbb1e2"
+
+[[map]]
+name = "throwing_method.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/classes/throwing_method.jakt"
+jakt_sample_hash = "446e801625fa64974f797273e4e87dc5"
+
+[[map]]
+name = "continue.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/continue.jakt"
+jakt_sample_hash = "13a59de07ca534d1614cd4609ba2a347"
+
+[[map]]
+name = "defer.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/defer.jakt"
+jakt_sample_hash = "9a9314cdbd9552c7932d8188d6ea13b7"
+
+[[map]]
+name = "defer_in_defer.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/defer_in_defer.jakt"
+jakt_sample_hash = "124436cf0ececd80a355198c7be26899"
+
+[[map]]
+name = "defer_return_error.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/defer_return_error.jakt"
+jakt_sample_hash = "54872cb6027b3f8070f22e6cf5c72815"
+
+[[map]]
+name = "defer_stmt.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/defer_stmt.jakt"
+jakt_sample_hash = "f55d48d109bf81b9ac72e2a22bb1ca68"
+
+[[map]]
+name = "fizzbuzz.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/fizzbuzz.jakt"
+jakt_sample_hash = "e87fe65382b642cb19c9993555a37764"
+
+[[map]]
+name = "for.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/for.jakt"
+jakt_sample_hash = "f0703719eba773657aa64eb1e8c429b5"
+
+[[map]]
+name = "for_throw.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/for_throw.jakt"
+jakt_sample_hash = "cc5804edfe1d1365229d45e6ff442768"
+
+[[map]]
+name = "if.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/if.jakt"
+jakt_sample_hash = "581b7a50f86128a4f78a126da2d4504b"
+
+[[map]]
+name = "if2.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/if2.jakt"
+jakt_sample_hash = "bc784f490c3eb1cfa5e1cc00e44c7e3f"
+
+[[map]]
+name = "if3.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/if3.jakt"
+jakt_sample_hash = "de134c0ea63da365e687fabec5fe2dcc"
+
+[[map]]
+name = "if4.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/if4.jakt"
+jakt_sample_hash = "bd85334f3f8375c480df3ce2ffeed302"
+
+[[map]]
+name = "if5.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/if5.jakt"
+jakt_sample_hash = "82529824377871150c217548efeef243"
+
+[[map]]
+name = "if_else_identical_error.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/if_else_identical_error.jakt"
+jakt_sample_hash = "6375ef9e51244d00170b1c28f0c001cc"
+
+[[map]]
+name = "if_with_bad_assignment.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/if_with_bad_assignment.jakt"
+jakt_sample_hash = "6f6b97e8f19af2259ac462c9825cd21b"
+
+[[map]]
+name = "if_with_bad_expression_type.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/if_with_bad_expression_type.jakt"
+jakt_sample_hash = "bade148d21f4c8f5f4e122c684e7c5f1"
+
+[[map]]
+name = "loop.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/loop.jakt"
+jakt_sample_hash = "f6f0eacb290c73b3dd3edbaf4be75fba"
+
+[[map]]
+name = "try_catch.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/try_catch.jakt"
+jakt_sample_hash = "10a9dbfb5b5a08ac08150cd6a0f20ed9"
+
+[[map]]
+name = "while.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/while.jakt"
+jakt_sample_hash = "051e1984d7b512796d98e89afbedda06"
+
+[[map]]
+name = "while2.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/while2.jakt"
+jakt_sample_hash = "bce91de4bad74ba693de9d02223e10ac"
+
+[[map]]
+name = "while3.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/while3.jakt"
+jakt_sample_hash = "7fa698e4c81a9d3c11d6495ce8e2487e"
+
+[[map]]
+name = "while_with_bad_expression_type.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/control_flow/while_with_bad_expression_type.jakt"
+jakt_sample_hash = "97b6d91c5d3f09f6fa1d92bded102b31"
+
+[[map]]
+name = "contains.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/contains.jakt"
+jakt_sample_hash = "fb38e38beb13770c67f168a70b310c8c"
+
+[[map]]
+name = "count_words.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/count_words.jakt"
+jakt_sample_hash = "4664b9843107042db0ef2224438fceb0"
+
+[[map]]
+name = "dict.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/dict.jakt"
+jakt_sample_hash = "995abad614fcca6259ce1fae06bad201"
+
+[[map]]
+name = "dict_index_unwrap.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/dict_index_unwrap.jakt"
+jakt_sample_hash = "6aadafbc20c975dd025773250a00d688"
+
+[[map]]
+name = "empty_literal.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/empty_literal.jakt"
+jakt_sample_hash = "ce6727241cf7f4f09b262dfc11ca78cd"
+
+[[map]]
+name = "empty_literal_without_hint.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/empty_literal_without_hint.jakt"
+jakt_sample_hash = "f5ff8bc1b238242ed9c5583c57c24350"
+
+[[map]]
+name = "indexed.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/indexed.jakt"
+jakt_sample_hash = "4456d3950a2f66e92ba2f3845a9ba258"
+
+[[map]]
+name = "iterator.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/iterator.jakt"
+jakt_sample_hash = "58e2c10f9b02584fcc60a2c0ae95271c"
+
+[[map]]
+name = "lvalue.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/lvalue.jakt"
+jakt_sample_hash = "8f1362ef95d86435bbc00686024835d1"
+
+[[map]]
+name = "lvalue2.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/lvalue2.jakt"
+jakt_sample_hash = "22eacef8b8944e068c64d55210e839e9"
+
+[[map]]
+name = "reference_semantics.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/reference_semantics.jakt"
+jakt_sample_hash = "325982a588abbeafdefe8fda77d97c8d"
+
+[[map]]
+name = "set.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/dictionaries/set.jakt"
+jakt_sample_hash = "79651f7871098eef0e73f68737497df8"
+
+[[map]]
+name = "empty_enum.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/enums/empty_enum.jakt"
+jakt_sample_hash = "0aa0381b30fc3ebbd57eb0fdb3c131f1"
+
+[[map]]
+name = "methods.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/enums/methods.jakt"
+jakt_sample_hash = "05ddaa5da1a12c38b6c0e1bc5c24bdb7"
+
+[[map]]
+name = "methods_access_violation.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/enums/methods_access_violation.jakt"
+jakt_sample_hash = "e8c5c42c63bff2fbea73fcce12c8c42c"
+
+[[map]]
+name = "one_line_enum_declaration.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/enums/one_line_enum_declaration.jakt"
+jakt_sample_hash = "939c05a278fc615744d2bc4f5eef1128"
+
+[[map]]
+name = "parse.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/enums/parse.jakt"
+jakt_sample_hash = "be86be6aeae80dded222af05cc99646b"
+
+[[map]]
+name = "recursive_enums.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/enums/recursive_enums.jakt"
+jakt_sample_hash = "a35dfed2ea74c7af94f713acdf6b2417"
+
+[[map]]
+name = "recursive_enums_bad.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/enums/recursive_enums_bad.jakt"
+jakt_sample_hash = "3727eb9fa4ed4248039a40922a001b13"
+
+[[map]]
+name = "simple_constructor.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/enums/simple_constructor.jakt"
+jakt_sample_hash = "09e67341dd9eb9d28243df382fb690d7"
+
+[[map]]
+name = "simple_match.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/enums/simple_match.jakt"
+jakt_sample_hash = "c1d8706a60278f7c78c5ab264fce2078"
+
+[[map]]
+name = "underlying.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/enums/underlying.jakt"
+jakt_sample_hash = "f43659daa1211978856c2720ea1542d7"
+
+[[map]]
+name = "is_variant.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/enums/is_variant.jakt"
+jakt_sample_hash = "470016404d46e39cc4ef62e781daad3f"
+
+[[map]]
+name = "argument_labels.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/argument_labels.jakt"
+jakt_sample_hash = "9f1e4f5cbda106057fadb31ea705fbfc"
+
+[[map]]
+name = "argument_labels_bad.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/argument_labels_bad.jakt"
+jakt_sample_hash = "add80df0b8ba835a1896eca61fafa24c"
+
+[[map]]
+name = "argument_labels_bad2.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/argument_labels_bad2.jakt"
+jakt_sample_hash = "1656d0e647dde9a315320f2b2812c520"
+
+[[map]]
+name = "arrow_function.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/arrow_function.jakt"
+jakt_sample_hash = "273a126bb87ff5e9dfe444298e271e2a"
+
+[[map]]
+name = "call.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/call.jakt"
+jakt_sample_hash = "f4913d9cdd71c4d5420bb67898a22cc3"
+
+[[map]]
+name = "call_missing_function.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/call_missing_function.jakt"
+jakt_sample_hash = "3f78c084a21ca1a891c18c356f8ce5ad"
+
+[[map]]
+name = "call_with_arg.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/call_with_arg.jakt"
+jakt_sample_hash = "801fc8e41093b02ed4a9a4fca745f2b5"
+
+[[map]]
+name = "call_with_bad_args.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/call_with_bad_args.jakt"
+jakt_sample_hash = "b6f31be2beaeed730adc931c656d4cde"
+
+[[map]]
+name = "call_with_return.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/call_with_return.jakt"
+jakt_sample_hash = "1828fdcf66aeed0f4bf8f79c0aae96f9"
+
+[[map]]
+name = "call_with_two_args.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/call_with_two_args.jakt"
+jakt_sample_hash = "5635bb9f3b166c9de1f7ca9343e2285b"
+
+[[map]]
+name = "call_wrong_arg_count.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/call_wrong_arg_count.jakt"
+jakt_sample_hash = "9677f99ca3cf311231c603196478ff4c"
+
+[[map]]
+name = "extern.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/extern.jakt"
+jakt_sample_hash = "5e6ab312dcfec8ef9b1f688819df7236"
+
+[[map]]
+name = "recursion.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/recursion.jakt"
+jakt_sample_hash = "6517f31494e51a140835e39869dc951d"
+
+[[map]]
+name = "fat_arrow.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/functions/fat_arrow.jakt"
+jakt_sample_hash = "33abd685a2c358379a83e87ae8f631a5"
+
+[[map]]
+name = "explicit_type_vars.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/generics/explicit_type_vars.jakt"
+jakt_sample_hash = "20b60290449d4eef55e0a9f442c417b5"
+
+[[map]]
+name = "generic_fun.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/generics/generic_fun.jakt"
+jakt_sample_hash = "02c4ed7a06ee77459f843353548406d9"
+
+[[map]]
+name = "generic_fun2.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/generics/generic_fun2.jakt"
+jakt_sample_hash = "bf4a839cfd0d1a4a21947dfb34c09f81"
+
+[[map]]
+name = "generic_fun3.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/generics/generic_fun3.jakt"
+jakt_sample_hash = "97c0a9e2a40c7c580b786124b4a35e86"
+
+[[map]]
+name = "generic_fun4.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/generics/generic_fun4.jakt"
+jakt_sample_hash = "e052b8bfaab4c6f90116350c33cbfe22"
+
+[[map]]
+name = "generic_instantiation.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/generics/generic_instantiation.jakt"
+jakt_sample_hash = "98c64e8dcfddf25fc3a0bb174b9151f1"
+
+[[map]]
+name = "generic_static.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/generics/generic_static.jakt"
+jakt_sample_hash = "40a0154d844f4672c09f8b771dc6f957"
+
+[[map]]
+name = "generic_struct.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/generics/generic_struct.jakt"
+jakt_sample_hash = "f308b50027395cd3a725d04716074eaa"
+
+[[map]]
+name = "generic_types.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/generics/generic_types.jakt"
+jakt_sample_hash = "c7f7463864ae794a86f78f8224e2b0fb"
+
+[[map]]
+name = "passing_arrays.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/generics/passing_arrays.jakt"
+jakt_sample_hash = "fe03c50c92346be7f6c833b47c1f3b0f"
+
+[[map]]
+name = "generic_struct_mismatch.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/generics/generic_struct_mismatch.jakt"
+jakt_sample_hash = "7ce74ac672acf7fb5818cca22e0c01a6"
+
+[[map]]
+name = "block_statements_not_string.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/inline_cpp/block_statements_not_string.jakt"
+jakt_sample_hash = "3cae24e5ea08359b76ac67a850c9cb76"
+
+[[map]]
+name = "escaped_string.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/inline_cpp/escaped_string.jakt"
+jakt_sample_hash = "934aeb24e76f07a447ff78b5bb575163"
+
+[[map]]
+name = "inline_cpp.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/inline_cpp/inline_cpp.jakt"
+jakt_sample_hash = "25439bd83400147825def5d5e736212d"
+
+[[map]]
+name = "outside_unsafe_block.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/inline_cpp/outside_unsafe_block.jakt"
+jakt_sample_hash = "d6c58218778862f30c7dc25867e8ad79"
+
+[[map]]
+name = "arithmetic.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/arithmetic.jakt"
+jakt_sample_hash = "eeeaeaa6945c18da3213551795e8517b"
+
+[[map]]
+name = "arithmetic_assignment.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/arithmetic_assignment.jakt"
+jakt_sample_hash = "9ed81476ce9774e565eae1512b571c73"
+
+[[map]]
+name = "arithmetic_shift.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/arithmetic_shift.jakt"
+jakt_sample_hash = "dd6aef4a5c7628604072fd93fe19e6fe"
+
+[[map]]
+name = "bitwise.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/bitwise.jakt"
+jakt_sample_hash = "b62d1a62ea730abf5791f3cb96af4377"
+
+[[map]]
+name = "incompatible_literal.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/incompatible_literal.jakt"
+jakt_sample_hash = "5d3e4ee424a1a5626cb3df94261d6e82"
+
+[[map]]
+name = "increment_decrement.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/increment_decrement.jakt"
+jakt_sample_hash = "999bb0e1ff679b6fb9ee9a57a3063476"
+
+[[map]]
+name = "increment_decrement_bad.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/increment_decrement_bad.jakt"
+jakt_sample_hash = "806c5992c4a0b38dad583a8772200d48"
+
+[[map]]
+name = "integer_casts.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/integer_casts.jakt"
+jakt_sample_hash = "c3cd8db3acdbdeee2f3830b2fbe3b500"
+
+[[map]]
+name = "math.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/math.jakt"
+jakt_sample_hash = "bd4f24f28150ad91de736b9a9e49f874"
+
+[[map]]
+name = "math2.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/math2.jakt"
+jakt_sample_hash = "4be3ced0ea5025346cc79701a9c39709"
+
+[[map]]
+name = "negate_negate.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/negate_negate.jakt"
+jakt_sample_hash = "942983347061a1de9b9cfaa362aace0f"
+
+[[map]]
+name = "negate_unary_op.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/negate_unary_op.jakt"
+jakt_sample_hash = "37b1f571428dc73c10b053834a8375f4"
+
+[[map]]
+name = "negative.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/negative.jakt"
+jakt_sample_hash = "ec87da90daa5f2ac0b045b3bb7eb3f71"
+
+[[map]]
+name = "number_types.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/number_types.jakt"
+jakt_sample_hash = "0dab30103761f3d5f54dd7cfc3100a9b"
+
+[[map]]
+name = "overflow.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/overflow.jakt"
+jakt_sample_hash = "b96e32996decb1d962287887bd1d091d"
+
+[[map]]
+name = "too_large_literal.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/too_large_literal.jakt"
+jakt_sample_hash = "c1708d59050ecfe25b3d470c6029a1f7"
+
+[[map]]
+name = "too_small_literal.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/too_small_literal.jakt"
+jakt_sample_hash = "5ef59ecc2d1b6a479df4ecd662e1fca1"
+
+[[map]]
+name = "zero_division.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/math/zero_division.jakt"
+jakt_sample_hash = "9ac5effdcf1e9352000c7cc24399803b"
+
+[[map]]
+name = "bogus_namespace1.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/namespaces/bogus_namespace1.jakt"
+jakt_sample_hash = "048e4c17ee3746ec67abbc76d4cb73d1"
+
+[[map]]
+name = "bogus_namespace2.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/namespaces/bogus_namespace2.jakt"
+jakt_sample_hash = "6ea301b23981125a151c32ed715cc5e8"
+
+[[map]]
+name = "call_functions_in_nested_namespaces.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/namespaces/call_functions_in_nested_namespaces.jakt"
+jakt_sample_hash = "000b58cdebaae9aafb52881398b6e4c3"
+
+[[map]]
+name = "hello_namespace.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/namespaces/hello_namespace.jakt"
+jakt_sample_hash = "da908d485143161f7c90baee285bded5"
+
+[[map]]
+name = "namespace_struct.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/namespaces/namespace_struct.jakt"
+jakt_sample_hash = "c39a6c1a1b752f7ffc0bcd2da0d5489b"
+
+[[map]]
+name = "assignment.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/optional/assignment.jakt"
+jakt_sample_hash = "7ababa2040b034689b90fd5df7406e2e"
+
+[[map]]
+name = "basic.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/optional/basic.jakt"
+jakt_sample_hash = "9ca02c66c5ebcbf50e790cd5ea142f98"
+
+[[map]]
+name = "format.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/optional/format.jakt"
+jakt_sample_hash = "1ee36e0853d6d915c992aeff5ddb23ce"
+
+[[map]]
+name = "invalid_unwrap.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/optional/invalid_unwrap.jakt"
+jakt_sample_hash = "0424bc49baaa3e27beccc88b7e3b8429"
+
+[[map]]
+name = "mutable_unwrap.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/optional/mutable_unwrap.jakt"
+jakt_sample_hash = "94f48863674b20e77a07a10e89224319"
+
+[[map]]
+name = "none_coalescing.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/optional/none_coalescing.jakt"
+jakt_sample_hash = "039e52272a314e4df831a857527d5393"
+
+[[map]]
+name = "some.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/optional/some.jakt"
+jakt_sample_hash = "fa25f7a6e4cc9f73259ebf2653c56cc9"
+
+[[map]]
+name = "bad_pointer_deref.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/pointers/bad_pointer_deref.jakt"
+jakt_sample_hash = "05416ef196cd74ee6981a75d042cc0a1"
+
+[[map]]
+name = "bad_raw_ptr.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/pointers/bad_raw_ptr.jakt"
+jakt_sample_hash = "0c958969649a9597de108c3c660ce905"
+
+[[map]]
+name = "raw_ptr.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/pointers/raw_ptr.jakt"
+jakt_sample_hash = "8161da346271a038f616d29e45269727"
+
+[[map]]
+name = "range.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/ranges/range.jakt"
+jakt_sample_hash = "e8eca6a5eeb5a3ead4da69c6a22d96a8"
+
+[[map]]
+name = "add.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/sets/add.jakt"
+jakt_sample_hash = "f01464766c89828633125c05a2d84b88"
+
+[[map]]
+name = "contains.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/sets/contains.jakt"
+jakt_sample_hash = "5b99a66eae48a64fc9bb07d1cd738359"
+
+[[map]]
+name = "empty_literal_without_hint.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/sets/empty_literal_without_hint.jakt"
+jakt_sample_hash = "67a7715a3ea9f6b85fed4ec323643353"
+
+[[map]]
+name = "inference_empty.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/sets/inference_empty.jakt"
+jakt_sample_hash = "7df936cb218769433cafd7543d9c8e9b"
+
+[[map]]
+name = "iterator.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/sets/iterator.jakt"
+jakt_sample_hash = "f22705c506a5f13e99677f02ce9e5bf9"
+
+[[map]]
+name = "reference_semantics.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/sets/reference_semantics.jakt"
+jakt_sample_hash = "7668ee58ce37f328d687d5b718838bba"
+
+[[map]]
+name = "sets.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/sets/sets.jakt"
+jakt_sample_hash = "e255ae6b45154bd9e8e1369d2b92896a"
+
+[[map]]
+name = "shorthand.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/sets/shorthand.jakt"
+jakt_sample_hash = "d12e51f93b52233cfa6faa1ac126be8d"
+
+[[map]]
+name = "unique_numbers.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/sets/unique_numbers.jakt"
+jakt_sample_hash = "767329e100be0e3c323f426b77528f6f"
+
+[[map]]
+name = "length_and_is_empty.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/strings/length_and_is_empty.jakt"
+jakt_sample_hash = "64accb20ae7fa048d2c00ed81227029f"
+
+[[map]]
+name = "repeated.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/strings/repeated.jakt"
+jakt_sample_hash = "6ff6f615655ac97fbe22af4962b5f529"
+
+[[map]]
+name = "string_builder.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/strings/string_builder.jakt"
+jakt_sample_hash = "92c580fd907d40c582efffb4ef8db2a8"
+
+[[map]]
+name = "string_split.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/strings/string_split.jakt"
+jakt_sample_hash = "4c147de1a87aa082cd66f8a0d1623aea"
+
+[[map]]
+name = "empty_struct.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/structs/empty_struct.jakt"
+jakt_sample_hash = "7a383322630349190accffa4e68ce89f"
+
+[[map]]
+name = "lvalue.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/structs/lvalue.jakt"
+jakt_sample_hash = "c9b90450583e0aff504a792f7f54496e"
+
+[[map]]
+name = "method.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/structs/method.jakt"
+jakt_sample_hash = "82d808437f41dfd01f11ef4e9a63e4af"
+
+[[map]]
+name = "method_mutable.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/structs/method_mutable.jakt"
+jakt_sample_hash = "f630e6904c16e6c4045418fafd262530"
+
+[[map]]
+name = "struct.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/structs/struct.jakt"
+jakt_sample_hash = "e2e51511ee2f31e019df4db8582b1a73"
+
+[[map]]
+name = "this_dot_shorthand.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/structs/this_dot_shorthand.jakt"
+jakt_sample_hash = "ca693aefadda2248cf3b5a16511943ee"
+
+[[map]]
+name = "this_dot_shorthand_method.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/structs/this_dot_shorthand_method.jakt"
+jakt_sample_hash = "e0e4f3e58d3c1856d7612ce6c640ddc3"
+
+[[map]]
+name = "value_semantics.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/structs/value_semantics.jakt"
+jakt_sample_hash = "380e920c9d5cc5015cd65c58724e43db"
+
+[[map]]
+name = "vec_and_struct.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/structs/vec_and_struct.jakt"
+jakt_sample_hash = "3b25ac5f9e34c3227eac70989cb54da4"
+
+[[map]]
+name = "vec_and_struct_lvalue.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/structs/vec_and_struct_lvalue.jakt"
+jakt_sample_hash = "9ea1e45a89bff2d5eb9ed19a267ea897"
+
+[[map]]
+name = "shorthand.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/tuples/shorthand.jakt"
+jakt_sample_hash = "b8a6d10d859f1b65d8ca70dcb5c3e848"
+
+[[map]]
+name = "tuple.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/tuples/tuple.jakt"
+jakt_sample_hash = "291be7c3be4814ef97533e2fc05748b8"
+
+[[map]]
+name = "blocks_and_scopes.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/variables/blocks_and_scopes.jakt"
+jakt_sample_hash = "45eb9e168cdb1efde6b369fa0b658ee1"
+
+[[map]]
+name = "integer_promotion.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/variables/integer_promotion.jakt"
+jakt_sample_hash = "37daddf7394a3842d7bf035800771a2c"
+
+[[map]]
+name = "integer_promotion_bad1.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/variables/integer_promotion_bad1.jakt"
+jakt_sample_hash = "578f043657e71225c169aa03e7759865"
+
+[[map]]
+name = "integer_promotion_bad2.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/variables/integer_promotion_bad2.jakt"
+jakt_sample_hash = "f1bf7057e315107419aea5d95473c0fb"
+
+[[map]]
+name = "integer_promotion_bad3.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/variables/integer_promotion_bad3.jakt"
+jakt_sample_hash = "ceb72262fae3ce365bd48fbdeed4365b"
+
+[[map]]
+name = "var.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/variables/var.jakt"
+jakt_sample_hash = "7b981f9f6ee4f650b3865bd52254251a"
+
+[[map]]
+name = "var2.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/variables/var2.jakt"
+jakt_sample_hash = "59bab30906c0b20f6ace1c262ffd929c"
+
+[[map]]
+name = "var3.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/variables/var3.jakt"
+jakt_sample_hash = "8ea28090aff7ef313215a990a27e344c"
+
+[[map]]
+name = "var_bad_assignment.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/variables/var_bad_assignment.jakt"
+jakt_sample_hash = "91dba6012a0d2871c6b776e5b3d5ce0a"
+
+[[map]]
+name = "var_inference.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/variables/var_inference.jakt"
+jakt_sample_hash = "43bbc7cb30391d81f461f2668b357f03"
+
+[[map]]
+name = "var_redefinition.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/variables/var_redefinition.jakt"
+jakt_sample_hash = "61a527d3d2b7c8e4c122ba901ed03607"
+
+[[map]]
+name = "assign_weak_to_weak.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/weak/assign_weak_to_weak.jakt"
+jakt_sample_hash = "2027577d9068a5d2f5fb0ae96c3837a0"
+
+[[map]]
+name = "basic.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/weak/basic.jakt"
+jakt_sample_hash = "4e8bbc5120ba57ea1eb667e6d92867c6"
+
+[[map]]
+name = "question_mark_required.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/weak/question_mark_required.jakt"
+jakt_sample_hash = "2b5d0c3ae2030f845ecad73b3d1e1736"
+
+[[map]]
+name = "reassign.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/weak/reassign.jakt"
+jakt_sample_hash = "9ac53533a85fe54b84a3845ec2aa3d61"
+
+[[map]]
+name = "reject_immutable_weak.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/weak/reject_immutable_weak.jakt"
+jakt_sample_hash = "27c8477d3bae479503bc8961c115ac70"
+
+[[map]]
+name = "foo.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/imports/foo.jakt"
+jakt_sample_hash = "9d03182fc2f9280419bd969487fe1468"
+
+[[map]]
+name = "import_alias.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/imports/import_alias.jakt"
+jakt_sample_hash = "70794b35b0b25f8a2d9b796e6d30aff7"
+
+[[map]]
+name = "invalid_module.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/imports/invalid_module.jakt"
+jakt_sample_hash = "91600f3274c007be341ebc002ebee5de"
+
+[[map]]
+name = "valid_import.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/imports/valid_import.jakt"
+jakt_sample_hash = "5db17288d206caf2069cecf747d672fc"
+
+[[map]]
+name = "match_an_expression.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/match/match_an_expression.jakt"
+jakt_sample_hash = "94d1f43a9593336bfad18469603c5b31"
+
+[[map]]
+name = "match_block_yield.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/match/match_block_yield.jakt"
+jakt_sample_hash = "6d0c870345c9809d4737e5da61aa65dc"
+
+[[map]]
+name = "match_catch_all.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/match/match_catch_all.jakt"
+jakt_sample_hash = "e3bed0dbe7205e1bcaa64914dbf5afa6"
+
+[[map]]
+name = "match_catch_all_bad.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/match/match_catch_all_bad.jakt"
+jakt_sample_hash = "3bc20ae90a84eaa884627f36fdd2f09c"
+
+[[map]]
+name = "match_generic_codegen.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/match/match_generic_codegen.jakt"
+jakt_sample_hash = "322b9451ea7a3809c029b0ffd4c26001"
+
+[[map]]
+name = "match_non_enum.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/match/match_non_enum.jakt"
+jakt_sample_hash = "c6c613d38ae99a356532935e96b2c0ba"
+
+[[map]]
+name = "match_pattern_or.jakt"
+implemented = false
+jakt_sample_path = "/home/demizer/src/jakt/jakt/samples/match/match_pattern_or.jakt"
+jakt_sample_hash = "6c687284ff62b1dd1d51ad9e66284ef8"
