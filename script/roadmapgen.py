@@ -38,6 +38,7 @@ app.add_typer(update_app, name="update")
 
 from rich.console import Console
 from rich.table import Table
+from rich.style import Style
 
 console = Console()
 
@@ -300,6 +301,13 @@ def print_testmap_table(tests: TestMap):
         # TODO: make row green if new
         # TODO: make row yellow if changed
         # TODO: make line red if deleted
+        color = ""
+        if beef.new:
+            color = Style(color="green")
+        elif beef.changed:
+            color = Style(color="yellow")
+        elif beef.deleted:
+            color = Style(color="red")
         table.add_row(
             beef.name,
             str(beef.implemented),
@@ -309,6 +317,7 @@ def print_testmap_table(tests: TestMap):
             str(beef.new),
             str(beef.changed),
             str(beef.deleted),
+            style=color,
         )
     console.log(table)
     # TODO: print warning about saving state if files have been deleted and/or changed
