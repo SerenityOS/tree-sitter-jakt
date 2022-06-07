@@ -178,6 +178,20 @@ class TestMap:
 
     map: list[Test]
 
+    def get_by_corpus_path(self, path: str) -> Test | None:
+        """Returns boolean if path is contained in a test"""
+        for x in self.map:
+            if path in str(x.corpus_file_path):
+                return x
+        return None
+
+    def get_by_jakt_sample_path(self, path: str) -> Test | None:
+        """Returns boolean if path is contained in a test"""
+        for x in self.map:
+            if path in str(x.jakt_sample_path):
+                return x
+        return None
+
 
 def load_state_file() -> TestMap:
     """Deserialize toml state file and rebuild the TestMap"""
@@ -241,51 +255,56 @@ def check(
     """Check for jakt samples changes"""
     state_file_loaded: bool = False
 
-    filez = build_test_map(jakt_path)
+    # The samples dir in the jakt project directory is the single source of truth (SSOT)
+    ssot = build_test_map(jakt_path)
     if not state_file.exists():
-        write_state_file(filez)
-        sf = filez
+        write_state_file(ssot)
+        sf = ssot
     else:
         state_file_loaded = True
         sf = load_state_file()
 
     corpus_list = build_corpus_list()
 
-    # # mark if test implemented or not
-    for test in sf.map:
+    # We'll show this to the user to report results of three-way merge
+    merged_map = TestMap(map=[])
+
+    for test in ssot.map:
         if (
             corpus_path := convert_jakt_sample_path_to_ts_path(test.jakt_sample_path)
         ).as_posix() in corpus_list:
             test.implemented = True
             test.corpus_file_path = corpus_path
-
-    for beef in sf.map:
-        # mark if test has changed
+        # if we have a state file, we now have to resolve the differences...
         if state_file_loaded:
-            fresh_hash = hashlib.md5(
-                beef.jakt_sample_path.read_text().encode("utf-8")
-            ).hexdigest()
-            if beef.jakt_sample_hash != fresh_hash:
-                beef.changed = True
+            # mark if test is new
+            sf_equiv = sf.get_by_jakt_sample_path(str(test.jakt_sample_path))
+            if not sf_equiv:
+                test.new = True
+                merged_map.map.append(test)
+                continue
+            elif test.jakt_sample_hash != sf_equiv.jakt_sample_hash:
+                # mark if test has changed
+                test.changed = True
+                merged_map.map.append(test)
+                continue
+        merged_map.map.append(test)
 
-        # mark if test is new
-        if state_file_loaded:
-            expect_ts_test = beef.jakt_sample_path_to_expected_corpus_path()
-            if expect_ts_test.as_posix() not in corpus_list:
-                beef.new = True
-
-        # TODO: check sf if jakt samples still exists on fs
-        # mark if test is deleted
-        # else:
-        #     beef.deleted = True
+    for test in sf.map:
+        # check for files in the state file that are no longer in the SSOT
+        # if any are missing, then they are marked as deleted
+        if not ssot.get_by_jakt_sample_path(str(test.jakt_sample_path)):
+            test.deleted = True
+            merged_map.map.append(test)
 
     # print table of changes
-    print_testmap_table(sf)
+    print_testmap_table(merged_map)
 
 
 def print_testmap_table(tests: TestMap):
     """Print a pretty table of state changes"""
     table = Table(show_header=True, header_style="bold magenta")
+    table.add_column("Counter")
     table.add_column("Name")
     table.add_column("Impl.", style="dim", width=7, justify="center")
     table.add_column("Jakt Sample", justify="left", width=32)
@@ -294,33 +313,31 @@ def print_testmap_table(tests: TestMap):
     table.add_column("New", justify="center")
     table.add_column("Changed", justify="center")
     table.add_column("Deleted", justify="center")
-    for beef in tests.map:
-        corpus_path = beef.corpus_file_path
+    for num, test in enumerate(tests.map):
+        corpus_path = test.corpus_file_path
         if corpus_path:
             corpus_path = f"…{corpus_path.as_posix()[-31:]}"
-        # TODO: make row green if new
-        # TODO: make row yellow if changed
-        # TODO: make line red if deleted
         color = ""
-        if beef.new:
+        if test.new:
             color = Style(color="green")
-        elif beef.changed:
+        elif test.changed:
             color = Style(color="yellow")
-        elif beef.deleted:
+        elif test.deleted:
             color = Style(color="red")
         table.add_row(
-            beef.name,
-            str(beef.implemented),
-            f"…{beef.jakt_sample_path.as_posix()[-31:]}",
-            beef.jakt_sample_hash,
+            str(num + 1),
+            test.name,
+            str(test.implemented),
+            f"…{test.jakt_sample_path.as_posix()[-31:]}",
+            test.jakt_sample_hash,
             corpus_path,
-            str(beef.new),
-            str(beef.changed),
-            str(beef.deleted),
+            ":ballot_box_with_check:" if test.new else "",
+            ":ballot_box_with_check:" if test.changed else "",
+            ":ballot_box_with_check:" if test.deleted else "",
             style=color,
         )
     console.log(table)
-    # TODO: print warning about saving state if files have been deleted and/or changed
+    console.log("[yellow][bold]WARNING[/yellow] - state file is unsaved[/bold]")
 
 
 @update_app.command("readme")
