@@ -26,10 +26,12 @@ from dataclasses import dataclass
 from datetime import date
 import fileinput
 import hashlib
+import sys
+from typing import Any
 
 import typer
 import tomli
-from serde import serialize, field
+from serde import serde, serialize, field, SerdeSkip
 from serde.toml import to_toml
 
 app = typer.Typer()
@@ -121,9 +123,6 @@ def calculate_tests_completed(
             if num_tests_not_implemented == 0:
                 count += 1
             else:
-                console.log(ts_test_str_path)
-                console.log(jakt_test)
-                console.log(tree_sitter_tests[ts_test_str_path])
                 count += (
                     num_tests_implemented - num_tests_not_implemented
                 ) / num_tests_implemented
@@ -145,14 +144,25 @@ def _update_readme(tree_sitter_tests: dict[str, list], jakt_tests: list):
                 print(line, end="")
 
 
-@serialize
+def serializer(cls: Any, o: Any):
+    if cls is pathlib.Path:
+        if ".txt" in str(o):
+            return str(o.relative_to(os.getcwd()))
+        elif ".jakt" in str(o):
+            samples_index = o.parts.index("samples")
+            return str(pathlib.Path(*o.parts[samples_index:]))
+    else:
+        raise SerdeSkip()
+
+
+@serde(serializer=serializer)
 @dataclass
 class Test:
-    """A jakt sample"""
+    """A tree sitter test and corresponding Jakt sample."""
 
     name: str
     implemented: bool
-    corpus_file_path: pathlib.Path | None
+    corpus_file_path: pathlib.Path
     jakt_sample_path: pathlib.Path
     jakt_sample_hash: str
     changed: bool = field(metadata={"serde_skip": True})
@@ -177,9 +187,10 @@ class TestMap:
     """A list of jakt samples to test"""
 
     map: list[Test]
+    # jakt_path: str = field(metadata={"serde_skip": True})
 
     def get_by_corpus_path(self, path: str) -> Test | None:
-        """Returns boolean if path is contained in a test"""
+        """Returns Test if path is contained in a test"""
         for x in self.map:
             if path in str(x.corpus_file_path):
                 return x
@@ -193,20 +204,18 @@ class TestMap:
         return None
 
 
-def load_state_file() -> TestMap:
+# FIXME: user serializer function to create pathlib objs
+def load_state_file(jakt_path: str) -> TestMap:
     """Deserialize toml state file and rebuild the TestMap"""
     files = tomli.loads(state_file.read_text())
     filezm = TestMap(map=[])
     for test in files["map"]:
-        corpus_file_path = (
-            test["corpus_file_path"] if "corpus_file_path" in test else None
-        )
         filezm.map.append(
             Test(
                 name=test["name"],
                 implemented=test["implemented"],
-                corpus_file_path=corpus_file_path,
-                jakt_sample_path=pathlib.Path(test["jakt_sample_path"]),
+                corpus_file_path=pathlib.Path(os.getcwd(), test["corpus_file_path"]),
+                jakt_sample_path=pathlib.Path(jakt_path, test["jakt_sample_path"]),
                 jakt_sample_hash=test["jakt_sample_hash"],
                 changed=False,
                 new=False,
@@ -235,7 +244,7 @@ def build_test_map(jakt_path: str) -> TestMap:
                 Test(
                     name=name,
                     implemented=False,
-                    corpus_file_path=None,
+                    corpus_file_path=convert_jakt_sample_path_to_ts_path(file_path),
                     jakt_sample_path=file_path,
                     jakt_sample_hash=hash,
                     changed=False,
@@ -262,7 +271,7 @@ def check(
         sf = ssot
     else:
         state_file_loaded = True
-        sf = load_state_file()
+        sf = load_state_file(jakt_path)
 
     corpus_list = build_corpus_list()
 
@@ -275,16 +284,14 @@ def check(
         ).as_posix() in corpus_list:
             test.implemented = True
             test.corpus_file_path = corpus_path
-        # if we have a state file, we now have to resolve the differences...
         if state_file_loaded:
-            # mark if test is new
+            # if we have a state file, we now have to resolve the differences...
             sf_equiv = sf.get_by_jakt_sample_path(str(test.jakt_sample_path))
             if not sf_equiv:
                 test.new = True
                 merged_map.map.append(test)
                 continue
             elif test.jakt_sample_hash != sf_equiv.jakt_sample_hash:
-                # mark if test has changed
                 test.changed = True
                 merged_map.map.append(test)
                 continue
@@ -304,12 +311,12 @@ def check(
 def print_testmap_table(tests: TestMap):
     """Print a pretty table of state changes"""
     table = Table(show_header=True, header_style="bold magenta")
-    table.add_column("Counter")
+    table.add_column("#")
     table.add_column("Name")
-    table.add_column("Impl.", style="dim", width=7, justify="center")
     table.add_column("Jakt Sample", justify="left", width=32)
     table.add_column("MD5", style="dim", width=8)
     table.add_column("Corpus Path", style="dim", width=32, justify="left")
+    table.add_column("Impl.", justify="center")
     table.add_column("New", justify="center")
     table.add_column("Changed", justify="center")
     table.add_column("Deleted", justify="center")
@@ -320,17 +327,19 @@ def print_testmap_table(tests: TestMap):
         color = ""
         if test.new:
             color = Style(color="green")
-        elif test.changed:
+        elif test.changed and test.implemented:
             color = Style(color="yellow")
         elif test.deleted:
             color = Style(color="red")
+        elif test.implemented:
+            color = Style(color="blue")
         table.add_row(
             str(num + 1),
             test.name,
-            str(test.implemented),
             f"…{test.jakt_sample_path.as_posix()[-31:]}",
             test.jakt_sample_hash,
             corpus_path,
+            ":ballot_box_with_check:" if test.implemented else "",
             ":ballot_box_with_check:" if test.new else "",
             ":ballot_box_with_check:" if test.changed else "",
             ":ballot_box_with_check:" if test.deleted else "",
@@ -353,17 +362,37 @@ def update_readme(
 
 
 @update_app.command("state")
-def update_state():
+def update_state(
+    jakt_path: str = typer.Option(
+        ..., help="The path to the Jakt source code containing the samples directory"
+    ),
+    single: str = typer.Option("", help="The path to the test to update."),
+):
     """Update the Jakt sample state"""
-    # add flag to update readme
-    # add flag to update table doc
-    # run check state
-    # if flag set, update readme
-    # if flag set, update table doc
-    # save state to toml
-    pass
+
+    if not state_file.exists():
+        console.log(f"[red][ERROR] - State file {state_file} does not exist![/red]")
+        sys.exit(1)
+    sf = load_state_file(jakt_path)
+
+    if not (test := sf.get_by_corpus_path(single)):
+        console.log(f"[red][ERROR] - '{single}' not found in state file![/red]")
+        sys.exit(1)
+
+    if single:
+        console.log(f"Updating state of single test: '{single}'")
+        console.log(f"jakt sample path: '{test.jakt_sample_path}'")
+        console.log(f"Old hash: {test.jakt_sample_hash}")
+        hash = hashlib.md5(
+            test.jakt_sample_path.read_text().encode("utf-8")
+        ).hexdigest()
+        test.jakt_sample_hash = hash
+        console.log(f"New hash: {test.jakt_sample_hash}")
+        write_state_file(sf)
 
 
 if __name__ == "__main__":
-    console.log("WARNING: this script assumes tests are in passing state")
+    console.log(
+        "[bold][yellow]WARNING[/yellow]: this script assumes tests are in passing state[/bold]"
+    )
     app()
