@@ -134,7 +134,7 @@ def _update_readme(tree_sitter_tests: dict[str, list], jakt_tests: list):
     """Updates the main tree-sitter-jakt readme with percent completed."""
     count, num_tests, perc = calculate_tests_completed(tree_sitter_tests, jakt_tests)
     date_now = date.today().strftime("%B %-d, %Y")
-    perc_line = f"tree-sitter-jakt implements {count:.2f} of {num_tests} ({perc:.1f}%) of the Jakt samples as of {date_now}"
+    perc_line = f"tree-sitter-jakt implements {count:.2f} of {num_tests} ({perc:.1f}%) of valid Jakt samples as of {date_now}"
     console.log(f"New percentage line: '{perc_line}'")
     with fileinput.input(pathlib.Path("README.md"), inplace=True) as f:
         for line in f:
