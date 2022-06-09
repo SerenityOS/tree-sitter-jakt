@@ -92,6 +92,7 @@ module.exports = grammar({
 
     declaration: $ => choice(
       $.let_declaration,
+      $.mutable_declaration,
       $.enum_declaration,
     ),
 
@@ -169,7 +170,6 @@ module.exports = grammar({
 
     let_declaration: $ => seq(
       'let',
-      optional($.mutable_specifier),
       field('pattern', $._pattern),
       optional(seq(
         ':',
@@ -181,6 +181,18 @@ module.exports = grammar({
       )),
     ),
 
+    mutable_declaration: $ => seq(
+      'mut',
+      field('pattern', $._pattern),
+      optional(seq(
+        ':',
+        field('type', $._type)
+      )),
+      optional(seq(
+        '=',
+        field('value', $._expression)
+      )),
+    ),
     boxed_modifier: $ => seq('boxed'),
 
     enum_declaration: $ => seq(
@@ -237,7 +249,7 @@ module.exports = grammar({
       ')',
     ),
 
-    mutable_specifier: $ => 'mutable',
+    mutable_specifier: $ => 'mut',
 
     unary_expression: $ => prec(PREC.unary, seq(
       '-', $._expression
@@ -255,7 +267,7 @@ module.exports = grammar({
         [PREC.bitxor, '^'],
         [PREC.comparative, choice('==', '!=', '<', '<=', '>', '>=')],
         [PREC.shift, choice('<<', '>>')],
-        [PREC.additive, choice('+', '-')],
+        [PREC.additive, choice('+', '-', '+=')],
         [PREC.multiplicative, choice('*', '/', '%')],
       ];
 

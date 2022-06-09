@@ -381,7 +381,7 @@ name = "continue.jakt"
 implemented = false
 corpus_file_path = "test/corpus/control_flow/continue.txt"
 jakt_sample_path = "samples/control_flow/continue.jakt"
-jakt_sample_hash = "13a59de07ca534d1614cd4609ba2a347"
+jakt_sample_hash = "f6cab3230ddd7653d980f64b2a321324"
 
 [[map]]
 name = "defer.jakt"
@@ -647,14 +647,14 @@ name = "parse.jakt"
 implemented = false
 corpus_file_path = "test/corpus/enums/parse.txt"
 jakt_sample_path = "samples/enums/parse.jakt"
-jakt_sample_hash = "be86be6aeae80dded222af05cc99646b"
+jakt_sample_hash = "be86be6aeae80dded222af05cc99636b"
 
 [[map]]
 name = "recursive_enums.jakt"
 implemented = false
 corpus_file_path = "test/corpus/enums/recursive_enums.txt"
 jakt_sample_path = "samples/enums/recursive_enums.jakt"
-jakt_sample_hash = "a35dfed2ea74c7af94f713acdf6b2417"
+jakt_sample_hash = "da606800b294f472d477c5528234050a"
 
 [[map]]
 name = "recursive_enums_bad.jakt"
@@ -1130,7 +1130,7 @@ name = "range.jakt"
 implemented = false
 corpus_file_path = "test/corpus/ranges/range.txt"
 jakt_sample_path = "samples/ranges/range.jakt"
-jakt_sample_hash = "e8eca6a5eeb5a3ead4da69c6a22d96a8"
+jakt_sample_hash = "f31c1e067b2d551c2046653a13a0663b"
 
 [[map]]
 name = "add.jakt"

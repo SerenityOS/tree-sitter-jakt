@@ -86,6 +86,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "mutable_declaration"
+        },
+        {
+          "type": "SYMBOL",
           "name": "enum_declaration"
         }
       ]
@@ -539,16 +543,71 @@
           "value": "let"
         },
         {
+          "type": "FIELD",
+          "name": "pattern",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_pattern"
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "mutable_specifier"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "type",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_type"
+                  }
+                }
+              ]
             },
             {
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "="
+                },
+                {
+                  "type": "FIELD",
+                  "name": "value",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_expression"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "mutable_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "mut"
         },
         {
           "type": "FIELD",
@@ -1036,7 +1095,7 @@
     },
     "mutable_specifier": {
       "type": "STRING",
-      "value": "mutable"
+      "value": "mut"
     },
     "unary_expression": {
       "type": "PREC",
@@ -1314,6 +1373,10 @@
                     {
                       "type": "STRING",
                       "value": "-"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "+="
                     }
                   ]
                 }

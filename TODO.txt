@@ -1,3 +1,8 @@
+* roadmapgen.py
+    * check table should show only after corpus or samples directory
+    * allow saving state of entire check table
+    * allow saving check table to markdown table
+
 * add tests for optional types
 
 * submit queries to https://github.com/nvim-treesitter/nvim-treesitter

@@ -35,6 +35,7 @@ a - b
 a >> b
 a << b
 a == b
+a += b
 a & b
 a | b
 a ^ b
@@ -42,6 +43,9 @@ a ^ b
 -------------------------------------------------------
 
 (source_file
+  (binary_expression
+    (identifier)
+    (identifier))
   (binary_expression
     (identifier)
     (identifier))
