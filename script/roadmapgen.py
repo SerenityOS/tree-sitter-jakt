@@ -383,6 +383,7 @@ def print_testmap_table(tests: TestMap):
     table.add_column("Falty", justify="center")
 
     falty_count = 0
+    implemented_count = 0
 
     for num, test in enumerate(tests.map):
         corpus_path = test.corpus_file_path
@@ -398,6 +399,7 @@ def print_testmap_table(tests: TestMap):
         if test.implemented == TestImplemented.IMPLEMENTED:
             color = Style(color="blue")
             renderables.append(":ballot_box_with_check:")
+            implemented_count += 1
         elif test.implemented == TestImplemented.PARTIAL:
             color = Style(color="pale_turquoise1")
             renderables.append("(partial)")
@@ -431,6 +433,7 @@ def print_testmap_table(tests: TestMap):
     console.log(f"Total tests: {len(tests.map)}")
     console.log(f"Falty tests: {falty_count}")
     console.log(f"Parsable tests: {len(tests.map) - falty_count}")
+    console.log(f"Implemented tests: {implemented_count}")
     console.log("[yellow][bold]WARNING[/yellow] - state file is unsaved[/bold]")
 
 

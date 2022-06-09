@@ -176,6 +176,22 @@
     ]
   },
   {
+    "type": "argument",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_pattern",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "arguments",
     "named": true,
     "fields": {},
@@ -188,7 +204,7 @@
           "named": true
         },
         {
-          "type": "parameter",
+          "type": "argument",
           "named": true
         }
       ]

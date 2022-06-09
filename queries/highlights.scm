@@ -49,7 +49,7 @@
 "if" @keyword
 "in" @keyword
 "let" @keyword
-"ref" @keyword
+"boxed" @keyword
 ; "loop" @keyword
 ; "match" @keyword
 "return" @keyword

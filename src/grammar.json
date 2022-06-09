@@ -348,7 +348,7 @@
                       "type": "REPEAT",
                       "content": {
                         "type": "SYMBOL",
-                        "name": "parameter"
+                        "name": "argument"
                       }
                     },
                     {
@@ -373,7 +373,7 @@
                             "type": "REPEAT",
                             "content": {
                               "type": "SYMBOL",
-                              "name": "parameter"
+                              "name": "argument"
                             }
                           },
                           {
@@ -407,6 +407,28 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "argument": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_pattern"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
         }
       ]
     },
