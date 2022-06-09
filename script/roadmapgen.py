@@ -178,6 +178,7 @@ class Test:
     changed: bool = field(metadata={"serde_skip": True})
     deleted: bool = field(metadata={"serde_skip": True})
     new: bool = field(metadata={"serde_skip": True})
+    falty: bool = field(metadata={"serde_skip": True})
 
     def jakt_sample_path_to_expected_corpus_path(self) -> pathlib.Path:
         """Converts a jakt sample path to a tree-sitter corpus test path."""
@@ -247,6 +248,7 @@ def load_state_file(jakt_path: str) -> TestMap:
                 changed=False,
                 new=False,
                 deleted=False,
+                falty=False,
             )
         )
     return filezm
@@ -267,6 +269,9 @@ def build_test_map(jakt_path: str) -> TestMap:
             file_path = pathlib.Path(root, name)
             file_text = file_path.read_text()
             hash = hashlib.md5(file_text.encode("utf-8")).hexdigest()
+            falty = False
+            if "/// - error:" in file_text:
+                falty = True
             filez.map.append(
                 Test(
                     name=name,
@@ -277,6 +282,7 @@ def build_test_map(jakt_path: str) -> TestMap:
                     changed=False,
                     new=False,
                     deleted=False,
+                    falty=falty,
                 )
             )
     return filez
@@ -345,11 +351,14 @@ def print_testmap_table(tests: TestMap):
     table.add_column("New", justify="center")
     table.add_column("Changed", justify="center")
     table.add_column("Deleted", justify="center")
+    table.add_column("Falty", justify="center")
+    falty_count = 0
     for num, test in enumerate(tests.map):
         corpus_path = test.corpus_file_path
         corpus_path_mod = corpus_path.parts[corpus_path.parts.index("corpus") :]
         color: Style
         test_impl = ""
+        test_falty = ""
         if test.new:
             color = Style(color="green")
         elif test.changed and test.implemented:
@@ -362,6 +371,10 @@ def print_testmap_table(tests: TestMap):
         elif test.implemented == TestImplemented.PARTIAL:
             color = Style(color="pale_turquoise1")
             test_impl = "(partial)"
+        elif test.falty:
+            test_falty = ":ballot_box_with_check:"
+            color = Style(color=None, dim=True)
+            falty_count += 1
         else:
             color = Style(color=None)
         table.add_row(
@@ -372,9 +385,14 @@ def print_testmap_table(tests: TestMap):
             ":ballot_box_with_check:" if test.new else "",
             ":ballot_box_with_check:" if test.changed else "",
             ":ballot_box_with_check:" if test.deleted else "",
+            test_falty,
             style=color,
         )
     console.log(table)
+
+    console.log(f"Total tests: {len(tests.map)}")
+    console.log(f"Falty tests: {falty_count}")
+    console.log(f"Parsable tests: {len(tests.map) - falty_count}")
     console.log("[yellow][bold]WARNING[/yellow] - state file is unsaved[/bold]")
 
 
