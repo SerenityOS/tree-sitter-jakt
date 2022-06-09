@@ -179,7 +179,7 @@
     "type": "argument",
     "named": true,
     "fields": {
-      "name": {
+      "label": {
         "multiple": false,
         "required": true,
         "types": [
@@ -189,6 +189,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
     }
   },
   {

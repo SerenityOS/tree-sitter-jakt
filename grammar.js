@@ -147,15 +147,15 @@ module.exports = grammar({
 
     arguments: $ => seq(
       '(',
-      sepBy(',', seq(repeat($.argument), $._expression)),
-      optional(','),
+      optional(sepBy(',', choice(repeat($.argument), $._expression))),
+      // optional(','),
       ')'
     ),
 
     argument: $ => seq(
-      field('name', choice($._pattern)),
+      field('label', choice($._pattern)),
       ':',
-      // field('value', $._type)
+      $._expression
     ),
 
     _top_level_declaration: $ => choice(

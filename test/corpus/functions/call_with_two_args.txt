@@ -1,8 +1,8 @@
 ================================================================================
-Function call with arg
+Function call with two args
 ================================================================================
 
-greet(msg: "Well, hello friends.")
+greet(msg: "Well", msg2: "hello friends.")
 
 --------------------------------------------------------------------------------
 
@@ -10,6 +10,9 @@ greet(msg: "Well, hello friends.")
   (call_expression
     (identifier)
     (arguments
+      (argument
+        (identifier)
+        (string_literal))
       (argument
         (identifier)
         (string_literal)))))
