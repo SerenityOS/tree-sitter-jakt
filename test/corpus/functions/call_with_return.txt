@@ -1,0 +1,33 @@
+================================================================================
+Function call with return
+================================================================================
+
+function greet() -> String {
+    return "Well, hello friends."
+}
+
+function main() {
+    println("{}", greet())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (block
+      (return_statement
+        (string_literal))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (identifier)
+            (arguments)))))))
