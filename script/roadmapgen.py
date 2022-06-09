@@ -315,18 +315,20 @@ def print_testmap_table(tests: TestMap):
     """Print a pretty table of state changes"""
     table = Table(show_header=True, header_style="bold magenta")
     table.add_column("#")
-    table.add_column("Name")
-    table.add_column("Jakt Sample", justify="left", width=32)
-    table.add_column("MD5", style="dim", width=8)
-    table.add_column("Corpus Path", style="dim", width=32, justify="left")
-    table.add_column("Impl.", justify="center")
+    # table.add_column("Name")
+    # table.add_column("Jakt Sample", justify="left", width=35)
+    table.add_column("MD5")
+    table.add_column("Expected Corpus Path", justify="left")
+    table.add_column("Done", justify="center")
     table.add_column("New", justify="center")
     table.add_column("Changed", justify="center")
     table.add_column("Deleted", justify="center")
     for num, test in enumerate(tests.map):
-        corpus_path = str(test.corpus_file_path)
-        if corpus_path:
-            corpus_path = f"…{corpus_path[-31:]}"
+        corpus_path = test.corpus_file_path
+        corpus_path_mod = corpus_path.parts[corpus_path.parts.index("corpus") :]
+        test_path_mod = test.jakt_sample_path.parts[
+            test.jakt_sample_path.parts.index("samples") :
+        ]
         color: Style
         if test.new:
             color = Style(color="green")
@@ -340,10 +342,10 @@ def print_testmap_table(tests: TestMap):
             color = Style(color=None)
         table.add_row(
             str(num + 1),
-            test.name,
-            f"…{test.jakt_sample_path.as_posix()[-31:]}",
+            # test.name,
+            # str(pathlib.Path(*test_path_mod)),
             test.jakt_sample_hash,
-            str(corpus_path),
+            str(pathlib.Path(*corpus_path_mod)),
             ":ballot_box_with_check:" if test.implemented else "",
             ":ballot_box_with_check:" if test.new else "",
             ":ballot_box_with_check:" if test.changed else "",
