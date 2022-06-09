@@ -28,6 +28,7 @@ import fileinput
 import hashlib
 import sys
 from typing import Any
+from types import SimpleNamespace
 
 import typer
 import tomli
@@ -36,7 +37,9 @@ from serde.toml import to_toml
 
 app = typer.Typer()
 update_app = typer.Typer()
+state_app = typer.Typer()
 app.add_typer(update_app, name="update")
+update_app.add_typer(state_app, name="state")
 
 from rich.console import Console
 from rich.table import Table
@@ -321,10 +324,10 @@ def print_testmap_table(tests: TestMap):
     table.add_column("Changed", justify="center")
     table.add_column("Deleted", justify="center")
     for num, test in enumerate(tests.map):
-        corpus_path = test.corpus_file_path
+        corpus_path = str(test.corpus_file_path)
         if corpus_path:
-            corpus_path = f"…{corpus_path.as_posix()[-31:]}"
-        color = ""
+            corpus_path = f"…{corpus_path[-31:]}"
+        color: Style
         if test.new:
             color = Style(color="green")
         elif test.changed and test.implemented:
@@ -333,12 +336,14 @@ def print_testmap_table(tests: TestMap):
             color = Style(color="red")
         elif test.implemented:
             color = Style(color="blue")
+        else:
+            color = Style(color=None)
         table.add_row(
             str(num + 1),
             test.name,
             f"…{test.jakt_sample_path.as_posix()[-31:]}",
             test.jakt_sample_hash,
-            corpus_path,
+            str(corpus_path),
             ":ballot_box_with_check:" if test.implemented else "",
             ":ballot_box_with_check:" if test.new else "",
             ":ballot_box_with_check:" if test.changed else "",
@@ -349,38 +354,42 @@ def print_testmap_table(tests: TestMap):
     console.log("[yellow][bold]WARNING[/yellow] - state file is unsaved[/bold]")
 
 
-@update_app.command("readme")
-def update_readme(
+@update_app.callback()
+def update(
+    ctx: typer.Context,
     jakt_path: str = typer.Option(
         ..., help="The path to the Jakt source code containing the samples directory"
-    )
+    ),
 ):
+    ctx.obj = SimpleNamespace(jakt_path=jakt_path)
+
+
+@update_app.command("readme")
+def update_readme(ctx: typer.Context):
     """Update the README with percentage completed"""
-    jakt_tests = build_test_list(jakt_path)
+    jakt_tests = build_test_list(ctx.obj.jakt_path)
     ts_tests = build_corpus_list()
     _update_readme(ts_tests, jakt_tests)
 
 
-@update_app.command("state")
-def update_state(
-    jakt_path: str = typer.Option(
-        ..., help="The path to the Jakt source code containing the samples directory"
-    ),
-    single: str = typer.Option("", help="The path to the test to update."),
+@state_app.command("single")
+def update_test(
+    ctx: typer.Context,
+    path: str = typer.Option("", help="Update a test using the corpus path"),
 ):
-    """Update the Jakt sample state"""
+    """Update the Jakt sample state for a single test."""
 
     if not state_file.exists():
         console.log(f"[red][ERROR] - State file {state_file} does not exist![/red]")
         sys.exit(1)
-    sf = load_state_file(jakt_path)
+    sf = load_state_file(ctx.obj.jakt_path)
 
-    if not (test := sf.get_by_corpus_path(single)):
-        console.log(f"[red][ERROR] - '{single}' not found in state file![/red]")
+    if not (test := sf.get_by_corpus_path(path)):
+        console.log(f"[red][ERROR] - '{path}' not found in state file![/red]")
         sys.exit(1)
 
-    if single:
-        console.log(f"Updating state of single test: '{single}'")
+    if path:
+        console.log(f"Updating state of single test: '{path}'")
         console.log(f"jakt sample path: '{test.jakt_sample_path}'")
         console.log(f"Old hash: {test.jakt_sample_hash}")
         hash = hashlib.md5(
@@ -389,6 +398,13 @@ def update_state(
         test.jakt_sample_hash = hash
         console.log(f"New hash: {test.jakt_sample_hash}")
         write_state_file(sf)
+
+
+@state_app.command("all")
+def update_state_all(ctx: typer.Context):
+    """Update the Jakt sample state for all tests."""
+    write_state_file(build_test_map(ctx.obj.jakt_path))  # type: ignore
+    console.log("state file updated")
 
 
 if __name__ == "__main__":
