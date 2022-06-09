@@ -231,6 +231,27 @@ class TestMap:
                 return x
         return None
 
+    def has_new_tests(self) -> bool:
+        """Returns true if any of the tests are new."""
+        for x in self.map:
+            if x.new:
+                return True
+        return False
+
+    def has_deleted_tests(self) -> bool:
+        """Returns true if any of the tests are deleted."""
+        for x in self.map:
+            if x.deleted:
+                return True
+        return False
+
+    def has_changed_tests(self) -> bool:
+        """Returns true if any of the tests are changed."""
+        for x in self.map:
+            if x.changed:
+                return True
+        return False
+
 
 # FIXME: user serializer function to create pathlib objs
 def load_state_file(jakt_path: str) -> TestMap:
@@ -344,52 +365,69 @@ def check(
 def print_testmap_table(tests: TestMap):
     """Print a pretty table of state changes"""
     table = Table(show_header=True, header_style="bold magenta")
+
     table.add_column("#")
     table.add_column("MD5")
     table.add_column("Expected Corpus Path", justify="left")
     table.add_column("Done", justify="center")
-    table.add_column("New", justify="center")
-    table.add_column("Changed", justify="center")
-    table.add_column("Deleted", justify="center")
+
+    if tests.has_changed_tests():
+        table.add_column("Changed", justify="center")
+
+    if tests.has_new_tests():
+        table.add_column("New", justify="center")
+
+    if tests.has_deleted_tests():
+        table.add_column("Deleted", justify="center")
+
     table.add_column("Falty", justify="center")
+
     falty_count = 0
+
     for num, test in enumerate(tests.map):
         corpus_path = test.corpus_file_path
         corpus_path_mod = corpus_path.parts[corpus_path.parts.index("corpus") :]
-        color: Style
-        test_impl = ""
-        test_falty = ""
-        if test.new:
-            color = Style(color="green")
-        elif test.changed and test.implemented:
-            color = Style(color="yellow")
-        elif test.deleted:
-            color = Style(color="red")
-        elif test.implemented == TestImplemented.IMPLEMENTED:
-            color = Style(color="blue")
-            test_impl = ":ballot_box_with_check:"
-        elif test.implemented == TestImplemented.PARTIAL:
-            color = Style(color="pale_turquoise1")
-            test_impl = "(partial)"
-        elif test.falty:
-            test_falty = ":ballot_box_with_check:"
-            color = Style(color=None, dim=True)
-            falty_count += 1
-        else:
-            color = Style(color=None)
-        table.add_row(
+        color: Style = Style(color=None)
+
+        renderables: list = [
             str(num + 1),
             test.jakt_sample_hash,
             str(pathlib.Path(*corpus_path_mod)),
-            test_impl,
-            ":ballot_box_with_check:" if test.new else "",
-            ":ballot_box_with_check:" if test.changed else "",
-            ":ballot_box_with_check:" if test.deleted else "",
-            test_falty,
-            style=color,
-        )
-    console.log(table)
+        ]
 
+        if test.implemented == TestImplemented.IMPLEMENTED:
+            color = Style(color="blue")
+            renderables.append(":ballot_box_with_check:")
+        elif test.implemented == TestImplemented.PARTIAL:
+            color = Style(color="pale_turquoise1")
+            renderables.append("(partial)")
+        else:
+            renderables.append("")
+
+        if test.changed and test.implemented == TestImplemented.IMPLEMENTED:
+            color = Style(color="yellow")
+            renderables.append(":ballot_box_with_check:")
+        elif test.changed:
+            color = Style(color="wheat1")
+            renderables.append(":ballot_box_with_check:")
+        elif any(str(x.header) in "Changed" for x in table.columns):
+            renderables.append("")
+
+        if test.new:
+            color = Style(color="green")
+            renderables.append(":ballot_box_with_check:")
+        elif test.deleted:
+            color = Style(color="red")
+            renderables.append(":ballot_box_with_check:")
+
+        if test.falty:
+            color = Style(color=None, dim=True)
+            falty_count += 1
+            renderables.append(":ballot_box_with_check:")
+
+        table.add_row(*renderables, style=color)
+
+    console.log(table)
     console.log(f"Total tests: {len(tests.map)}")
     console.log(f"Falty tests: {falty_count}")
     console.log(f"Parsable tests: {len(tests.map) - falty_count}")
