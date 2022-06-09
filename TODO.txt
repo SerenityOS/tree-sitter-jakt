@@ -1,5 +1,6 @@
 * roadmapgen.py
     * allow saving check table to markdown table
+    * show partial implemented (bug for parse.txt)
 
 * add tests for optional types
 

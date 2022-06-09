@@ -28,7 +28,7 @@ def test_convert_jakt_sample_to_ts_path():
     """Ensures the jakt sample path is correcty converted to the tree-sitter equivalent."""
     jakt_sample = pathlib.Path("/opt/jakt/jakt/samples/enums/parse.jakt")
     ts_test = roadmapgen.convert_jakt_sample_path_to_ts_path(jakt_sample)
-    assert ts_test == pathlib.Path("test/corpus/enums/parse.txt")
+    assert ts_test == pathlib.Path(os.getcwd(), "test/corpus/enums/parse.txt")
 
 
 def test_calculate_tests_completed():
@@ -38,8 +38,10 @@ def test_calculate_tests_completed():
     tests with only five completed.
     """
     ts_tests = {
-        "test/corpus/enums/recursive_enums.txt": ["Boxed enum"],
-        "test/corpus/enums/parse.txt": [
+        str(pathlib.Path(os.getcwd(), "test/corpus/enums/recursive_enums.txt")): [
+            "Boxed enum"
+        ],
+        str(pathlib.Path(os.getcwd(), "test/corpus/enums/parse.txt")): [
             "Simple enum",
             "Simple enum with type",
             "Simple enum with struct type",

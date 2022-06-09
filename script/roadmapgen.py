@@ -29,6 +29,7 @@ import hashlib
 import sys
 from typing import Any
 from types import SimpleNamespace
+from enum import Enum
 
 import typer
 import tomli
@@ -49,6 +50,16 @@ console = Console()
 
 state_file = pathlib.Path(pathlib.Path(__file__).parent, "state.toml")
 corpus_tests_path = pathlib.Path(__file__, "..", "..", "test", "corpus").resolve()
+
+corpus_test_header_pattern: str = r"=+\n(.*)\n=+\n\s+"
+
+
+class TestImplemented(Enum):
+    """Enum with variants for test completion status."""
+
+    UNIMPLEMENTED = 0
+    IMPLEMENTED = 1
+    PARTIAL = 2
 
 
 def build_test_list(jakt_path: str) -> list:
@@ -74,21 +85,14 @@ def build_test_list(jakt_path: str) -> list:
 def build_corpus_list() -> dict[str, list]:
     """Builds a list of corpus tests."""
     list_of_tests: dict[str, list] = {}
-    pattern: str = r"=+\n(.*)\n=+\n\s+"
     for root, _, files in os.walk(corpus_tests_path, topdown=True):
         for name in files:
             file_path = pathlib.Path(root, name)
             file_path_posix = file_path.as_posix()
             file_text = file_path.read_text()
-
             # Strip out scheme comments
-            #
-            # WARNING: This will strip all semicolons out of the text, but that's okay because we
-            #          are only looking for tree-sitter test "headers"
-            #
             stripped_text = file_text.replace("; ", "").replace(";", "")
-
-            for x in re.findall(pattern, stripped_text):
+            for x in re.findall(corpus_test_header_pattern, stripped_text):
                 if not file_path_posix in list_of_tests:
                     list_of_tests[file_path_posix] = []
                 list_of_tests[file_path_posix].append(x)
@@ -115,9 +119,12 @@ def calculate_tests_completed(
     """
     count: float = 0
     for jakt_test in jakt_tests:
+        console.log(jakt_test)
         ts_test_expect_actual = convert_jakt_sample_path_to_ts_path(jakt_test)
         ts_test_str_path = ts_test_expect_actual.as_posix()
+        console.log(ts_test_str_path)
         if ts_test_str_path in tree_sitter_tests:
+            console.log(ts_test_str_path)
             num_tests_implemented = len(tree_sitter_tests[ts_test_str_path])
             num_tests_not_implemented = 0
             for test in tree_sitter_tests[ts_test_str_path]:
@@ -164,10 +171,10 @@ class Test:
     """A tree sitter test and corresponding Jakt sample."""
 
     name: str
-    implemented: bool
     corpus_file_path: pathlib.Path
     jakt_sample_path: pathlib.Path
     jakt_sample_hash: str
+    implemented: TestImplemented
     changed: bool = field(metadata={"serde_skip": True})
     deleted: bool = field(metadata={"serde_skip": True})
     new: bool = field(metadata={"serde_skip": True})
@@ -183,6 +190,24 @@ class Test:
             corpus_tests_path, ts_test_expect.as_posix().replace(".jakt", ".txt")
         )
 
+    def is_fully_implemented(self) -> TestImplemented:
+        """Returns true if the corpus test does not contain 'NOT IMPLEMENTED' tests."""
+        # Strip out scheme comments
+        if not self.corpus_file_path.exists():
+            return TestImplemented(0)
+        stripped_text = (
+            self.corpus_file_path.read_text().replace("; ", "").replace(";", "")
+        )
+        num_tests_not_implemented = 0
+        for x in re.findall(corpus_test_header_pattern, stripped_text):
+            if "NOT IMPLEMENTED" in x:
+                num_tests_not_implemented += 1
+        if num_tests_not_implemented == 0:
+            return TestImplemented(1)
+        elif num_tests_not_implemented > 0:
+            return TestImplemented(2)
+        return TestImplemented(0)
+
 
 @serialize
 @dataclass
@@ -190,7 +215,6 @@ class TestMap:
     """A list of jakt samples to test"""
 
     map: list[Test]
-    # jakt_path: str = field(metadata={"serde_skip": True})
 
     def get_by_corpus_path(self, path: str) -> Test | None:
         """Returns Test if path is contained in a test"""
@@ -246,10 +270,10 @@ def build_test_map(jakt_path: str) -> TestMap:
             filez.map.append(
                 Test(
                     name=name,
-                    implemented=False,
                     corpus_file_path=convert_jakt_sample_path_to_ts_path(file_path),
                     jakt_sample_path=file_path,
                     jakt_sample_hash=hash,
+                    implemented=TestImplemented(0),
                     changed=False,
                     new=False,
                     deleted=False,
@@ -285,7 +309,7 @@ def check(
         if (
             corpus_path := convert_jakt_sample_path_to_ts_path(test.jakt_sample_path)
         ).as_posix() in corpus_list:
-            test.implemented = True
+            test.implemented = test.is_fully_implemented()
             test.corpus_file_path = corpus_path
         if state_file_loaded:
             # if we have a state file, we now have to resolve the differences...
@@ -315,8 +339,6 @@ def print_testmap_table(tests: TestMap):
     """Print a pretty table of state changes"""
     table = Table(show_header=True, header_style="bold magenta")
     table.add_column("#")
-    # table.add_column("Name")
-    # table.add_column("Jakt Sample", justify="left", width=35)
     table.add_column("MD5")
     table.add_column("Expected Corpus Path", justify="left")
     table.add_column("Done", justify="center")
@@ -326,27 +348,27 @@ def print_testmap_table(tests: TestMap):
     for num, test in enumerate(tests.map):
         corpus_path = test.corpus_file_path
         corpus_path_mod = corpus_path.parts[corpus_path.parts.index("corpus") :]
-        test_path_mod = test.jakt_sample_path.parts[
-            test.jakt_sample_path.parts.index("samples") :
-        ]
         color: Style
+        test_impl = ""
         if test.new:
             color = Style(color="green")
         elif test.changed and test.implemented:
             color = Style(color="yellow")
         elif test.deleted:
             color = Style(color="red")
-        elif test.implemented:
+        elif test.implemented == TestImplemented.IMPLEMENTED:
             color = Style(color="blue")
+            test_impl = ":ballot_box_with_check:"
+        elif test.implemented == TestImplemented.PARTIAL:
+            color = Style(color="pale_turquoise1")
+            test_impl = "(partial)"
         else:
             color = Style(color=None)
         table.add_row(
             str(num + 1),
-            # test.name,
-            # str(pathlib.Path(*test_path_mod)),
             test.jakt_sample_hash,
             str(pathlib.Path(*corpus_path_mod)),
-            ":ballot_box_with_check:" if test.implemented else "",
+            test_impl,
             ":ballot_box_with_check:" if test.new else "",
             ":ballot_box_with_check:" if test.changed else "",
             ":ballot_box_with_check:" if test.deleted else "",
