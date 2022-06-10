@@ -1,0 +1,17 @@
+================================================================================
+String split
+================================================================================
+
+let result = "foo bar".split(' ')
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (let_declaration
+    (identifier)
+    (call_expression
+      (field_expression
+        (string_literal)
+        (field_identifier))
+      (arguments
+        (char_literal)))))
