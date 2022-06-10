@@ -1,0 +1,50 @@
+================================================================================
+String builder
+================================================================================
+
+mut s = StringBuilder::create()
+
+s.append_c_string("abc".c_string());
+s.append_c_string("123".c_string());
+
+println("{}", s.to_string())
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (mutable_declaration
+    (identifier)
+    (call_expression
+      (static_member_expression
+        (identifier)
+        (field_identifier))
+      (arguments)))
+  (call_expression
+    (field_expression
+      (identifier)
+      (field_identifier))
+    (arguments
+      (call_expression
+        (field_expression
+          (string_literal)
+          (field_identifier))
+        (arguments))))
+  (call_expression
+    (field_expression
+      (identifier)
+      (field_identifier))
+    (arguments
+      (call_expression
+        (field_expression
+          (string_literal)
+          (field_identifier))
+        (arguments))))
+  (call_expression
+    (identifier)
+    (arguments
+      (string_literal)
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments)))))

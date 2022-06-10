@@ -32,7 +32,7 @@
         "named": true
       },
       {
-        "type": "static_member_call_expression",
+        "type": "static_member_expression",
         "named": true
       },
       {
@@ -987,7 +987,7 @@
     }
   },
   {
-    "type": "static_member_call_expression",
+    "type": "static_member_expression",
     "named": true,
     "fields": {
       "field": {
