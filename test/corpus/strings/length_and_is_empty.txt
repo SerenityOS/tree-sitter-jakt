@@ -1,0 +1,44 @@
+================================================================================
+String type methods
+================================================================================
+
+let x = "Well, hello friends"
+
+println("{}", x.length())
+println("{}", x.is_empty())
+
+println("{}", "".is_empty())
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (let_declaration
+    (identifier)
+    (string_literal))
+  (call_expression
+    (identifier)
+    (arguments
+      (string_literal)
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments))))
+  (call_expression
+    (identifier)
+    (arguments
+      (string_literal)
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments))))
+  (call_expression
+    (identifier)
+    (arguments
+      (string_literal)
+      (call_expression
+        (field_expression
+          (string_literal)
+          (field_identifier))
+        (arguments)))))

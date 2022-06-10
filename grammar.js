@@ -1,4 +1,5 @@
 const PREC = {
+  field: 14,
   range: 13,
   call: 12,
   unary: 11,
@@ -104,6 +105,7 @@ module.exports = grammar({
         $.call_expression,
         $.range_expression,
         $.for_expression,
+        $.field_expression,
     ),
 
     while_statement: $ => seq(
@@ -145,6 +147,15 @@ module.exports = grammar({
     range_expression: $ => prec.left(PREC.range, choice(
       seq($._expression, choice('..'), $._expression),
       '..'
+    )),
+
+    field_expression: $ => prec(PREC.field, seq(
+      field('value', $._expression),
+      '.',
+      field('field', choice(
+        $._field_identifier,
+        // $.integer_literal
+      ))
     )),
 
     arguments: $ => seq(
