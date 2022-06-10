@@ -1,0 +1,32 @@
+================================================================================
+Arrow function
+================================================================================
+
+function area(width: i64, height: i64) => width * height
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (return_expression
+      (binary_expression
+        (identifier)
+        (identifier)))))
+
+; ================================================================================
+; NOT IMPLEMENTED Arrow function with return
+; ================================================================================
+; 
+; function greeting(name: String) throws -> String => format("Hello, {}!", name)
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

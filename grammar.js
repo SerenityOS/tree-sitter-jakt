@@ -358,8 +358,14 @@ module.exports = grammar({
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters),
+      optional('throws'),
       optional(seq('->', field('return_type', $._type))),
-      field('body', $.block)
+      field('body', choice($.return_expression, $.block)),
+    ),
+
+    return_expression: $ => seq(
+        '=>',
+        $._expression,
     ),
 
     parameters: $ => seq(

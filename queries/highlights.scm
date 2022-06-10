@@ -31,17 +31,13 @@
 "{" @punctuation.bracket
 "}" @punctuation.bracket
 
-; "::" @punctuation.delimiter
 ":" @punctuation.delimiter
-; "." @punctuation.delimiter
 "," @punctuation.delimiter
 
 (parameter (identifier) @variable.parameter)
 
-; "break" @keyword
-; "const" @keyword
+"throws" @keyword
 "continue" @keyword
-; "default" @keyword
 "else" @keyword
 "enum" @keyword
 "function" @keyword
@@ -50,19 +46,9 @@
 "in" @keyword
 "let" @keyword
 "boxed" @keyword
-; "loop" @keyword
-; "match" @keyword
 "return" @keyword
-; "static" @keyword
-; "struct" @keyword
-; "type" @keyword
-; "union" @keyword
-; "unsafe" @keyword
-; "where" @keyword
 "while" @keyword
-(mutable_specifier) @keyword
-
-; (self) @variable.builtin
+"mut" @keyword
 
 (char_literal) @string
 (string_literal) @string
@@ -70,8 +56,6 @@
 (boolean_literal) @constant.builtin
 (integer_literal) @constant.builtin
 (float_literal) @constant.builtin
-
-; (escape_sequence) @escape
 
 "*" @operator
 "&" @operator
