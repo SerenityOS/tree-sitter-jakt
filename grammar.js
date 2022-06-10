@@ -106,6 +106,7 @@ module.exports = grammar({
         $.range_expression,
         $.for_expression,
         $.field_expression,
+        $.static_member_call_expression,
     ),
 
     while_statement: $ => seq(
@@ -152,6 +153,15 @@ module.exports = grammar({
     field_expression: $ => prec(PREC.field, seq(
       field('value', $._expression),
       '.',
+      field('field', choice(
+        $._field_identifier,
+        // $.integer_literal
+      ))
+    )),
+
+    static_member_call_expression: $ => prec(PREC.field, seq(
+      field('value', $._expression),
+      '::',
       field('field', choice(
         $._field_identifier,
         // $.integer_literal

@@ -32,6 +32,10 @@
         "named": true
       },
       {
+        "type": "static_member_call_expression",
+        "named": true
+      },
+      {
         "type": "unary_expression",
         "named": true
       }
@@ -983,6 +987,32 @@
     }
   },
   {
+    "type": "static_member_call_expression",
+    "named": true,
+    "fields": {
+      "field": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "field_identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "string_literal",
     "named": true,
     "fields": {},
@@ -1128,6 +1158,10 @@
   },
   {
     "type": ":",
+    "named": false
+  },
+  {
+    "type": "::",
     "named": false
   },
   {

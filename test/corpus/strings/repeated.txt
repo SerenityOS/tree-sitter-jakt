@@ -1,0 +1,22 @@
+================================================================================
+String repeated static member function
+================================================================================
+
+let exes = String::repeated(character: 'x', count: 4)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (let_declaration
+    (identifier)
+    (call_expression
+      (static_member_call_expression
+        (identifier)
+        (field_identifier))
+      (arguments
+        (argument
+          (identifier)
+          (char_literal))
+        (argument
+          (identifier)
+          (integer_literal))))))
