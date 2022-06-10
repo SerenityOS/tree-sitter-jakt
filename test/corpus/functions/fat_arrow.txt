@@ -1,0 +1,24 @@
+================================================================================
+Function fat arrow return expression
+================================================================================
+
+function greet() => println("Well, hello friends.")
+function num() -> i64 => 5
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (return_expression
+      (integer_literal))))
