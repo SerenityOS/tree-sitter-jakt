@@ -2041,7 +2041,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "mutable_specifier"
+              "name": "anonymous_specifier"
             },
             {
               "type": "BLANK"
@@ -2074,6 +2074,10 @@
           }
         }
       ]
+    },
+    "anonymous_specifier": {
+      "type": "STRING",
+      "value": "anon"
     },
     "block": {
       "type": "SEQ",

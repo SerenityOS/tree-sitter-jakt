@@ -73,7 +73,6 @@ module.exports = grammar({
   rules: {
 
     source_file: $ => repeat(choice(
-      // Terminator ';' is not a language feature. It's only here to aid in testing.
       seq($._statement, terminator),
       $._top_level_declaration,
     )),
@@ -125,7 +124,6 @@ module.exports = grammar({
     continue_statement: $ => seq('continue'),
 
     for_expression: $ => seq(
-      // optional(seq($.loop_label, ':')),
       'for',
       field('pattern', $._pattern),
       'in',
@@ -140,15 +138,12 @@ module.exports = grammar({
 
     range_expression: $ => prec.left(PREC.range, choice(
       seq($._expression, choice('..'), $._expression),
-      // seq($._expression, '..'),
-      // seq('..', $._expression),
       '..'
     )),
 
     arguments: $ => seq(
       '(',
       optional(sepBy(',', choice(repeat($.argument), $._expression))),
-      // optional(','),
       ')'
     ),
 
@@ -323,7 +318,6 @@ module.exports = grammar({
       choice(
         /0b[01_]+/,
       ),
-      // optional(choice(...numeric_types))
     )),
 
     string_literal: $ => seq(
@@ -379,13 +373,15 @@ module.exports = grammar({
     ),
 
     parameter: $ => seq(
-      optional($.mutable_specifier),
+      optional($.anonymous_specifier),
       field('pattern', choice(
         $._pattern,
       )),
       ':',
       field('type', $._type)
     ),
+
+    anonymous_specifier: $ => 'anon',
 
     block: $ => seq(
       '{',

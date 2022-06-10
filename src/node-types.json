@@ -787,11 +787,6 @@
     }
   },
   {
-    "type": "mutable_specifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "negative_literal",
     "named": true,
     "fields": {},
@@ -859,7 +854,7 @@
       "required": false,
       "types": [
         {
-          "type": "mutable_specifier",
+          "type": "anonymous_specifier",
           "named": true
         }
       ]
@@ -1108,6 +1103,10 @@
   {
     "type": "^",
     "named": false
+  },
+  {
+    "type": "anonymous_specifier",
+    "named": true
   },
   {
     "type": "binary_literal",

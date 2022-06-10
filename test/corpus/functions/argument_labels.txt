@@ -1,0 +1,102 @@
+================================================================================
+Function argument labels
+================================================================================
+
+function foo(a: bool, b: bool) {
+}
+
+function bar(anon a: bool, b: bool) {
+}
+
+function baz(anon a: bool, anon b: bool) {
+}
+
+function qux(a: bool) {
+
+}
+
+function main() {
+    foo(a: true, b: true)
+    bar(true, b: true)
+    baz(true, true)
+
+    let a = true
+    qux(a)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (block))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (block))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type))
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type)))
+    (block))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (block))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (boolean_literal))
+          (argument
+            (identifier)
+            (boolean_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (boolean_literal)
+          (argument
+            (identifier)
+            (boolean_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (boolean_literal)
+          (boolean_literal)))
+      (let_declaration
+        (identifier)
+        (boolean_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (identifier))))))
+

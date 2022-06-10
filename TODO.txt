@@ -13,3 +13,14 @@
     * mypy on the python scripts
     * tree-sitter tests
     * roadmap.py does not flag any tests as out-of-date
+
+* get github to syntax highlight Jakt on Github
+
+    Mentions tree-sitter https://github.com/github/linguist/issues/5844
+    
+    How to add a new grammar to github: https://github.com/github/linguist/blob/master/CONTRIBUTING.md#adding-a-language
+
+    1. A grammar will only be added to github after it has been used by 200 unique users and projects
+    2. The linguist issue #5844 (mar 2022) mentions Github is moving to tree-sitter for syntax highlighting.
+       1. The issues mentions: `"Contact GitHub" link on any page on GitHub.` to enquire
+          about adding a tree-sitter grammar to github.
