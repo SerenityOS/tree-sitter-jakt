@@ -160,6 +160,10 @@
         "named": true
       },
       {
+        "type": "struct_declaration",
+        "named": true
+      },
+      {
         "type": "throw_statement",
         "named": true
       },
@@ -369,7 +373,7 @@
     "fields": {}
   },
   {
-    "type": "boxed_modifier",
+    "type": "boxed_specifier",
     "named": true,
     "fields": {}
   },
@@ -467,7 +471,7 @@
       "required": false,
       "types": [
         {
-          "type": "boxed_modifier",
+          "type": "boxed_specifier",
           "named": true
         }
       ]
@@ -1028,6 +1032,32 @@
     }
   },
   {
+    "type": "struct_declaration",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "field_declaration_list",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "throw_statement",
     "named": true,
     "fields": {
@@ -1209,10 +1239,6 @@
     "named": false
   },
   {
-    "type": "\\n",
-    "named": false
-  },
-  {
     "type": "]",
     "named": false
   },
@@ -1306,6 +1332,10 @@
   },
   {
     "type": "return",
+    "named": false
+  },
+  {
+    "type": "struct",
     "named": false
   },
   {

@@ -63,6 +63,7 @@ module.exports = grammar({
     $._type_identifier,
     $._statement,
     $.declaration,
+    $.field_identifier,
   ],
 
   conflicts: $ => [
@@ -79,34 +80,35 @@ module.exports = grammar({
     )),
 
     _statement: $ => choice(
-        $.declaration,
-        $._expression,
-        $.block,
-        $.if_statement,
-        $.return_statement,
-        $.while_statement,
-        $.increment_statement,
-        $.decrement_statement,
-        $.continue_statement,
-        $.throw_statement,
+      $.declaration,
+      $._expression,
+      $.block,
+      $.if_statement,
+      $.return_statement,
+      $.while_statement,
+      $.increment_statement,
+      $.decrement_statement,
+      $.continue_statement,
+      $.throw_statement,
     ),
 
     declaration: $ => choice(
       $.let_declaration,
       $.mutable_declaration,
       $.enum_declaration,
+      $.struct_declaration,
     ),
 
     _expression: $ => choice(
-        $.unary_expression,
-        $.binary_expression,
-        $._literal,
-        $.identifier,
-        $.call_expression,
-        $.range_expression,
-        $.for_expression,
-        $.field_expression,
-        $.static_member_expression,
+      $.unary_expression,
+      $.binary_expression,
+      $._literal,
+      $.identifier,
+      $.call_expression,
+      $.range_expression,
+      $.for_expression,
+      $.field_expression,
+      $.static_member_expression,
     ),
 
     while_statement: $ => seq(
@@ -116,20 +118,20 @@ module.exports = grammar({
     ),
 
     increment_statement: $ => prec(1, choice(
-        seq($._expression, '++'),
-        seq('++', $._expression),
+      seq($._expression, '++'),
+      seq('++', $._expression),
     )),
 
     decrement_statement: $ => prec(1, choice(
-        seq($._expression, '--'),
-        seq('--', $._expression),
+      seq($._expression, '--'),
+      seq('--', $._expression),
     )),
 
     continue_statement: $ => 'continue',
 
     throw_statement: $ => seq(
       'throw',
-       field('value', $._expression),
+      field('value', $._expression),
     ),
 
     for_expression: $ => seq(
@@ -155,7 +157,6 @@ module.exports = grammar({
       '.',
       field('field', choice(
         $._field_identifier,
-        // $.integer_literal
       ))
     )),
 
@@ -164,7 +165,6 @@ module.exports = grammar({
       '::',
       field('field', choice(
         $._field_identifier,
-        // $.integer_literal
       ))
     )),
 
@@ -222,24 +222,24 @@ module.exports = grammar({
       )),
     ),
 
-    boxed_modifier: $ => seq('boxed'),
+    boxed_specifier: $ => seq('boxed'),
 
     enum_declaration: $ => seq(
-      optional($.boxed_modifier),
+      optional($.boxed_specifier),
       'enum',
       field('name', choice($._type_identifier, optional($.enum_integral_type))),
       field('body', $.enum_variant_list)
     ),
 
     enum_integral_type: $ => seq(
-        $.identifier,
-        ':',
-        $._type,
+      $.identifier,
+      ':',
+      $._type,
     ),
 
     enum_variant_list: $ => seq(
       '{',
-      sepBy('\\n', repeat($.enum_variant)),
+      sepBy('\n', repeat($.enum_variant)),
       '}'
     ),
 
@@ -256,9 +256,10 @@ module.exports = grammar({
     ),
 
     field_declaration_list: $ => seq(
-      '(',
-      sepBy('\\n', seq(repeat($.field_declaration))),
-      ')'
+      '{',
+      sepByPost('\n', $.field_declaration),
+      sepBy(',', $.field_declaration),
+      '}'
     ),
 
     field_declaration: $ => seq(
@@ -273,9 +274,16 @@ module.exports = grammar({
       '(',
       choice(
         alias(choice(...primitive_types), $.primitive_type),
+        sepByPost('\n', $.field_declaration),
         sepBy(',', $.field_declaration),
       ),
       ')',
+    ),
+
+    struct_declaration: $ => seq(
+      'struct',
+      field('name', choice($._type_identifier)),
+      field('body', $.field_declaration_list)
     ),
 
     mutable_specifier: $ => 'mut',
@@ -394,8 +402,8 @@ module.exports = grammar({
     throws_specifier: $ => 'throws',
 
     return_expression: $ => seq(
-        '=>',
-        $._expression,
+      '=>',
+      $._expression,
     ),
 
     parameters: $ => seq(
@@ -422,7 +430,6 @@ module.exports = grammar({
     block: $ => seq(
       '{',
       repeat($._statement),
-      // optional($._expression),
       '}'
     ),
 
@@ -459,6 +466,14 @@ function sepBy1(sep, rule) {
   return seq(rule, repeat(seq(sep, rule)))
 }
 
+function sepBy2(sep, rule) {
+  return repeat(seq(rule, sep))
+}
+
 function sepBy(sep, rule) {
   return optional(sepBy1(sep, rule))
+}
+
+function sepByPost(sep, rule) {
+  return optional(sepBy1(rule, sep))
 }

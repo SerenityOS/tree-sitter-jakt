@@ -2,6 +2,10 @@
 Boxed enum
 ================================================================================
 
+enum Operation {
+    Add
+}
+
 boxed enum AST {
     Int(i64)
     BinaryOperation(lhs: AST, op: Operation, rhs: AST)
@@ -11,7 +15,12 @@ boxed enum AST {
 
 (source_file
   (enum_declaration
-    (boxed_modifier)
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))))
+  (enum_declaration
+    (boxed_specifier)
     (type_identifier)
     (enum_variant_list
       (enum_variant
@@ -30,3 +39,47 @@ boxed enum AST {
           (field_declaration
             (field_identifier)
             (type_identifier)))))))
+
+; ================================================================================
+; NOT IMPLEMENTED Boxed enum eval function
+; ================================================================================
+;
+; function eval(anon ast: AST) -> i64 {
+;     match ast {
+;         AST::Int(i) => {
+;             return i
+;         }
+;         AST::BinaryOperation(lhs: lhs, op: op, rhs: rhs) => {
+;             match op {
+;                 Operation::Add => {
+;                     return eval(lhs) + eval(rhs)
+;                 }
+;             }
+;         }
+;     }
+;
+;     return 0
+; }
+;
+; --------------------------------------------------------------------------------
+;
+; (source_file)
+;
+;
+; ================================================================================
+; NOT IMPLEMENTED Boxed enum main function
+; ================================================================================
+;
+; function main() {
+;     let ast = AST::BinaryOperation(
+;         lhs: AST::Int(5),
+;         op: Operation::Add(),
+;         rhs: AST::Int(10)
+;     )
+;
+;     println("result: {}", eval(ast))
+; }
+;
+; --------------------------------------------------------------------------------
+;
+; (source_file)
