@@ -1,0 +1,31 @@
+================================================================================
+Variables blocks and scopes
+================================================================================
+
+let x = 10
+{
+    let x = 20
+    println("{}", x)
+}
+println("{}", x)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (let_declaration
+    (identifier)
+    (integer_literal))
+  (block
+    (let_declaration
+      (identifier)
+      (integer_literal))
+    (call_expression
+      (identifier)
+      (arguments
+        (string_literal)
+        (identifier))))
+  (call_expression
+    (identifier)
+    (arguments
+      (string_literal)
+      (identifier))))
