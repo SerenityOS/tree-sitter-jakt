@@ -1,0 +1,53 @@
+================================================================================
+Function fat arrow return expression
+================================================================================
+
+function main() {
+    recurse(count: 10)
+}
+
+function recurse(count: i64) {
+    println("{}", count)
+    if count > 0 {
+        recurse(count: count - 1)
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (integer_literal))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier)))
+      (if_statement
+        (binary_expression
+          (identifier)
+          (integer_literal))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (identifier)
+                (binary_expression
+                  (identifier)
+                  (integer_literal))))))))))
