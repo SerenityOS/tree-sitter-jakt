@@ -1,4 +1,5 @@
 * roadmapgen.py
+    * allow viwing original tests in check table
     * allow saving check table to markdown table
 
 * add tests for optional types

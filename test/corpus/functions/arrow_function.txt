@@ -21,12 +21,26 @@ function area(width: i64, height: i64) => width * height
         (identifier)
         (identifier)))))
 
-; ================================================================================
-; NOT IMPLEMENTED Arrow function with return
-; ================================================================================
-; 
-; function greeting(name: String) throws -> String => format("Hello, {}!", name)
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Arrow function with return
+================================================================================
+
+function greeting(name: String) throws -> String => format("Hello, {}!", name)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))

@@ -36,8 +36,8 @@
 
 (parameter (identifier) @variable.parameter)
 
-"throws" @keyword
-"continue" @keyword
+(throws_specifier) @keyword
+(continue_statement) @keyword
 "else" @keyword
 "enum" @keyword
 "function" @keyword

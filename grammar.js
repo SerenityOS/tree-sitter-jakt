@@ -87,6 +87,7 @@ module.exports = grammar({
         $.increment_statement,
         $.decrement_statement,
         $.continue_statement,
+        $.throw_statement,
     ),
 
     declaration: $ => choice(
@@ -121,7 +122,12 @@ module.exports = grammar({
         seq('--', $._expression),
     )),
 
-    continue_statement: $ => seq('continue'),
+    continue_statement: $ => 'continue',
+
+    throw_statement: $ => seq(
+      'throw',
+       field('value', $._expression),
+    ),
 
     for_expression: $ => seq(
       'for',
@@ -194,6 +200,7 @@ module.exports = grammar({
         field('value', $._expression)
       )),
     ),
+
     boxed_modifier: $ => seq('boxed'),
 
     enum_declaration: $ => seq(
@@ -358,10 +365,12 @@ module.exports = grammar({
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters),
-      optional('throws'),
+      optional(field('throws', $.throws_specifier)),
       optional(seq('->', field('return_type', $._type))),
       field('body', choice($.return_expression, $.block)),
     ),
+
+    throws_specifier: $ => 'throws',
 
     return_expression: $ => seq(
         '=>',

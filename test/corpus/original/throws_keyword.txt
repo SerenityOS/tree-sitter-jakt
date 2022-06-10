@@ -1,0 +1,27 @@
+================================================================================
+Throws keyword
+================================================================================
+
+function infinity(width: i32, height: i32) throws => width * height * infinity()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (throws_specifier)
+    (return_expression
+      (binary_expression
+        (binary_expression
+          (identifier)
+          (identifier))
+        (call_expression
+          (identifier)
+          (arguments))))))

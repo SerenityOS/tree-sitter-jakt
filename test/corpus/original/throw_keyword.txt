@@ -1,0 +1,18 @@
+================================================================================
+Throw keyword
+================================================================================
+
+function infinity() throws {
+    throw error
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (block
+      (throw_statement
+        (identifier)))))
