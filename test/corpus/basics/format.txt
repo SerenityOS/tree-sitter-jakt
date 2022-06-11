@@ -1,0 +1,42 @@
+================================================================================
+Basics format
+================================================================================
+
+function main() {
+    let hello = "Hello"
+    let friends = "friends"
+    let number = 123
+    let s = format("{} {} {}", hello, friends, number)
+    println("{}", s)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (string_literal))
+      (let_declaration
+        (identifier)
+        (string_literal))
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (string_literal)
+            (identifier)
+            (identifier)
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))
