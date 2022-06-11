@@ -12,7 +12,7 @@ tree-sitter-jakt implements 46.00 of 176 (26.1%) of valid Jakt samples as of Jun
 
 ## Screenshot
 
-![screenshot](/assets/screenshot-20220525.png)
+![screenshot](/assets/screenshot_main.png)
 
 ## How to run tests
 
