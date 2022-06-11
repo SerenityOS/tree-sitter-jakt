@@ -1,0 +1,54 @@
+================================================================================
+Boolean logical or
+================================================================================
+
+function main() {
+    let i = 4
+    if i == 5 or 6 > 7 {
+        println("FAIL")
+    }
+    let a = true
+    let b = false
+    if a or b {
+        println("OK")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (if_statement
+        (binary_expression
+          (binary_expression
+            (identifier)
+            (integer_literal))
+          (binary_expression
+            (integer_literal)
+            (integer_literal)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)))))
+      (let_declaration
+        (identifier)
+        (boolean_literal))
+      (let_declaration
+        (identifier)
+        (boolean_literal))
+      (if_statement
+        (binary_expression
+          (identifier)
+          (identifier))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))))))
