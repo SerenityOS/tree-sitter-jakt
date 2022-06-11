@@ -36,8 +36,7 @@ const numeric_types = [
 
 const primitive_types = numeric_types.concat(['bool', 'String', 'c_char'])
 
-const newline = '\n'
-terminator = choice(newline, ';')
+terminator = choice('\n', ';')
 
 module.exports = grammar({
   name: 'jakt',
@@ -229,7 +228,7 @@ module.exports = grammar({
       ']'
     ),
 
-    let_declaration: $ => seq(
+    let_declaration: $ => prec.left(seq(
       'let',
       field('pattern', $._pattern),
       optional(seq(
@@ -238,9 +237,10 @@ module.exports = grammar({
       )),
       optional(seq(
         '=',
-        field('value', $._expression)
+        field('value', $._expression),
       )),
-    ),
+      optional(';'),
+    )),
 
     mutable_declaration: $ => seq(
       'mut',
