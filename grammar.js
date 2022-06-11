@@ -28,6 +28,7 @@ const numeric_types = [
   'i128',
   'isize',
   'usize',
+  'uz',
   'f32',
   'f64',
   'c_int',
@@ -111,6 +112,7 @@ module.exports = grammar({
       $.field_expression,
       $.static_member_expression,
       $.is_expression,
+      $.type_conversion_expression,
     ),
 
     while_statement: $ => seq(
@@ -174,6 +176,12 @@ module.exports = grammar({
       prec.left(field('left', $._expression)),
       'is',
       prec.right(field('right', $._expression)),
+    ),
+
+    type_conversion_expression: $ =>  seq(
+      prec.left(field('left', $._expression)),
+      choice('as?', 'as!'),
+      prec.right(alias(choice(...primitive_types), $.primitive_type)),
     ),
 
     arguments: $ => seq(
@@ -360,7 +368,7 @@ module.exports = grammar({
       choice(
         /[0-9][0-9_]*/,
         /0x[0-9a-fA-F_]+/,
-        /0o[0-7_]+/
+        /0o[0-7_]+/,
       ),
       optional(choice(...numeric_types))
     )),

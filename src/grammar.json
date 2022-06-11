@@ -148,6 +148,10 @@
         {
           "type": "SYMBOL",
           "name": "is_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_conversion_expression"
         }
       ]
     },
@@ -465,6 +469,126 @@
         }
       ]
     },
+    "type_conversion_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PREC_LEFT",
+          "value": 0,
+          "content": {
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "as?"
+            },
+            {
+              "type": "STRING",
+              "value": "as!"
+            }
+          ]
+        },
+        {
+          "type": "PREC_RIGHT",
+          "value": 0,
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "u8"
+                },
+                {
+                  "type": "STRING",
+                  "value": "i8"
+                },
+                {
+                  "type": "STRING",
+                  "value": "u16"
+                },
+                {
+                  "type": "STRING",
+                  "value": "i16"
+                },
+                {
+                  "type": "STRING",
+                  "value": "u32"
+                },
+                {
+                  "type": "STRING",
+                  "value": "i32"
+                },
+                {
+                  "type": "STRING",
+                  "value": "u64"
+                },
+                {
+                  "type": "STRING",
+                  "value": "i64"
+                },
+                {
+                  "type": "STRING",
+                  "value": "u128"
+                },
+                {
+                  "type": "STRING",
+                  "value": "i128"
+                },
+                {
+                  "type": "STRING",
+                  "value": "isize"
+                },
+                {
+                  "type": "STRING",
+                  "value": "usize"
+                },
+                {
+                  "type": "STRING",
+                  "value": "uz"
+                },
+                {
+                  "type": "STRING",
+                  "value": "f32"
+                },
+                {
+                  "type": "STRING",
+                  "value": "f64"
+                },
+                {
+                  "type": "STRING",
+                  "value": "c_int"
+                },
+                {
+                  "type": "STRING",
+                  "value": "bool"
+                },
+                {
+                  "type": "STRING",
+                  "value": "String"
+                },
+                {
+                  "type": "STRING",
+                  "value": "c_char"
+                }
+              ]
+            },
+            "named": true,
+            "value": "primitive_type"
+          }
+        }
+      ]
+    },
     "arguments": {
       "type": "SEQ",
       "members": [
@@ -641,6 +765,10 @@
               {
                 "type": "STRING",
                 "value": "usize"
+              },
+              {
+                "type": "STRING",
+                "value": "uz"
               },
               {
                 "type": "STRING",
@@ -1198,6 +1326,10 @@
                   {
                     "type": "STRING",
                     "value": "usize"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "uz"
                   },
                   {
                     "type": "STRING",
@@ -1804,6 +1936,10 @@
               },
               {
                 "type": "STRING",
+                "value": "uz"
+              },
+              {
+                "type": "STRING",
                 "value": "f32"
               },
               {
@@ -1963,6 +2099,10 @@
                   {
                     "type": "STRING",
                     "value": "usize"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "uz"
                   },
                   {
                     "type": "STRING",

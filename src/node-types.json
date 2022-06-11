@@ -40,6 +40,10 @@
         "named": true
       },
       {
+        "type": "type_conversion_expression",
+        "named": true
+      },
+      {
         "type": "unary_expression",
         "named": true
       }
@@ -1138,6 +1142,32 @@
     }
   },
   {
+    "type": "type_conversion_expression",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "primitive_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "unary_expression",
     "named": true,
     "fields": {},
@@ -1313,6 +1343,14 @@
   {
     "type": "anonymous_specifier",
     "named": true
+  },
+  {
+    "type": "as!",
+    "named": false
+  },
+  {
+    "type": "as?",
+    "named": false
   },
   {
     "type": "binary_literal",
