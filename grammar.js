@@ -142,7 +142,10 @@ module.exports = grammar({
 
     defer_statement: $ => seq(
       'defer',
-      field('body', $.block)
+      choice(
+        field('body', $.block),
+        field('body', $._expression),
+      )
     ),
 
     for_expression: $ => seq(

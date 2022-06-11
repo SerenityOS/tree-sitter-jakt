@@ -1,0 +1,15 @@
+================================================================================
+Control flow defer statement
+================================================================================
+
+defer println(" friends!\n")
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (defer_statement
+    (call_expression
+      (identifier)
+      (arguments
+        (string_literal
+          (escape_sequence))))))
