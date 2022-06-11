@@ -91,6 +91,7 @@ module.exports = grammar({
       $.continue_statement,
       $.throw_statement,
       $.defer_statement,
+      $.loop_statement,
     ),
 
     declaration: $ => choice(
@@ -119,6 +120,11 @@ module.exports = grammar({
     while_statement: $ => seq(
       'while',
       field('condition', $._expression),
+      field('body', $.block)
+    ),
+
+    loop_statement: $ => seq(
+      'loop',
       field('body', $.block)
     ),
 

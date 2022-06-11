@@ -55,6 +55,7 @@
 "struct" @keyword
 "class" @keyword
 "defer" @keyword
+"loop" @keyword
 
 (char_literal) @string
 (string_literal) @string

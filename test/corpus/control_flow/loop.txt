@@ -1,0 +1,40 @@
+================================================================================
+Control flow loop
+================================================================================
+
+function main() {
+    mut i = 0
+    loop {
+        if i == 5 {
+            break
+        }
+        println("{}", i)
+        i++
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (integer_literal))
+      (loop_statement
+        (block
+          (if_statement
+            (binary_expression
+              (identifier)
+              (integer_literal))
+            (block
+              (identifier)))
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (identifier)))
+          (increment_statement
+            (identifier)))))))

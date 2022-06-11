@@ -176,6 +176,10 @@
         "named": true
       },
       {
+        "type": "loop_statement",
+        "named": true
+      },
+      {
         "type": "mutable_declaration",
         "named": true
       },
@@ -921,6 +925,22 @@
     }
   },
   {
+    "type": "loop_statement",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "mutable_declaration",
     "named": true,
     "fields": {
@@ -1494,6 +1514,10 @@
   {
     "type": "line_comment",
     "named": true
+  },
+  {
+    "type": "loop",
+    "named": false
   },
   {
     "type": "mut",
