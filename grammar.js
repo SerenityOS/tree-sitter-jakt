@@ -491,7 +491,9 @@ module.exports = grammar({
 
     if_statement: $ => seq(
       'if',
+      optional('('),
       field('condition', seq($._expression)),
+      optional(')'),
       field('consequence', $.block),
       optional(field("alternative", $.else_clause))
 
