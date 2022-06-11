@@ -99,6 +99,10 @@
         {
           "type": "SYMBOL",
           "name": "struct_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "class_declaration"
         }
       ]
     },
@@ -140,6 +144,10 @@
         {
           "type": "SYMBOL",
           "name": "static_member_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "is_expression"
         }
       ]
     },
@@ -423,6 +431,39 @@
           }
         ]
       }
+    },
+    "is_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PREC_LEFT",
+          "value": 0,
+          "content": {
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "is"
+        },
+        {
+          "type": "PREC_RIGHT",
+          "value": 0,
+          "content": {
+            "type": "FIELD",
+            "name": "right",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        }
+      ]
     },
     "arguments": {
       "type": "SEQ",
@@ -1267,6 +1308,36 @@
         {
           "type": "STRING",
           "value": "struct"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_type_identifier"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "field_declaration_list"
+          }
+        }
+      ]
+    },
+    "class_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "class"
         },
         {
           "type": "FIELD",

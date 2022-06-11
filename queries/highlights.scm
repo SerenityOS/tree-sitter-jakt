@@ -49,6 +49,8 @@
 "return" @keyword
 "while" @keyword
 "mut" @keyword
+"struct" @keyword
+"class" @keyword
 
 (char_literal) @string
 (string_literal) @string

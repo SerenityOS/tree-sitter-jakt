@@ -97,6 +97,7 @@ module.exports = grammar({
       $.mutable_declaration,
       $.enum_declaration,
       $.struct_declaration,
+      $.class_declaration,
     ),
 
     _expression: $ => choice(
@@ -109,6 +110,7 @@ module.exports = grammar({
       $.for_expression,
       $.field_expression,
       $.static_member_expression,
+      $.is_expression,
     ),
 
     while_statement: $ => seq(
@@ -167,6 +169,12 @@ module.exports = grammar({
         $._field_identifier,
       ))
     )),
+
+    is_expression: $ =>  seq(
+      prec.left(field('left', $._expression)),
+      'is',
+      prec.right(field('right', $._expression)),
+    ),
 
     arguments: $ => seq(
       '(',
@@ -282,6 +290,12 @@ module.exports = grammar({
 
     struct_declaration: $ => seq(
       'struct',
+      field('name', choice($._type_identifier)),
+      field('body', $.field_declaration_list)
+    ),
+
+    class_declaration: $ => seq(
+      'class',
       field('name', choice($._type_identifier)),
       field('body', $.field_declaration_list)
     ),
