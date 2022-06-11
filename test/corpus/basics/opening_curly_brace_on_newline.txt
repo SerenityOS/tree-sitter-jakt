@@ -1,0 +1,19 @@
+================================================================================
+Basics  opening curly brace on newline
+================================================================================
+
+if true
+{
+    print("Well, hello friends.")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_statement
+    (boolean_literal)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal))))))
