@@ -32,6 +32,10 @@
         "named": true
       },
       {
+        "type": "logical_not",
+        "named": true
+      },
+      {
         "type": "range_expression",
         "named": true
       },
@@ -878,6 +882,21 @@
     }
   },
   {
+    "type": "logical_not",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "mutable_declaration",
     "named": true,
     "fields": {
@@ -1450,6 +1469,10 @@
   },
   {
     "type": "mut",
+    "named": false
+  },
+  {
+    "type": "not",
     "named": false
   },
   {

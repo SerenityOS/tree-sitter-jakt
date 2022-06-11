@@ -113,6 +113,7 @@ module.exports = grammar({
       $.static_member_expression,
       $.is_expression,
       $.type_conversion_expression,
+      $.logical_not,
     ),
 
     while_statement: $ => seq(
@@ -183,6 +184,13 @@ module.exports = grammar({
       choice('as?', 'as!'),
       prec.right(alias(choice(...primitive_types), $.primitive_type)),
     ),
+
+    logical_not: $ =>  prec.left(seq(
+      'not',
+      optional('('),
+      $._expression,
+      optional(')'),
+    )),
 
     arguments: $ => seq(
       '(',

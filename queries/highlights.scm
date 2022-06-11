@@ -46,6 +46,7 @@
 "in" @keyword
 "and" @keyword
 "or" @keyword
+"not" @keyword
 "let" @keyword
 "boxed" @keyword
 "return" @keyword

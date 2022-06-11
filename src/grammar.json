@@ -152,6 +152,10 @@
         {
           "type": "SYMBOL",
           "name": "type_conversion_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "logical_not"
         }
       ]
     },
@@ -588,6 +592,47 @@
           }
         }
       ]
+    },
+    "logical_not": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "not"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ")"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
     },
     "arguments": {
       "type": "SEQ",
