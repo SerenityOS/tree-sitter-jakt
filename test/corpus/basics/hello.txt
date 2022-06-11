@@ -1,0 +1,19 @@
+================================================================================
+Basics hello friends
+================================================================================
+
+function main() {
+    println("Well, hello friends.")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal))))))
