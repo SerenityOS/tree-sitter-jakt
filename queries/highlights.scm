@@ -44,6 +44,8 @@
 "for" @keyword
 "if" @keyword
 "in" @keyword
+"and" @keyword
+"or" @keyword
 "let" @keyword
 "boxed" @keyword
 "return" @keyword

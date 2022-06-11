@@ -321,6 +321,8 @@ module.exports = grammar({
 
     binary_expression: $ => {
       const table = [
+        [PREC.and, 'and'],
+        [PREC.or, 'or'],
         [PREC.bitand, '&'],
         [PREC.bitor, '|'],
         [PREC.bitxor, '^'],
