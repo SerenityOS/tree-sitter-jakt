@@ -1,0 +1,40 @@
+================================================================================
+Control flow if else
+================================================================================
+
+function main() {
+    let x: i64 = 80;
+
+    if (x == 100) {
+        println("true")
+    } else {
+        println("not 100")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (integer_literal))
+      (if_statement
+        (binary_expression
+          (identifier)
+          (integer_literal))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))
+        (else_clause
+          (block
+            (call_expression
+              (identifier)
+              (arguments
+                (string_literal)))))))))
