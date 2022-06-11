@@ -1,0 +1,26 @@
+================================================================================
+Basics hello number
+================================================================================
+
+function main() {
+    println("{}", 100)
+    println("{}", 100_000_000)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (integer_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (integer_literal))))))
