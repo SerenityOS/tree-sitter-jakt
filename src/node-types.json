@@ -58,6 +58,10 @@
         "named": true
       },
       {
+        "type": "byte_literal",
+        "named": true
+      },
+      {
         "type": "char_literal",
         "named": true
       },
@@ -793,7 +797,7 @@
       "required": true,
       "types": [
         {
-          "type": "_expression",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -1317,6 +1321,10 @@
   {
     "type": "boxed",
     "named": false
+  },
+  {
+    "type": "byte_literal",
+    "named": true
   },
   {
     "type": "char_literal",

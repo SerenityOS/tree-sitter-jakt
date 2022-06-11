@@ -120,8 +120,8 @@ module.exports = grammar({
     ),
 
     increment_statement: $ => prec(1, choice(
-      seq($._expression, '++'),
-      seq('++', $._expression),
+      seq($.identifier, '++'),
+      seq('++', $.identifier),
     )),
 
     decrement_statement: $ => prec(1, choice(
@@ -332,6 +332,7 @@ module.exports = grammar({
     _literal: $ => choice(
       $.string_literal,
       $.char_literal,
+      $.byte_literal,
       $.boolean_literal,
       $.integer_literal,
       $.binary_literal,
@@ -380,7 +381,21 @@ module.exports = grammar({
     ),
 
     char_literal: $ => token(seq(
-      optional('b'),
+      '\'',
+      optional(choice(
+        seq('\\', choice(
+          /[^xu]/,
+          /u[0-9a-fA-F]{4}/,
+          /u{[0-9a-fA-F]+}/,
+          /x[0-9a-fA-F]{2}/
+        )),
+        /[^\\']/
+      )),
+      '\''
+    )),
+
+    byte_literal: $ => token(seq(
+      'b',
       '\'',
       optional(choice(
         seq('\\', choice(

@@ -1,0 +1,34 @@
+================================================================================
+Basics byte literals
+================================================================================
+
+function main() {
+    mut b = b'b'
+    println("{:c} {:c}", b, b'b')
+    ++b
+    println("{:x}", b)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (byte_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier)
+          (byte_literal)))
+      (increment_statement
+        (identifier))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))

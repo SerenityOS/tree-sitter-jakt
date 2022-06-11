@@ -187,7 +187,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_expression"
+                "name": "identifier"
               },
               {
                 "type": "STRING",
@@ -204,7 +204,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_expression"
+                "name": "identifier"
               }
             ]
           }
@@ -1722,6 +1722,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "byte_literal"
+        },
+        {
+          "type": "SYMBOL",
           "name": "boolean_literal"
         },
         {
@@ -2042,16 +2046,71 @@
         "type": "SEQ",
         "members": [
           {
+            "type": "STRING",
+            "value": "'"
+          },
+          {
             "type": "CHOICE",
             "members": [
               {
-                "type": "STRING",
-                "value": "b"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "\\"
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "PATTERN",
+                            "value": "[^xu]"
+                          },
+                          {
+                            "type": "PATTERN",
+                            "value": "u[0-9a-fA-F]{4}"
+                          },
+                          {
+                            "type": "PATTERN",
+                            "value": "u{[0-9a-fA-F]+}"
+                          },
+                          {
+                            "type": "PATTERN",
+                            "value": "x[0-9a-fA-F]{2}"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[^\\\\']"
+                  }
+                ]
               },
               {
                 "type": "BLANK"
               }
             ]
+          },
+          {
+            "type": "STRING",
+            "value": "'"
+          }
+        ]
+      }
+    },
+    "byte_literal": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "b"
           },
           {
             "type": "STRING",
