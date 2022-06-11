@@ -1,0 +1,64 @@
+================================================================================
+Control flow defer in defer
+================================================================================
+
+function foo(anon n: i8) {
+    println("foo called with {}", n)
+}
+
+function main() {
+    foo(1)
+    defer {
+        foo(3)
+        defer {
+            foo(5)
+        }
+        foo(4)
+    }
+    foo(2)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type)))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (integer_literal)))
+      (defer_statement
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (integer_literal)))
+          (defer_statement
+            (block
+              (call_expression
+                (identifier)
+                (arguments
+                  (integer_literal)))))
+          (call_expression
+            (identifier)
+            (arguments
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (integer_literal))))))
