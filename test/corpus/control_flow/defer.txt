@@ -1,0 +1,29 @@
+================================================================================
+Control flow defer
+================================================================================
+
+function main() {
+    defer {
+        println(" friends!\n")
+    }
+    println("Hello")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (defer_statement
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal
+                (escape_sequence))))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal))))))

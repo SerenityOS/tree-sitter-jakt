@@ -54,6 +54,7 @@
 "mut" @keyword
 "struct" @keyword
 "class" @keyword
+"defer" @keyword
 
 (char_literal) @string
 (string_literal) @string

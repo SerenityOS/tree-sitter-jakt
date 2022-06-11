@@ -91,6 +91,7 @@ module.exports = grammar({
       $.decrement_statement,
       $.continue_statement,
       $.throw_statement,
+      $.defer_statement,
     ),
 
     declaration: $ => choice(
@@ -137,6 +138,11 @@ module.exports = grammar({
     throw_statement: $ => seq(
       'throw',
       field('value', $._expression),
+    ),
+
+    defer_statement: $ => seq(
+      'defer',
+      field('body', $.block)
     ),
 
     for_expression: $ => seq(
