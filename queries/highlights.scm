@@ -36,9 +36,6 @@
 
 (parameter (identifier) @variable.parameter)
 
-'throw' @keyword
-(throws_specifier) @keyword
-(continue_statement) @keyword
 "else" @keyword
 "enum" @keyword
 "function" @keyword
@@ -59,6 +56,9 @@
 "loop" @keyword
 "try" @keyword
 "catch" @keyword
+"throw" @keyword
+(throws_specifier) @keyword
+(continue_statement) @keyword
 
 (char_literal) @string
 (string_literal) @string
