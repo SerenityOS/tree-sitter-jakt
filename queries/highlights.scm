@@ -59,6 +59,7 @@
 "throw" @keyword
 (throws_specifier) @keyword
 (continue_statement) @keyword
+(anonymous_specifier) @keyword
 
 (char_literal) @string
 (string_literal) @string
@@ -66,6 +67,7 @@
 (boolean_literal) @constant.builtin
 (integer_literal) @constant.builtin
 (float_literal) @constant.builtin
+(byte_literal) @constant.builtin
 
 "*" @operator
 "&" @operator
