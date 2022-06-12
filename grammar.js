@@ -116,11 +116,14 @@ module.exports = grammar({
       $.is_expression,
       $.type_conversion_expression,
       $.logical_not,
+      $.assignment_expression,
     ),
 
     while_statement: $ => seq(
       'while',
+      optional('('),
       field('condition', $._expression),
+      optional(')'),
       field('body', $.block)
     ),
 
@@ -220,6 +223,12 @@ module.exports = grammar({
       optional('('),
       $._expression,
       optional(')'),
+    )),
+
+    assignment_expression: $ => prec.left(PREC.assign, seq(
+      field('left', $._expression),
+      '=',
+      field('right', $._expression)
     )),
 
     arguments: $ => seq(

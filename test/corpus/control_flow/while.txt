@@ -1,0 +1,27 @@
+================================================================================
+Control flow while
+================================================================================
+
+while (x > 0) {
+    println("{}", x)
+    x = x - 1
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (while_statement
+    (binary_expression
+      (identifier)
+      (integer_literal))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier)))
+      (assignment_expression
+        (identifier)
+        (binary_expression
+          (identifier)
+          (integer_literal))))))
