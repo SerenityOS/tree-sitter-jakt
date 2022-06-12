@@ -116,3 +116,25 @@ i % 2 == 0
       (integer_literal))
     (integer_literal)))
 
+================================================================================
+Call expressions one after another
+================================================================================
+
+notoss()
+toss(5252)
+println("FAIL")
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    (identifier)
+    (arguments))
+  (call_expression
+    (identifier)
+    (arguments
+      (integer_literal)))
+  (call_expression
+    (identifier)
+    (arguments
+      (string_literal))))

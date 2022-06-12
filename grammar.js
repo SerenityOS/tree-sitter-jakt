@@ -92,6 +92,7 @@ module.exports = grammar({
       $.throw_statement,
       $.defer_statement,
       $.loop_statement,
+      $.try_statement,
     ),
 
     declaration: $ => choice(
@@ -150,6 +151,20 @@ module.exports = grammar({
       choice(
         field('body', $.block),
         field('body', $._expression),
+      )
+    ),
+
+    try_statement: $ => seq(
+      'try',
+      choice(
+        field('try_body', $.block),
+        field('try_body', $._expression),
+      ),
+      'catch',
+      $.identifier,
+      choice(
+        field('catch_body', $.block),
+        field('catch_body', $._expression),
       )
     ),
 
