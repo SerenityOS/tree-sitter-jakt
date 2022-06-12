@@ -56,6 +56,8 @@
 "class" @keyword
 "defer" @keyword
 "loop" @keyword
+"try" @keyword
+"catch" @keyword
 
 (char_literal) @string
 (string_literal) @string
