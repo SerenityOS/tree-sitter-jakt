@@ -1,0 +1,47 @@
+================================================================================
+Semicolons are allowed in some places
+================================================================================
+
+// Jakt is cool
+function main(args: [String]) {
+
+    mut changeme: String = "default_pass";
+    let yakbaited: bool = true;
+
+    for i in 1..10 {
+        println("well, hello friends ({} times)", i);
+    }
+
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (array_type
+          (primitive_type))))
+    (block
+      (mutable_declaration
+        (identifier)
+        (primitive_type)
+        (string_literal))
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (boolean_literal))
+      (for_expression
+        (identifier)
+        (range_expression
+          (integer_literal)
+          (integer_literal))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (identifier))))))))

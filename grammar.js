@@ -161,10 +161,11 @@ module.exports = grammar({
       field('body', $.block)
     ),
 
-    call_expression: $ => prec(PREC.call, seq(
+    call_expression: $ => prec(PREC.call, prec.left(seq(
       field('function', $._expression),
-      field('arguments', $.arguments)
-    )),
+      field('arguments', $.arguments),
+      optional(';'),
+    ))),
 
     range_expression: $ => prec.left(PREC.range, choice(
       seq($._expression, choice('..'), $._expression),
@@ -248,7 +249,7 @@ module.exports = grammar({
       optional(';'),
     )),
 
-    mutable_declaration: $ => seq(
+    mutable_declaration: $ => prec.left(seq(
       'mut',
       field('pattern', $._pattern),
       optional(seq(
@@ -259,7 +260,8 @@ module.exports = grammar({
         '=',
         field('value', $._expression)
       )),
-    ),
+      optional(';'),
+    )),
 
     boxed_specifier: $ => seq('boxed'),
 
