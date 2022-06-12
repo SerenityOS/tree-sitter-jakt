@@ -1,0 +1,79 @@
+================================================================================
+Control flow fizzbuzz
+================================================================================
+
+function main() {
+    mut i = 1
+    while i <= 20 {
+        if i % 15 == 0 {
+            println("FizzBuzz")
+        } else if i % 3 == 0 {
+            println("Fizz")
+        } else if i % 5 == 0 {
+            println("Buzz")
+        } else {
+            println("{}", i)
+        }
+        ++i
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (integer_literal))
+      (while_statement
+        (binary_expression
+          (identifier)
+          (integer_literal))
+        (block
+          (if_statement
+            (binary_expression
+              (binary_expression
+                (identifier)
+                (integer_literal))
+              (integer_literal))
+            (block
+              (call_expression
+                (identifier)
+                (arguments
+                  (string_literal))))
+            (else_clause
+              (if_statement
+                (binary_expression
+                  (binary_expression
+                    (identifier)
+                    (integer_literal))
+                  (integer_literal))
+                (block
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (string_literal))))
+                (else_clause
+                  (if_statement
+                    (binary_expression
+                      (binary_expression
+                        (identifier)
+                        (integer_literal))
+                      (integer_literal))
+                    (block
+                      (call_expression
+                        (identifier)
+                        (arguments
+                          (string_literal))))
+                    (else_clause
+                      (block
+                        (call_expression
+                          (identifier)
+                          (arguments
+                            (string_literal)
+                            (identifier))))))))))
+          (increment_statement
+            (identifier)))))))
