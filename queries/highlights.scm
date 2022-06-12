@@ -36,6 +36,7 @@
 
 (parameter (identifier) @variable.parameter)
 
+'throw' @keyword
 (throws_specifier) @keyword
 (continue_statement) @keyword
 "else" @keyword
