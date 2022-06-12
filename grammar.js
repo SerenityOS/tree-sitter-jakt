@@ -377,7 +377,7 @@ module.exports = grammar({
         [PREC.bitxor, '^'],
         [PREC.comparative, choice('==', '!=', '<', '<=', '>', '>=')],
         [PREC.shift, choice('<<', '>>')],
-        [PREC.additive, choice('+', '-', '+=')],
+        [PREC.additive, choice('+', '-', '+=', '-=')],
         [PREC.multiplicative, choice('*', '/', '%')],
       ];
 
