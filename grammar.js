@@ -353,7 +353,7 @@ module.exports = grammar({
     field_declaration: $ => seq(
       field('name', $._field_identifier),
       ':',
-      field('type', $._type)
+      field('type', seq($._type, optional($.optional_specifier))),
     ),
 
     _field_identifier: $ => alias($.identifier, $.field_identifier),

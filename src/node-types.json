@@ -786,11 +786,15 @@
         ]
       },
       "type": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
             "type": "_type",
+            "named": true
+          },
+          {
+            "type": "optional_specifier",
             "named": true
           }
         ]

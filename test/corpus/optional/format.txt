@@ -1,0 +1,43 @@
+================================================================================
+Optional format
+================================================================================
+
+struct Foo {
+    x: i64?
+}
+
+function main() {
+    let y: i64? = None
+    println("{}, {}", y, Foo(x: 5))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type)
+        (optional_specifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (optional_specifier)
+        (none_expression))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier)
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (identifier)
+                (integer_literal)))))))))
