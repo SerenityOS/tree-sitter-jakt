@@ -1,0 +1,31 @@
+================================================================================
+Variables var 2
+================================================================================
+
+function main() {
+    mut x: i64 = 100
+    x = x + 1
+    println("{}", x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (primitive_type)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (binary_expression
+          (identifier)
+          (integer_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))
