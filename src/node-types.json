@@ -306,6 +306,10 @@
         {
           "type": "_literal_pattern",
           "named": true
+        },
+        {
+          "type": "array_literal",
+          "named": true
         }
       ]
     }

@@ -234,15 +234,15 @@ module.exports = grammar({
       field('right', $._expression)
     )),
 
-    array_expression: $ => seq(
+    array_expression: $ => prec.right(seq(
       $.identifier,
-      '[',
+      repeat(seq('[',
       seq(
         sepBy(',', $._expression),
         optional(',')
       ),
-      ']'
-    ),
+      ']')),
+    )),
 
     arguments: $ => seq(
       '(',
@@ -484,7 +484,7 @@ module.exports = grammar({
 
     array_literal: $ => seq(
       '[',
-      sepBy(',', $._literal_pattern),
+      sepBy(',', choice($.array_literal, $._literal_pattern)),
       optional(','),
       ']'
     ),

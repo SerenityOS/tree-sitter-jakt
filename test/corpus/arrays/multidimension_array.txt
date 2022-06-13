@@ -1,0 +1,36 @@
+
+================================================================================
+Array multidimension array
+================================================================================
+
+function main() {
+    let x = [[1, 2],
+             [3, 4]]
+
+    println("{}", x[1][0])
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (array_literal
+          (array_literal
+            (integer_literal)
+            (integer_literal))
+          (array_literal
+            (integer_literal)
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (array_expression
+            (identifier)
+            (integer_literal)
+            (integer_literal)))))))
