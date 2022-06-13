@@ -3221,11 +3221,11 @@
       "ordered_field_declaration_list"
     ],
     [
-      "array_literal",
+      "_expression",
       "array_expression"
     ],
     [
-      "_expression",
+      "array_literal",
       "array_expression"
     ]
   ],
