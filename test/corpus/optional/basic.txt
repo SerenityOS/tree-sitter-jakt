@@ -1,0 +1,34 @@
+
+================================================================================
+Optional basic
+================================================================================
+
+function main() {
+    let foo : i64? = 123
+    let bar = foo! + 2
+    println("{}", bar)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (optional_specifier)
+        (integer_literal))
+      (let_declaration
+        (identifier)
+        (binary_expression
+          (optional_expression
+            (identifier))
+          (integer_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))

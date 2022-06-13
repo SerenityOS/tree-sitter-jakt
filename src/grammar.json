@@ -139,6 +139,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "optional_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "call_expression"
         },
         {
@@ -908,6 +912,32 @@
         ]
       }
     },
+    "optional_expression": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "!"
+              },
+              {
+                "type": "STRING",
+                "value": "?"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "arguments": {
       "type": "SEQ",
       "members": [
@@ -1141,6 +1171,19 @@
         }
       ]
     },
+    "optional_specifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "!"
+        },
+        {
+          "type": "STRING",
+          "value": "?"
+        }
+      ]
+    },
     "let_declaration": {
       "type": "PREC_LEFT",
       "value": 0,
@@ -1173,8 +1216,25 @@
                     "type": "FIELD",
                     "name": "type",
                     "content": {
-                      "type": "SYMBOL",
-                      "name": "_type"
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "_type"
+                        },
+                        {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "optional_specifier"
+                            },
+                            {
+                              "type": "BLANK"
+                            }
+                          ]
+                        }
+                      ]
                     }
                   }
                 ]

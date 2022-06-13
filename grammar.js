@@ -110,6 +110,7 @@ module.exports = grammar({
       $.binary_expression,
       $._literal,
       $.identifier,
+      $.optional_expression,
       $.call_expression,
       $.range_expression,
       $.for_expression,
@@ -244,6 +245,11 @@ module.exports = grammar({
       ']')),
     )),
 
+    optional_expression: $ => prec.right(seq(
+      $.identifier,
+      choice( '!', '?'),
+    )),
+
     arguments: $ => seq(
       '(',
       optional(sepBy(',', choice(repeat($.argument), $._expression))),
@@ -272,12 +278,14 @@ module.exports = grammar({
       ']'
     ),
 
+    optional_specifier: $ => choice('!', '?'),
+
     let_declaration: $ => prec.left(seq(
       'let',
       field('pattern', $._pattern),
       optional(seq(
         ':',
-        field('type', $._type)
+        field('type', seq($._type, optional($.optional_specifier))),
       )),
       optional(seq(
         '=',

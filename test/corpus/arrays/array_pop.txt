@@ -1,0 +1,38 @@
+================================================================================
+Arrays array pop
+================================================================================
+
+function main() {
+    mut v = [1, 2, 3]
+
+    let last = v.pop()
+
+    println("{}", last!)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (let_declaration
+        (identifier)
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (optional_expression
+            (identifier)))))))

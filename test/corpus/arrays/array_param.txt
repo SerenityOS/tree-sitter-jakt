@@ -11,3 +11,29 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (array_type
+          (primitive_type))))
+    (return_expression
+      (array_expression
+        (identifier)
+        (integer_literal))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (identifier)
+            (arguments
+              (array_literal
+                (string_literal)
+                (string_literal)))))))))
