@@ -33,6 +33,7 @@
 
 ":" @punctuation.delimiter
 "," @punctuation.delimiter
+"." @punctuation.delimiter
 
 (parameter (identifier) @variable.parameter)
 
@@ -71,3 +72,4 @@
 
 "*" @operator
 "&" @operator
+"=>" @operator
