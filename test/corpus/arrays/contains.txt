@@ -1,0 +1,45 @@
+
+================================================================================
+Arrays contains
+================================================================================
+
+function main() {
+    let arr = ["Well", "Hello", "Friends", "!"]
+    println("{}", arr.contains("Hello"))
+    println("{}", arr.contains("Goodbye"))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (array_literal
+          (string_literal)
+          (string_literal)
+          (string_literal)
+          (string_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (string_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (string_literal))))))))
