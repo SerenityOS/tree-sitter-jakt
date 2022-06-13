@@ -1,0 +1,37 @@
+================================================================================
+Arrays array iterator
+================================================================================
+
+function main() {
+    let words = ["foo", "bar", "baz"]
+    for word in words.iterator() {
+        println("{}", word)
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (array_literal
+          (string_literal)
+          (string_literal)
+          (string_literal)))
+      (for_expression
+        (identifier)
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (identifier))))))))
