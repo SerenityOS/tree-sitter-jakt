@@ -52,6 +52,10 @@
         "named": true
       },
       {
+        "type": "optional_identifier",
+        "named": true
+      },
+      {
         "type": "range_expression",
         "named": true
       },
@@ -1129,6 +1133,46 @@
   {
     "type": "optional_expression",
     "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "!!",
+            "named": false
+          },
+          {
+            "type": "??",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "optional_identifier",
+    "named": true,
     "fields": {},
     "children": {
       "multiple": false,
@@ -1452,16 +1496,6 @@
     "type": "update_expression",
     "named": true,
     "fields": {
-      "argument": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
       "operator": {
         "multiple": false,
         "required": true,
@@ -1473,6 +1507,16 @@
           {
             "type": "--",
             "named": false
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
           }
         ]
       }
@@ -1510,6 +1554,10 @@
   },
   {
     "type": "!",
+    "named": false
+  },
+  {
+    "type": "!!",
     "named": false
   },
   {
@@ -1634,6 +1682,10 @@
   },
   {
     "type": "?",
+    "named": false
+  },
+  {
+    "type": "??",
     "named": false
   },
   {

@@ -34,5 +34,5 @@ function main() {
         (identifier)
         (arguments
           (string_literal)
-          (optional_expression
+          (optional_identifier
             (identifier)))))))

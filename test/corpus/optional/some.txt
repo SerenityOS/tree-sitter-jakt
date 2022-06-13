@@ -1,12 +1,10 @@
-
 ================================================================================
-Optional basic
+Optional some
 ================================================================================
 
 function main() {
-    let foo : i64? = 123
-    let bar = foo! + 2
-    println("{}", bar)
+    let i = Some(5)
+    println("{}", i ?? 0)
 }
 
 --------------------------------------------------------------------------------
@@ -18,17 +16,14 @@ function main() {
     (block
       (let_declaration
         (identifier)
-        (primitive_type)
-        (optional_specifier)
-        (integer_literal))
-      (let_declaration
-        (identifier)
-        (binary_expression
-          (optional_identifier
-            (identifier))
-          (integer_literal)))
+        (call_expression
+          (identifier)
+          (arguments
+            (integer_literal))))
       (call_expression
         (identifier)
         (arguments
           (string_literal)
-          (identifier))))))
+          (optional_expression
+            (identifier)
+            (integer_literal)))))))

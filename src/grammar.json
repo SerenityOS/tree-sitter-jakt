@@ -131,6 +131,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "optional_identifier"
+        },
+        {
+          "type": "SYMBOL",
           "name": "optional_expression"
         },
         {
@@ -583,28 +587,24 @@
       }
     },
     "is_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PREC_LEFT",
-          "value": 0,
-          "content": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
             "type": "FIELD",
             "name": "left",
             "content": {
               "type": "SYMBOL",
               "name": "_expression"
             }
-          }
-        },
-        {
-          "type": "STRING",
-          "value": "is"
-        },
-        {
-          "type": "PREC_RIGHT",
-          "value": 0,
-          "content": {
+          },
+          {
+            "type": "STRING",
+            "value": "is"
+          },
+          {
             "type": "FIELD",
             "name": "right",
             "content": {
@@ -612,8 +612,8 @@
               "name": "_expression"
             }
           }
-        }
-      ]
+        ]
+      }
     },
     "type_conversion_expression": {
       "type": "SEQ",
@@ -910,7 +910,7 @@
         ]
       }
     },
-    "optional_expression": {
+    "optional_identifier": {
       "type": "PREC_RIGHT",
       "value": 0,
       "content": {
@@ -932,6 +932,48 @@
                 "value": "?"
               }
             ]
+          }
+        ]
+      }
+    },
+    "optional_expression": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "operator",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "!!"
+                },
+                {
+                  "type": "STRING",
+                  "value": "??"
+                }
+              ]
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "right",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
           }
         ]
       }
@@ -2361,7 +2403,7 @@
               },
               {
                 "type": "FIELD",
-                "name": "argument",
+                "name": "value",
                 "content": {
                   "type": "SYMBOL",
                   "name": "identifier"
@@ -2374,7 +2416,7 @@
             "members": [
               {
                 "type": "FIELD",
-                "name": "argument",
+                "name": "value",
                 "content": {
                   "type": "SYMBOL",
                   "name": "identifier"

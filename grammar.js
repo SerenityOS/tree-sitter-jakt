@@ -108,6 +108,7 @@ module.exports = grammar({
       $.binary_expression,
       $._literal,
       $.identifier,
+      $.optional_identifier,
       $.optional_expression,
       $.call_expression,
       $.range_expression,
@@ -203,11 +204,11 @@ module.exports = grammar({
       ))
     )),
 
-    is_expression: $ =>  seq(
-      prec.left(field('left', $._expression)),
+    is_expression: $ =>  prec.left(seq(
+      field('left', $._expression),
       'is',
-      prec.right(field('right', $._expression)),
-    ),
+      field('right', $._expression),
+    )),
 
     type_conversion_expression: $ =>  seq(
       prec.left(field('left', $._expression)),
@@ -245,9 +246,15 @@ module.exports = grammar({
       ),
     )),
 
-    optional_expression: $ => prec.right(seq(
+    optional_identifier: $ => prec.right(seq(
       $.identifier,
       choice( '!', '?'),
+    )),
+
+    optional_expression: $ => prec.left(seq(
+      field('left', $._expression),
+      field('operator', choice('!!', '??')),
+      field('right', $._expression),
     )),
 
     none_expression: $ => 'None',
@@ -412,11 +419,11 @@ module.exports = grammar({
     },
 
     update_expression: $ => {
-      const argument = field('argument', $.identifier);
+      const value = field('value', $.identifier);
       const operator = field('operator', choice('--', '++'));
       return prec.right(PREC.unary, choice(
-        seq(operator, argument),
-        seq(argument, operator),
+        seq(operator, value),
+        seq(value, operator),
       ));
     },
 
