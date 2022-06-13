@@ -25,7 +25,7 @@ function main() {
           (string_literal)
           (identifier)
           (byte_literal)))
-      (increment_statement
+      (update_expression
         (identifier))
       (call_expression
         (identifier)

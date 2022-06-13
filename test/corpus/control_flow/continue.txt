@@ -21,7 +21,7 @@ while i < 10 {
       (identifier)
       (integer_literal))
     (block
-      (increment_statement
+      (update_expression
         (identifier))
       (if_statement
         (binary_expression

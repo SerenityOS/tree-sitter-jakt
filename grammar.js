@@ -88,8 +88,6 @@ module.exports = grammar({
       $.if_statement,
       $.return_statement,
       $.while_statement,
-      $.increment_statement,
-      $.decrement_statement,
       $.continue_statement,
       $.throw_statement,
       $.defer_statement,
@@ -122,6 +120,7 @@ module.exports = grammar({
       $.assignment_expression,
       $.array_expression,
       $.none_expression,
+      $.update_expression,
     ),
 
     while_statement: $ => seq(
@@ -136,16 +135,6 @@ module.exports = grammar({
       'loop',
       field('body', $.block)
     ),
-
-    increment_statement: $ => prec(1, choice(
-      seq($.identifier, '++'),
-      seq('++', $.identifier),
-    )),
-
-    decrement_statement: $ => prec(1, choice(
-      seq($._expression, '--'),
-      seq('--', $._expression),
-    )),
 
     continue_statement: $ => 'continue',
 
@@ -241,12 +230,19 @@ module.exports = grammar({
 
     array_expression: $ => prec.right(seq(
       $.identifier,
-      repeat(seq('[',
-      seq(
-        sepBy(',', $._expression),
-        optional(',')
+      repeat(
+        seq(
+          '[',
+          choice(
+            seq(
+              sepBy(',', $._expression),
+              optional(',')
+            ),
+            $._expression,
+          ),
+          ']',
+        ),
       ),
-      ']')),
     )),
 
     optional_expression: $ => prec.right(seq(
@@ -413,6 +409,15 @@ module.exports = grammar({
         field('operator', operator),
         field('right', $._expression),
       ))));
+    },
+
+    update_expression: $ => {
+      const argument = field('argument', $.identifier);
+      const operator = field('operator', choice('--', '++'));
+      return prec.right(PREC.unary, choice(
+        seq(operator, argument),
+        seq(argument, operator),
+      ));
     },
 
     _literal: $ => choice(

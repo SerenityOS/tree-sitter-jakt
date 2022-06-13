@@ -92,13 +92,13 @@ i--
 -------------------------------------------------------
 
 (source_file
-  (increment_statement
+  (update_expression
     (identifier))
-  (decrement_statement
+  (update_expression
     (identifier))
-  (increment_statement
+  (update_expression
     (identifier))
-  (decrement_statement
+  (update_expression
     (identifier)))
 
 =======================================================

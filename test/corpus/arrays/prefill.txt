@@ -1,0 +1,56 @@
+================================================================================
+Arrays prefill
+================================================================================
+
+function main() {
+    let v = [85; 3]
+    println("{}", v.size())
+    mut i = 0
+    while i < v.size() as! i64 {
+        println("{}", v[i++])
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))))
+      (mutable_declaration
+        (identifier)
+        (integer_literal))
+      (while_statement
+        (type_conversion_expression
+          (binary_expression
+            (identifier)
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))
+          (primitive_type))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (array_expression
+                (identifier)
+                (update_expression
+                  (identifier))))))))))

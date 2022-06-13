@@ -58,6 +58,8 @@
 "try" @keyword
 "catch" @keyword
 "throw" @keyword
+"as!" @keyword
+"as?" @keyword
 (throws_specifier) @keyword
 (continue_statement) @keyword
 (anonymous_specifier) @keyword

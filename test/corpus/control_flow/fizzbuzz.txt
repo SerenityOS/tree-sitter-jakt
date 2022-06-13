@@ -75,5 +75,5 @@ function main() {
                           (arguments
                             (string_literal)
                             (identifier))))))))))
-          (increment_statement
+          (update_expression
             (identifier)))))))

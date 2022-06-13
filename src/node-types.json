@@ -66,6 +66,10 @@
       {
         "type": "unary_expression",
         "named": true
+      },
+      {
+        "type": "update_expression",
+        "named": true
       }
     ]
   },
@@ -172,10 +176,6 @@
         "named": true
       },
       {
-        "type": "decrement_statement",
-        "named": true
-      },
-      {
         "type": "defer_statement",
         "named": true
       },
@@ -185,10 +185,6 @@
       },
       {
         "type": "if_statement",
-        "named": true
-      },
-      {
-        "type": "increment_statement",
         "named": true
       },
       {
@@ -613,21 +609,6 @@
     }
   },
   {
-    "type": "decrement_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "defer_statement",
     "named": true,
     "fields": {
@@ -977,21 +958,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "increment_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1466,6 +1432,36 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "update_expression",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "++",
+            "named": false
+          },
+          {
+            "type": "--",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {
