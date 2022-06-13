@@ -1,0 +1,53 @@
+================================================================================
+Variable integer promotion
+================================================================================
+
+mut a: u8 = 100
+a += 100
+
+mut b: u16 = 1000
+b += 1000
+
+mut c: u32 = 100000
+c += 100000
+
+mut f = Foo(x: 123)
+f.x += 2
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (mutable_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (binary_expression
+    (identifier)
+    (integer_literal))
+  (mutable_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (binary_expression
+    (identifier)
+    (integer_literal))
+  (mutable_declaration
+    (identifier)
+    (primitive_type)
+    (integer_literal))
+  (binary_expression
+    (identifier)
+    (integer_literal))
+  (mutable_declaration
+    (identifier)
+    (call_expression
+      (identifier)
+      (arguments
+        (argument
+          (identifier)
+          (integer_literal)))))
+  (binary_expression
+    (field_expression
+      (identifier)
+      (field_identifier))
+    (integer_literal)))
