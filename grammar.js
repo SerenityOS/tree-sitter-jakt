@@ -121,6 +121,7 @@ module.exports = grammar({
       $.logical_not,
       $.assignment_expression,
       $.array_expression,
+      $.none_expression,
     ),
 
     while_statement: $ => seq(
@@ -186,9 +187,11 @@ module.exports = grammar({
     call_expression: $ => prec(PREC.call, prec.left(seq(
       field('function', $._expression),
       field('arguments', $.arguments),
-      optional($.optional_specifier),
+      optional(choice($.optional_specifier, $.call_chain_expression)),
       optional(';'),
     ))),
+
+    call_chain_expression: $ => field('value', seq('[', $._expression, ']')),
 
     range_expression: $ => prec.left(PREC.range, choice(
       seq($._expression, choice('..'), $._expression),
@@ -250,6 +253,8 @@ module.exports = grammar({
       $.identifier,
       choice( '!', '?'),
     )),
+
+    none_expression: $ => 'None',
 
     arguments: $ => seq(
       '(',

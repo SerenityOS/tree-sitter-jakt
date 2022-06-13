@@ -44,6 +44,10 @@
         "named": true
       },
       {
+        "type": "none_expression",
+        "named": true
+      },
+      {
         "type": "optional_expression",
         "named": true
       },
@@ -519,6 +523,30 @@
     "fields": {}
   },
   {
+    "type": "call_chain_expression",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
+            "named": false
+          },
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "call_expression",
     "named": true,
     "fields": {
@@ -547,6 +575,10 @@
       "multiple": false,
       "required": false,
       "types": [
+        {
+          "type": "call_chain_expression",
+          "named": true
+        },
         {
           "type": "optional_specifier",
           "named": true
@@ -1721,6 +1753,10 @@
   {
     "type": "mut",
     "named": false
+  },
+  {
+    "type": "none_expression",
+    "named": true
   },
   {
     "type": "not",

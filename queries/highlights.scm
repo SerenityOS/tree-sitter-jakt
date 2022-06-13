@@ -61,6 +61,7 @@
 (throws_specifier) @keyword
 (continue_statement) @keyword
 (anonymous_specifier) @keyword
+(none_expression) @keyword
 
 (char_literal) @string
 (string_literal) @string

@@ -180,6 +180,10 @@
         {
           "type": "SYMBOL",
           "name": "array_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "none_expression"
         }
       ]
     },
@@ -495,8 +499,17 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "optional_specifier"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "optional_specifier"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "call_chain_expression"
+                    }
+                  ]
                 },
                 {
                   "type": "BLANK"
@@ -517,6 +530,27 @@
             }
           ]
         }
+      }
+    },
+    "call_chain_expression": {
+      "type": "FIELD",
+      "name": "value",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "["
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "STRING",
+            "value": "]"
+          }
+        ]
       }
     },
     "range_expression": {
@@ -949,6 +983,10 @@
           }
         ]
       }
+    },
+    "none_expression": {
+      "type": "STRING",
+      "value": "None"
     },
     "arguments": {
       "type": "SEQ",
