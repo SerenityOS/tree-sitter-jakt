@@ -1,0 +1,36 @@
+================================================================================
+Arrays lvalue
+================================================================================
+
+function main() {
+    mut x = [1, 2, 3]
+    x[1] = 55
+
+    println("{}", x[1])
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (assignment_expression
+        (array_expression
+          (identifier)
+          (integer_literal))
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (array_expression
+            (identifier)
+            (integer_literal)))))))
