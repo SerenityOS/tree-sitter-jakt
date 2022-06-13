@@ -1,0 +1,58 @@
+================================================================================
+Arrays array push
+================================================================================
+
+function main() {
+    mut values = [0; 0]
+
+    for i in 0..10 {
+        values.push(i)
+    }
+
+    while not values.is_empty() {
+        println("{}", values.pop()!)
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)))
+      (for_expression
+        (identifier)
+        (range_expression
+          (integer_literal)
+          (integer_literal))
+        (block
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (identifier)))))
+      (while_statement
+        (logical_not
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (call_expression
+                (field_expression
+                  (identifier)
+                  (field_identifier))
+                (arguments)
+                (optional_specifier)))))))))

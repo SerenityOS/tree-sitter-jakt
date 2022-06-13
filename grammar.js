@@ -186,6 +186,7 @@ module.exports = grammar({
     call_expression: $ => prec(PREC.call, prec.left(seq(
       field('function', $._expression),
       field('arguments', $.arguments),
+      optional($.optional_specifier),
       optional(';'),
     ))),
 
@@ -492,8 +493,14 @@ module.exports = grammar({
 
     array_literal: $ => seq(
       '[',
-      sepBy(',', choice($.array_literal, $._literal_pattern)),
-      optional(','),
+      choice(
+        seq(sepBy(',', choice($.array_literal, $._literal_pattern)), optional(',')),
+        optional(seq(
+          field('element', $._literal_pattern),
+          ';',
+          field('length', $._expression)
+        )),
+      ),
       ']'
     ),
 
