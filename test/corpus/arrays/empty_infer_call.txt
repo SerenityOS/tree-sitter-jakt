@@ -1,0 +1,38 @@
+
+================================================================================
+Arrays empty infer call
+================================================================================
+
+function test(arr: [f64]) {
+    println("OK")
+}
+
+function main() {
+    test(arr: [])
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (array_type
+          (primitive_type))))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (array_literal)))))))
