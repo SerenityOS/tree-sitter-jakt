@@ -8,6 +8,10 @@
         "named": true
       },
       {
+        "type": "array_expression",
+        "named": true
+      },
+      {
         "type": "assignment_expression",
         "named": true
       },
@@ -61,6 +65,10 @@
     "type": "_literal",
     "named": true,
     "subtypes": [
+      {
+        "type": "array_literal",
+        "named": true
+      },
       {
         "type": "binary_literal",
         "named": true
@@ -267,6 +275,36 @@
         },
         {
           "type": "argument",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "array_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "array_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_literal_pattern",
           "named": true
         }
       ]

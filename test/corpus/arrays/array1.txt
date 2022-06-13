@@ -1,0 +1,29 @@
+================================================================================
+Arrays array 1
+================================================================================
+
+function main() {
+    let x = [1, 2, 3]
+    println("{}", x[1])
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (array_expression
+            (identifier)
+            (integer_literal)))))))

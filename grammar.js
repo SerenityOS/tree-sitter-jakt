@@ -70,6 +70,8 @@ module.exports = grammar({
     [$._type, $._pattern],
     [$.parameters, $._pattern],
     [$.field_declaration_list, $.ordered_field_declaration_list],
+    [$._expression, $.array_expression],
+    [$.array_literal, $.array_expression],
   ],
 
   rules: {
@@ -117,6 +119,7 @@ module.exports = grammar({
       $.type_conversion_expression,
       $.logical_not,
       $.assignment_expression,
+      $.array_expression,
     ),
 
     while_statement: $ => seq(
@@ -230,6 +233,16 @@ module.exports = grammar({
       '=',
       field('right', $._expression)
     )),
+
+    array_expression: $ => seq(
+      $.identifier,
+      '[',
+      seq(
+        sepBy(',', $._expression),
+        optional(',')
+      ),
+      ']'
+    ),
 
     arguments: $ => seq(
       '(',
@@ -396,6 +409,7 @@ module.exports = grammar({
       $.integer_literal,
       $.binary_literal,
       $.float_literal,
+      $.array_literal,
     ),
 
     _pattern: $ => choice(
@@ -467,6 +481,13 @@ module.exports = grammar({
       )),
       '\''
     )),
+
+    array_literal: $ => seq(
+      '[',
+      sepBy(',', $._literal_pattern),
+      optional(','),
+      ']'
+    ),
 
     escape_sequence: $ => token.immediate(
       seq('\\',
