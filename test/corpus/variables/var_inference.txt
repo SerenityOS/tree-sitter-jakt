@@ -1,0 +1,24 @@
+================================================================================
+Variables var inference
+================================================================================
+
+function main() {
+    mut x = 100
+    println("{}", x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))
