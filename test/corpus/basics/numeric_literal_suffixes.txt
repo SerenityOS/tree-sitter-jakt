@@ -35,7 +35,7 @@ a += 5 as! usize
     (identifier)
     (integer_literal))
   (type_conversion_expression
-    (binary_expression
+    (assignment_expression
       (identifier)
       (integer_literal))
     (primitive_type))
@@ -53,22 +53,22 @@ a += 5 as! usize
       (identifier)
       (integer_literal))
     (type_conversion_expression
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal))
       (primitive_type))
     (type_conversion_expression
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal))
       (primitive_type))
     (type_conversion_expression
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal))
       (primitive_type))
     (type_conversion_expression
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal))
       (primitive_type)))
@@ -86,22 +86,22 @@ a += 5 as! usize
       (identifier)
       (integer_literal))
     (type_conversion_expression
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal))
       (primitive_type))
     (type_conversion_expression
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal))
       (primitive_type))
     (type_conversion_expression
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal))
       (primitive_type))
     (type_conversion_expression
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal))
       (primitive_type))))

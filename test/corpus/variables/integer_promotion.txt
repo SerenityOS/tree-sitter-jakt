@@ -21,21 +21,21 @@ f.x += 2
     (identifier)
     (primitive_type)
     (integer_literal))
-  (binary_expression
+  (assignment_expression
     (identifier)
     (integer_literal))
   (mutable_declaration
     (identifier)
     (primitive_type)
     (integer_literal))
-  (binary_expression
+  (assignment_expression
     (identifier)
     (integer_literal))
   (mutable_declaration
     (identifier)
     (primitive_type)
     (integer_literal))
-  (binary_expression
+  (assignment_expression
     (identifier)
     (integer_literal))
   (mutable_declaration
@@ -46,7 +46,7 @@ f.x += 2
         (argument
           (identifier)
           (integer_literal)))))
-  (binary_expression
+  (assignment_expression
     (field_expression
       (identifier)
       (field_identifier))

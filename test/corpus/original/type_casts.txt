@@ -8,7 +8,7 @@ l += 5 as? u64
 
 (source_file
   (type_conversion_expression
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal))
       (primitive_type)))
@@ -23,7 +23,7 @@ l += 5 as! u64
 
 (source_file
   (type_conversion_expression
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal))
       (primitive_type)))

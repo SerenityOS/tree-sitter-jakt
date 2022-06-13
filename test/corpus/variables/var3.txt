@@ -19,7 +19,7 @@ function main() {
         (identifier)
         (primitive_type)
         (integer_literal))
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal))
       (call_expression

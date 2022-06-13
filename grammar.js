@@ -224,7 +224,7 @@ module.exports = grammar({
 
     assignment_expression: $ => prec.left(PREC.assign, seq(
       field('left', $._expression),
-      '=',
+      field('operator', choice('=', '+=', '-=')),
       field('right', $._expression)
     )),
 
@@ -400,7 +400,7 @@ module.exports = grammar({
         [PREC.bitxor, '^'],
         [PREC.comparative, choice('==', '!=', '<', '<=', '>', '>=')],
         [PREC.shift, choice('<<', '>>')],
-        [PREC.additive, choice('+', '-', '+=', '-=')],
+        [PREC.additive, choice('+', '-')],
         [PREC.multiplicative, choice('*', '/', '%')],
       ];
 

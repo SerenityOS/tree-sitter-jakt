@@ -20,6 +20,6 @@ while (x > 0) {
         (arguments
           (string_literal)
           (identifier)))
-      (binary_expression
+      (assignment_expression
         (identifier)
         (integer_literal)))))

@@ -20,6 +20,6 @@ for x in 0..10 {
       (integer_literal)
       (integer_literal))
     (block
-      (binary_expression
+      (assignment_expression
         (identifier)
         (identifier)))))
