@@ -1,0 +1,71 @@
+================================================================================
+Optional none coalescing
+================================================================================
+
+function main() {
+    let x: String? = "PASS"
+    println("{}", x ?? "FAIL")
+
+    let y: String? = None
+    println("{}", y ?? "PASS")
+
+
+    // The right hand side is lazily evaluated.
+    mut zero = 0
+    let z: i64? = 69
+    let q = z ?? ++zero
+
+    println("zero: {}", zero)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (optional_specifier)
+        (string_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (optional_expression
+            (identifier)
+            (string_literal))))
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (optional_specifier)
+        (none_expression))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (optional_expression
+            (identifier)
+            (string_literal))))
+      (line_comment)
+      (mutable_declaration
+        (identifier)
+        (integer_literal))
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (optional_specifier)
+        (integer_literal))
+      (let_declaration
+        (identifier)
+        (optional_expression
+          (identifier)
+          (update_expression
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))
