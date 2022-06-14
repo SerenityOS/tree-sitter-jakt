@@ -1,0 +1,41 @@
+================================================================================
+Match an expression
+================================================================================
+
+function main() {
+    let i = 0
+    match i + 1 {
+        (1) => println("PASS")
+        else => println("FAIL")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (match_expression
+        (binary_expression
+          (identifier)
+          (integer_literal))
+        (match_block
+          (match_arm
+            (match_pattern
+              (integer_literal))
+            (call_expression
+              (identifier)
+              (arguments
+                (string_literal))))
+          (match_arm
+            (match_pattern
+              (identifier))
+            (call_expression
+              (identifier)
+              (arguments
+                (string_literal)))))))))

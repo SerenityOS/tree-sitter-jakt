@@ -93,6 +93,7 @@ module.exports = grammar({
       $.defer_statement,
       $.loop_statement,
       $.try_statement,
+      // $.match_statement,
     ),
 
     declaration: $ => choice(
@@ -122,6 +123,7 @@ module.exports = grammar({
       $.array_expression,
       $.none_expression,
       $.update_expression,
+      $.match_expression,
     ),
 
     while_statement: $ => seq(
@@ -426,6 +428,41 @@ module.exports = grammar({
         seq(value, operator),
       ));
     },
+
+    match_expression: $ => seq(
+      'match',
+      field('value', $._expression),
+      field('body', $.match_block)
+    ),
+
+    match_block: $ => seq(
+      '{',
+      optional(seq(
+        repeat($.match_arm),
+        alias($.last_match_arm, $.match_arm)
+      )),
+      '}'
+    ),
+
+    match_arm: $ => seq(
+      field('pattern', $.match_pattern),
+      '=>',
+      choice(
+        field('value', prec(1, $._expression))
+      )
+    ),
+
+    last_match_arm: $ => seq(
+      field('pattern', $.match_pattern),
+      '=>',
+      field('value', $._expression),
+    ),
+
+    match_pattern: $ => seq(
+      optional('('),
+      $._pattern,
+      optional(')'),
+    ),
 
     _literal: $ => choice(
       $.string_literal,
