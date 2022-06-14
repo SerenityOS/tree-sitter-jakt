@@ -1090,11 +1090,15 @@
         ]
       },
       "type": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
             "type": "_type",
+            "named": true
+          },
+          {
+            "type": "optional_specifier",
             "named": true
           }
         ]

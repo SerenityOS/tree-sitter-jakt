@@ -257,6 +257,8 @@ module.exports = grammar({
       field('right', $._expression),
     )),
 
+    optional_specifier: $ => choice('!', '?'),
+
     none_expression: $ => 'None',
 
     arguments: $ => seq(
@@ -287,8 +289,6 @@ module.exports = grammar({
       ']'
     ),
 
-    optional_specifier: $ => choice('!', '?'),
-
     let_declaration: $ => prec.left(seq(
       'let',
       field('pattern', $._pattern),
@@ -308,7 +308,7 @@ module.exports = grammar({
       field('pattern', $._pattern),
       optional(seq(
         ':',
-        field('type', $._type)
+        field('type', seq($._type, optional($.optional_specifier))),
       )),
       optional(seq(
         '=',

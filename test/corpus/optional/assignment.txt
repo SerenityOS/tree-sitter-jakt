@@ -1,0 +1,43 @@
+================================================================================
+Optional assignment
+================================================================================
+
+function main() {
+    mut a: String? = None
+    a = "hello"
+    println("{}", a!)
+    a = None
+    println("{}", a ?? "PASS")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (primitive_type)
+        (optional_specifier)
+        (none_expression))
+      (assignment_expression
+        (identifier)
+        (string_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (optional_identifier
+            (identifier))))
+      (assignment_expression
+        (identifier)
+        (none_expression))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (optional_expression
+            (identifier)
+            (string_literal)))))))
