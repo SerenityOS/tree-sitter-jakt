@@ -62,6 +62,7 @@
 "as?" @keyword
 "&raw" @keyword
 "yield" @keyword
+"match" @keyword
 (throws_specifier) @keyword
 (continue_statement) @keyword
 (anonymous_specifier) @keyword
