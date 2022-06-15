@@ -474,13 +474,13 @@ module.exports = grammar({
     match_arm: $ => seq(
       field('pattern', $.match_pattern),
       '=>',
-      field('value', choice(prec(1, $._expression), $.block))
+      field('value', choice($._expression, $.block))
     ),
 
     last_match_arm: $ => seq(
       field('pattern', choice($.match_else, $.match_pattern)),
       '=>',
-      field('value', $._expression),
+      field('value', choice($._expression, $.block))
     ),
 
     match_pattern: $ => seq(

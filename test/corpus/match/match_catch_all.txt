@@ -1,0 +1,35 @@
+================================================================================
+Match catch all
+================================================================================
+
+match x {
+    C => {
+    }
+    B => {
+    }
+    else => {
+        println("Correct!")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (match_expression
+    (identifier)
+    (match_block
+      (match_arm
+        (match_pattern
+          (identifier))
+        (block))
+      (match_arm
+        (match_pattern
+          (identifier))
+        (block))
+      (match_arm
+        (match_else)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))))))
