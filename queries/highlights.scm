@@ -60,6 +60,8 @@
 "throw" @keyword
 "as!" @keyword
 "as?" @keyword
+"&raw" @keyword
+"yield" @keyword
 (throws_specifier) @keyword
 (continue_statement) @keyword
 (anonymous_specifier) @keyword

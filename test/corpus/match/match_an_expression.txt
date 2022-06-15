@@ -33,8 +33,7 @@ function main() {
               (arguments
                 (string_literal))))
           (match_arm
-            (match_pattern
-              (identifier))
+            (match_else)
             (call_expression
               (identifier)
               (arguments

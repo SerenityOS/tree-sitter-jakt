@@ -94,6 +94,7 @@ module.exports = grammar({
       $.loop_statement,
       $.try_statement,
       $.unsafe_block,
+      $.yield_statement,
     ),
 
     declaration: $ => choice(
@@ -175,6 +176,11 @@ module.exports = grammar({
       '{',
       repeat($._statement),
       '}'
+    ),
+
+    yield_statement: $ => seq(
+      'yield',
+      $._expression,
     ),
 
     for_expression: $ => seq(
@@ -468,13 +474,11 @@ module.exports = grammar({
     match_arm: $ => seq(
       field('pattern', $.match_pattern),
       '=>',
-      choice(
-        field('value', prec(1, $._expression))
-      )
+      field('value', choice(prec(1, $._expression), $.block))
     ),
 
     last_match_arm: $ => seq(
-      field('pattern', $.match_pattern),
+      field('pattern', choice($.match_else, $.match_pattern)),
       '=>',
       field('value', $._expression),
     ),
@@ -484,6 +488,8 @@ module.exports = grammar({
       $._pattern,
       optional(')'),
     ),
+
+    match_else: $ => 'else',
 
     _literal: $ => choice(
       $.string_literal,
