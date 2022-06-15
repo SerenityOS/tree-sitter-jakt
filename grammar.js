@@ -142,7 +142,7 @@ module.exports = grammar({
       field('body', $.block)
     ),
 
-    continue_statement: $ => 'continue',
+    continue_statement: $ => seq('continue'),
 
     throw_statement: $ => seq(
       'throw',
@@ -206,7 +206,7 @@ module.exports = grammar({
     )),
 
     field_expression: $ => prec(PREC.field, seq(
-      field('value', $._expression),
+      field('value', choice($.this_specifier, $._expression)),
       '.',
       field('field', choice(
         $._field_identifier,
@@ -283,7 +283,7 @@ module.exports = grammar({
 
     optional_specifier: $ => choice('!', '?'),
 
-    none_expression: $ => 'None',
+    none_expression: $ => seq('None'),
 
     arguments: $ => seq(
       '(',
@@ -376,8 +376,8 @@ module.exports = grammar({
 
     field_declaration_list: $ => seq(
       '{',
-      sepByPost('\n', $.field_declaration),
-      sepBy(',', $.field_declaration),
+        optional(repeat(seq($.field_declaration, choice(',','\n')))),
+        optional($.function_declaration),
       '}'
     ),
 
@@ -411,7 +411,7 @@ module.exports = grammar({
       field('body', $.field_declaration_list)
     ),
 
-    mutable_specifier: $ => 'mut',
+    mutable_specifier: $ => seq('mut'),
 
     unary_expression: $ => prec(PREC.unary, seq(
       '-', $._expression
@@ -604,7 +604,7 @@ module.exports = grammar({
       field('body', choice($.return_expression, $.block)),
     ),
 
-    throws_specifier: $ => 'throws',
+    throws_specifier: $ => seq('throws'),
 
     return_expression: $ => seq(
       '=>',
@@ -613,13 +613,16 @@ module.exports = grammar({
 
     parameters: $ => seq(
       '(',
-      sepBy(',', seq(
+      optional($.this_specifier),
+      optional(sepBy(',', seq(
         choice(
           $.parameter,
-        ))),
+      )))),
       optional(','),
       ')'
     ),
+
+    this_specifier: $ => seq('this'),
 
     parameter: $ => seq(
       optional($.anonymous_specifier),
@@ -630,7 +633,7 @@ module.exports = grammar({
       field('type', $._type)
     ),
 
-    anonymous_specifier: $ => 'anon',
+    anonymous_specifier: $ => seq('anon'),
 
     block: $ => seq(
       '{',

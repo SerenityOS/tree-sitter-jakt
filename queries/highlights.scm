@@ -47,7 +47,6 @@
 "or" @keyword
 "not" @keyword
 "let" @keyword
-"boxed" @keyword
 "return" @keyword
 "while" @keyword
 "mut" @keyword
@@ -63,10 +62,12 @@
 "&raw" @keyword
 "yield" @keyword
 "match" @keyword
-(throws_specifier) @keyword
-(continue_statement) @keyword
-(anonymous_specifier) @keyword
-(none_expression) @keyword
+"boxed" @keyword
+"this" @keyword
+"throws" @keyword
+"continue" @keyword
+"anon" @keyword
+"None" @keyword
 
 (char_literal) @string
 (string_literal) @string

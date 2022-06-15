@@ -1,0 +1,35 @@
+================================================================================
+Structs method
+================================================================================
+
+struct Rectangle {
+    width: i64,
+    height: i64,
+
+    function area(this) => this.width * this.height
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_specifier))
+        (return_expression
+          (binary_expression
+            (field_expression
+              (this_specifier)
+              (field_identifier))
+            (field_expression
+              (this_specifier)
+              (field_identifier))))))))

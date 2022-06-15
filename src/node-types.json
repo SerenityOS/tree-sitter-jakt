@@ -264,6 +264,11 @@
     ]
   },
   {
+    "type": "anonymous_specifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "argument",
     "named": true,
     "fields": {
@@ -643,6 +648,11 @@
     }
   },
   {
+    "type": "continue_statement",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "defer_statement",
     "named": true,
     "fields": {
@@ -836,6 +846,10 @@
         {
           "type": "field_declaration",
           "named": true
+        },
+        {
+          "type": "function_declaration",
+          "named": true
         }
       ]
     }
@@ -860,6 +874,10 @@
         "types": [
           {
             "type": "_expression",
+            "named": true
+          },
+          {
+            "type": "this_specifier",
             "named": true
           }
         ]
@@ -1250,6 +1268,11 @@
     }
   },
   {
+    "type": "none_expression",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "optional_expression",
     "named": true,
     "fields": {
@@ -1389,6 +1412,10 @@
       "types": [
         {
           "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "this_specifier",
           "named": true
         }
       ]
@@ -1578,6 +1605,11 @@
     }
   },
   {
+    "type": "this_specifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "throw_statement",
     "named": true,
     "fields": {
@@ -1592,6 +1624,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "throws_specifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "try_statement",
@@ -1909,6 +1946,10 @@
     "named": false
   },
   {
+    "type": "None",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -1925,8 +1966,8 @@
     "named": false
   },
   {
-    "type": "anonymous_specifier",
-    "named": true
+    "type": "anon",
+    "named": false
   },
   {
     "type": "as!",
@@ -1961,8 +2002,8 @@
     "named": false
   },
   {
-    "type": "continue_statement",
-    "named": true
+    "type": "continue",
+    "named": false
   },
   {
     "type": "defer",
@@ -2041,10 +2082,6 @@
     "named": false
   },
   {
-    "type": "none_expression",
-    "named": true
-  },
-  {
     "type": "not",
     "named": false
   },
@@ -2065,12 +2102,16 @@
     "named": false
   },
   {
+    "type": "this",
+    "named": false
+  },
+  {
     "type": "throw",
     "named": false
   },
   {
-    "type": "throws_specifier",
-    "named": true
+    "type": "throws",
+    "named": false
   },
   {
     "type": "true",
