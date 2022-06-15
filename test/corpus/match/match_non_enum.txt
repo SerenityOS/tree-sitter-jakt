@@ -1,0 +1,45 @@
+================================================================================
+Match non enum
+================================================================================
+
+let x = match 42 {
+    (21 * 2) => [1, 2, 3]
+    else => []
+}
+let y = match "foo" {
+    ("foo") => "bar"
+    else => "baz"
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (let_declaration
+    (identifier)
+    (match_expression
+      (integer_literal)
+      (match_block
+        (match_arm
+          (match_pattern
+            (binary_expression
+              (integer_literal)
+              (integer_literal)))
+          (array_literal
+            (integer_literal)
+            (integer_literal)
+            (integer_literal)))
+        (match_arm
+          (match_else)
+          (array_literal)))))
+  (let_declaration
+    (identifier)
+    (match_expression
+      (string_literal)
+      (match_block
+        (match_arm
+          (match_pattern
+            (string_literal))
+          (string_literal))
+        (match_arm
+          (match_else)
+          (string_literal))))))

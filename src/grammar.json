@@ -2646,8 +2646,13 @@
           "type": "FIELD",
           "name": "pattern",
           "content": {
-            "type": "SYMBOL",
-            "name": "match_pattern"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "match_pattern"
+              }
+            ]
           }
         },
         {
@@ -2732,8 +2737,13 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_pattern"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          ]
         },
         {
           "type": "CHOICE",

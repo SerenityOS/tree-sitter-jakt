@@ -472,7 +472,7 @@ module.exports = grammar({
     ),
 
     match_arm: $ => seq(
-      field('pattern', $.match_pattern),
+      field('pattern', seq($.match_pattern)),
       '=>',
       field('value', choice($._expression, $.block))
     ),
@@ -485,7 +485,7 @@ module.exports = grammar({
 
     match_pattern: $ => seq(
       optional('('),
-      $._pattern,
+      choice($._expression),
       optional(')'),
     ),
 
