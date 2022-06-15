@@ -1,3 +1,9 @@
+* remove or add '_' to the rules
+
+    A standard is needed for consistency.
+
+    I am unsure why many TS parsers prepend '_' to begin with...
+
 * roadmapgen.py
     * allow viwing original tests in check table
     * allow saving check table to markdown table

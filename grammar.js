@@ -93,7 +93,7 @@ module.exports = grammar({
       $.defer_statement,
       $.loop_statement,
       $.try_statement,
-      // $.match_statement,
+      $.unsafe_block,
     ),
 
     declaration: $ => choice(
@@ -110,6 +110,7 @@ module.exports = grammar({
       $._literal,
       $.identifier,
       $.optional_identifier,
+      $.raw_pointer_identfier,
       $.optional_expression,
       $.call_expression,
       $.range_expression,
@@ -124,6 +125,7 @@ module.exports = grammar({
       $.none_expression,
       $.update_expression,
       $.match_expression,
+      $.raw_pointer_expression,
     ),
 
     while_statement: $ => seq(
@@ -166,6 +168,13 @@ module.exports = grammar({
         field('catch_body', $.block),
         field('catch_body', $._expression),
       )
+    ),
+
+    unsafe_block: $ => seq(
+      'unsafe',
+      '{',
+      repeat($._statement),
+      '}'
     ),
 
     for_expression: $ => seq(
@@ -248,9 +257,16 @@ module.exports = grammar({
       ),
     )),
 
+    // TODO: this smells like not the right way to do this...
     optional_identifier: $ => prec.right(seq(
-      $.identifier,
-      choice( '!', '?'),
+      field('operand', $.identifier),
+      field('operator', choice( '!', '?')),
+    )),
+
+    // TODO: this smells like not the right way to do this...
+    raw_pointer_identfier: $ => prec.right(seq(
+      field('operator', '*'),
+      field('operand', $.identifier),
     )),
 
     optional_expression: $ => prec.left(seq(
@@ -433,6 +449,11 @@ module.exports = grammar({
       'match',
       field('value', $._expression),
       field('body', $.match_block)
+    ),
+
+    raw_pointer_expression: $ => seq(
+      field('operator', '&raw'),
+      field('operand', $.identifier),
     ),
 
     match_block: $ => seq(
