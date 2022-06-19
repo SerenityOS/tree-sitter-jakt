@@ -266,6 +266,10 @@
         "named": true
       },
       {
+        "type": "function_return_type",
+        "named": true
+      },
+      {
         "type": "primitive_type",
         "named": true
       },
@@ -2089,6 +2093,10 @@
   {
     "type": "function",
     "named": false
+  },
+  {
+    "type": "function_return_type",
+    "named": true
   },
   {
     "type": "identifier",

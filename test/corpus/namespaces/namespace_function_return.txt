@@ -1,0 +1,60 @@
+================================================================================
+Namespace function return
+================================================================================
+
+namespace Foo {
+    namespace Bar {
+        struct Biz { a: i32 }
+    }
+}
+
+function get_biz() -> Foo::Bar::Biz {
+    return Foo::Bar::Biz(a: 10)
+}
+
+function main() {
+    println("Biz: {}", get_biz())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (namespace_declaration
+    (identifier)
+    (block
+      (namespace_declaration
+        (identifier)
+        (block
+          (struct_declaration
+            (type_identifier)
+            (field_declaration_list
+              (field_declaration
+                (field_identifier)
+                (primitive_type))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (function_return_type)
+    (block
+      (return_statement
+        (call_expression
+          (static_member_expression
+            (static_member_expression
+              (identifier)
+              (field_identifier))
+            (field_identifier))
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (identifier)
+            (arguments)))))))

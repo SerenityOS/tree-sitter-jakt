@@ -38,6 +38,8 @@ const primitive_types = numeric_types.concat(['bool', 'String', 'c_char'])
 
 terminator = choice('\n', ';')
 
+identifier = /[_\p{XID_Start}][_\p{XID_Continue}]*/
+
 module.exports = grammar({
   name: 'jakt',
 
@@ -68,10 +70,7 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$._type, $._pattern],
-    [$.parameters, $._pattern],
-    [$.field_declaration_list, $.ordered_field_declaration_list],
     [$._expression, $.array_expression],
-    [$.array_literal, $.array_expression],
   ],
 
   rules: {
@@ -309,6 +308,7 @@ module.exports = grammar({
     _type: $ => choice(
       $.array_type,
       $._type_identifier,
+      $.function_return_type,
       alias(choice(...primitive_types), $.primitive_type)
     ),
 
@@ -317,6 +317,12 @@ module.exports = grammar({
       field('element', $._type),
       ']'
     ),
+
+    // Not using $.identifier here due to https://github.com/tree-sitter/tree-sitter/issues/449
+    function_return_type: $ => token(seq(
+      identifier,
+      repeat1(seq('::', identifier))
+    )),
 
     let_declaration: $ => prec.left(seq(
       'let',
@@ -384,7 +390,7 @@ module.exports = grammar({
         optional(
           repeat(
             choice(
-              seq($.field_declaration, choice(',','\n')),
+              seq($.field_declaration, optional(choice(',','\n'))),
               $.function_declaration,
             )
           )
@@ -680,7 +686,7 @@ module.exports = grammar({
       '//', /.*/
     )),
 
-    identifier: $ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
+    identifier: $ => identifier,
     _type_identifier: $ => alias($.identifier, $.type_identifier),
   }
 });

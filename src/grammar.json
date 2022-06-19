@@ -1249,6 +1249,10 @@
           "name": "_type_identifier"
         },
         {
+          "type": "SYMBOL",
+          "name": "function_return_type"
+        },
+        {
           "type": "ALIAS",
           "content": {
             "type": "CHOICE",
@@ -1356,6 +1360,34 @@
           "value": "]"
         }
       ]
+    },
+    "function_return_type": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[_\\p{XID_Start}][_\\p{XID_Continue}]*"
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "::"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[_\\p{XID_Start}][_\\p{XID_Continue}]*"
+                }
+              ]
+            }
+          }
+        ]
+      }
     },
     "let_declaration": {
       "type": "PREC_LEFT",
@@ -1778,12 +1810,20 @@
                         "type": "CHOICE",
                         "members": [
                           {
-                            "type": "STRING",
-                            "value": ","
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "STRING",
+                                "value": ","
+                              },
+                              {
+                                "type": "STRING",
+                                "value": "\n"
+                              }
+                            ]
                           },
                           {
-                            "type": "STRING",
-                            "value": "\n"
+                            "type": "BLANK"
                           }
                         ]
                       }
@@ -3889,19 +3929,7 @@
       "_pattern"
     ],
     [
-      "parameters",
-      "_pattern"
-    ],
-    [
-      "field_declaration_list",
-      "ordered_field_declaration_list"
-    ],
-    [
       "_expression",
-      "array_expression"
-    ],
-    [
-      "array_literal",
       "array_expression"
     ]
   ],
