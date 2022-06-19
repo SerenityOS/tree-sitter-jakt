@@ -76,10 +76,11 @@ module.exports = grammar({
 
   rules: {
 
-    source_file: $ => repeat(choice(
-      seq($._statement, terminator),
-      $._top_level_declaration,
-    )),
+    source_file: $ => repeat(
+      choice(
+        seq($._statement, optional(terminator)),
+      )
+    ),
 
     _statement: $ => choice(
       $.declaration,
@@ -104,6 +105,7 @@ module.exports = grammar({
       $.struct_declaration,
       $.class_declaration,
       $.namespace_declaration,
+      $.function_declaration,
     ),
 
     _expression: $ => choice(
@@ -203,7 +205,6 @@ module.exports = grammar({
       field('function', $._expression),
       field('arguments', $.arguments),
       optional(choice($.optional_specifier, $.call_chain_expression)),
-      optional(';'),
     ))),
 
     call_chain_expression: $ => field('value', seq('[', $._expression, ']')),
@@ -305,10 +306,6 @@ module.exports = grammar({
       $._expression
     ),
 
-    _top_level_declaration: $ => choice(
-      $.function_declaration,
-    ),
-
     _type: $ => choice(
       $.array_type,
       $._type_identifier,
@@ -384,8 +381,14 @@ module.exports = grammar({
 
     field_declaration_list: $ => seq(
       '{',
-        optional(repeat(seq($.field_declaration, choice(',','\n')))),
-        optional($.function_declaration),
+        optional(
+          repeat(
+            choice(
+              seq($.field_declaration, choice(',','\n')),
+              $.function_declaration,
+            )
+          )
+        ),
       '}'
     ),
 
@@ -614,10 +617,10 @@ module.exports = grammar({
 
     throws_specifier: $ => seq('throws'),
 
-    return_expression: $ => seq(
+    return_expression: $ => prec.right(seq(
       '=>',
       $._expression,
-    ),
+    )),
 
     parameters: $ => seq(
       '(',
@@ -647,7 +650,7 @@ module.exports = grammar({
 
     block: $ => seq(
       '{',
-      repeat($._statement),
+      repeat(seq($._statement, optional(terminator))),
       '}'
     ),
 

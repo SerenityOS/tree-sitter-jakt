@@ -18,15 +18,14 @@ function main() {
   (namespace_declaration
     (identifier)
     (block
-      (identifier)
-      (call_expression
+      (function_declaration
         (identifier)
-        (arguments))
-      (block
-        (call_expression
-          (identifier)
-          (arguments
-            (string_literal))))))
+        (parameters)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)))))))
   (function_declaration
     (identifier)
     (parameters)

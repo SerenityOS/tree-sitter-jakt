@@ -1,0 +1,107 @@
+================================================================================
+Namespace call functions in nested namespaces
+================================================================================
+
+namespace Outer {
+    namespace Inner {
+        struct Struct {
+            function method(this) => println("PASS 1")
+            function static_function() => println("PASS 2")
+        }
+        function free_function_in_inner_namespace() => println("PASS 3")
+    }
+    function free_function_in_outer_namespace() => println("PASS 4")
+}
+
+function main() {
+    mut s = Outer::Inner::Struct()
+    s.method()
+    Outer::Inner::Struct::static_function()
+    Outer::Inner::free_function_in_inner_namespace()
+    Outer::free_function_in_outer_namespace()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (namespace_declaration
+    (identifier)
+    (block
+      (namespace_declaration
+        (identifier)
+        (block
+          (struct_declaration
+            (type_identifier)
+            (field_declaration_list
+              (function_declaration
+                (identifier)
+                (parameters
+                  (this_specifier))
+                (return_expression
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (string_literal)))))
+              (function_declaration
+                (identifier)
+                (parameters)
+                (return_expression
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (string_literal)))))))
+          (function_declaration
+            (identifier)
+            (parameters)
+            (return_expression
+              (call_expression
+                (identifier)
+                (arguments
+                  (string_literal)))))))
+      (function_declaration
+        (identifier)
+        (parameters)
+        (return_expression
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (call_expression
+          (static_member_expression
+            (static_member_expression
+              (identifier)
+              (field_identifier))
+            (field_identifier))
+          (arguments)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments))
+      (call_expression
+        (static_member_expression
+          (static_member_expression
+            (static_member_expression
+              (identifier)
+              (field_identifier))
+            (field_identifier))
+          (field_identifier))
+        (arguments))
+      (call_expression
+        (static_member_expression
+          (static_member_expression
+            (identifier)
+            (field_identifier))
+          (field_identifier))
+        (arguments))
+      (call_expression
+        (static_member_expression
+          (identifier)
+          (field_identifier))
+        (arguments)))))
