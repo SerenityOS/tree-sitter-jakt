@@ -15,7 +15,7 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (namespace_statement
+  (namespace_declaration
     (identifier)
     (block
       (identifier)

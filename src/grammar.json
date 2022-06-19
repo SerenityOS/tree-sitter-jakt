@@ -90,10 +90,6 @@
         {
           "type": "SYMBOL",
           "name": "yield_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "namespace_statement"
         }
       ]
     },
@@ -119,6 +115,10 @@
         {
           "type": "SYMBOL",
           "name": "class_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "namespace_declaration"
         }
       ]
     },
@@ -136,6 +136,10 @@
         {
           "type": "SYMBOL",
           "name": "_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "this_specifier_shorthand"
         },
         {
           "type": "SYMBOL",
@@ -429,7 +433,7 @@
         }
       ]
     },
-    "namespace_statement": {
+    "namespace_declaration": {
       "type": "SEQ",
       "members": [
         {
@@ -3629,6 +3633,19 @@
         {
           "type": "STRING",
           "value": "this"
+        }
+      ]
+    },
+    "this_specifier_shorthand": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
         }
       ]
     },

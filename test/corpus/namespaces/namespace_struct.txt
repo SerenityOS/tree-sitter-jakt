@@ -1,0 +1,43 @@
+================================================================================
+Namespace struct
+================================================================================
+
+namespace Greeters {
+    struct Person {
+        name: String
+        age: i64
+
+        function greet(this) {
+            println("I am {} and my age is {}", .name, .age)
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (namespace_declaration
+    (identifier)
+    (block
+      (struct_declaration
+        (type_identifier)
+        (field_declaration_list
+          (field_declaration
+            (field_identifier)
+            (primitive_type))
+          (field_declaration
+            (field_identifier)
+            (primitive_type))
+          (function_declaration
+            (identifier)
+            (parameters
+              (this_specifier))
+            (block
+              (call_expression
+                (identifier)
+                (arguments
+                  (string_literal)
+                  (this_specifier_shorthand
+                    (identifier))
+                  (this_specifier_shorthand
+                    (identifier)))))))))))

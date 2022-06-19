@@ -95,7 +95,6 @@ module.exports = grammar({
       $.try_statement,
       $.unsafe_block,
       $.yield_statement,
-      $.namespace_statement,
     ),
 
     declaration: $ => choice(
@@ -104,12 +103,14 @@ module.exports = grammar({
       $.enum_declaration,
       $.struct_declaration,
       $.class_declaration,
+      $.namespace_declaration,
     ),
 
     _expression: $ => choice(
       $.unary_expression,
       $.binary_expression,
       $._literal,
+      $.this_specifier_shorthand,
       $.identifier,
       $.optional_identifier,
       $.raw_pointer_identfier,
@@ -184,7 +185,7 @@ module.exports = grammar({
       $._expression,
     ),
 
-    namespace_statement: $ => seq(
+    namespace_declaration: $ => seq(
       'namespace',
       field('pattern', $._pattern),
       field('body', $.block)
@@ -630,6 +631,8 @@ module.exports = grammar({
     ),
 
     this_specifier: $ => seq('this'),
+
+    this_specifier_shorthand: $ => seq('.', $.identifier),
 
     parameter: $ => seq(
       optional($.anonymous_specifier),

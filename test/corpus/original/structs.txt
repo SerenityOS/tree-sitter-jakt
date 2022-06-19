@@ -15,3 +15,41 @@ struct Foo {
       (field_declaration
         (field_identifier)
         (primitive_type)))))
+
+
+
+================================================================================
+Structs this shorthand
+================================================================================
+
+
+
+struct Foo {
+    x: u16
+    function boo(this) {
+        println(.x * 2)
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_specifier))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (binary_expression
+                (this_specifier_shorthand
+                  (identifier))
+                (integer_literal)))))))))

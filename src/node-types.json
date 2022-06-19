@@ -76,6 +76,10 @@
         "named": true
       },
       {
+        "type": "this_specifier_shorthand",
+        "named": true
+      },
+      {
         "type": "type_conversion_expression",
         "named": true
       },
@@ -216,7 +220,7 @@
         "named": true
       },
       {
-        "type": "namespace_statement",
+        "type": "namespace_declaration",
         "named": true
       },
       {
@@ -1253,7 +1257,7 @@
     }
   },
   {
-    "type": "namespace_statement",
+    "type": "namespace_declaration",
     "named": true,
     "fields": {
       "body": {
@@ -1638,6 +1642,21 @@
     "type": "this_specifier",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "this_specifier_shorthand",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "throw_statement",
