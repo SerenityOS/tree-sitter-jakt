@@ -1,0 +1,196 @@
+
+<!doctype HTML>
+<head>
+  <title>Tree-sitter Highlighting</title>
+  <style>
+    body {
+      font-family: monospace
+    }
+    .line-number {
+      user-select: none;
+      text-align: right;
+      color: rgba(27,31,35,.3);
+      padding: 0 10px;
+    }
+    .line {
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+
+<table>
+<tr><td class=line-number>1</td><td class=line><span style='color: #5f00d7'>struct</span> <span style='color: #005f5f'>Rectangle</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>2</td><td class=line>    <span style='color: #af0000'>width</span><span style='color: #4e4e4e'>:</span> <span style='font-weight: bold;color: #005f5f'>i64</span><span style='color: #4e4e4e'>,</span>
+</td></tr>
+<tr><td class=line-number>3</td><td class=line>    <span style='color: #af0000'>height</span><span style='color: #4e4e4e'>:</span> <span style='font-weight: bold;color: #005f5f'>i64</span><span style='color: #4e4e4e'>,</span>
+</td></tr>
+<tr><td class=line-number>4</td><td class=line>
+</td></tr>
+<tr><td class=line-number>5</td><td class=line>    <span style='color: #5f00d7'>function</span> <span style='color: #005fd7'>area</span><span style='color: #4e4e4e'>(</span><span style='font-weight: bold;'>this</span><span style='color: #4e4e4e'>)</span> <span style='font-weight: bold;color: #4e4e4e'>=&gt;</span> <span style='font-weight: bold;'>this</span><span style='color: #4e4e4e'>.</span><span style='color: #af0000'>width</span> <span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='font-weight: bold;'>this</span><span style='color: #4e4e4e'>.</span><span style='color: #af0000'>height</span>
+</td></tr>
+<tr><td class=line-number>6</td><td class=line><span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>7</td><td class=line>
+</td></tr>
+<tr><td class=line-number>8</td><td class=line><span style='color: #5f00d7'>function</span> <span style='color: #005fd7'>get_first</span><span style='color: #4e4e4e'>(</span><span style='color: #5f00d7'>anon</span> <span style='text-decoration: underline;'>v</span><span style='color: #4e4e4e'>:</span> <span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #005f5f'>String</span><span style='color: #4e4e4e'>]</span><span style='color: #4e4e4e'>)</span> <span style='font-weight: bold;color: #4e4e4e'>=&gt;</span> v<span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #875f00'>0</span><span style='color: #4e4e4e'>]</span>
+</td></tr>
+<tr><td class=line-number>9</td><td class=line>
+</td></tr>
+<tr><td class=line-number>10</td><td class=line><span style='font-style: italic;color: #8a8a8a'>// jakt is cool</span>
+</td></tr>
+<tr><td class=line-number>11</td><td class=line><span style='color: #5f00d7'>function</span> <span style='color: #005fd7'>main</span><span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>)</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>12</td><td class=line>    <span style='color: #5f00d7'>mut</span> i = <span style='font-weight: bold;color: #875f00'>1</span>
+</td></tr>
+<tr><td class=line-number>13</td><td class=line>    <span style='color: #5f00d7'>while</span> i &lt;= <span style='font-weight: bold;color: #875f00'>20</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>14</td><td class=line>        <span style='color: #5f00d7'>if</span> i % <span style='font-weight: bold;color: #875f00'>15</span> == <span style='font-weight: bold;color: #875f00'>0</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>15</td><td class=line>            <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;FizzBuzz&quot;</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>16</td><td class=line>        <span style='color: #4e4e4e'>}</span> <span style='color: #5f00d7'>else</span> <span style='color: #5f00d7'>if</span> i % <span style='font-weight: bold;color: #875f00'>3</span> == <span style='font-weight: bold;color: #875f00'>0</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>17</td><td class=line>            <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;Fizz&quot;</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>18</td><td class=line>        <span style='color: #4e4e4e'>}</span> <span style='color: #5f00d7'>else</span> <span style='color: #5f00d7'>if</span> i % <span style='font-weight: bold;color: #875f00'>5</span> == <span style='font-weight: bold;color: #875f00'>0</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>19</td><td class=line>            <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;Buzz&quot;</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>20</td><td class=line>        <span style='color: #4e4e4e'>}</span> <span style='color: #5f00d7'>else</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>21</td><td class=line>            <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;{}&quot;</span><span style='color: #4e4e4e'>,</span> i<span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>22</td><td class=line>        <span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>23</td><td class=line>        ++i
+</td></tr>
+<tr><td class=line-number>24</td><td class=line>    <span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>25</td><td class=line>
+</td></tr>
+<tr><td class=line-number>26</td><td class=line>    <span style='color: #5f00d7'>let</span> x = <span style='color: #4e4e4e'>[</span><span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #875f00'>1</span><span style='color: #4e4e4e'>,</span> <span style='font-weight: bold;color: #875f00'>2</span><span style='color: #4e4e4e'>]</span><span style='color: #4e4e4e'>,</span>
+</td></tr>
+<tr><td class=line-number>27</td><td class=line>             <span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #875f00'>3</span><span style='color: #4e4e4e'>,</span> <span style='font-weight: bold;color: #875f00'>4</span><span style='color: #4e4e4e'>]</span><span style='color: #4e4e4e'>]</span>
+</td></tr>
+<tr><td class=line-number>28</td><td class=line>
+</td></tr>
+<tr><td class=line-number>29</td><td class=line>    <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;{}&quot;</span><span style='color: #4e4e4e'>,</span> x<span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #875f00'>1</span><span style='color: #4e4e4e'>]</span><span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #875f00'>0</span><span style='color: #4e4e4e'>]</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>30</td><td class=line>
+</td></tr>
+<tr><td class=line-number>31</td><td class=line>    <span style='font-style: italic;color: #8a8a8a'>// print the first array element</span>
+</td></tr>
+<tr><td class=line-number>32</td><td class=line>    <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;{}&quot;</span><span style='color: #4e4e4e'>,</span> <span style='color: #005fd7'>get_first</span><span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>[</span><span style='color: #008700'>&quot;one&quot;</span><span style='color: #4e4e4e'>,</span> <span style='color: #008700'>&quot;two&quot;</span><span style='color: #4e4e4e'>]</span><span style='color: #4e4e4e'>)</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>33</td><td class=line>
+</td></tr>
+<tr><td class=line-number>34</td><td class=line>    <span style='color: #5f00d7'>mut</span> v = <span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #875f00'>1</span><span style='color: #4e4e4e'>,</span> <span style='font-weight: bold;color: #875f00'>2</span><span style='color: #4e4e4e'>,</span> <span style='font-weight: bold;color: #875f00'>3</span><span style='color: #4e4e4e'>]</span>
+</td></tr>
+<tr><td class=line-number>35</td><td class=line>    <span style='color: #5f00d7'>let</span> last = v<span style='color: #4e4e4e'>.</span><span style='color: #005fd7'>pop</span><span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>36</td><td class=line>    <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;{}&quot;</span><span style='color: #4e4e4e'>,</span> last<span style='font-weight: bold;color: #4e4e4e'>!</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>37</td><td class=line>
+</td></tr>
+<tr><td class=line-number>38</td><td class=line>    <span style='color: #5f00d7'>let</span> foo <span style='color: #4e4e4e'>:</span> <span style='font-weight: bold;color: #005f5f'>i64</span><span style='font-weight: bold;color: #4e4e4e'>?</span> = <span style='font-weight: bold;color: #875f00'>123</span>
+</td></tr>
+<tr><td class=line-number>39</td><td class=line>    <span style='color: #5f00d7'>let</span> bar = foo<span style='font-weight: bold;color: #4e4e4e'>!</span> + <span style='font-weight: bold;color: #875f00'>2</span>
+</td></tr>
+<tr><td class=line-number>40</td><td class=line>    <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;{}&quot;</span><span style='color: #4e4e4e'>,</span> bar<span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>41</td><td class=line>
+</td></tr>
+<tr><td class=line-number>42</td><td class=line>    <span style='color: #5f00d7'>let</span> a<span style='color: #4e4e4e'>:</span> <span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #005f5f'>i64</span><span style='color: #4e4e4e'>]</span><span style='font-weight: bold;color: #4e4e4e'>?</span> = <span style='color: #5f00d7'>None</span>
+</td></tr>
+<tr><td class=line-number>43</td><td class=line>    <span style='color: #5f00d7'>let</span> b<span style='color: #4e4e4e'>:</span> <span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #005f5f'>i64</span><span style='color: #4e4e4e'>]</span><span style='font-weight: bold;color: #4e4e4e'>?</span> = <span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #875f00'>1</span><span style='color: #4e4e4e'>,</span> <span style='font-weight: bold;color: #875f00'>2</span><span style='color: #4e4e4e'>,</span> <span style='font-weight: bold;color: #875f00'>3</span><span style='color: #4e4e4e'>]</span>
+</td></tr>
+<tr><td class=line-number>44</td><td class=line>    <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;{}&quot;</span><span style='color: #4e4e4e'>,</span> b<span style='color: #4e4e4e'>.</span><span style='color: #005fd7'>value</span><span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>)</span><span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #875f00'>2</span><span style='color: #4e4e4e'>]</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>45</td><td class=line>
+</td></tr>
+<tr><td class=line-number>46</td><td class=line>    <span style='color: #5f00d7'>let</span> v2 = <span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #875f00'>85</span>; <span style='font-weight: bold;color: #875f00'>3</span><span style='color: #4e4e4e'>]</span>
+</td></tr>
+<tr><td class=line-number>47</td><td class=line>    <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;{}&quot;</span><span style='color: #4e4e4e'>,</span> v2<span style='color: #4e4e4e'>.</span><span style='color: #005fd7'>size</span><span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>)</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>48</td><td class=line>
+</td></tr>
+<tr><td class=line-number>49</td><td class=line>    <span style='color: #5f00d7'>mut</span> i2 = <span style='font-weight: bold;color: #875f00'>0</span>
+</td></tr>
+<tr><td class=line-number>50</td><td class=line>    <span style='color: #5f00d7'>while</span> i2 &lt; v2<span style='color: #4e4e4e'>.</span><span style='color: #005fd7'>size</span><span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>)</span> <span style='color: #5f00d7'>as!</span> <span style='font-weight: bold;color: #005f5f'>i64</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>51</td><td class=line>        <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;{}&quot;</span><span style='color: #4e4e4e'>,</span> v2<span style='color: #4e4e4e'>[</span>i2++<span style='color: #4e4e4e'>]</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>52</td><td class=line>    <span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>53</td><td class=line>
+</td></tr>
+<tr><td class=line-number>54</td><td class=line>    <span style='color: #005fd7'>println</span><span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;{}&quot;</span><span style='color: #4e4e4e'>,</span> <span style='color: #5f00d7'>match</span> <span style='color: #008700'>&quot;test&quot;</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>55</td><td class=line>        <span style='color: #008700'>&quot;test&quot;</span> <span style='font-weight: bold;color: #4e4e4e'>=&gt;</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>56</td><td class=line>            <span style='color: #5f00d7'>yield</span> <span style='color: #008700'>&quot;PASS&quot;</span>
+</td></tr>
+<tr><td class=line-number>57</td><td class=line>        <span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>58</td><td class=line>        <span style='color: #5f00d7'>else</span> <span style='font-weight: bold;color: #4e4e4e'>=&gt;</span> <span style='color: #008700'>&quot;FAIL&quot;</span>
+</td></tr>
+<tr><td class=line-number>59</td><td class=line>    <span style='color: #4e4e4e'>}</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>60</td><td class=line>
+</td></tr>
+<tr><td class=line-number>61</td><td class=line>    <span style='color: #5f00d7'>let</span> x = <span style='color: #5f00d7'>match</span> <span style='font-weight: bold;color: #875f00'>42</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>62</td><td class=line>        <span style='color: #4e4e4e'>(</span><span style='font-weight: bold;color: #875f00'>21</span> <span style='font-weight: bold;color: #4e4e4e'>*</span> <span style='font-weight: bold;color: #875f00'>2</span><span style='color: #4e4e4e'>)</span> <span style='font-weight: bold;color: #4e4e4e'>=&gt;</span> <span style='color: #4e4e4e'>[</span><span style='font-weight: bold;color: #875f00'>1</span><span style='color: #4e4e4e'>,</span> <span style='font-weight: bold;color: #875f00'>2</span><span style='color: #4e4e4e'>,</span> <span style='font-weight: bold;color: #875f00'>3</span><span style='color: #4e4e4e'>]</span>
+</td></tr>
+<tr><td class=line-number>63</td><td class=line>        <span style='color: #5f00d7'>else</span> <span style='font-weight: bold;color: #4e4e4e'>=&gt;</span> <span style='color: #4e4e4e'>[</span><span style='color: #4e4e4e'>]</span>
+</td></tr>
+<tr><td class=line-number>64</td><td class=line>    <span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>65</td><td class=line>    <span style='color: #5f00d7'>let</span> y = <span style='color: #5f00d7'>match</span> <span style='color: #008700'>&quot;foo&quot;</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>66</td><td class=line>        <span style='color: #4e4e4e'>(</span><span style='color: #008700'>&quot;foo&quot;</span><span style='color: #4e4e4e'>)</span> <span style='font-weight: bold;color: #4e4e4e'>=&gt;</span> <span style='color: #008700'>&quot;bar&quot;</span>
+</td></tr>
+<tr><td class=line-number>67</td><td class=line>        <span style='color: #5f00d7'>else</span> <span style='font-weight: bold;color: #4e4e4e'>=&gt;</span> <span style='color: #008700'>&quot;baz&quot;</span>
+</td></tr>
+<tr><td class=line-number>68</td><td class=line>    <span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>69</td><td class=line>
+</td></tr>
+<tr><td class=line-number>70</td><td class=line>    <span style='color: #5f00d7'>namespace</span> <span style='color: #af8700'>Foo</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>71</td><td class=line>        <span style='color: #5f00d7'>namespace</span> <span style='color: #af8700'>Bar</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>72</td><td class=line>            <span style='color: #5f00d7'>struct</span> <span style='color: #005f5f'>Biz</span> <span style='color: #4e4e4e'>{</span> <span style='color: #af0000'>a</span><span style='color: #4e4e4e'>:</span> <span style='font-weight: bold;color: #005f5f'>i32</span> <span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>73</td><td class=line>        <span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>74</td><td class=line>    <span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>75</td><td class=line>
+</td></tr>
+<tr><td class=line-number>76</td><td class=line>    <span style='color: #5f00d7'>function</span> <span style='color: #005fd7'>get_biz</span><span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>)</span> -&gt; <span style='font-weight: bold;color: #005f5f'>Foo::Bar::Biz</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>77</td><td class=line>        <span style='color: #5f00d7'>return</span> <span style='color: #af8700'>Foo</span><span style='color: #4e4e4e'>::</span><span style='color: #af0000'>Bar</span><span style='color: #4e4e4e'>::</span><span style='color: #af0000'>Biz</span><span style='color: #4e4e4e'>(</span>a<span style='color: #4e4e4e'>:</span> <span style='font-weight: bold;color: #875f00'>10</span><span style='color: #4e4e4e'>)</span>
+</td></tr>
+<tr><td class=line-number>78</td><td class=line>    <span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>79</td><td class=line>
+</td></tr>
+<tr><td class=line-number>80</td><td class=line>    <span style='color: #5f00d7'>function</span> <span style='color: #005fd7'>get_biz_2</span><span style='color: #4e4e4e'>(</span><span style='color: #4e4e4e'>)</span> -&gt; <span style='font-weight: bold;color: #005f5f'>String</span> <span style='color: #4e4e4e'>{</span>
+</td></tr>
+<tr><td class=line-number>81</td><td class=line>        <span style='color: #5f00d7'>return</span> <span style='color: #008700'>&quot;never ending profit&quot;</span>
+</td></tr>
+<tr><td class=line-number>82</td><td class=line>    <span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>83</td><td class=line>
+</td></tr>
+<tr><td class=line-number>84</td><td class=line><span style='color: #4e4e4e'>}</span>
+</td></tr>
+<tr><td class=line-number>85</td><td class=line>
+</td></tr>
+</table>
+
+</body>
+
