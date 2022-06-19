@@ -14,6 +14,8 @@ tree-sitter-jakt implements 84.00 of 179 (46.9%) of valid Jakt samples as of Jun
 
 ![screenshot](/assets/screenshot_main.png)
 
+For a longer example, [click here](/assets/highlightoutput.md).
+
 ## How to run tests
 
 The [tree-sitter cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) is required to run tests.
