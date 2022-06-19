@@ -216,6 +216,10 @@
         "named": true
       },
       {
+        "type": "namespace_statement",
+        "named": true
+      },
+      {
         "type": "return_statement",
         "named": true
       },
@@ -1249,6 +1253,32 @@
     }
   },
   {
+    "type": "namespace_statement",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "pattern": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_pattern",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "negative_literal",
     "named": true,
     "fields": {},
@@ -2079,6 +2109,10 @@
   },
   {
     "type": "mut",
+    "named": false
+  },
+  {
+    "type": "namespace",
     "named": false
   },
   {

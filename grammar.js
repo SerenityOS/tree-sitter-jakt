@@ -95,6 +95,7 @@ module.exports = grammar({
       $.try_statement,
       $.unsafe_block,
       $.yield_statement,
+      $.namespace_statement,
     ),
 
     declaration: $ => choice(
@@ -181,6 +182,12 @@ module.exports = grammar({
     yield_statement: $ => seq(
       'yield',
       $._expression,
+    ),
+
+    namespace_statement: $ => seq(
+      'namespace',
+      field('pattern', $._pattern),
+      field('body', $.block)
     ),
 
     for_expression: $ => seq(

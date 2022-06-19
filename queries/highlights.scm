@@ -68,6 +68,7 @@
 "continue" @keyword
 "anon" @keyword
 "None" @keyword
+"namespace" @keyword
 
 (char_literal) @string
 (string_literal) @string
