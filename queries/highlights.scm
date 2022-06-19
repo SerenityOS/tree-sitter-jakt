@@ -12,6 +12,13 @@
 
 (call_expression
   function: (identifier) @function)
+(call_expression
+  function: (field_expression
+    field: (field_identifier) @function.method))
+; (call_expression
+;   function: (scoped_identifier
+;     "::"
+;     name: (identifier) @function))
 
 ; Function definitions
 
@@ -21,6 +28,8 @@
 
 (type_identifier) @type
 (primitive_type) @type.builtin
+(function_return_type) @type.builtin
+(field_identifier) @property
 
 (line_comment) @comment
 
@@ -32,6 +41,7 @@
 "}" @punctuation.bracket
 
 ":" @punctuation.delimiter
+"::" @punctuation.delimiter
 "," @punctuation.delimiter
 "." @punctuation.delimiter
 
@@ -63,12 +73,13 @@
 "yield" @keyword
 "match" @keyword
 "boxed" @keyword
-"this" @keyword
 "throws" @keyword
 "continue" @keyword
 "anon" @keyword
 "None" @keyword
 "namespace" @keyword
+
+"this" @variable.builtin
 
 (char_literal) @string
 (string_literal) @string

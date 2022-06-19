@@ -1,3 +1,24 @@
+* change Foo::boo::bar() to "scoped_identifier" instead of "static_member_expression"
+
+  [FIXED] The syntax highlighting is broken for this in jakt...
+
+  Foo::boo::bar();
+
+  Is
+
+  ```
+  source_file [0, 0] - [1, 0]
+    call_expression [0, 0] - [0, 15]
+      function: scoped_identifier [0, 0] - [0, 13]
+        path: scoped_identifier [0, 0] - [0, 8]
+          path: identifier [0, 0] - [0, 3]
+          name: identifier [0, 5] - [0, 8]
+        name: identifier [0, 10] - [0, 13]
+      arguments: arguments [0, 13] - [0, 15]
+  ```
+
+  in rust, which I think is more accurate and can also apply to Jakt.
+
 * remove or add '_' to the rules
 
     A standard is needed for consistency.
