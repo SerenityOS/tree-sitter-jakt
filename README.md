@@ -15,6 +15,7 @@ tree-sitter-jakt implements 84.00 of 179 (46.9%) of valid Jakt samples as of Jun
 ![screenshot](/assets/screenshot_main.png)
 
 For a longer example, [click here](https://demizer.github.io/jakt/index.html).
+For a potentially broken example of parsing the selfhost typechecker, [click here](https://demizer.github.io/jakt/selfhost-typechecker.html).
 
 ## How to run tests
 
