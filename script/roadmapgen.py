@@ -73,6 +73,9 @@ def build_test_list(jakt_path: str) -> list:
     for root, _, files in os.walk(pathlib.Path(jakt_path, "samples"), topdown=True):
         for name in files:
             test_path = pathlib.Path(root, name)
+            if not ".jakt" in str(test_path):
+                console.log(f"Skipping file: {test_path}")
+                continue
             test = test_path.read_text()
             if "/// - error:" in test:
                 console.log(f"skipping failing test: {test_path.as_posix()}")
@@ -288,6 +291,9 @@ def build_test_map(jakt_path: str) -> TestMap:
     for root, _, files in os.walk(pathlib.Path(jakt_path, "samples"), topdown=True):
         for name in files:
             file_path = pathlib.Path(root, name)
+            if not ".jakt" in str(file_path):
+                console.log(f"Skipping file: {file_path}")
+                continue
             file_text = file_path.read_text()
             hash = hashlib.md5(file_text.encode("utf-8")).hexdigest()
             falty = False
@@ -407,7 +413,7 @@ def print_testmap_table(tests: TestMap):
             renderables.append("")
 
         if test.changed and test.implemented == TestImplemented.IMPLEMENTED:
-            color = Style(color="yellow")
+            color = Style(color="red", blink=True, bold=True)
             renderables.append(":ballot_box_with_check:")
         elif test.changed:
             color = Style(color="wheat1")
@@ -418,20 +424,20 @@ def print_testmap_table(tests: TestMap):
         if test.new:
             color = Style(color="green")
             renderables.append(":ballot_box_with_check:")
-        else:
+        elif any(str(x.header) in "New" for x in table.columns):
             renderables.append("")
 
         if test.deleted:
             color = Style(color="red")
             renderables.append(":ballot_box_with_check:")
-        else:
+        elif any(str(x.header) in "Deleted" for x in table.columns):
             renderables.append("")
 
         if test.falty:
             color = Style(color=None, dim=True)
             falty_count += 1
             renderables.append(":ballot_box_with_check:")
-        else:
+        elif any(str(x.header) in "Falty" for x in table.columns):
             renderables.append("")
 
         table.add_row(*renderables, style=color)

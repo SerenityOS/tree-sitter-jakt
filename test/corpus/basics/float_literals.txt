@@ -6,6 +6,10 @@ Basics float literals
 3.14159265358979
 1.61803399
 2.71827
+42f32
+123_456.78f64
+23_456.789_10
+-5.0
 
 --------------------------------------------------------------------------------
 
@@ -13,4 +17,9 @@ Basics float literals
   (float_literal)
   (float_literal)
   (float_literal)
-  (float_literal))
+  (float_literal)
+  (float_literal)
+  (float_literal)
+  (float_literal)
+  (unary_expression
+    (float_literal)))

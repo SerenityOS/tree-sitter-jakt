@@ -37,7 +37,6 @@ bool tree_sitter_jakt_external_scanner_scan(void *payload, TSLexer *lexer,
     lexer->result_symbol = STRING_CONTENT;
     return has_content;
   }
-
   while (iswspace(lexer->lookahead)) lexer->advance(lexer, true);
 
   if (valid_symbols[FLOAT_LITERAL] && iswdigit(lexer->lookahead)) {
@@ -48,7 +47,7 @@ bool tree_sitter_jakt_external_scanner_scan(void *payload, TSLexer *lexer,
       advance(lexer);
     }
 
-    bool has_fraction = false, has_exponent = false;
+    bool has_fraction = false, has_type_callout = false;
 
     if (lexer->lookahead == '.') {
       has_fraction = true;
@@ -57,10 +56,15 @@ bool tree_sitter_jakt_external_scanner_scan(void *payload, TSLexer *lexer,
           // The dot is followed by a letter: 1.max(2) => not a float but an integer
           return false;
       }
-
       if (lexer->lookahead == '.') {
         return false;
       }
+      while (is_num_char(lexer->lookahead)) {
+        advance(lexer);
+      }
+    } else if (lexer->lookahead == 'f') {
+      has_type_callout = true;
+      advance(lexer);
       while (is_num_char(lexer->lookahead)) {
         advance(lexer);
       }
@@ -68,24 +72,7 @@ bool tree_sitter_jakt_external_scanner_scan(void *payload, TSLexer *lexer,
 
     lexer->mark_end(lexer);
 
-    if (lexer->lookahead == 'e' || lexer->lookahead == 'E') {
-      has_exponent = true;
-      advance(lexer);
-      if (lexer->lookahead == '+' || lexer->lookahead == '-') {
-        advance(lexer);
-      }
-      if (!is_num_char(lexer->lookahead)) {
-        return true;
-      }
-      advance(lexer);
-      while (is_num_char(lexer->lookahead)) {
-        advance(lexer);
-      }
-
-      lexer->mark_end(lexer);
-    }
-
-    if (!has_exponent && !has_fraction) return false;
+    if (!has_fraction && !has_type_callout) return false;
 
     if (lexer->lookahead != 'u' && lexer->lookahead != 'i' && lexer->lookahead != 'f') {
       return true;
