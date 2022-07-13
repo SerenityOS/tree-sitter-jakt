@@ -418,14 +418,21 @@ def print_testmap_table(tests: TestMap):
         if test.new:
             color = Style(color="green")
             renderables.append(":ballot_box_with_check:")
-        elif test.deleted:
+        else:
+            renderables.append("")
+
+        if test.deleted:
             color = Style(color="red")
             renderables.append(":ballot_box_with_check:")
+        else:
+            renderables.append("")
 
         if test.falty:
             color = Style(color=None, dim=True)
             falty_count += 1
             renderables.append(":ballot_box_with_check:")
+        else:
+            renderables.append("")
 
         table.add_row(*renderables, style=color)
 
