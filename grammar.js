@@ -34,7 +34,7 @@ const numeric_types = [
   'c_int',
 ]
 
-const primitive_types = numeric_types.concat(['bool', 'String', 'c_char'])
+const primitive_types = numeric_types.concat(['bool', 'String', 'c_char', 'void'])
 
 terminator = choice('\n', ';')
 
@@ -187,16 +187,23 @@ module.exports = grammar({
       $._expression,
     ),
 
+    // extern_keyword: $ => 'extern',
+
+    c_header_identfier: $ => seq('"', $.identifier, '.h"'),
+
     import_statement: $ => prec.right(seq(
       'import',
-      $.identifier,
-      optional(seq('as', $.identifier)),
+      optional(choice(
+          seq('extern', 'c', $.c_header_identfier),
+          seq($.identifier, optional(seq('as', $.identifier)))
+      )),
       optional(field('body', $.import_block)),
     )),
 
     import_block: $ => seq(
       '{',
-      sepBy(',', seq($.identifier, optional(terminator))),
+      optional(sepBy(',', seq($.identifier, optional(terminator)))),
+      optional(repeat(seq($.extern_function_declaration, optional(terminator)))),
       '}'
     ),
 
@@ -285,15 +292,19 @@ module.exports = grammar({
       ),
     )),
 
-    // TODO: this smells like not the right way to do this...
     optional_identifier: $ => prec.right(seq(
       field('operand', $.identifier),
       field('operator', choice( '!', '?')),
     )),
 
-    // TODO: this smells like not the right way to do this...
-    raw_pointer_identfier: $ => prec.right(seq(
-      field('operator', '*'),
+    raw_pointer_identfier: $ => prec.left(seq(
+      optional(field('operator', choice('*', '&'))),
+      'raw',
+      optional(field('operand', $.identifier)),
+    )),
+
+    raw_pointer_expression: $ => prec.left(seq(
+      field('operator', choice('*')),
       field('operand', $.identifier),
     )),
 
@@ -488,11 +499,6 @@ module.exports = grammar({
       field('body', $.match_block)
     ),
 
-    raw_pointer_expression: $ => seq(
-      field('operator', '&raw'),
-      field('operand', $.identifier),
-    ),
-
     match_block: $ => seq(
       '{',
       optional(seq(
@@ -635,6 +641,14 @@ module.exports = grammar({
       field('body', choice($.return_expression, $.block)),
     ),
 
+    extern_function_declaration: $ => seq(
+      'extern',
+      'function',
+      field('name', $.identifier),
+      field('parameters', $.parameters),
+      optional(seq('->', field('return_type', seq(optional($.raw_pointer_identfier), alias(choice(...primitive_types), $.primitive_type))))),
+    ),
+
     throws_specifier: $ => seq('throws'),
 
     return_expression: $ => prec.right(seq(
@@ -644,7 +658,7 @@ module.exports = grammar({
 
     parameters: $ => seq(
       '(',
-      optional($.this_specifier),
+      optional(choice($.this_specifier)),
       optional(sepBy(',', seq(
         choice(
           $.parameter,
@@ -659,11 +673,15 @@ module.exports = grammar({
 
     parameter: $ => seq(
       optional($.anonymous_specifier),
+      optional($.mutable_specifier),
       field('pattern', choice(
         $._pattern,
       )),
       ':',
-      field('type', $._type)
+      field('type', choice(
+        seq($.raw_pointer_identfier, alias(choice(...primitive_types), $.primitive_type)),
+        $._type,
+      )),
     ),
 
     anonymous_specifier: $ => seq('anon'),

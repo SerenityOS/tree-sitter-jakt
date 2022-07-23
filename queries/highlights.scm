@@ -69,7 +69,7 @@
 "throw" @keyword
 "as!" @keyword
 "as?" @keyword
-"&raw" @keyword
+"raw" @keyword
 "yield" @keyword
 "match" @keyword
 "boxed" @keyword
@@ -80,6 +80,7 @@
 "namespace" @keyword
 "import" @keyword
 "as" @keyword
+"extern" @keyword
 
 "this" @variable.builtin
 
@@ -96,3 +97,4 @@
 "=>" @operator
 "!" @operator
 "?" @operator
+"c" @operator
