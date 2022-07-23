@@ -78,6 +78,8 @@
 "anon" @keyword
 "None" @keyword
 "namespace" @keyword
+"import" @keyword
+"as" @keyword
 
 "this" @variable.builtin
 
