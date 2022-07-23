@@ -59,7 +59,6 @@
 "let" @keyword
 "return" @keyword
 "while" @keyword
-"mut" @keyword
 "struct" @keyword
 "class" @keyword
 "defer" @keyword
@@ -69,7 +68,6 @@
 "throw" @keyword
 "as!" @keyword
 "as?" @keyword
-"raw" @keyword
 "yield" @keyword
 "match" @keyword
 "boxed" @keyword
@@ -77,24 +75,28 @@
 "continue" @keyword
 "anon" @keyword
 "None" @keyword
-"namespace" @keyword
 "import" @keyword
 "as" @keyword
-"extern" @keyword
 
 "this" @variable.builtin
+"raw" @variable.builtin
+"extern" @variable.builtin
+"mut" @variable.builtin
 
 (char_literal) @string
 (string_literal) @string
+(c_header_identfier) @string
 
 (boolean_literal) @constant.builtin
 (integer_literal) @constant.builtin
 (float_literal) @constant.builtin
 (byte_literal) @constant.builtin
+"c" @constant.builtin
+"namespace" @constant.builtin
 
 "*" @operator
 "&" @operator
 "=>" @operator
 "!" @operator
 "?" @operator
-"c" @operator
+
