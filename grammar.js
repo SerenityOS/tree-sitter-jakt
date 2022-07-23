@@ -66,6 +66,7 @@ module.exports = grammar({
     $._statement,
     $.declaration,
     $.field_identifier,
+    // $._c_header_identfier,
   ],
 
   conflicts: $ => [
@@ -187,9 +188,7 @@ module.exports = grammar({
       $._expression,
     ),
 
-    // extern_keyword: $ => 'extern',
-
-    c_header_identfier: $ => seq('"', $.identifier, '.h"'),
+    c_header_identfier: $ => token(seq('"', identifier, '.h"')),
 
     import_statement: $ => prec.right(seq(
       'import',

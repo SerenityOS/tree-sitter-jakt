@@ -11,8 +11,7 @@ import extern c "stdlib.h"  {
 
 (source_file
   (import_statement
-    (c_header_identfier
-      (identifier))
+    (c_header_identfier)
     (import_block
       (extern_function_declaration
         (identifier)
@@ -33,21 +32,57 @@ import extern c "stdlib.h"  {
             (primitive_type)))
         (primitive_type)))))
 
-; ================================================================================
-; NOT IMPLEMENTED Imports import extern c (second)
-; ================================================================================
-;
-; import extern c "fcntl.h"  {
-;     extern function open(path: raw c_char, flags: i32) -> i32
-;     extern function read(fd: i32, mut buffer: raw void, max_len: usize) -> i64
-;     extern function close(fd: i32) -> i32
-; }
-;
-; --------------------------------------------------------------------------------
-;
-; (source_file
-;
-;
+================================================================================
+Imports import extern c (second)
+================================================================================
+
+import extern c "fcntl.h"  {
+    extern function open(path: raw c_char, flags: i32) -> i32
+    extern function read(fd: i32, mut buffer: raw void, max_len: usize) -> i64
+    extern function close(fd: i32) -> i32
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_statement
+    (c_header_identfier)
+    (import_block
+      (extern_function_declaration
+        (identifier)
+        (parameters
+          (parameter
+            (identifier)
+            (raw_pointer_identfier)
+            (primitive_type))
+          (parameter
+            (identifier)
+            (primitive_type)))
+        (primitive_type))
+      (extern_function_declaration
+        (identifier)
+        (parameters
+          (parameter
+            (identifier)
+            (primitive_type))
+          (parameter
+            (mutable_specifier)
+            (identifier)
+            (raw_pointer_identfier)
+            (primitive_type))
+          (parameter
+            (identifier)
+            (primitive_type)))
+        (primitive_type))
+      (extern_function_declaration
+        (identifier)
+        (parameters
+          (parameter
+            (identifier)
+            (primitive_type)))
+        (primitive_type)))))
+
+
 ; ================================================================================
 ; NOT IMPLEMENTED Imports import extern c (main func)
 ; ================================================================================

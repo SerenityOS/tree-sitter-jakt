@@ -446,21 +446,24 @@
       ]
     },
     "c_header_identfier": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "\""
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "STRING",
-          "value": ".h\""
-        }
-      ]
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\""
+          },
+          {
+            "type": "PATTERN",
+            "value": "[_\\p{XID_Start}][_\\p{XID_Continue}]*"
+          },
+          {
+            "type": "STRING",
+            "value": ".h\""
+          }
+        ]
+      }
     },
     "import_statement": {
       "type": "PREC_RIGHT",

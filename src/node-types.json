@@ -578,21 +578,6 @@
     "fields": {}
   },
   {
-    "type": "c_header_identfier",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "call_chain_expression",
     "named": true,
     "fields": {
@@ -2060,10 +2045,6 @@
     "named": false
   },
   {
-    "type": ".h\"",
-    "named": false
-  },
-  {
     "type": "/",
     "named": false
   },
@@ -2174,6 +2155,10 @@
   {
     "type": "c",
     "named": false
+  },
+  {
+    "type": "c_header_identfier",
+    "named": true
   },
   {
     "type": "catch",

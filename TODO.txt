@@ -25,6 +25,26 @@
 
     I am unsure why many TS parsers prepend '_' to begin with...
 
+    15:25 Sat Jul 23 2022: it seems variables leading with '_' are private in the ts
+    AST.
+
+        For example, I found that
+
+            _c_header_identfier: $ => token(seq('"', identifier, '.h"')),
+
+        will not show `(c_header_identfier)` in the AST output when used like so:
+
+            import_statement: $ => prec.right(seq(
+              'import',
+              optional(choice(
+                  seq('extern', 'c', $._c_header_identfier),
+                  seq($.identifier, optional(seq('as', $.identifier)))
+              )),
+              optional(field('body', $.import_block)),
+            )),
+
+
+
 * roadmapgen.py
     * allow viwing original tests in check table
     * allow saving check table to markdown table
@@ -49,7 +69,7 @@
 * get github to syntax highlight Jakt on Github
 
     Mentions tree-sitter https://github.com/github/linguist/issues/5844
-    
+
     How to add a new grammar to github: https://github.com/github/linguist/blob/master/CONTRIBUTING.md#adding-a-language
 
     1. A grammar will only be added to github after it has been used by 200 unique users and projects
