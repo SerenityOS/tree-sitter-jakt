@@ -187,10 +187,17 @@ module.exports = grammar({
       $._expression,
     ),
 
-    import_statement: $ => seq(
+    import_statement: $ => prec.right(seq(
       'import',
       $.identifier,
       optional(seq('as', $.identifier)),
+      optional(field('body', $.import_block)),
+    )),
+
+    import_block: $ => seq(
+      '{',
+      sepBy(',', seq($.identifier, optional(terminator))),
+      '}'
     ),
 
     namespace_declaration: $ => seq(
