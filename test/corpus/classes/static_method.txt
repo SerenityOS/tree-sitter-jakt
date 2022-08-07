@@ -1,0 +1,90 @@
+================================================================================
+Classes static method
+================================================================================
+
+class Person {
+    public name: String
+    public age: i64
+
+    public function generate(name: String, age: i64) throws -> Person {
+        return Person(name: name, age: age + 1000);
+    }
+}
+
+function main() {
+    let p = Person::generate(name: "Jane", age: 100)
+
+    println("{}", p.name)
+    println("{}", p.age)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (public_specifier)
+        (field_identifier)
+        (primitive_type))
+      (field_declaration
+        (public_specifier)
+        (field_identifier)
+        (primitive_type))
+      (function_declaration
+        (public_specifier)
+        (identifier)
+        (parameters
+          (parameter
+            (identifier)
+            (primitive_type))
+          (parameter
+            (identifier)
+            (primitive_type)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (return_statement
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (identifier)
+                  (identifier))
+                (argument
+                  (identifier)
+                  (binary_expression
+                    (identifier)
+                    (integer_literal))))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (static_member_expression
+            (identifier)
+            (field_identifier))
+          (arguments
+            (argument
+              (identifier)
+              (string_literal))
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (field_expression
+            (identifier)
+            (field_identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (field_expression
+            (identifier)
+            (field_identifier)))))))
