@@ -131,13 +131,18 @@ module.exports = grammar({
       $.update_expression,
       $.match_expression,
       $.raw_pointer_expression,
+      $.parenthesized_expression,
+    ),
+
+    parenthesized_expression: $ => seq(
+      '(',
+      $._expression,
+      ')'
     ),
 
     while_statement: $ => seq(
       'while',
-      optional('('),
       field('condition', $._expression),
-      optional(')'),
       field('body', $.block)
     ),
 
@@ -262,9 +267,7 @@ module.exports = grammar({
 
     logical_not: $ =>  prec.left(seq(
       'not',
-      optional('('),
       $._expression,
-      optional(')'),
     )),
 
     assignment_expression: $ => prec.left(PREC.assign, seq(
@@ -522,9 +525,7 @@ module.exports = grammar({
     ),
 
     match_pattern: $ => seq(
-      optional('('),
       choice($._expression),
-      optional(')'),
     ),
 
     match_else: $ => 'else',
@@ -696,9 +697,7 @@ module.exports = grammar({
 
     if_statement: $ => seq(
       'if',
-      optional('('),
       field('condition', seq($._expression)),
-      optional(')'),
       field('consequence', $.block),
       optional(field("alternative", $.else_clause))
 

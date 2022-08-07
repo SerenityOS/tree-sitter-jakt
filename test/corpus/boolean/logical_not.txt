@@ -22,9 +22,10 @@ function main() {
     (block
       (if_statement
         (logical_not
-          (binary_expression
-            (integer_literal)
-            (integer_literal)))
+          (parenthesized_expression
+            (binary_expression
+              (integer_literal)
+              (integer_literal))))
         (block
           (call_expression
             (identifier)

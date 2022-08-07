@@ -21,9 +21,10 @@ let y = match "foo" {
       (match_block
         (match_arm
           (match_pattern
-            (binary_expression
-              (integer_literal)
-              (integer_literal)))
+            (parenthesized_expression
+              (binary_expression
+                (integer_literal)
+                (integer_literal))))
           (array_literal
             (integer_literal)
             (integer_literal)
@@ -38,7 +39,8 @@ let y = match "foo" {
       (match_block
         (match_arm
           (match_pattern
-            (string_literal))
+            (parenthesized_expression
+              (string_literal)))
           (string_literal))
         (match_arm
           (match_else)

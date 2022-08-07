@@ -1,4 +1,3 @@
-
 ================================================================================
 Control flow while 3
 ================================================================================
@@ -12,9 +11,10 @@ while (x < 10) {
 
 (source_file
   (while_statement
-    (binary_expression
-      (identifier)
-      (integer_literal))
+    (parenthesized_expression
+      (binary_expression
+        (identifier)
+        (integer_literal)))
     (block
       (call_expression
         (identifier)

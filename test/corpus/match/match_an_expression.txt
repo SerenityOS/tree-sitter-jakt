@@ -27,7 +27,8 @@ function main() {
         (match_block
           (match_arm
             (match_pattern
-              (integer_literal))
+              (parenthesized_expression
+                (integer_literal)))
             (call_expression
               (identifier)
               (arguments

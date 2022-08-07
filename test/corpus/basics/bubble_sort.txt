@@ -1,0 +1,157 @@
+================================================================================
+Basics bubble sort
+================================================================================
+
+function bubble_sort(mut values: [i64]) {
+    mut i = 0
+    while i < values.size() as! i64 - 1 {
+        mut j = 0
+        while j < (values.size() as! i64) - i - 1 {
+            if values[j] > values[j + 1] {
+                let tmp = values[j]
+                values[j] = values[j + 1]
+                values[j + 1] = tmp
+            }
+            ++j
+        }
+        ++i
+    }
+}
+
+function main() {
+    mut v = [25, 13, 8, 1, 9, 22, 50, 2]
+    bubble_sort(values: v)
+    mut i = 0
+    while i < v.size() as! i64 {
+        println("{}", v[i])
+        ++i
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (mutable_specifier)
+        (identifier)
+        (array_type
+          (primitive_type))))
+    (block
+      (mutable_declaration
+        (identifier)
+        (integer_literal))
+      (while_statement
+        (binary_expression
+          (type_conversion_expression
+            (binary_expression
+              (identifier)
+              (call_expression
+                (field_expression
+                  (identifier)
+                  (field_identifier))
+                (arguments)))
+            (primitive_type))
+          (integer_literal))
+        (block
+          (mutable_declaration
+            (identifier)
+            (integer_literal))
+          (while_statement
+            (binary_expression
+              (identifier)
+              (binary_expression
+                (binary_expression
+                  (parenthesized_expression
+                    (type_conversion_expression
+                      (call_expression
+                        (field_expression
+                          (identifier)
+                          (field_identifier))
+                        (arguments))
+                      (primitive_type)))
+                  (identifier))
+                (integer_literal)))
+            (block
+              (if_statement
+                (binary_expression
+                  (array_expression
+                    (identifier)
+                    (identifier))
+                  (array_expression
+                    (identifier)
+                    (binary_expression
+                      (identifier)
+                      (integer_literal))))
+                (block
+                  (let_declaration
+                    (identifier)
+                    (array_expression
+                      (identifier)
+                      (identifier)))
+                  (assignment_expression
+                    (array_expression
+                      (identifier)
+                      (identifier))
+                    (array_expression
+                      (identifier)
+                      (binary_expression
+                        (identifier)
+                        (integer_literal))))
+                  (assignment_expression
+                    (array_expression
+                      (identifier)
+                      (binary_expression
+                        (identifier)
+                        (integer_literal)))
+                    (identifier))))
+              (update_expression
+                (identifier))))
+          (update_expression
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (identifier))))
+      (mutable_declaration
+        (identifier)
+        (integer_literal))
+      (while_statement
+        (type_conversion_expression
+          (binary_expression
+            (identifier)
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))
+          (primitive_type))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (array_expression
+                (identifier)
+                (identifier))))
+          (update_expression
+            (identifier)))))))

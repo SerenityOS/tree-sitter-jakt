@@ -6,7 +6,7 @@
 
 vim.api.nvim_set_keymap("n", "<F1>", "<cmd>TermExec cmd='tree-sitter generate && tree-sitter test'<CR>", {noremap = true, silent = true})
 
-vim.api.nvim_set_keymap("n", "<F2>", "<cmd>TermExec cmd='tree-sitter generate && tree-sitter test -d -f \"Arrays array parameter\"'<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<F2>", "<cmd>TermExec cmd='tree-sitter generate && tree-sitter test -d -f \"While from bubble sort\"'<CR>", {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap("n", "<F3>", "<cmd>TermExec cmd='python script/roadmapgen.py update readme --jakt-path ~/src/jakt/jakt/'<CR>", {noremap = true, silent = true})
 

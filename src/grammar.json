@@ -224,6 +224,27 @@
         {
           "type": "SYMBOL",
           "name": "raw_pointer_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parenthesized_expression"
+        }
+      ]
+    },
+    "parenthesized_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
@@ -235,36 +256,12 @@
           "value": "while"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "FIELD",
           "name": "condition",
           "content": {
             "type": "SYMBOL",
             "name": "_expression"
           }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": ")"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
         },
         {
           "type": "FIELD",
@@ -1110,32 +1107,8 @@
             "value": "not"
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "("
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
             "type": "SYMBOL",
             "name": "_expression"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ")"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
           }
         ]
       }
@@ -3119,32 +3092,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
               "type": "SYMBOL",
               "name": "_expression"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": ")"
-            },
-            {
-              "type": "BLANK"
             }
           ]
         }
@@ -4419,18 +4368,6 @@
           "value": "if"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "FIELD",
           "name": "condition",
           "content": {
@@ -4442,18 +4379,6 @@
               }
             ]
           }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": ")"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
         },
         {
           "type": "FIELD",
