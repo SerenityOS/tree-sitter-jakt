@@ -10,7 +10,8 @@ function infinity() throws {
 
 (source_file
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters)
     (throws_specifier)
     (block

@@ -17,7 +17,8 @@ function toss(anon value: i32) throws {
 
 (source_file
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters)
     (throws_specifier)
     (primitive_type)
@@ -36,7 +37,8 @@ function toss(anon value: i32) throws {
       (return_statement
         (integer_literal))))
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters
       (parameter
         (anonymous_specifier)
@@ -51,7 +53,6 @@ function toss(anon value: i32) throws {
             (field_identifier))
           (arguments
             (identifier)))))))
-
 
 ================================================================================
 Control flow try catch 1

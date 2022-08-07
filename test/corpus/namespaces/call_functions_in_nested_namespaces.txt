@@ -34,7 +34,8 @@ function main() {
             (type_identifier)
             (field_declaration_list
               (function_declaration
-                (identifier)
+                (function_name_identifier
+                  (identifier))
                 (parameters
                   (this_specifier))
                 (return_expression
@@ -43,7 +44,8 @@ function main() {
                     (arguments
                       (string_literal)))))
               (function_declaration
-                (identifier)
+                (function_name_identifier
+                  (identifier))
                 (parameters)
                 (return_expression
                   (call_expression
@@ -51,7 +53,8 @@ function main() {
                     (arguments
                       (string_literal)))))))
           (function_declaration
-            (identifier)
+            (function_name_identifier
+              (identifier))
             (parameters)
             (return_expression
               (call_expression
@@ -59,7 +62,8 @@ function main() {
                 (arguments
                   (string_literal)))))))
       (function_declaration
-        (identifier)
+        (function_name_identifier
+          (identifier))
         (parameters)
         (return_expression
           (call_expression
@@ -67,7 +71,8 @@ function main() {
             (arguments
               (string_literal)))))))
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters)
     (block
       (mutable_declaration

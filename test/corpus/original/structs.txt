@@ -16,8 +16,6 @@ struct Foo {
         (field_identifier)
         (primitive_type)))))
 
-
-
 ================================================================================
 Structs this shorthand
 ================================================================================
@@ -42,7 +40,8 @@ struct Foo {
         (field_identifier)
         (primitive_type))
       (function_declaration
-        (identifier)
+        (function_name_identifier
+          (identifier))
         (parameters
           (this_specifier))
         (block

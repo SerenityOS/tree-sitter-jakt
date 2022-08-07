@@ -11,7 +11,8 @@ function main() {
 
 (source_file
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters)
     (block
       (let_declaration

@@ -17,7 +17,8 @@ function recurse(count: i64) {
 
 (source_file
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters)
     (block
       (call_expression
@@ -27,7 +28,8 @@ function recurse(count: i64) {
             (identifier)
             (integer_literal))))))
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters
       (parameter
         (identifier)

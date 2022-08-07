@@ -22,7 +22,8 @@ function main() {
 
 (source_file
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters
       (parameter
         (anonymous_specifier)
@@ -35,7 +36,8 @@ function main() {
           (string_literal)
           (identifier)))))
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters)
     (block
       (call_expression

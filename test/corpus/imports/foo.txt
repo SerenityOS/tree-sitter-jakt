@@ -15,7 +15,8 @@ struct Bar {
 
 (source_file
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters)
     (block
       (call_expression
@@ -26,7 +27,8 @@ struct Bar {
     (type_identifier)
     (field_declaration_list
       (function_declaration
-        (identifier)
+        (function_name_identifier
+          (identifier))
         (parameters)
         (primitive_type)
         (return_expression

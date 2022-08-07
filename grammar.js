@@ -66,7 +66,6 @@ module.exports = grammar({
     $._statement,
     $.declaration,
     $.field_identifier,
-    // $._c_header_identfier,
   ],
 
   conflicts: $ => [
@@ -631,9 +630,11 @@ module.exports = grammar({
         )
     )),
 
+    function_name_identifier: $ => seq($.identifier),
+
     function_declaration: $ => seq(
       'function',
-      field('name', $.identifier),
+      field('name', $.function_name_identifier),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
       optional(seq('->', field('return_type', $._type))),

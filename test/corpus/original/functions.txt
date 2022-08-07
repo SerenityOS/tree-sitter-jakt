@@ -10,7 +10,8 @@ function main() {
 
 (source_file
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters)
     (block)))
 
@@ -26,7 +27,8 @@ function main(args: [String]) {
 
 (source_file
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters
       (parameter
         (identifier)
@@ -46,7 +48,8 @@ function foo(args: [String], count: i64) {
 
 (source_file
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters
       (parameter
         (identifier)
@@ -69,7 +72,8 @@ function foo() -> [String] {
 
 (source_file
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters)
     (array_type
       (primitive_type))
@@ -87,7 +91,8 @@ function foo(boo: i32, baz: f32) -> bool {
 
 (source_file
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters
       (parameter
         (identifier)

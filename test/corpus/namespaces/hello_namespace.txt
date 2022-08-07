@@ -19,7 +19,8 @@ function main() {
     (identifier)
     (block
       (function_declaration
-        (identifier)
+        (function_name_identifier
+          (identifier))
         (parameters)
         (block
           (call_expression
@@ -27,7 +28,8 @@ function main() {
             (arguments
               (string_literal)))))))
   (function_declaration
-    (identifier)
+    (function_name_identifier
+      (identifier))
     (parameters)
     (block
       (call_expression
