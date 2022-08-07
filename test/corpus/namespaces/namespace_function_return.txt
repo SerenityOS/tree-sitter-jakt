@@ -32,8 +32,7 @@ function main() {
                 (field_identifier)
                 (primitive_type))))))))
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters)
     (function_return_type)
     (block
@@ -49,8 +48,7 @@ function main() {
               (identifier)
               (integer_literal)))))))
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters)
     (block
       (call_expression

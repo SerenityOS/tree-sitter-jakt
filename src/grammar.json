@@ -151,7 +151,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "this_specifier_shorthand"
+          "name": "this_reference_shorthand"
         },
         {
           "type": "SYMBOL",
@@ -883,7 +883,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "this_specifier"
+                  "name": "this_reference"
                 },
                 {
                   "type": "SYMBOL",
@@ -3783,18 +3783,21 @@
         ]
       }
     },
-    "function_name_identifier": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        }
-      ]
-    },
     "function_declaration": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "public_specifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "STRING",
           "value": "function"
@@ -3804,7 +3807,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "function_name_identifier"
+            "name": "identifier"
           }
         },
         {
@@ -4069,11 +4072,23 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "CHOICE",
+              "type": "SEQ",
               "members": [
                 {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "mutable_specifier"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
                   "type": "SYMBOL",
-                  "name": "this_specifier"
+                  "name": "this_reference"
                 }
               ]
             },
@@ -4161,7 +4176,7 @@
         }
       ]
     },
-    "this_specifier": {
+    "this_reference": {
       "type": "SEQ",
       "members": [
         {
@@ -4170,7 +4185,7 @@
         }
       ]
     },
-    "this_specifier_shorthand": {
+    "this_reference_shorthand": {
       "type": "SEQ",
       "members": [
         {

@@ -8,8 +8,7 @@ function infinity(width: i32, height: i32) throws => width * height * infinity()
 
 (source_file
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters
       (parameter
         (identifier)

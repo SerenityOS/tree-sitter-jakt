@@ -1,35 +1,38 @@
 ================================================================================
-Structs method
+Classes method
 ================================================================================
 
-struct Rectangle {
-    width: i64,
-    height: i64,
+class Person {
+    public name: String
+    public age: i64
 
-    function area(this) => this.width * this.height
+    public function birthday(mut this) {
+        ++this.age
+    }
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (struct_declaration
+  (class_declaration
     (type_identifier)
     (field_declaration_list
       (field_declaration
+        (public_specifier)
         (field_identifier)
         (primitive_type))
       (field_declaration
+        (public_specifier)
         (field_identifier)
         (primitive_type))
       (function_declaration
+        (public_specifier)
         (identifier)
         (parameters
+          (mutable_specifier)
           (this_reference))
-        (return_expression
-          (binary_expression
-            (field_expression
-              (this_reference)
-              (field_identifier))
-            (field_expression
-              (this_reference)
-              (field_identifier))))))))
+        (block
+          (field_expression
+            (update_expression
+              (identifier))
+            (field_identifier)))))))

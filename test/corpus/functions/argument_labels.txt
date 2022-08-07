@@ -28,8 +28,7 @@ function main() {
 
 (source_file
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters
       (parameter
         (identifier)
@@ -39,8 +38,7 @@ function main() {
         (primitive_type)))
     (block))
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters
       (parameter
         (anonymous_specifier)
@@ -51,8 +49,7 @@ function main() {
         (primitive_type)))
     (block))
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters
       (parameter
         (anonymous_specifier)
@@ -64,16 +61,14 @@ function main() {
         (primitive_type)))
     (block))
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters
       (parameter
         (identifier)
         (primitive_type)))
     (block))
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters)
     (block
       (call_expression

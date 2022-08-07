@@ -8,8 +8,7 @@ function area(width: i64, height: i64) => width * height
 
 (source_file
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters
       (parameter
         (identifier)
@@ -32,8 +31,7 @@ function greeting(name: String) throws -> String => format("Hello, {}!", name)
 
 (source_file
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters
       (parameter
         (identifier)

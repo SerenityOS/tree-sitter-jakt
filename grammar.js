@@ -112,7 +112,7 @@ module.exports = grammar({
       $.unary_expression,
       $.binary_expression,
       $._literal,
-      $.this_specifier_shorthand,
+      $.this_reference_shorthand,
       $.identifier,
       $.optional_identifier,
       $.raw_pointer_identfier,
@@ -233,7 +233,7 @@ module.exports = grammar({
     )),
 
     field_expression: $ => prec(PREC.field, seq(
-      field('value', choice($.this_specifier, $._expression)),
+      field('value', choice($.this_reference, $._expression)),
       '.',
       field('field', choice(
         $._field_identifier,
@@ -633,11 +633,10 @@ module.exports = grammar({
         )
     )),
 
-    function_name_identifier: $ => seq($.identifier),
-
     function_declaration: $ => seq(
+      optional($.public_specifier),
       'function',
-      field('name', $.function_name_identifier),
+      field('name', $.identifier),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
       optional(seq('->', field('return_type', $._type))),
@@ -661,7 +660,7 @@ module.exports = grammar({
 
     parameters: $ => seq(
       '(',
-      optional(choice($.this_specifier)),
+      optional(seq(optional($.mutable_specifier), $.this_reference)),
       optional(sepBy(',', seq(
         choice(
           $.parameter,
@@ -670,9 +669,9 @@ module.exports = grammar({
       ')'
     ),
 
-    this_specifier: $ => seq('this'),
+    this_reference: $ => seq('this'),
 
-    this_specifier_shorthand: $ => seq('.', $.identifier),
+    this_reference_shorthand: $ => seq('.', $.identifier),
 
     parameter: $ => seq(
       optional($.anonymous_specifier),

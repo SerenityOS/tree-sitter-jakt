@@ -10,8 +10,7 @@ function foo(boo: i32, baz: f32) -> bool {
 
 (source_file
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters
       (parameter
         (identifier)

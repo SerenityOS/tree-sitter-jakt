@@ -29,16 +29,15 @@ namespace Greeters {
             (field_identifier)
             (primitive_type))
           (function_declaration
-            (function_name_identifier
-              (identifier))
+            (identifier)
             (parameters
-              (this_specifier))
+              (this_reference))
             (block
               (call_expression
                 (identifier)
                 (arguments
                   (string_literal)
-                  (this_specifier_shorthand
+                  (this_reference_shorthand
                     (identifier))
-                  (this_specifier_shorthand
+                  (this_reference_shorthand
                     (identifier)))))))))))

@@ -17,8 +17,7 @@ function toss(anon value: i32) throws {
 
 (source_file
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters)
     (throws_specifier)
     (primitive_type)
@@ -37,8 +36,7 @@ function toss(anon value: i32) throws {
       (return_statement
         (integer_literal))))
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters
       (parameter
         (anonymous_specifier)

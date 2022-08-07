@@ -22,8 +22,7 @@ function main() {
         (primitive_type)
         (optional_specifier))))
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters)
     (block
       (let_declaration

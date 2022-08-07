@@ -9,8 +9,7 @@ function num() -> i64 => 5
 
 (source_file
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters)
     (return_expression
       (call_expression
@@ -18,8 +17,7 @@ function num() -> i64 => 5
         (arguments
           (string_literal)))))
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters)
     (primitive_type)
     (return_expression

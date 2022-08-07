@@ -21,7 +21,7 @@
 ;     name: (identifier) @function))
 
 ; Function definitions
-(function_declaration (function_name_identifier) @function.method)
+(function_declaration (identifier) @function.method)
 
 ; Other identifiers
 

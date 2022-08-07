@@ -14,16 +14,14 @@ function main() {
 
 (source_file
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters)
     (primitive_type)
     (block
       (return_statement
         (string_literal))))
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters)
     (block
       (call_expression

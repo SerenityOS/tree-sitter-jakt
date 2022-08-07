@@ -19,8 +19,7 @@ function main(args: [String]) {
 (source_file
   (line_comment)
   (function_declaration
-    (function_name_identifier
-      (identifier))
+    (identifier)
     (parameters
       (parameter
         (identifier)
