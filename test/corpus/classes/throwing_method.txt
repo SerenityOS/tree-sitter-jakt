@@ -1,0 +1,58 @@
+================================================================================
+Classes throwing method
+================================================================================
+
+class Foo {
+    public function toss(this) throws {
+        throw Error::from_errno(0)
+    }
+}
+
+function main() {
+    let foo = Foo()
+    try foo.toss() catch error {
+        println("PASS")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (public_specifier)
+        (identifier)
+        (parameters
+          (this_reference))
+        (throws_specifier)
+        (block
+          (throw_statement
+            (call_expression
+              (static_member_expression
+                (identifier)
+                (field_identifier))
+              (arguments
+                (integer_literal))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (try_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments))
+        (identifier)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))))))
