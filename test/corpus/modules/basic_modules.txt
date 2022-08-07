@@ -1,0 +1,24 @@
+================================================================================
+Modules basic modules
+================================================================================
+
+import b
+
+function main() {
+    b::not_cool()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_statement
+    (identifier))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (static_member_expression
+          (identifier)
+          (field_identifier))
+        (arguments)))))
