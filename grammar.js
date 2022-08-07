@@ -375,7 +375,10 @@ module.exports = grammar({
     reference_type: $ => prec.left(seq(
       '&',
       optional($.mutable_specifier),
-      alias(choice(...primitive_types), $.primitive_type),
+      choice(
+        alias(choice(...primitive_types), $.primitive_type),
+        $.identifier,
+      ),
     )),
 
     let_declaration: $ => prec.left(seq(
@@ -716,9 +719,11 @@ module.exports = grammar({
         $._pattern,
       )),
       ':',
-      field('type', choice(
-        seq($.raw_pointer_identfier, alias(choice(...primitive_types), $.primitive_type)),
-        $._type,
+      field('type', seq(
+        choice(
+          seq($.raw_pointer_identfier, alias(choice(...primitive_types), $.primitive_type)),
+          $._type,
+        ),
       )),
     ),
 

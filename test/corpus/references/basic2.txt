@@ -1,0 +1,69 @@
+================================================================================
+References basic 2
+================================================================================
+
+struct Foo {
+    string: String
+}
+
+function overwrite(foo: &mut Foo) {
+    (*foo).string = "PASS"
+}
+
+function main() {
+    mut foo = Foo(string: "FAIL")
+    overwrite(foo: &mut foo)
+    println("{}", foo.string)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (mutable_specifier)
+          (identifier))))
+    (block
+      (assignment_expression
+        (field_expression
+          (parenthesized_expression
+            (dereference_expression
+              (identifier)))
+          (field_identifier))
+        (string_literal))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (string_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (mutable_reference_expression
+              (identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (field_expression
+            (identifier)
+            (field_identifier)))))))

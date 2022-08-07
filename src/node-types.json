@@ -1791,6 +1791,10 @@
       "required": true,
       "types": [
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "mutable_specifier",
           "named": true
         },

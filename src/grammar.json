@@ -1813,94 +1813,103 @@
             ]
           },
           {
-            "type": "ALIAS",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "u8"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "u8"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "i8"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "u16"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "i16"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "u32"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "i32"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "u64"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "i64"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "u128"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "i128"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "isize"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "usize"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "uz"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "f32"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "f64"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "c_int"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "bool"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "String"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "c_char"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "void"
+                    }
+                  ]
                 },
-                {
-                  "type": "STRING",
-                  "value": "i8"
-                },
-                {
-                  "type": "STRING",
-                  "value": "u16"
-                },
-                {
-                  "type": "STRING",
-                  "value": "i16"
-                },
-                {
-                  "type": "STRING",
-                  "value": "u32"
-                },
-                {
-                  "type": "STRING",
-                  "value": "i32"
-                },
-                {
-                  "type": "STRING",
-                  "value": "u64"
-                },
-                {
-                  "type": "STRING",
-                  "value": "i64"
-                },
-                {
-                  "type": "STRING",
-                  "value": "u128"
-                },
-                {
-                  "type": "STRING",
-                  "value": "i128"
-                },
-                {
-                  "type": "STRING",
-                  "value": "isize"
-                },
-                {
-                  "type": "STRING",
-                  "value": "usize"
-                },
-                {
-                  "type": "STRING",
-                  "value": "uz"
-                },
-                {
-                  "type": "STRING",
-                  "value": "f32"
-                },
-                {
-                  "type": "STRING",
-                  "value": "f64"
-                },
-                {
-                  "type": "STRING",
-                  "value": "c_int"
-                },
-                {
-                  "type": "STRING",
-                  "value": "bool"
-                },
-                {
-                  "type": "STRING",
-                  "value": "String"
-                },
-                {
-                  "type": "STRING",
-                  "value": "c_char"
-                },
-                {
-                  "type": "STRING",
-                  "value": "void"
-                }
-              ]
-            },
-            "named": true,
-            "value": "primitive_type"
+                "named": true,
+                "value": "primitive_type"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
           }
         ]
       }
@@ -4465,110 +4474,115 @@
           "type": "FIELD",
           "name": "type",
           "content": {
-            "type": "CHOICE",
+            "type": "SEQ",
             "members": [
               {
-                "type": "SEQ",
+                "type": "CHOICE",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "raw_pointer_identfier"
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "raw_pointer_identfier"
+                      },
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "STRING",
+                              "value": "u8"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "i8"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "u16"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "i16"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "u32"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "i32"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "u64"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "i64"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "u128"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "i128"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "isize"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "usize"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "uz"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "f32"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "f64"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "c_int"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "bool"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "String"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "c_char"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "void"
+                            }
+                          ]
+                        },
+                        "named": true,
+                        "value": "primitive_type"
+                      }
+                    ]
                   },
                   {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "STRING",
-                          "value": "u8"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "i8"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "u16"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "i16"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "u32"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "i32"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "u64"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "i64"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "u128"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "i128"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "isize"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "usize"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "uz"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "f32"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "f64"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "c_int"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "bool"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "String"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "c_char"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "void"
-                        }
-                      ]
-                    },
-                    "named": true,
-                    "value": "primitive_type"
+                    "type": "SYMBOL",
+                    "name": "_type"
                   }
                 ]
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_type"
               }
             ]
           }
