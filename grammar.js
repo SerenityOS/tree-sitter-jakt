@@ -459,6 +459,13 @@ module.exports = grammar({
 
     mutable_specifier: $ => seq('mut'),
 
+    restricted_specifier: $ => seq(
+        'restricted',
+        '(',
+        sepBy(',', $.identifier),
+        ')'
+    ),
+
     unary_expression: $ => prec(PREC.unary, seq(
       '-', $._expression
     )),
@@ -635,7 +642,7 @@ module.exports = grammar({
     )),
 
     function_declaration: $ => seq(
-      optional($.public_specifier),
+      optional(choice($.restricted_specifier, $.public_specifier)),
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters),

@@ -1060,6 +1060,10 @@
         {
           "type": "public_specifier",
           "named": true
+        },
+        {
+          "type": "restricted_specifier",
+          "named": true
         }
       ]
     }
@@ -1686,6 +1690,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "restricted_specifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2334,6 +2353,10 @@
   },
   {
     "type": "raw",
+    "named": false
+  },
+  {
+    "type": "restricted",
     "named": false
   },
   {

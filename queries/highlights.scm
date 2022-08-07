@@ -76,6 +76,7 @@
 "None" @keyword
 "import" @keyword
 "as" @keyword
+"restricted" @keyword
 
 "this" @variable.builtin
 "raw" @variable.builtin
