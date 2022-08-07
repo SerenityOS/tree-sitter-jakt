@@ -326,7 +326,7 @@ module.exports = grammar({
     )),
 
     mutable_reference_expression: $ => prec.left(seq(
-      field('operator', choice('&mut')),
+      field('operator', seq('&' , $.mutable_specifier)),
       field('operand', $.identifier),
     )),
 
@@ -396,7 +396,7 @@ module.exports = grammar({
     )),
 
     mutable_declaration: $ => prec.left(seq(
-      'mut',
+      $.mutable_specifier,
       field('pattern', $._pattern),
       optional(seq(
         ':',
@@ -734,7 +734,7 @@ module.exports = grammar({
       )),
     ),
 
-    anonymous_specifier: $ => seq('anon'),
+    anonymous_specifier: $ => 'anon',
 
     block: $ => seq(
       '{',

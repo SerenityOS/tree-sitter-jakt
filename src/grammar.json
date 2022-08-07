@@ -1446,11 +1446,15 @@
             "type": "FIELD",
             "name": "operator",
             "content": {
-              "type": "CHOICE",
+              "type": "SEQ",
               "members": [
                 {
                   "type": "STRING",
-                  "value": "&mut"
+                  "value": "&"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "mutable_specifier"
                 }
               ]
             }
@@ -2025,8 +2029,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "mut"
+            "type": "SYMBOL",
+            "name": "mutable_specifier"
           },
           {
             "type": "FIELD",
@@ -4682,13 +4686,8 @@
       ]
     },
     "anonymous_specifier": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "anon"
-        }
-      ]
+      "type": "STRING",
+      "value": "anon"
     },
     "block": {
       "type": "SEQ",

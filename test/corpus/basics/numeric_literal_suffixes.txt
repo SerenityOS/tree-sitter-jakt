@@ -32,6 +32,7 @@ a += 5 as! usize
 
 (source_file
   (mutable_declaration
+    (mutable_specifier)
     (identifier)
     (integer_literal))
   (type_conversion_expression
@@ -41,15 +42,19 @@ a += 5 as! usize
     (primitive_type))
   (block
     (mutable_declaration
+      (mutable_specifier)
       (identifier)
       (integer_literal))
     (mutable_declaration
+      (mutable_specifier)
       (identifier)
       (integer_literal))
     (mutable_declaration
+      (mutable_specifier)
       (identifier)
       (integer_literal))
     (mutable_declaration
+      (mutable_specifier)
       (identifier)
       (integer_literal))
     (type_conversion_expression
@@ -74,15 +79,19 @@ a += 5 as! usize
       (primitive_type)))
   (block
     (mutable_declaration
+      (mutable_specifier)
       (identifier)
       (integer_literal))
     (mutable_declaration
+      (mutable_specifier)
       (identifier)
       (integer_literal))
     (mutable_declaration
+      (mutable_specifier)
       (identifier)
       (integer_literal))
     (mutable_declaration
+      (mutable_specifier)
       (identifier)
       (integer_literal))
     (type_conversion_expression

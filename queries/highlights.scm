@@ -72,17 +72,17 @@
 "boxed" @keyword
 "throws" @keyword
 "continue" @keyword
-"anon" @keyword
+(anonymous_specifier) @keyword
 "None" @keyword
 "import" @keyword
 "as" @keyword
 "restricted" @keyword
 "guard" @keyword
+(mutable_specifier) @keyword
 
 "this" @variable.builtin
 "raw" @variable.builtin
 "extern" @variable.builtin
-"mut" @variable.builtin
 "public" @variable.builtin
 
 (char_literal) @string

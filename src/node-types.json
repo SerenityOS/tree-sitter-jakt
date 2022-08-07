@@ -308,11 +308,6 @@
     ]
   },
   {
-    "type": "anonymous_specifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "argument",
     "named": true,
     "fields": {
@@ -1459,6 +1454,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "mutable_specifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1476,21 +1481,20 @@
         ]
       },
       "operator": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "&mut",
+            "type": "&",
             "named": false
+          },
+          {
+            "type": "mutable_specifier",
+            "named": true
           }
         ]
       }
     }
-  },
-  {
-    "type": "mutable_specifier",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "namespace_declaration",
@@ -2196,10 +2200,6 @@
     "named": false
   },
   {
-    "type": "&mut",
-    "named": false
-  },
-  {
     "type": "(",
     "named": false
   },
@@ -2332,8 +2332,8 @@
     "named": false
   },
   {
-    "type": "anon",
-    "named": false
+    "type": "anonymous_specifier",
+    "named": true
   },
   {
     "type": "as",
@@ -2472,8 +2472,8 @@
     "named": false
   },
   {
-    "type": "mut",
-    "named": false
+    "type": "mutable_specifier",
+    "named": true
   },
   {
     "type": "namespace",

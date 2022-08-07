@@ -8,5 +8,6 @@ mut b = b'b'
 
 (source_file
   (mutable_declaration
+    (mutable_specifier)
     (identifier)
     (byte_literal)))
