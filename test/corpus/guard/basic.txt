@@ -1,0 +1,100 @@
+================================================================================
+Guard basic
+================================================================================
+
+
+function test1(anon x: i64) -> String {
+    guard x == 1 else {
+        return "FAIL"
+    }
+
+    return "PASS"
+}
+
+function test2() {
+    mut i = 0
+    loop {
+        guard i % 2 == 0 else {
+            i++
+            continue
+        }
+        guard i < 10 else {
+            break
+        }
+
+        println("{}", i++)
+    }
+}
+
+function main() {
+    println("{}", test1(1))
+    test2()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type)))
+    (primitive_type)
+    (block
+      (guard_statement
+        (binary_expression
+          (identifier)
+          (integer_literal))
+        (block
+          (return_statement
+            (string_literal))))
+      (return_statement
+        (string_literal))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (identifier)
+        (integer_literal))
+      (loop_statement
+        (block
+          (guard_statement
+            (binary_expression
+              (binary_expression
+                (identifier)
+                (integer_literal))
+              (integer_literal))
+            (block
+              (update_expression
+                (identifier))
+              (continue_statement)))
+          (guard_statement
+            (binary_expression
+              (identifier)
+              (integer_literal))
+            (block
+              (identifier)))
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (update_expression
+                (identifier))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (identifier)
+            (arguments
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments)))))

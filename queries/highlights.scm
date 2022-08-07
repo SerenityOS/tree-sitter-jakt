@@ -77,6 +77,7 @@
 "import" @keyword
 "as" @keyword
 "restricted" @keyword
+"guard" @keyword
 
 "this" @variable.builtin
 "raw" @variable.builtin

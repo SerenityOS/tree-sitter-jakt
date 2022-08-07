@@ -96,6 +96,7 @@ module.exports = grammar({
       $.unsafe_block,
       $.yield_statement,
       $.import_statement,
+      $.guard_statement,
     ),
 
     declaration: $ => choice(
@@ -208,6 +209,14 @@ module.exports = grammar({
       optional(sepBy(',', seq($.identifier, optional(terminator)))),
       optional(repeat(seq($.extern_function_declaration, optional(terminator)))),
       '}'
+    ),
+
+    guard_statement: $ => seq(
+      'guard',
+      field('condition', seq($._expression)),
+      'else',
+      field('consequence', $.block),
+
     ),
 
     namespace_declaration: $ => seq(

@@ -212,6 +212,10 @@
         "named": true
       },
       {
+        "type": "guard_statement",
+        "named": true
+      },
+      {
         "type": "if_statement",
         "named": true
       },
@@ -1066,6 +1070,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "guard_statement",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      },
+      "consequence": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2286,6 +2316,10 @@
   {
     "type": "function_return_type",
     "named": true
+  },
+  {
+    "type": "guard",
+    "named": false
   },
   {
     "type": "identifier",
