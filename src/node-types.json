@@ -140,6 +140,10 @@
       {
         "type": "string_literal",
         "named": true
+      },
+      {
+        "type": "tuple_literal",
+        "named": true
       }
     ]
   },
@@ -980,6 +984,10 @@
         "types": [
           {
             "type": "field_identifier",
+            "named": true
+          },
+          {
+            "type": "integer_literal",
             "named": true
           }
         ]
@@ -2012,6 +2020,21 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tuple_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_literal_pattern",
           "named": true
         }
       ]

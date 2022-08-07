@@ -69,7 +69,6 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$._type, $._pattern],
     [$._expression, $.array_expression],
   ],
 
@@ -253,6 +252,7 @@ module.exports = grammar({
       '.',
       field('field', choice(
         $._field_identifier,
+        $.integer_literal,
       ))
     )),
 
@@ -568,7 +568,7 @@ module.exports = grammar({
 
     match_else: $ => 'else',
 
-    _literal: $ => choice(
+    _literal: $ => prec(1, choice(
       $.string_literal,
       $.char_literal,
       $.byte_literal,
@@ -577,7 +577,8 @@ module.exports = grammar({
       $.binary_literal,
       $.float_literal,
       $.array_literal,
-    ),
+      $.tuple_literal,
+    )),
 
     _pattern: $ => choice(
       $._literal_pattern,
@@ -660,6 +661,12 @@ module.exports = grammar({
         )),
       ),
       ']'
+    ),
+
+    tuple_literal: $ => seq(
+      '(',
+      sepBy(',', seq($._literal_pattern, optional(','))),
+      ')'
     ),
 
     escape_sequence: $ => token.immediate(

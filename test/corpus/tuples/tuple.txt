@@ -1,0 +1,30 @@
+================================================================================
+Tuples basic tuple
+================================================================================
+
+function main() {
+    let x = ("a", 2, true);
+
+    println("{}", x.1)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (tuple_literal
+          (string_literal)
+          (integer_literal)
+          (boolean_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (field_expression
+            (identifier)
+            (integer_literal)))))))
