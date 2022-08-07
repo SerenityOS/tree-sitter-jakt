@@ -390,6 +390,7 @@ def print_testmap_table(tests: TestMap):
 
     falty_count = 0
     implemented_count = 0
+    new_count = 0
 
     for num, test in enumerate(tests.map):
         corpus_path = test.corpus_file_path
@@ -424,6 +425,8 @@ def print_testmap_table(tests: TestMap):
         if test.new:
             color = Style(color="green")
             renderables.append(":ballot_box_with_check:")
+            if not test.falty:
+                new_count += 1
         elif any(str(x.header) in "New" for x in table.columns):
             renderables.append("")
 
@@ -446,6 +449,7 @@ def print_testmap_table(tests: TestMap):
     console.log(f"Total tests: {len(tests.map)}")
     console.log(f"Falty tests: {falty_count}")
     console.log(f"Parsable tests: {len(tests.map) - falty_count}")
+    console.log(f"New parsable tests: {new_count}")
     console.log(f"Implemented tests: {implemented_count}")
     console.log("[yellow][bold]WARNING[/yellow] - state file is unsaved[/bold]")
 
