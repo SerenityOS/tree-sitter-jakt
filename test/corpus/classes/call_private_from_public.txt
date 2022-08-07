@@ -1,0 +1,58 @@
+================================================================================
+Classes call private from public
+================================================================================
+
+class Class {
+    function private_function(this) {
+        println("PASS")
+    }
+    public function public_function(this) {
+        this.private_function()
+    }
+}
+
+function main() {
+    let c = Class()
+    c.public_function()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_reference))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)))))
+      (function_declaration
+        (public_specifier)
+        (identifier)
+        (parameters
+          (this_reference))
+        (block
+          (call_expression
+            (field_expression
+              (this_reference)
+              (field_identifier))
+            (arguments))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments)))))
