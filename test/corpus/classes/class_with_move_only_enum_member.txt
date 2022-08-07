@@ -1,0 +1,46 @@
+================================================================================
+Classes with move only enum member
+================================================================================
+
+enum E {
+    Okay
+}
+
+class C {
+    e: E
+}
+
+function main() {
+    let c = C(e: E::Okay())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))))
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (type_identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (call_expression
+                (static_member_expression
+                  (identifier)
+                  (field_identifier))
+                (arguments)))))))))
