@@ -422,6 +422,7 @@ module.exports = grammar({
     ),
 
     field_declaration: $ => seq(
+      optional($.public_specifier),
       field('name', $._field_identifier),
       ':',
       field('type', seq($._type, optional($.optional_specifier))),
@@ -450,6 +451,8 @@ module.exports = grammar({
       field('name', choice($._type_identifier)),
       field('body', $.field_declaration_list)
     ),
+
+    public_specifier: $ => seq('public'),
 
     mutable_specifier: $ => seq('mut'),
 

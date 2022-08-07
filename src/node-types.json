@@ -893,6 +893,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "public_specifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1583,6 +1593,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "public_specifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "range_expression",
@@ -2294,6 +2309,10 @@
   {
     "type": "primitive_type",
     "named": true
+  },
+  {
+    "type": "public",
+    "named": false
   },
   {
     "type": "raw",

@@ -81,6 +81,7 @@
 "raw" @variable.builtin
 "extern" @variable.builtin
 "mut" @variable.builtin
+"public" @variable.builtin
 
 (char_literal) @string
 (string_literal) @string
