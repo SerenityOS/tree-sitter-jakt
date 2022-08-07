@@ -131,7 +131,9 @@ module.exports = grammar({
       $.none_expression,
       $.update_expression,
       $.match_expression,
-      $.raw_pointer_expression,
+      $.reference_expression,
+      $.dereference_expression,
+      $.mutable_reference_expression,
       $.parenthesized_expression,
     ),
 
@@ -308,13 +310,23 @@ module.exports = grammar({
     )),
 
     raw_pointer_identfier: $ => prec.left(seq(
-      optional(field('operator', choice('*', '&'))),
+      optional(field('operator', '&')),
       'raw',
       optional(field('operand', $.identifier)),
     )),
 
-    raw_pointer_expression: $ => prec.left(seq(
+    reference_expression: $ => prec.left(seq(
+      field('operator', choice('&')),
+      field('operand', $.identifier),
+    )),
+
+    dereference_expression: $ => prec.left(seq(
       field('operator', choice('*')),
+      field('operand', $.identifier),
+    )),
+
+    mutable_reference_expression: $ => prec.left(seq(
+      field('operator', choice('&mut')),
       field('operand', $.identifier),
     )),
 
@@ -344,7 +356,8 @@ module.exports = grammar({
       $.array_type,
       $._type_identifier,
       $.function_return_type,
-      alias(choice(...primitive_types), $.primitive_type)
+      alias(choice(...primitive_types), $.primitive_type),
+      $.reference_type,
     ),
 
     array_type: $ => seq(
@@ -357,6 +370,12 @@ module.exports = grammar({
     function_return_type: $ => token(seq(
       identifier,
       repeat1(seq('::', identifier))
+    )),
+
+    reference_type: $ => prec.left(seq(
+      '&',
+      optional($.mutable_specifier),
+      alias(choice(...primitive_types), $.primitive_type),
     )),
 
     let_declaration: $ => prec.left(seq(
@@ -466,7 +485,7 @@ module.exports = grammar({
 
     public_specifier: $ => seq('public'),
 
-    mutable_specifier: $ => seq('mut'),
+    mutable_specifier: $ => 'mut',
 
     restricted_specifier: $ => seq(
         'restricted',

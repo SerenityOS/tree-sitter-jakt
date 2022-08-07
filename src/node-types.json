@@ -24,6 +24,10 @@
         "named": true
       },
       {
+        "type": "dereference_expression",
+        "named": true
+      },
+      {
         "type": "field_expression",
         "named": true
       },
@@ -48,6 +52,10 @@
         "named": true
       },
       {
+        "type": "mutable_reference_expression",
+        "named": true
+      },
+      {
         "type": "none_expression",
         "named": true
       },
@@ -68,11 +76,11 @@
         "named": true
       },
       {
-        "type": "raw_pointer_expression",
+        "type": "raw_pointer_identfier",
         "named": true
       },
       {
-        "type": "raw_pointer_identfier",
+        "type": "reference_expression",
         "named": true
       },
       {
@@ -283,6 +291,10 @@
       },
       {
         "type": "primitive_type",
+        "named": true
+      },
+      {
+        "type": "reference_type",
         "named": true
       },
       {
@@ -695,6 +707,32 @@
           {
             "type": "block",
             "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "dereference_expression",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "*",
+            "named": false
           }
         ]
       }
@@ -1416,6 +1454,32 @@
     }
   },
   {
+    "type": "mutable_reference_expression",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "&mut",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "mutable_specifier",
     "named": true,
     "fields": {}
@@ -1667,32 +1731,6 @@
     }
   },
   {
-    "type": "raw_pointer_expression",
-    "named": true,
-    "fields": {
-      "operand": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "operator": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "*",
-            "named": false
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "raw_pointer_identfier",
     "named": true,
     "fields": {
@@ -1713,13 +1751,54 @@
           {
             "type": "&",
             "named": false
-          },
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "reference_expression",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
           {
-            "type": "*",
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "&",
             "named": false
           }
         ]
       }
+    }
+  },
+  {
+    "type": "reference_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "mutable_specifier",
+          "named": true
+        },
+        {
+          "type": "primitive_type",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2087,6 +2166,10 @@
   },
   {
     "type": "&",
+    "named": false
+  },
+  {
+    "type": "&mut",
     "named": false
   },
   {

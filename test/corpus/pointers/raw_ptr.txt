@@ -30,5 +30,5 @@ function main() {
           (identifier)
           (arguments
             (string_literal)
-            (raw_pointer_expression
+            (dereference_expression
               (identifier))))))))

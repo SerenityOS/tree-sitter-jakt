@@ -227,7 +227,15 @@
         },
         {
           "type": "SYMBOL",
-          "name": "raw_pointer_expression"
+          "name": "reference_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dereference_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mutable_reference_expression"
         },
         {
           "type": "SYMBOL",
@@ -1332,17 +1340,8 @@
                 "type": "FIELD",
                 "name": "operator",
                 "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "*"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "&"
-                    }
-                  ]
+                  "type": "STRING",
+                  "value": "&"
                 }
               },
               {
@@ -1373,7 +1372,37 @@
         ]
       }
     },
-    "raw_pointer_expression": {
+    "reference_expression": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "operator",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "&"
+                }
+              ]
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "operand",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          }
+        ]
+      }
+    },
+    "dereference_expression": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -1388,6 +1417,36 @@
                 {
                   "type": "STRING",
                   "value": "*"
+                }
+              ]
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "operand",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          }
+        ]
+      }
+    },
+    "mutable_reference_expression": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "operator",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "&mut"
                 }
               ]
             }
@@ -1675,6 +1734,10 @@
           },
           "named": true,
           "value": "primitive_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "reference_type"
         }
       ]
     },
@@ -1723,6 +1786,121 @@
                 }
               ]
             }
+          }
+        ]
+      }
+    },
+    "reference_type": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "&"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "mutable_specifier"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "u8"
+                },
+                {
+                  "type": "STRING",
+                  "value": "i8"
+                },
+                {
+                  "type": "STRING",
+                  "value": "u16"
+                },
+                {
+                  "type": "STRING",
+                  "value": "i16"
+                },
+                {
+                  "type": "STRING",
+                  "value": "u32"
+                },
+                {
+                  "type": "STRING",
+                  "value": "i32"
+                },
+                {
+                  "type": "STRING",
+                  "value": "u64"
+                },
+                {
+                  "type": "STRING",
+                  "value": "i64"
+                },
+                {
+                  "type": "STRING",
+                  "value": "u128"
+                },
+                {
+                  "type": "STRING",
+                  "value": "i128"
+                },
+                {
+                  "type": "STRING",
+                  "value": "isize"
+                },
+                {
+                  "type": "STRING",
+                  "value": "usize"
+                },
+                {
+                  "type": "STRING",
+                  "value": "uz"
+                },
+                {
+                  "type": "STRING",
+                  "value": "f32"
+                },
+                {
+                  "type": "STRING",
+                  "value": "f64"
+                },
+                {
+                  "type": "STRING",
+                  "value": "c_int"
+                },
+                {
+                  "type": "STRING",
+                  "value": "bool"
+                },
+                {
+                  "type": "STRING",
+                  "value": "String"
+                },
+                {
+                  "type": "STRING",
+                  "value": "c_char"
+                },
+                {
+                  "type": "STRING",
+                  "value": "void"
+                }
+              ]
+            },
+            "named": true,
+            "value": "primitive_type"
           }
         ]
       }
@@ -2492,13 +2670,8 @@
       ]
     },
     "mutable_specifier": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "mut"
-        }
-      ]
+      "type": "STRING",
+      "value": "mut"
     },
     "restricted_specifier": {
       "type": "SEQ",
