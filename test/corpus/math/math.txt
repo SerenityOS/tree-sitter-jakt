@@ -1,0 +1,45 @@
+================================================================================
+Math basic
+================================================================================
+
+function subtract(x: i64, y: i64) {
+    println("{}", x - y)
+}
+
+function main() {
+    subtract(x: 10, y: 3)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (binary_expression
+            (identifier)
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (integer_literal))
+          (argument
+            (identifier)
+            (integer_literal)))))))
