@@ -1505,11 +1505,15 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "mutable_specifier",
+          "named": true
+        },
+        {
+          "type": "weak_specifier",
           "named": true
         }
       ]
@@ -2602,6 +2606,10 @@
   {
     "type": "unsafe",
     "named": false
+  },
+  {
+    "type": "weak_specifier",
+    "named": true
   },
   {
     "type": "while",

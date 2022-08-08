@@ -2051,6 +2051,18 @@
                     "value": ":"
                   },
                   {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "weak_specifier"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
+                  {
                     "type": "FIELD",
                     "name": "type",
                     "content": {
@@ -2689,6 +2701,10 @@
     "mutable_specifier": {
       "type": "STRING",
       "value": "mut"
+    },
+    "weak_specifier": {
+      "type": "STRING",
+      "value": "weak"
     },
     "restricted_specifier": {
       "type": "SEQ",

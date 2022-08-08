@@ -1,0 +1,94 @@
+================================================================================
+Weak references basic
+================================================================================
+
+class Foo {
+    public function hello(this) => "friends"
+}
+
+function main() {
+    mut weak_foo: weak Foo? = None
+
+    println("weak_foo has_value? {}", weak_foo.has_value())
+
+    {
+        let foo = Foo()
+        weak_foo = foo
+
+        println("weak_foo has_value? {}", weak_foo.has_value())
+        println("weak_foo hello: {}", weak_foo!.hello())
+    }
+
+    println("weak_foo has_value? {}", weak_foo.has_value())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (public_specifier)
+        (identifier)
+        (parameters
+          (this_reference))
+        (return_expression
+          (string_literal)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (weak_specifier)
+        (type_identifier)
+        (optional_specifier)
+        (none_expression))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))))
+      (block
+        (let_declaration
+          (identifier)
+          (call_expression
+            (identifier)
+            (arguments)))
+        (assignment_expression
+          (identifier)
+          (identifier))
+        (call_expression
+          (identifier)
+          (arguments
+            (string_literal)
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))))
+        (call_expression
+          (identifier)
+          (arguments
+            (string_literal)
+            (call_expression
+              (field_expression
+                (optional_identifier
+                  (identifier))
+                (field_identifier))
+              (arguments)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments)))))))

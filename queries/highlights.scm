@@ -72,13 +72,14 @@
 "boxed" @keyword
 "throws" @keyword
 "continue" @keyword
-(anonymous_specifier) @keyword
 "None" @keyword
 "import" @keyword
 "as" @keyword
 "restricted" @keyword
 "guard" @keyword
 (mutable_specifier) @keyword
+(anonymous_specifier) @keyword
+(weak_specifier) @keyword
 
 "this" @variable.builtin
 "raw" @variable.builtin

@@ -400,6 +400,7 @@ module.exports = grammar({
       field('pattern', $._pattern),
       optional(seq(
         ':',
+        optional($.weak_specifier),
         field('type', seq($._type, optional($.optional_specifier))),
       )),
       optional(seq(
@@ -489,6 +490,8 @@ module.exports = grammar({
     public_specifier: $ => seq('public'),
 
     mutable_specifier: $ => 'mut',
+
+    weak_specifier: $ => 'weak',
 
     restricted_specifier: $ => seq(
         'restricted',
