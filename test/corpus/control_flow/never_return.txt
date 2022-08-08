@@ -1,0 +1,39 @@
+================================================================================
+Control flow never return
+================================================================================
+
+function test() -> String {
+    if false {
+        return "hi"
+    }
+    abort()
+}
+
+function main() -> c_int {
+    abort()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (block
+      (if_statement
+        (boolean_literal)
+        (block
+          (return_statement
+            (string_literal))))
+      (call_expression
+        (identifier)
+        (arguments))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (block
+      (call_expression
+        (identifier)
+        (arguments)))))
