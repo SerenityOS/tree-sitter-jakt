@@ -1,0 +1,73 @@
+================================================================================
+Math integer casts
+================================================================================
+
+let a: u8 = as_saturated(500u32)
+let b: u8 = as_truncated(257u32)
+let c = 127 as! i8
+let d = -127 as! i8
+let e: i8 = as_saturated(-200i32)
+let f: i8 = as_truncated(-127i32)
+let g: i8 = as_truncated(128i32)
+
+// as Should not eat the token after the type
+let h = (1 as! i8)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (call_expression
+      (identifier)
+      (arguments
+        (integer_literal))))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (call_expression
+      (identifier)
+      (arguments
+        (integer_literal))))
+  (let_declaration
+    (identifier)
+    (type_conversion_expression
+      (integer_literal)
+      (primitive_type)))
+  (let_declaration
+    (identifier)
+    (type_conversion_expression
+      (unary_expression
+        (integer_literal))
+      (primitive_type)))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (call_expression
+      (identifier)
+      (arguments
+        (unary_expression
+          (integer_literal)))))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (call_expression
+      (identifier)
+      (arguments
+        (unary_expression
+          (integer_literal)))))
+  (let_declaration
+    (identifier)
+    (primitive_type)
+    (call_expression
+      (identifier)
+      (arguments
+        (integer_literal))))
+  (line_comment)
+  (let_declaration
+    (identifier)
+    (parenthesized_expression
+      (type_conversion_expression
+        (integer_literal)
+        (primitive_type)))))
