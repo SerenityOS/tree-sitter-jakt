@@ -1,0 +1,38 @@
+================================================================================
+Math more basic math
+================================================================================
+
+function main() {
+    println("{}", 5 - 5 * 10 + 5)
+    println("{}", 2 * 8 - 12 / 2)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (binary_expression
+            (binary_expression
+              (integer_literal)
+              (binary_expression
+                (integer_literal)
+                (integer_literal)))
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (binary_expression
+            (binary_expression
+              (integer_literal)
+              (integer_literal))
+            (binary_expression
+              (integer_literal)
+              (integer_literal))))))))
