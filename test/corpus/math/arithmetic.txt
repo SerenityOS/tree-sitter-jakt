@@ -1,0 +1,38 @@
+================================================================================
+Math arithmetic
+================================================================================
+
+let a = 123 + 10
+let b = 123 - 10
+let c = 123 * 10
+let d = 123 / 10
+let e = 123 % 10
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (let_declaration
+    (identifier)
+    (binary_expression
+      (integer_literal)
+      (integer_literal)))
+  (let_declaration
+    (identifier)
+    (binary_expression
+      (integer_literal)
+      (integer_literal)))
+  (let_declaration
+    (identifier)
+    (binary_expression
+      (integer_literal)
+      (integer_literal)))
+  (let_declaration
+    (identifier)
+    (binary_expression
+      (integer_literal)
+      (integer_literal)))
+  (let_declaration
+    (identifier)
+    (binary_expression
+      (integer_literal)
+      (integer_literal))))
