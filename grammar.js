@@ -579,6 +579,7 @@ module.exports = grammar({
       $.array_literal,
       $.tuple_literal,
       $.dictionary_literal,
+      $.set_literal,
     )),
 
     _pattern: $ => choice(
@@ -676,6 +677,12 @@ module.exports = grammar({
       ']'
     ),
 
+    set_literal: $ => seq(
+      '{',
+      sepBy(',', $._literal_pattern, optional(',')),
+      '}'
+    ),
+
     dictionary_element: $ =>seq(field('key', $._literal_pattern), ':', field('value', $._literal_pattern)),
 
     escape_sequence: $ => token.immediate(
@@ -745,11 +752,11 @@ module.exports = grammar({
 
     anonymous_specifier: $ => 'anon',
 
-    block: $ => seq(
+    block: $ => prec(1, seq(
       '{',
       repeat(seq($._statement, optional(terminator))),
       '}'
-    ),
+    )),
 
     if_statement: $ => seq(
       'if',

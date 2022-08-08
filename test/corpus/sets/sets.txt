@@ -1,0 +1,60 @@
+================================================================================
+Sets basic set
+================================================================================
+
+function main() {
+    let set1 = {"a", "b"}
+    println("{}", set1.size())
+    println("{}", set1.is_empty())
+
+    let set2 = {1, 2, 3, 4, 5}
+    println("{}", set2.size())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (set_literal
+          (string_literal)
+          (string_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))))
+      (let_declaration
+        (identifier)
+        (set_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments)))))))
