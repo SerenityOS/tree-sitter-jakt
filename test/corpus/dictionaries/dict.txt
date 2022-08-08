@@ -1,0 +1,47 @@
+================================================================================
+Dictionaries basic
+================================================================================
+
+function main() {
+    let dict = ["a": 1, "b": 2]
+
+    println("{}", dict.get("b")!)
+    println("{}", dict.is_empty())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (dictionary_literal
+          (dictionary_element
+            (string_literal)
+            (integer_literal))
+          (dictionary_element
+            (string_literal)
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (string_literal))
+            (optional_specifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments)))))))

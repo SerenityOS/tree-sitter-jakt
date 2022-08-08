@@ -130,6 +130,10 @@
         "named": true
       },
       {
+        "type": "dictionary_literal",
+        "named": true
+      },
+      {
         "type": "float_literal",
         "named": true
       },
@@ -735,6 +739,47 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "dictionary_element",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_literal_pattern",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_literal_pattern",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "dictionary_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "dictionary_element",
+          "named": true
+        }
+      ]
     }
   },
   {

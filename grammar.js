@@ -578,6 +578,7 @@ module.exports = grammar({
       $.float_literal,
       $.array_literal,
       $.tuple_literal,
+      $.dictionary_literal,
     )),
 
     _pattern: $ => choice(
@@ -650,7 +651,7 @@ module.exports = grammar({
       '\''
     )),
 
-    array_literal: $ => seq(
+    array_literal: $ => prec(1, seq(
       '[',
       choice(
         seq(sepBy(',', choice($.array_literal, $._literal_pattern)), optional(',')),
@@ -661,13 +662,21 @@ module.exports = grammar({
         )),
       ),
       ']'
-    ),
+    )),
 
     tuple_literal: $ => seq(
       '(',
       sepBy(',', seq($._literal_pattern, optional(','))),
       ')'
     ),
+
+    dictionary_literal: $ => seq(
+      '[',
+      sepBy(',', $.dictionary_element, optional(',')),
+      ']'
+    ),
+
+    dictionary_element: $ =>seq(field('key', $._literal_pattern), ':', field('value', $._literal_pattern)),
 
     escape_sequence: $ => token.immediate(
       seq('\\',
