@@ -1,0 +1,166 @@
+================================================================================
+Math bitwise
+================================================================================
+
+function check(anon a: i64, anon b: i64) -> i64 {
+    if a != b {
+        println("Not equal!")
+        println("{}", a)
+        println("{}", b)
+        return 1
+    }
+    return 0
+}
+
+function main() {
+    mut errors = 0
+
+    mut a = 1
+    a <<= 5
+    errors += check(a, 1 << 5)
+
+    mut b = 0x8000
+    b >>= 5
+    errors += check(b, 0x8000 >> 5)
+
+    mut c = 0xffc0c0
+    c &= 0x777777
+    errors += check(c, 0xffc0c0 & 0x777777)
+
+    mut d = 0xffc0c0
+    d ^= 0x777777
+    errors += check(d, 0xffc0c0 ^ 0x777777)
+
+    if errors > 0 {
+        println("Had error")
+    } else {
+        println("No error")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type))
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type)))
+    (primitive_type)
+    (block
+      (if_statement
+        (binary_expression
+          (identifier)
+          (identifier))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)))
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (identifier)))
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (identifier)))
+          (return_statement
+            (integer_literal))))
+      (return_statement
+        (integer_literal))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (integer_literal))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (integer_literal))
+      (binary_expression
+        (identifier)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (identifier)
+            (binary_expression
+              (integer_literal)
+              (integer_literal)))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (integer_literal))
+      (binary_expression
+        (identifier)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (identifier)
+            (binary_expression
+              (integer_literal)
+              (integer_literal)))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (identifier)
+            (binary_expression
+              (integer_literal)
+              (integer_literal)))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (identifier)
+            (binary_expression
+              (integer_literal)
+              (integer_literal)))))
+      (if_statement
+        (binary_expression
+          (identifier)
+          (integer_literal))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))
+        (else_clause
+          (block
+            (call_expression
+              (identifier)
+              (arguments
+                (string_literal)))))))))

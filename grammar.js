@@ -283,7 +283,7 @@ module.exports = grammar({
 
     assignment_expression: $ => prec.left(PREC.assign, seq(
       field('left', $._expression),
-      field('operator', choice('=', '+=', '-=')),
+      field('operator', choice('=', '+=', '-=', '&=', '|=', '^=', '*=', '/=', '%=')),
       field('right', $._expression)
     )),
 
@@ -513,13 +513,13 @@ module.exports = grammar({
       const table = [
         [PREC.and, 'and'],
         [PREC.or, 'or'],
-        [PREC.bitand, '&'],
-        [PREC.bitor, '|'],
-        [PREC.bitxor, '^'],
+        [PREC.bitand, '&', '&='],
+        [PREC.bitor, '|', '|='],
+        [PREC.bitxor, '^', '^='],
         [PREC.comparative, choice('==', '!=', '<', '<=', '>', '>=')],
-        [PREC.shift, choice('<<', '<<<', '>>', '>>>')],
+        [PREC.shift, choice('<<', '<<<', '>>', '>>>', '<<=', '>>=')],
         [PREC.additive, choice('+', '-')],
-        [PREC.multiplicative, choice('*', '/', '*=', '/=', '%', '%=')],
+        [PREC.multiplicative, choice('*', '/','%')],
       ];
 
       return choice(...table.map(([precedence, operator]) => prec.left(precedence, seq(
