@@ -97,9 +97,34 @@
 "c" @constant.builtin
 "namespace" @constant.builtin
 
-"*" @operator
-"&" @operator
-"=>" @operator
-"!" @operator
-"?" @operator
+[
+  "*"
+  "*="
+  "/="
+  "%="
+  "&"
+  "=>"
+  "!"
+  "?"
+  "|"
+  "^"
+  "=="
+  "!="
+  "<"
+  "<="
+  ">"
+  ">="
+  "<<"
+  "<<<"
+  ">>"
+  ">>>"
+  "+"
+  "-"
+  "*"
+  "/"
+  "*="
+  "/="
+  "%="
+] @operator
+
 

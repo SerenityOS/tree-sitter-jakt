@@ -519,7 +519,7 @@ module.exports = grammar({
         [PREC.comparative, choice('==', '!=', '<', '<=', '>', '>=')],
         [PREC.shift, choice('<<', '<<<', '>>', '>>>')],
         [PREC.additive, choice('+', '-')],
-        [PREC.multiplicative, choice('*', '/', '%')],
+        [PREC.multiplicative, choice('*', '/', '*=', '/=', '%', '%=')],
       ];
 
       return choice(...table.map(([precedence, operator]) => prec.left(precedence, seq(

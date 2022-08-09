@@ -11,3 +11,5 @@ Cargo.lock
 log.html
 jsconfig.json
 __pycache__/
+build/
+test.jakt
