@@ -1,7 +1,7 @@
 const PREC = {
   field: 14,
-  range: 13,
-  call: 12,
+  call: 13,
+  range: 12,
   unary: 11,
   multiplicative: 10,
   additive: 9,
@@ -106,6 +106,7 @@ module.exports = grammar({
       $.class_declaration,
       $.namespace_declaration,
       $.function_declaration,
+      $.closure_function,
     ),
 
     _expression: $ => choice(
@@ -342,7 +343,7 @@ module.exports = grammar({
 
     arguments: $ => seq(
       '(',
-      optional(sepBy(',', choice(repeat($.argument), $._expression))),
+      optional(sepBy(',', choice(repeat($.argument), $._expression, $.closure_function))),
       ')'
     ),
 
@@ -358,6 +359,7 @@ module.exports = grammar({
       $.function_return_type,
       alias(choice(...primitive_types), $.primitive_type),
       $.reference_type,
+      $.closure_function_type,
     ),
 
     array_type: $ => seq(
@@ -704,7 +706,7 @@ module.exports = grammar({
       field('name', $.identifier),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
-      optional(seq('->', field('return_type', $._type))),
+      optional(seq('->', field('return_type', seq($._type, optional($.optional_specifier))))),
       field('body', choice($.return_expression, $.block)),
     ),
 
@@ -751,6 +753,21 @@ module.exports = grammar({
           $._type,
         ),
       )),
+    ),
+
+    closure_function_type: $ => seq(
+      'function',
+      field('parameters', $.parameters),
+      optional(seq('->', field('return_type', $._type))),
+    ),
+
+    closure_function: $ => seq(
+      optional(choice($.restricted_specifier, $.public_specifier)),
+      'function',
+      field('parameters', $.parameters),
+      // optional(field('throws', $.throws_specifier)),
+      // optional(seq('->', field('return_type', seq($._type, optional($.optional_specifier))))),
+      field('body', choice($.return_expression, $.block)),
     ),
 
     anonymous_specifier: $ => 'anon',
