@@ -1,0 +1,24 @@
+================================================================================
+Math increment decrement
+================================================================================
+
+++x
+x++
+x
+--x
+x--
+x
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (update_expression
+    (identifier))
+  (update_expression
+    (identifier))
+  (identifier)
+  (update_expression
+    (identifier))
+  (update_expression
+    (identifier))
+  (identifier))
