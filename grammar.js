@@ -197,11 +197,13 @@ module.exports = grammar({
 
     c_header_identfier: $ => token(seq('"', identifier, '.h"')),
 
+    import_as_clause: $ => 'as',
+
     import_statement: $ => prec.right(seq(
       'import',
       optional(choice(
           seq('extern', 'c', $.c_header_identfier),
-          seq($.identifier, optional(seq('as', $.identifier)))
+          seq($.identifier, optional(seq($.import_as_clause, $.identifier)))
       )),
       optional(field('body', $.import_block)),
     )),

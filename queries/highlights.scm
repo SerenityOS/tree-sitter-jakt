@@ -8,6 +8,11 @@
 ((identifier) @constructor
  (#match? @constructor "^[A-Z]"))
 
+; Import
+
+"import" @include
+"as" @include
+
 ; Function calls
 
 (call_expression
@@ -28,6 +33,17 @@
 (type_identifier) @type
 (primitive_type) @type.builtin
 (function_return_type) @type.builtin
+
+[
+  "raw"
+  "boxed"
+  "extern"
+  (mutable_specifier)
+  (weak_specifier)
+] @type.qualifier
+
+(anonymous_specifier) @attribute
+
 (field_identifier) @property
 
 (line_comment) @comment
@@ -46,56 +62,56 @@
 
 (parameter (identifier) @variable.parameter)
 
-"else" @keyword
-"enum" @keyword
-"function" @keyword
-"for" @keyword
-"if" @keyword
-"in" @keyword
-"and" @keyword
-"or" @keyword
-"not" @keyword
+"if" @conditional
+"else" @conditional
 "let" @keyword
-"return" @keyword
-"while" @keyword
+"enum" @keyword
 "struct" @keyword
 "class" @keyword
 "defer" @keyword
-"loop" @keyword
-"try" @keyword
-"catch" @keyword
-"throw" @keyword
-"as!" @keyword
-"as?" @keyword
-"yield" @keyword
 "match" @keyword
-"boxed" @keyword
-"throws" @keyword
-"continue" @keyword
-"None" @keyword
-"import" @keyword
-"as" @keyword
 "restricted" @keyword
 "guard" @keyword
-(mutable_specifier) @keyword
-(anonymous_specifier) @keyword
-(weak_specifier) @keyword
+"yield" @keyword
+
+"function" @keyword.function
+"return" @keyword.return
+
+"in" @keyword.operator
+"and" @keyword.operator
+"or" @keyword.operator
+"not" @keyword.operator
+; "as" @keyword.operator
+"as!" @keyword.operator
+"as?" @keyword.operator
 
 "this" @variable.builtin
-"raw" @variable.builtin
-"extern" @variable.builtin
 "public" @variable.builtin
+"None" @variable.builtin
+
+[
+  "for"
+  "while"
+  "loop"
+  "continue"
+] @repeat
 
 (char_literal) @string
 (string_literal) @string
 (c_header_identfier) @string
 
-(boolean_literal) @constant.builtin
+(boolean_literal) @boolean
 (integer_literal) @constant.builtin
 (float_literal) @constant.builtin
 (byte_literal) @constant.builtin
 "c" @constant.builtin
-"namespace" @constant.builtin
+
+"namespace" @namespace
+
+"throw" @exception
+"throws" @exception
+"try" @exception
+"catch" @exception
 
 [
   "&"
