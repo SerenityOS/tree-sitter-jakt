@@ -45,6 +45,7 @@ update_app.add_typer(state_app, name="state")
 from rich.console import Console
 from rich.table import Table
 from rich.style import Style
+from rich import box
 
 console = Console()
 
@@ -365,10 +366,14 @@ def check(
             merged_map.map.append(test)
 
     # print table of changes
-    print_testmap_table(merged_map)
+    console.log("Tests that produce an error, skipping for now")
+    print_falty_testmap_table(merged_map)
+    console.log("Tests that are valid")
+    print_parsable_testmap_table(merged_map)
+    print_test_report(merged_map, corpus_list)
 
 
-def print_testmap_table(tests: TestMap):
+def print_parsable_testmap_table(tests: TestMap):
     """Print a pretty table of state changes"""
     table = Table(show_header=True, header_style="bold magenta")
 
@@ -386,13 +391,12 @@ def print_testmap_table(tests: TestMap):
     if tests.has_deleted_tests():
         table.add_column("Deleted", justify="center")
 
-    table.add_column("Falty", justify="center")
-
-    falty_count = 0
     implemented_count = 0
     new_count = 0
 
     for num, test in enumerate(tests.map):
+        if test.falty:
+            continue
         corpus_path = test.corpus_file_path
         corpus_path_mod = corpus_path.parts[corpus_path.parts.index("corpus") :]
         color: Style = Style(color=None)
@@ -436,22 +440,165 @@ def print_testmap_table(tests: TestMap):
         elif any(str(x.header) in "Deleted" for x in table.columns):
             renderables.append("")
 
+        table.add_row(*renderables, style=color)
+    console.log(table)
+
+
+def print_falty_testmap_table(tests: TestMap):
+    """Print a pretty table of state changes"""
+    table = Table(show_header=True, header_style="bold magenta")
+
+    table.add_column("#")
+    table.add_column("MD5")
+    table.add_column("Expected Corpus Path", justify="left")
+
+    table.add_column("Falty", justify="center")
+
+    if tests.has_new_tests():
+        table.add_column("New", justify="center")
+
+    if tests.has_deleted_tests():
+        table.add_column("Deleted", justify="center")
+
+    falty_count = 0
+    new_count = 0
+
+    for num, test in enumerate(tests.map):
+        if not test.falty:
+            continue
+        corpus_path = test.corpus_file_path
+        corpus_path_mod = corpus_path.parts[corpus_path.parts.index("corpus") :]
+        color: Style = Style(color=None)
+
+        renderables: list = [
+            str(num + 1),
+            test.jakt_sample_hash,
+            str(pathlib.Path(*corpus_path_mod)),
+        ]
+
         if test.falty:
             color = Style(color=None, dim=True)
             falty_count += 1
             renderables.append(":ballot_box_with_check:")
-        elif any(str(x.header) in "Falty" for x in table.columns):
+
+        if test.new:
+            color = Style(color="green")
+            renderables.append(":ballot_box_with_check:")
+            if not test.falty:
+                new_count += 1
+        elif any(str(x.header) in "New" for x in table.columns):
+            renderables.append("")
+
+        if test.deleted:
+            color = Style(color="red")
+            renderables.append(":ballot_box_with_check:")
+        elif any(str(x.header) in "Deleted" for x in table.columns):
             renderables.append("")
 
         table.add_row(*renderables, style=color)
+    console.log(table)
+
+
+def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
+    """Print a pretty table of state changes"""
+    falty_count = 0
+    falty_new = 0
+    implemented_count = 0
+    new_count = 0
+    jakt_sample_count = 0
+    implemented_changed_count = 0
+    jakt_test_changed = 0
+    deleted = 0
+    for _, test in enumerate(tests.map):
+        jakt_sample_count += 1
+        if test.implemented == TestImplemented.IMPLEMENTED:
+            implemented_count += 1
+        if test.changed and test.implemented == TestImplemented.IMPLEMENTED:
+            implemented_changed_count += 1
+        elif test.changed:
+            if not test.falty:
+                jakt_test_changed += 1
+        if test.new:
+            if not test.falty:
+                new_count += 1
+            else:
+                falty_new += 1
+        if test.falty:
+            falty_count += 1
+        if test.deleted:
+            deleted += 1
+
+    original_test_count = count_original_tests(corpus_list)
+
+    table = Table(box=box.MINIMAL_DOUBLE_HEAD)
+    table.add_column("Count", justify="right")
+    table.add_column("Description", justify="left")
+    table.add_row(str(len(tests.map) + original_test_count), "Total Tests")
+    table.add_row(str(jakt_sample_count), "Total Jakt Samples")
+    table.add_row(str(original_test_count), "Total Original Tests")
+    table.add_row()
+    jakt_passable_tests = len(tests.map) - falty_count
+    table.add_row(str(jakt_passable_tests), "Jakt Passable Samples (no errors)")
+    if new_count > 0:
+        color = Style(color="green", bold=True)
+        table.add_row(
+            str(new_count),
+            "Jakt Passable Samples (New)",
+            style=color,
+        )
+    if jakt_test_changed > 0:
+        color = Style(color="yellow", bold=True)
+        table.add_row(
+            str(jakt_test_changed), "Jakt Passable Samples (Changed)", style=color
+        )
+    if implemented_changed_count > 0:
+        color = Style(color="red", bold=True)
+        table.add_row(
+            str(implemented_changed_count),
+            "Jakt Passable Implemented Samples (Changed)",
+            style=color,
+        )
+    table.add_row(str(implemented_count), "Jakt Implemented Passable Samples")
+    table.add_row()
+    total_tests = jakt_passable_tests + original_test_count
+    table.add_row(str(total_tests), "Total Passable Tests")
+    table.add_row(
+        str(implemented_count + original_test_count),
+        "Total Implemented Tests (including partially implemented and original tests)",
+    )
+    table.add_row(
+        f"{((implemented_count + original_test_count) / total_tests) * 100:.0f}%",
+        "Percentage of Implemented Jakt Samples",
+    )
+    table.add_row()
+    table.add_row(
+        str(falty_count),
+        "Jakt Falty Samples (produce errors)",
+        style=Style(color=None, dim=True),
+    )
+    if falty_new > 0:
+        color = Style(color=None, dim=True)
+        table.add_row(
+            str(falty_new),
+            "Jakt Samples Falty (New)",
+            style=color,
+        )
+    if deleted > 0:
+        table.add_row()
+        color = Style(color="red", bold=True)
+        table.add_row(str(deleted), "Jakt Deleted Samples", style=color)
 
     console.log(table)
-    console.log(f"Total tests: {len(tests.map)}")
-    console.log(f"Falty tests: {falty_count}")
-    console.log(f"Parsable tests: {len(tests.map) - falty_count}")
-    console.log(f"New parsable tests: {new_count}")
-    console.log(f"Implemented tests: {implemented_count}")
     console.log("[yellow][bold]WARNING[/yellow] - state file is unsaved[/bold]")
+
+
+def count_original_tests(tests: dict[str, list]) -> int:
+    """Count the number of original tests."""
+    count = 0
+    for x, _ in tests.items():
+        if "original/" in x:
+            count += 1
+    return count
 
 
 @update_app.callback()
