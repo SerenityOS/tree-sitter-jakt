@@ -11,5 +11,9 @@ cpp {
 
 (source_file
   (cpp_block
-    (string_literal)
-    (string_literal)))
+    (cpp_code_start)
+    (cpp_code)
+    (cpp_code_end)
+    (cpp_code_start)
+    (cpp_code)
+    (cpp_code_end)))

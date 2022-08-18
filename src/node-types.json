@@ -834,7 +834,15 @@
       "required": false,
       "types": [
         {
-          "type": "string_literal",
+          "type": "cpp_code",
+          "named": true
+        },
+        {
+          "type": "cpp_code_end",
+          "named": true
+        },
+        {
+          "type": "cpp_code_start",
           "named": true
         }
       ]
@@ -2659,6 +2667,18 @@
   {
     "type": "cpp",
     "named": false
+  },
+  {
+    "type": "cpp_code",
+    "named": true
+  },
+  {
+    "type": "cpp_code_end",
+    "named": true
+  },
+  {
+    "type": "cpp_code_start",
+    "named": true
   },
   {
     "type": "defer",

@@ -35,7 +35,6 @@
 (function_return_type) @type.builtin
 
 [
-  "raw"
   "boxed"
   (extern_specifier)
   (mutable_specifier)
@@ -46,7 +45,11 @@
 
 (field_identifier) @property
 
-(line_comment) @comment
+[
+  (line_comment)
+  (cpp_code_start)
+  (cpp_code_end)
+] @comment
 
 "(" @punctuation.bracket
 ")" @punctuation.bracket
@@ -55,10 +58,12 @@
 "{" @punctuation.bracket
 "}" @punctuation.bracket
 
-":" @punctuation.delimiter
-"::" @punctuation.delimiter
-"," @punctuation.delimiter
-"." @punctuation.delimiter
+[
+  ":"
+  "::"
+  ","
+  "."
+] @punctuation.delimiter
 
 (parameter (identifier) @variable.parameter)
 
@@ -77,17 +82,23 @@
 "function" @keyword.function
 "return" @keyword.return
 
-"in" @keyword.operator
-"and" @keyword.operator
-"or" @keyword.operator
-"not" @keyword.operator
-; "as" @keyword.operator
-"as!" @keyword.operator
-"as?" @keyword.operator
+[
+  "in"
+  "and"
+  "or"
+  "not"
+  "as!"
+  "as?"
+] @keyword.operator
 
-"this" @variable.builtin
-"public" @variable.builtin
-"None" @variable.builtin
+[
+  "this"
+  "raw"
+  "public"
+  "None"
+  "unsafe"
+  "cpp"
+] @variable.builtin
 
 [
   "for"
@@ -146,5 +157,3 @@
   "%"
   "%="
 ] @operator
-
-

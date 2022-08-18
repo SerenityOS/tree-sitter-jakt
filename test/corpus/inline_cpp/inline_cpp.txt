@@ -36,14 +36,20 @@ function main() {
         (none_expression))
       (unsafe_block
         (cpp_block
-          (string_literal)))
+          (cpp_code_start)
+          (cpp_code)
+          (cpp_code_end)))
       (let_declaration
         (identifier)
         (integer_literal))
       (unsafe_block
         (cpp_block
-          (string_literal)
-          (string_literal)))
+          (cpp_code_start)
+          (cpp_code)
+          (cpp_code_end)
+          (cpp_code_start)
+          (cpp_code)
+          (cpp_code_end)))
       (call_expression
         (identifier)
         (arguments

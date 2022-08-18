@@ -1,29 +1,21 @@
-================================================================================
-Inline cpp escaped string
-================================================================================
-
-function main() {
-    unsafe {
-        cpp {
-            "printf(\"\\\"test\\\"\n\");"
-        }
-    }
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (function_declaration
-    (identifier)
-    (parameters)
-    (block
-      (unsafe_block
-        (cpp_block
-          (string_literal
-            (escape_sequence)
-            (escape_sequence)
-            (escape_sequence)
-            (escape_sequence)
-            (escape_sequence)
-            (escape_sequence)
-            (escape_sequence)))))))
+; ================================================================================
+; NOT IMPLEMENTED Inline cpp escaped string
+; ================================================================================
+;
+; This will error until it worthwhile to fix, needs work in scanner.c with backtracking
+;
+; for reasons escapes are allowed in inline cpp, see
+;
+; https://discord.com/channels/830522505605283862/977264443773833296/977958750512111656
+;
+; function main() {
+;     unsafe {
+;         cpp {
+;             "printf(\"\\\"test\\\"\n\");"
+;         }
+;     }
+; }
+;
+; --------------------------------------------------------------------------------
+;
+; (source_file

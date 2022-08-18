@@ -10,4 +10,6 @@ unsafe { cpp { "return Error::from_errno(errno);" }}
 (source_file
   (unsafe_block
     (cpp_block
-      (string_literal))))
+      (cpp_code_start)
+      (cpp_code)
+      (cpp_code_end))))

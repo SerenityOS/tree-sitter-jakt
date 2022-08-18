@@ -57,7 +57,7 @@ Note: this step is only temporary. The highlighter will eventually be added to t
 
    ```
    mkdir -p ~/.config/nvim/queries/jakt
-   cp queries/highlights.scm ~/.config/nvim/queries/jakt/
+   cp queries/* ~/.config/nvim/queries/jakt/
    ```
 
 1. Install tree-sitter-jakt using neovim
