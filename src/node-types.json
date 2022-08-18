@@ -1089,7 +1089,7 @@
         "required": false,
         "types": [
           {
-            "type": "primitive_type",
+            "type": "_type",
             "named": true
           },
           {

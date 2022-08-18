@@ -1,0 +1,69 @@
+================================================================================
+Some issue encoundered early on with extern c block
+================================================================================
+
+import extern c "GLFW/glfw3.h" {
+    extern function glfwInit() -> bool
+    extern function glfwTerminate() -> void
+    extern function glfwCreateWindow(width: c_int, height: c_int, window_title: raw c_char, monitor: raw GLFWmonitor, share: raw GLFWwindow) -> raw GLFWwindow
+    extern function glfwWindowShouldClose(window: raw GLFWwindow) -> bool
+    extern function glfwSetWindowShouldClose(mut window: raw GLFWwindow, value: c_int) -> void
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_statement
+    (c_header_identfier)
+    (import_block
+      (extern_function_declaration
+        (identifier)
+        (parameters)
+        (primitive_type))
+      (extern_function_declaration
+        (identifier)
+        (parameters)
+        (primitive_type))
+      (extern_function_declaration
+        (identifier)
+        (parameters
+          (parameter
+            (identifier)
+            (primitive_type))
+          (parameter
+            (identifier)
+            (primitive_type))
+          (parameter
+            (identifier)
+            (raw_pointer_identfier)
+            (primitive_type))
+          (parameter
+            (identifier)
+            (raw_pointer_identfier)
+            (type_identifier))
+          (parameter
+            (identifier)
+            (raw_pointer_identfier)
+            (type_identifier)))
+        (raw_pointer_identfier)
+        (type_identifier))
+      (extern_function_declaration
+        (identifier)
+        (parameters
+          (parameter
+            (identifier)
+            (raw_pointer_identfier)
+            (type_identifier)))
+        (primitive_type))
+      (extern_function_declaration
+        (identifier)
+        (parameters
+          (parameter
+            (mutable_specifier)
+            (identifier)
+            (raw_pointer_identfier)
+            (type_identifier))
+          (parameter
+            (identifier)
+            (primitive_type)))
+        (primitive_type)))))

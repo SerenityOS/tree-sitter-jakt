@@ -203,7 +203,7 @@ module.exports = grammar({
       $._expression,
     ),
 
-    c_header_identfier: $ => token(seq('"', identifier, '.h"')),
+    c_header_identfier: $ => token(seq('"', /.*/, '.h"')),
 
     import_as_clause: $ => 'as',
 
@@ -725,7 +725,7 @@ module.exports = grammar({
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters),
-      optional(seq('->', field('return_type', seq(optional($.raw_pointer_identfier), alias(choice(...primitive_types), $.primitive_type))))),
+      optional(seq('->', field('return_type', seq(optional($.raw_pointer_identfier), $._type)))),
     ),
 
     throws_specifier: $ => seq('throws'),
@@ -759,8 +759,8 @@ module.exports = grammar({
       ':',
       field('type', seq(
         choice(
-          seq($.raw_pointer_identfier, alias(choice(...primitive_types), $.primitive_type)),
-          $._type,
+          // seq($.raw_pointer_identfier, alias(choice(...primitive_types), $.primitive_type)),
+          seq(optional($.raw_pointer_identfier), $._type),
         ),
       )),
     ),
