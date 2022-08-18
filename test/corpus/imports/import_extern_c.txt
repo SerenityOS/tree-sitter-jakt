@@ -11,9 +11,11 @@ import extern c "stdlib.h"  {
 
 (source_file
   (import_statement
+    (extern_specifier)
     (c_header_identfier)
     (import_block
       (extern_function_declaration
+        (extern_specifier)
         (identifier)
         (parameters
           (parameter
@@ -22,6 +24,7 @@ import extern c "stdlib.h"  {
         (raw_pointer_identfier)
         (primitive_type))
       (extern_function_declaration
+        (extern_specifier)
         (identifier)
         (parameters
           (parameter
@@ -46,9 +49,11 @@ import extern c "fcntl.h"  {
 
 (source_file
   (import_statement
+    (extern_specifier)
     (c_header_identfier)
     (import_block
       (extern_function_declaration
+        (extern_specifier)
         (identifier)
         (parameters
           (parameter
@@ -60,6 +65,7 @@ import extern c "fcntl.h"  {
             (primitive_type)))
         (primitive_type))
       (extern_function_declaration
+        (extern_specifier)
         (identifier)
         (parameters
           (parameter
@@ -75,6 +81,7 @@ import extern c "fcntl.h"  {
             (primitive_type)))
         (primitive_type))
       (extern_function_declaration
+        (extern_specifier)
         (identifier)
         (parameters
           (parameter

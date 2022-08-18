@@ -37,7 +37,7 @@
 [
   "raw"
   "boxed"
-  "extern"
+  (extern_specifier)
   (mutable_specifier)
   (weak_specifier)
 ] @type.qualifier

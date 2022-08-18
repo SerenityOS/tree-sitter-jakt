@@ -14,17 +14,21 @@ import extern c "GLFW/glfw3.h" {
 
 (source_file
   (import_statement
+    (extern_specifier)
     (c_header_identfier)
     (import_block
       (extern_function_declaration
+        (extern_specifier)
         (identifier)
         (parameters)
         (primitive_type))
       (extern_function_declaration
+        (extern_specifier)
         (identifier)
         (parameters)
         (primitive_type))
       (extern_function_declaration
+        (extern_specifier)
         (identifier)
         (parameters
           (parameter
@@ -48,6 +52,7 @@ import extern c "GLFW/glfw3.h" {
         (raw_pointer_identfier)
         (type_identifier))
       (extern_function_declaration
+        (extern_specifier)
         (identifier)
         (parameters
           (parameter
@@ -56,6 +61,7 @@ import extern c "GLFW/glfw3.h" {
             (type_identifier)))
         (primitive_type))
       (extern_function_declaration
+        (extern_specifier)
         (identifier)
         (parameters
           (parameter

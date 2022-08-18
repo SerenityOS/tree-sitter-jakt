@@ -1,0 +1,18 @@
+================================================================================
+Extern specifier on struct
+================================================================================
+
+extern struct GLFWmonitor {}
+extern struct GLFWwindow {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (extern_specifier)
+    (type_identifier)
+    (field_declaration_list))
+  (struct_declaration
+    (extern_specifier)
+    (type_identifier)
+    (field_declaration_list)))

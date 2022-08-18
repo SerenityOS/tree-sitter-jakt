@@ -210,7 +210,7 @@ module.exports = grammar({
     import_statement: $ => prec.right(seq(
       'import',
       optional(choice(
-          seq('extern', 'c', $.c_header_identfier),
+          seq($.extern_specifier, 'c', $.c_header_identfier),
           seq($.identifier, optional(seq($.import_as_clause, $.identifier)))
       )),
       optional(field('body', $.import_block)),
@@ -488,6 +488,7 @@ module.exports = grammar({
     ),
 
     struct_declaration: $ => seq(
+      optional($.extern_specifier),
       'struct',
       field('name', choice($._type_identifier)),
       field('body', $.field_declaration_list)
@@ -720,8 +721,10 @@ module.exports = grammar({
       field('body', choice($.return_expression, $.block)),
     ),
 
+    extern_specifier: $ => 'extern',
+
     extern_function_declaration: $ => seq(
-      'extern',
+      $.extern_specifier,
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters),
@@ -759,7 +762,6 @@ module.exports = grammar({
       ':',
       field('type', seq(
         choice(
-          // seq($.raw_pointer_identfier, alias(choice(...primitive_types), $.primitive_type)),
           seq(optional($.raw_pointer_identfier), $._type),
         ),
       )),

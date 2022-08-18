@@ -1098,6 +1098,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "extern_specifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1409,6 +1419,10 @@
       "types": [
         {
           "type": "c_header_identfier",
+          "named": true
+        },
+        {
+          "type": "extern_specifier",
           "named": true
         },
         {
@@ -2159,6 +2173,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "extern_specifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2653,8 +2677,8 @@
     "named": true
   },
   {
-    "type": "extern",
-    "named": false
+    "type": "extern_specifier",
+    "named": true
   },
   {
     "type": "false",

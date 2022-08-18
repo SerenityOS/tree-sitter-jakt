@@ -556,8 +556,8 @@
                     "type": "SEQ",
                     "members": [
                       {
-                        "type": "STRING",
-                        "value": "extern"
+                        "type": "SYMBOL",
+                        "name": "extern_specifier"
                       },
                       {
                         "type": "STRING",
@@ -2731,6 +2731,18 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "extern_specifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": "struct"
         },
@@ -4478,12 +4490,16 @@
         }
       ]
     },
+    "extern_specifier": {
+      "type": "STRING",
+      "value": "extern"
+    },
     "extern_function_declaration": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "extern"
+          "type": "SYMBOL",
+          "name": "extern_specifier"
         },
         {
           "type": "STRING",
