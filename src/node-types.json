@@ -224,6 +224,10 @@
         "named": true
       },
       {
+        "type": "cpp_block",
+        "named": true
+      },
+      {
         "type": "defer_statement",
         "named": true
       },
@@ -822,6 +826,21 @@
     "fields": {}
   },
   {
+    "type": "cpp_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "defer_statement",
     "named": true,
     "fields": {
@@ -1394,6 +1413,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_as_clause",
           "named": true
         }
       ]
@@ -2566,10 +2589,6 @@
     "named": true
   },
   {
-    "type": "as",
-    "named": false
-  },
-  {
     "type": "as!",
     "named": false
   },
@@ -2611,6 +2630,10 @@
   },
   {
     "type": "continue",
+    "named": false
+  },
+  {
+    "type": "cpp",
     "named": false
   },
   {
@@ -2672,6 +2695,10 @@
   {
     "type": "import",
     "named": false
+  },
+  {
+    "type": "import_as_clause",
+    "named": true
   },
   {
     "type": "in",

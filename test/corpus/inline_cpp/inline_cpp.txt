@@ -1,0 +1,52 @@
+================================================================================
+Inline cpp basic
+================================================================================
+
+function main() {
+    mut i: i32? = None
+    unsafe {
+        cpp {
+            "i = 32;"
+        }
+    }
+
+    let x = 3
+    unsafe {
+        cpp {
+            "auto const y = 7;"
+            "*i += (x + y);"
+        }
+    }
+
+    println("{}", i!)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (primitive_type)
+        (optional_specifier)
+        (none_expression))
+      (unsafe_block
+        (cpp_block
+          (string_literal)))
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (unsafe_block
+        (cpp_block
+          (string_literal)
+          (string_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (optional_identifier
+            (identifier)))))))

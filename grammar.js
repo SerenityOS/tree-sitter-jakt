@@ -93,6 +93,7 @@ module.exports = grammar({
       $.loop_statement,
       $.try_statement,
       $.unsafe_block,
+      $.cpp_block,
       $.yield_statement,
       $.import_statement,
       $.guard_statement,
@@ -187,6 +188,13 @@ module.exports = grammar({
       'unsafe',
       '{',
       repeat($._statement),
+      '}'
+    ),
+
+    cpp_block: $ => seq(
+      'cpp',
+      '{',
+      repeat(seq($.string_literal, optional(terminator))),
       '}'
     ),
 

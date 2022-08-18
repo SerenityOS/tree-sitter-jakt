@@ -44,16 +44,9 @@
             )),
 
 
-
-* roadmapgen.py
-    * allow viwing original tests in check table
-    * allow saving check table to markdown table
-
 * change static_member_expression to static_call_expression (maybe?)
 
     I'm not sure what the C++ feature is called...
-
-* add tests for optional types
 
 * submit queries to https://github.com/nvim-treesitter/nvim-treesitter
 
