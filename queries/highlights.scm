@@ -11,7 +11,7 @@
 ; Import
 
 "import" @include
-"as" @include
+(import_as_clause) @include
 
 ; Function calls
 

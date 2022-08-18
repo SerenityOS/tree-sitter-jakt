@@ -13,6 +13,7 @@ function main() {
 (source_file
   (import_statement
     (identifier)
+    (import_as_clause)
     (identifier))
   (function_declaration
     (identifier)

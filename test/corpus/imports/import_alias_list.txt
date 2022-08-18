@@ -9,6 +9,7 @@ import foo as baz { Bar, bar }
 (source_file
   (import_statement
     (identifier)
+    (import_as_clause)
     (identifier)
     (import_block
       (identifier)
