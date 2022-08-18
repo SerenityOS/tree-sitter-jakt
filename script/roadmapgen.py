@@ -577,10 +577,10 @@ def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
         style=Style(color=None, dim=True),
     )
     if falty_new > 0:
-        color = Style(color=None, dim=True)
+        color = Style(color="green", dim=True)
         table.add_row(
             str(falty_new),
-            "Jakt Samples Falty (New)",
+            "Jakt Falty Samples (New)",
             style=color,
         )
     if deleted > 0:
