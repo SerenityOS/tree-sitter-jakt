@@ -1,0 +1,29 @@
+================================================================================
+Inline cpp escaped string
+================================================================================
+
+function main() {
+    unsafe {
+        cpp {
+            "printf(\"\\\"test\\\"\n\");"
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (unsafe_block
+        (cpp_block
+          (string_literal
+            (escape_sequence)
+            (escape_sequence)
+            (escape_sequence)
+            (escape_sequence)
+            (escape_sequence)
+            (escape_sequence)
+            (escape_sequence)))))))
