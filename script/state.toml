@@ -30,7 +30,7 @@ implemented = 0
 name = "json.jakt"
 corpus_file_path = "test/corpus/apps/json.txt"
 jakt_sample_path = "samples/apps/json.jakt"
-jakt_sample_hash = "2abaddbe876aa6756c22a36f8c6b0f30"
+jakt_sample_hash = "0e8270f0e0eddd9054c739e2208bc725"
 implemented = 0
 
 [[map]]
@@ -174,13 +174,6 @@ jakt_sample_hash = "3083a6547ed640169a25b944a6afea1f"
 implemented = 0
 
 [[map]]
-name = "array_bad2.jakt"
-corpus_file_path = "test/corpus/arrays/array_bad2.txt"
-jakt_sample_path = "samples/arrays/array_bad2.jakt"
-jakt_sample_hash = "a7fcae9c38d62adec7eb2f22814ca6a6"
-implemented = 0
-
-[[map]]
 name = "lvalue_bad.jakt"
 corpus_file_path = "test/corpus/arrays/lvalue_bad.txt"
 jakt_sample_path = "samples/arrays/lvalue_bad.jakt"
@@ -188,10 +181,24 @@ jakt_sample_hash = "bd09a1a61783c5ffede68bb2b90383fb"
 implemented = 0
 
 [[map]]
+name = "array_bad2.jakt"
+corpus_file_path = "test/corpus/arrays/array_bad2.txt"
+jakt_sample_path = "samples/arrays/array_bad2.jakt"
+jakt_sample_hash = "d05b0f930029d8f1a7c256a950700caf"
+implemented = 0
+
+[[map]]
 name = "slice.jakt"
 corpus_file_path = "test/corpus/arrays/slice.txt"
 jakt_sample_path = "samples/arrays/slice.jakt"
-jakt_sample_hash = "bee2d1fcbd6ce811ef83bad14ba2712b"
+jakt_sample_hash = "da50b79e24e349ee9a898574e760652c"
+implemented = 0
+
+[[map]]
+name = "throws.jakt"
+corpus_file_path = "test/corpus/arrays/throws.txt"
+jakt_sample_path = "samples/arrays/throws.jakt"
+jakt_sample_hash = "f6b0c5e857122d8dd7f89c43af3353db"
 implemented = 0
 
 [[map]]
@@ -251,13 +258,6 @@ jakt_sample_hash = "28c3f0fa97493aa9061b05d56ac16e51"
 implemented = 0
 
 [[map]]
-name = "is.jakt"
-corpus_file_path = "test/corpus/basics/is.txt"
-jakt_sample_path = "samples/basics/is.jakt"
-jakt_sample_hash = "1a0c391ac446ea33a8cf969cd6b07678"
-implemented = 0
-
-[[map]]
 name = "octal_literals.jakt"
 corpus_file_path = "test/corpus/basics/octal_literals.txt"
 jakt_sample_path = "samples/basics/octal_literals.jakt"
@@ -300,6 +300,20 @@ jakt_sample_hash = "29572abe311cf21fd53e27ae41874995"
 implemented = 0
 
 [[map]]
+name = "is.jakt"
+corpus_file_path = "test/corpus/basics/is.txt"
+jakt_sample_path = "samples/basics/is.jakt"
+jakt_sample_hash = "8aeb3378c844b508673730eb12a2cd6f"
+implemented = 0
+
+[[map]]
+name = "reserved_variable.jakt"
+corpus_file_path = "test/corpus/basics/reserved_variable.txt"
+jakt_sample_path = "samples/basics/reserved_variable.jakt"
+jakt_sample_hash = "f5ed8a3305032d5f51eb3048976ea2b6"
+implemented = 0
+
+[[map]]
 name = "logical_and.jakt"
 corpus_file_path = "test/corpus/boolean/logical_and.txt"
 jakt_sample_path = "samples/boolean/logical_and.jakt"
@@ -332,13 +346,6 @@ name = "class.jakt"
 corpus_file_path = "test/corpus/classes/class.txt"
 jakt_sample_path = "samples/classes/class.jakt"
 jakt_sample_hash = "fb229e807a0fefc190db7ab1755d6d9a"
-implemented = 0
-
-[[map]]
-name = "class_with_move_only_enum_member.jakt"
-corpus_file_path = "test/corpus/classes/class_with_move_only_enum_member.txt"
-jakt_sample_path = "samples/classes/class_with_move_only_enum_member.jakt"
-jakt_sample_hash = "2176d9ec30bae895f2d8de4c73d4c65b"
 implemented = 0
 
 [[map]]
@@ -388,6 +395,13 @@ name = "mutating_method_called_on_immutable_object_instance.jakt"
 corpus_file_path = "test/corpus/classes/mutating_method_called_on_immutable_object_instance.txt"
 jakt_sample_path = "samples/classes/mutating_method_called_on_immutable_object_instance.jakt"
 jakt_sample_hash = "ba88095c2d162490239c3984aa1acef4"
+implemented = 0
+
+[[map]]
+name = "class_with_move_only_enum_member.jakt"
+corpus_file_path = "test/corpus/classes/class_with_move_only_enum_member.txt"
+jakt_sample_path = "samples/classes/class_with_move_only_enum_member.jakt"
+jakt_sample_hash = "6106ce4e094c0fad1bf8926729e43d9b"
 implemented = 0
 
 [[map]]
@@ -573,6 +587,13 @@ jakt_sample_hash = "b70e6fcc30e3fdabcfd7fe9a96a4511f"
 implemented = 0
 
 [[map]]
+name = "try_expression.jakt"
+corpus_file_path = "test/corpus/control_flow/try_expression.txt"
+jakt_sample_path = "samples/control_flow/try_expression.jakt"
+jakt_sample_hash = "f396a135f22266fbd006888211fd3012"
+implemented = 0
+
+[[map]]
 name = "contains.jakt"
 corpus_file_path = "test/corpus/dictionaries/contains.txt"
 jakt_sample_path = "samples/dictionaries/contains.jakt"
@@ -661,13 +682,6 @@ name = "methods.jakt"
 corpus_file_path = "test/corpus/enums/methods.txt"
 jakt_sample_path = "samples/enums/methods.jakt"
 jakt_sample_hash = "05ddaa5da1a12c38b6c0e1bc5c24bdb7"
-implemented = 0
-
-[[map]]
-name = "methods_access_violation.jakt"
-corpus_file_path = "test/corpus/enums/methods_access_violation.txt"
-jakt_sample_path = "samples/enums/methods_access_violation.jakt"
-jakt_sample_hash = "e8c5c42c63bff2fbea73fcce12c8c42c"
 implemented = 0
 
 [[map]]
@@ -797,6 +811,20 @@ jakt_sample_hash = "63da16c747efcd8ff622bd1f2c7ed105"
 implemented = 0
 
 [[map]]
+name = "enum_recursive_method.jakt"
+corpus_file_path = "test/corpus/enums/enum_recursive_method.txt"
+jakt_sample_path = "samples/enums/enum_recursive_method.jakt"
+jakt_sample_hash = "1a0a332ade1636ecfae0c9b82fe9f698"
+implemented = 0
+
+[[map]]
+name = "methods_access_violation.jakt"
+corpus_file_path = "test/corpus/enums/methods_access_violation.txt"
+jakt_sample_path = "samples/enums/methods_access_violation.jakt"
+jakt_sample_hash = "64bdccd4fdae2de457dd71f946756579"
+implemented = 0
+
+[[map]]
 name = "argument_labels_bad2.jakt"
 corpus_file_path = "test/corpus/functions/argument_labels_bad2.txt"
 jakt_sample_path = "samples/functions/argument_labels_bad2.jakt"
@@ -892,6 +920,62 @@ name = "call_missing_function.jakt"
 corpus_file_path = "test/corpus/functions/call_missing_function.txt"
 jakt_sample_path = "samples/functions/call_missing_function.jakt"
 jakt_sample_hash = "d7706260636ce5de6a30fdcd2cfe6315"
+implemented = 0
+
+[[map]]
+name = "default_arguments.jakt"
+corpus_file_path = "test/corpus/functions/default_arguments.txt"
+jakt_sample_path = "samples/functions/default_arguments.jakt"
+jakt_sample_hash = "95f0321e4b9bd5ed922f27b603470793"
+implemented = 0
+
+[[map]]
+name = "default_arguments_bad_type.jakt"
+corpus_file_path = "test/corpus/functions/default_arguments_bad_type.txt"
+jakt_sample_path = "samples/functions/default_arguments_bad_type.jakt"
+jakt_sample_hash = "ca1c3d50a6bfedadbee52a9efb702e42"
+implemented = 0
+
+[[map]]
+name = "default_arguments_complex.jakt"
+corpus_file_path = "test/corpus/functions/default_arguments_complex.txt"
+jakt_sample_path = "samples/functions/default_arguments_complex.jakt"
+jakt_sample_hash = "9ecad85e0908253fec39ef8a5fb3ba11"
+implemented = 0
+
+[[map]]
+name = "default_arguments_constructor.jakt"
+corpus_file_path = "test/corpus/functions/default_arguments_constructor.txt"
+jakt_sample_path = "samples/functions/default_arguments_constructor.jakt"
+jakt_sample_hash = "e22974069e7c3d9f0a7ef089c934bdce"
+implemented = 0
+
+[[map]]
+name = "default_arguments_default_before_required.jakt"
+corpus_file_path = "test/corpus/functions/default_arguments_default_before_required.txt"
+jakt_sample_path = "samples/functions/default_arguments_default_before_required.jakt"
+jakt_sample_hash = "18968c3319acb25d402653933ca9d283"
+implemented = 0
+
+[[map]]
+name = "default_arguments_method.jakt"
+corpus_file_path = "test/corpus/functions/default_arguments_method.txt"
+jakt_sample_path = "samples/functions/default_arguments_method.jakt"
+jakt_sample_hash = "6a56197f6c21ed4d7314aad052c90fe0"
+implemented = 0
+
+[[map]]
+name = "default_arguments_mixed.jakt"
+corpus_file_path = "test/corpus/functions/default_arguments_mixed.txt"
+jakt_sample_path = "samples/functions/default_arguments_mixed.jakt"
+jakt_sample_hash = "c04887742e51a2e82e73e5c792cda510"
+implemented = 0
+
+[[map]]
+name = "default_arguments_some_defaults.jakt"
+corpus_file_path = "test/corpus/functions/default_arguments_some_defaults.txt"
+jakt_sample_path = "samples/functions/default_arguments_some_defaults.jakt"
+jakt_sample_hash = "3e39a07d32a266dead906e69a5ee3082"
 implemented = 0
 
 [[map]]
@@ -1224,13 +1308,6 @@ jakt_sample_hash = "1c1963b72ae359a9688db0be38daedfc"
 implemented = 0
 
 [[map]]
-name = "mutable_unwrap.jakt"
-corpus_file_path = "test/corpus/optional/mutable_unwrap.txt"
-jakt_sample_path = "samples/optional/mutable_unwrap.jakt"
-jakt_sample_hash = "3fd545167091161962e897ebd3cdbc58"
-implemented = 0
-
-[[map]]
 name = "none_coalescing.jakt"
 corpus_file_path = "test/corpus/optional/none_coalescing.txt"
 jakt_sample_path = "samples/optional/none_coalescing.jakt"
@@ -1242,6 +1319,13 @@ name = "throw_while_none_coalescing.jakt"
 corpus_file_path = "test/corpus/optional/throw_while_none_coalescing.txt"
 jakt_sample_path = "samples/optional/throw_while_none_coalescing.jakt"
 jakt_sample_hash = "0b9e03236dec8d2d953db4e8069904e0"
+implemented = 0
+
+[[map]]
+name = "mutable_unwrap.jakt"
+corpus_file_path = "test/corpus/optional/mutable_unwrap.txt"
+jakt_sample_path = "samples/optional/mutable_unwrap.jakt"
+jakt_sample_hash = "239495356aa265f1c8927f74e3c564a3"
 implemented = 0
 
 [[map]]
@@ -1270,6 +1354,13 @@ name = "range.jakt"
 corpus_file_path = "test/corpus/ranges/range.txt"
 jakt_sample_path = "samples/ranges/range.jakt"
 jakt_sample_hash = "f31c1e067b2d551c2046653a13a0663b"
+implemented = 0
+
+[[map]]
+name = "range_omit.jakt"
+corpus_file_path = "test/corpus/ranges/range_omit.txt"
+jakt_sample_path = "samples/ranges/range_omit.jakt"
+jakt_sample_hash = "3b0c3a17f15668773199ea0abab8c2cd"
 implemented = 0
 
 [[map]]
@@ -1872,5 +1963,40 @@ name = "no_reference_struct_fields.jakt"
 corpus_file_path = "test/corpus/references/no_reference_struct_fields.txt"
 jakt_sample_path = "samples/references/no_reference_struct_fields.jakt"
 jakt_sample_hash = "37518e2d54cba5b44d20b4e3a077e13f"
+implemented = 0
+
+[[map]]
+name = "basic.jakt"
+corpus_file_path = "test/corpus/compiletime_execution/basic.txt"
+jakt_sample_path = "samples/compiletime_execution/basic.jakt"
+jakt_sample_hash = "7176fb03cf738bcfc2d844c0974a5976"
+implemented = 0
+
+[[map]]
+name = "bitwise.jakt"
+corpus_file_path = "test/corpus/compiletime_execution/bitwise.txt"
+jakt_sample_path = "samples/compiletime_execution/bitwise.jakt"
+jakt_sample_hash = "8ce4775bd5f00387543a594a26bbac06"
+implemented = 0
+
+[[map]]
+name = "match.jakt"
+corpus_file_path = "test/corpus/compiletime_execution/match.txt"
+jakt_sample_path = "samples/compiletime_execution/match.jakt"
+jakt_sample_hash = "8f7873ae8cdfa525ad43cd802f146c43"
+implemented = 0
+
+[[map]]
+name = "optional.jakt"
+corpus_file_path = "test/corpus/compiletime_execution/optional.txt"
+jakt_sample_path = "samples/compiletime_execution/optional.jakt"
+jakt_sample_hash = "dfdf989c024226ffb9f07dbf842e28fe"
+implemented = 0
+
+[[map]]
+name = "string.jakt"
+corpus_file_path = "test/corpus/compiletime_execution/string.txt"
+jakt_sample_path = "samples/compiletime_execution/string.jakt"
+jakt_sample_hash = "687ba7878fceacd115febd1378f8d8b0"
 implemented = 0
 
