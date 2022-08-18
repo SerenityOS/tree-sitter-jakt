@@ -2,13 +2,32 @@
 Basics is expression (class)
 ================================================================================
 
-
 class Foo {
-    x: i64
+    public x: i64
 }
 
 class Bar {
-    y: i64
+    public y: i64
+}
+
+function main() {
+    let foo = Foo(x: 1)
+
+    if foo is Foo {
+        println("OK")
+    }
+
+    if foo is Bar {
+        println("Error: Foo should not be Bar")
+    }
+
+    if Bar(y: 5) is Bar {
+        println("OK")
+    }
+
+    if Bar(y: 10) is Foo {
+        println("Error: Bar should not be Foo")
+    }
 }
 
 --------------------------------------------------------------------------------
@@ -18,81 +37,71 @@ class Bar {
     (type_identifier)
     (field_declaration_list
       (field_declaration
+        (public_specifier)
         (field_identifier)
         (primitive_type))))
   (class_declaration
     (type_identifier)
     (field_declaration_list
       (field_declaration
+        (public_specifier)
         (field_identifier)
-        (primitive_type)))))
-
-================================================================================
-Basics is expression
-================================================================================
-
-if foo is Foo {
-    println("OK")
-}
-
-if foo is Bar {
-    println("Error: Foo should not be Bar")
-}
-
-if Bar(y: 5) is Bar {
-    println("OK")
-}
-
-if Bar(y: 10) is Foo {
-    println("Error: Bar should not be Foo")
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (if_statement
-    (is_expression
-      (identifier)
-      (identifier))
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
     (block
-      (call_expression
+      (let_declaration
         (identifier)
-        (arguments
-          (string_literal)))))
-  (if_statement
-    (is_expression
-      (identifier)
-      (identifier))
-    (block
-      (call_expression
-        (identifier)
-        (arguments
-          (string_literal)))))
-  (if_statement
-    (is_expression
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (if_statement
+        (is_expression
+          (identifier)
+          (identifier))
+        (block
+          (call_expression
             (identifier)
-            (integer_literal))))
-      (identifier))
-    (block
-      (call_expression
-        (identifier)
-        (arguments
-          (string_literal)))))
-  (if_statement
-    (is_expression
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
+            (arguments
+              (string_literal)))))
+      (if_statement
+        (is_expression
+          (identifier)
+          (identifier))
+        (block
+          (call_expression
             (identifier)
-            (integer_literal))))
-      (identifier))
-    (block
-      (call_expression
-        (identifier)
-        (arguments
-          (string_literal))))))
+            (arguments
+              (string_literal)))))
+      (if_statement
+        (is_expression
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (identifier)
+                (integer_literal))))
+          (identifier))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)))))
+      (if_statement
+        (is_expression
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (identifier)
+                (integer_literal))))
+          (identifier))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))))))

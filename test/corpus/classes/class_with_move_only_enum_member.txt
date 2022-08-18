@@ -7,7 +7,7 @@ enum E {
 }
 
 class C {
-    e: E
+    public e: E
 }
 
 function main() {
@@ -26,6 +26,7 @@ function main() {
     (type_identifier)
     (field_declaration_list
       (field_declaration
+        (public_specifier)
         (field_identifier)
         (type_identifier))))
   (function_declaration
