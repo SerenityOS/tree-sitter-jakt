@@ -1,0 +1,95 @@
+================================================================================
+Apps read all
+================================================================================
+
+function parse_to_string(file_path: String) throws -> String {
+    mut file = File::open_for_reading(file_path)
+    mut builder = StringBuilder::create()
+    for b in file.read_all().iterator() {
+        builder.append(b)
+    }
+    return builder.to_string()
+}
+
+function main(args: [String]) throws {
+    // replace "mystery.txt" with args[1] to be able to run "./readall mystery.txt"
+    let file_data = parse_to_string(file_path: "mystery.txt")
+    println("text: {}", file_data)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (static_member_expression
+            (identifier)
+            (field_identifier))
+          (arguments
+            (identifier))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (static_member_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))
+      (for_expression
+        (identifier)
+        (call_expression
+          (field_expression
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))
+            (field_identifier))
+          (arguments))
+        (block
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (identifier)))))
+      (return_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (array_type
+          (primitive_type))))
+    (throws_specifier)
+    (block
+      (line_comment)
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (string_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))
