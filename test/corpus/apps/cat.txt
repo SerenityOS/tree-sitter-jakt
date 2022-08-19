@@ -1,5 +1,5 @@
 ================================================================================
-Apps cat lib open
+Apps cat sys open
 ================================================================================
 
 function main(args: [String]) {
@@ -8,13 +8,15 @@ function main(args: [String]) {
         return 1
     }
 
-    mut file = File::open_for_reading(args[1])
-    mut array: [u8] = [0u8]
+    let filename = args[1]
 
-    while file.read(array) != 0 {
-        for idx in 0..array.size() {
-            print("{:c}", array[idx])
-        }
+    mut file = fopen(filename.c_string(), "r".c_string())
+    defer fclose(file)
+
+    mut c = fgetc(file)
+    while feof(file) == 0 {
+        putchar(c)
+        c = fgetc(file)
     }
 }
 
@@ -44,48 +46,54 @@ function main(args: [String]) {
               (string_literal)))
           (return_statement
             (integer_literal))))
+      (let_declaration
+        (identifier)
+        (array_expression
+          (identifier)
+          (integer_literal)))
       (mutable_declaration
         (mutable_specifier)
         (identifier)
         (call_expression
-          (static_member_expression
-            (identifier)
-            (field_identifier))
+          (identifier)
           (arguments
-            (array_expression
-              (identifier)
-              (integer_literal)))))
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))
+            (call_expression
+              (field_expression
+                (string_literal)
+                (field_identifier))
+              (arguments)))))
+      (defer_statement
+        (call_expression
+          (identifier)
+          (arguments
+            (identifier))))
       (mutable_declaration
         (mutable_specifier)
         (identifier)
-        (array_type
-          (primitive_type))
-        (array_literal
-          (integer_literal)))
+        (call_expression
+          (identifier)
+          (arguments
+            (identifier))))
       (while_statement
         (binary_expression
           (call_expression
-            (field_expression
-              (identifier)
-              (field_identifier))
+            (identifier)
             (arguments
               (identifier)))
           (integer_literal))
         (block
-          (for_expression
+          (call_expression
             (identifier)
-            (range_expression
-              (integer_literal)
-              (call_expression
-                (field_expression
-                  (identifier)
-                  (field_identifier))
-                (arguments)))
-            (block
-              (call_expression
-                (identifier)
-                (arguments
-                  (string_literal)
-                  (array_expression
-                    (identifier)
-                    (identifier)))))))))))
+            (arguments
+              (identifier)))
+          (assignment_expression
+            (identifier)
+            (call_expression
+              (identifier)
+              (arguments
+                (identifier)))))))))
