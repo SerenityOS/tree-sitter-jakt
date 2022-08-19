@@ -36,14 +36,12 @@ enum SimpleWithType {
   (enum_declaration
     (type_identifier)
     (enum_variant_list
-      (enum_variant
+      (enum_tuple_variant
         (identifier)
-        (ordered_field_declaration_list
-          (primitive_type)))
-      (enum_variant
+        (primitive_type))
+      (enum_tuple_variant
         (identifier)
-        (ordered_field_declaration_list
-          (primitive_type))))))
+        (primitive_type)))))
 
 ================================================================================
 Simple enum with struct type
@@ -63,45 +61,17 @@ enum SimpleWithStructType {
   (enum_declaration
     (type_identifier)
     (enum_variant_list
-      (enum_variant
+      (enum_struct_variant
         (identifier)
-        (ordered_field_declaration_list
-          (field_declaration
-            (field_identifier)
-            (primitive_type))
-          (field_declaration
-            (field_identifier)
-            (primitive_type))))
-      (enum_variant
+        (field_declaration
+          (field_identifier)
+          (primitive_type))
+        (field_declaration
+          (field_identifier)
+          (primitive_type)))
+      (enum_tuple_variant
         (identifier)
-        (ordered_field_declaration_list
-          (primitive_type))))))
-
-; ================================================================================
-; NOT IMPLEMENTED Simple enum with Type Parameter
-; ================================================================================
-;
-; enum SimpleWithTypeParameter<T> {
-;     A(T)
-;     B
-; }
-;
-; --------------------------------------------------------------------------------
-;
-; (source_file)
-
-; ================================================================================
-; NOT IMPLEMENTED Simple enum with multiple Type Parameters
-; ================================================================================
-;
-; enum SimpleWithMultipleTypeParameters<T, U> {
-;     A(T)
-;     B(U)
-; }
-;
-; --------------------------------------------------------------------------------
-;
-; (source_file)
+        (primitive_type)))))
 
 ================================================================================
 Enum with underlying type
@@ -128,3 +98,29 @@ enum IntegralWithUnderlyingType: i32 {
         (integer_literal))
       (enum_variant
         (identifier)))))
+
+; ================================================================================
+; NOT IMPLEMENTED Simple enum with Type Parameter
+; ================================================================================
+;
+; enum SimpleWithTypeParameter<T> {
+;     A(T)
+;     B
+; }
+;
+; --------------------------------------------------------------------------------
+;
+; (source_file)
+
+; ================================================================================
+; NOT IMPLEMENTED Simple enum with multiple Type Parameters
+; ================================================================================
+;
+; enum SimpleWithMultipleTypeParameters<T, U> {
+;     A(T)
+;     B(U)
+; }
+;
+; --------------------------------------------------------------------------------
+;
+; (source_file)

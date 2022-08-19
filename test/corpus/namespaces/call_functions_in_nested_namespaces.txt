@@ -36,7 +36,8 @@ function main() {
               (function_declaration
                 (identifier)
                 (parameters
-                  (this_reference))
+                  (this_parameter
+                    (this_reference)))
                 (return_expression
                   (call_expression
                     (identifier)

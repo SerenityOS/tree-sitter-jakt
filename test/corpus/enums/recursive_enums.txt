@@ -23,22 +23,20 @@ boxed enum AST {
     (boxed_specifier)
     (type_identifier)
     (enum_variant_list
-      (enum_variant
+      (enum_tuple_variant
         (identifier)
-        (ordered_field_declaration_list
-          (primitive_type)))
-      (enum_variant
+        (primitive_type))
+      (enum_struct_variant
         (identifier)
-        (ordered_field_declaration_list
-          (field_declaration
-            (field_identifier)
-            (type_identifier))
-          (field_declaration
-            (field_identifier)
-            (type_identifier))
-          (field_declaration
-            (field_identifier)
-            (type_identifier)))))))
+        (field_declaration
+          (field_identifier)
+          (type_identifier))
+        (field_declaration
+          (field_identifier)
+          (type_identifier))
+        (field_declaration
+          (field_identifier)
+          (type_identifier))))))
 
 ; ================================================================================
 ; NOT IMPLEMENTED Boxed enum eval function
@@ -64,7 +62,6 @@ boxed enum AST {
 ; --------------------------------------------------------------------------------
 ;
 ; (source_file)
-;
 ;
 ; ================================================================================
 ; NOT IMPLEMENTED Boxed enum main function

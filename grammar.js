@@ -374,6 +374,7 @@ module.exports = grammar({
 
     _type: $ => choice(
       $.array_type,
+      $.dictionary_type,
       $._type_identifier,
       $.function_return_type,
       alias(choice(...primitive_types), $.primitive_type),
@@ -383,7 +384,15 @@ module.exports = grammar({
 
     array_type: $ => seq(
       '[',
-      field('element', $._type),
+      $._type,
+      ']'
+    ),
+
+    dictionary_type: $ => seq(
+      '[',
+      field('type', $._type),
+      ':',
+      field('identifier', $.identifier),
       ']'
     ),
 
@@ -448,21 +457,37 @@ module.exports = grammar({
 
     enum_variant_list: $ => seq(
       '{',
-      sepBy('\n', repeat($.enum_variant)),
+      sepBy('\n', repeat(choice($.enum_variant, $.enum_tuple_variant, $.enum_struct_variant))),
       '}'
     ),
 
     enum_variant: $ => seq(
       field('name', $.identifier),
-      field('body', optional(choice(
-        $.field_declaration_list,
-        $.ordered_field_declaration_list
-      ))),
       optional(seq(
         '=',
         field('value', $._expression)
       ))
     ),
+
+    enum_tuple_variant: $ => seq(
+      field("name", $.identifier),
+      '(',
+      choice(
+        field("type", $._type),
+      ),
+      ')',
+    ),
+
+    enum_struct_variant: $ => prec(-1, seq(
+      field("name", $.identifier),
+      '(',
+      choice(
+        $._type,
+        sepByPost('\n', $.field_declaration),
+        sepBy(',', $.field_declaration),
+      ),
+      ')',
+    )),
 
     field_declaration_list: $ => seq(
       '{',
@@ -485,16 +510,6 @@ module.exports = grammar({
     ),
 
     _field_identifier: $ => alias($.identifier, $.field_identifier),
-
-    ordered_field_declaration_list: $ => seq(
-      '(',
-      choice(
-        alias(choice(...primitive_types), $.primitive_type),
-        sepByPost('\n', $.field_declaration),
-        sepBy(',', $.field_declaration),
-      ),
-      ')',
-    ),
 
     struct_declaration: $ => seq(
       optional($.extern_specifier),
@@ -702,7 +717,7 @@ module.exports = grammar({
 
     dictionary_literal: $ => seq(
       '[',
-      sepBy(',', $.dictionary_element, optional(',')),
+      choice(":", sepBy(',', $.dictionary_element, optional(','))),
       ']'
     ),
 
@@ -753,16 +768,18 @@ module.exports = grammar({
 
     parameters: $ => seq(
       '(',
-      optional(seq(optional($.mutable_specifier), $.this_reference)),
       optional(sepBy(',', seq(
         choice(
           $.parameter,
+          $.this_parameter,
       )))),
       optional(','),
       ')'
     ),
 
     this_reference: $ => seq('this'),
+
+    this_parameter: $ => seq(optional($.mutable_specifier), $.this_reference),
 
     this_reference_shorthand: $ => seq('.', $.identifier),
 

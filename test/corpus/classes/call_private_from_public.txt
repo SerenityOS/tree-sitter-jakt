@@ -25,7 +25,8 @@ function main() {
       (function_declaration
         (identifier)
         (parameters
-          (this_reference))
+          (this_parameter
+            (this_reference)))
         (block
           (call_expression
             (identifier)
@@ -35,7 +36,8 @@ function main() {
         (public_specifier)
         (identifier)
         (parameters
-          (this_reference))
+          (this_parameter
+            (this_reference)))
         (block
           (call_expression
             (field_expression

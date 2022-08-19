@@ -1,0 +1,1736 @@
+================================================================================
+Apps json parser
+================================================================================
+
+enum JsonValue {
+    Null
+    Bool(bool)
+    Number(f64)
+    // FIXME: This variant should be called String
+    JsonString(String)
+    // FIXME: This variant should be called Array
+    JsonArray([JsonValue])
+    Object([String:JsonValue])
+}
+
+function is_whitespace(anon c: u8) -> bool {
+    return match c {
+        b'\t' | b'\n' | b'\r' | b' ' => true
+        else => false
+    }
+}
+
+class JsonParser {
+    input: String
+    index: usize
+
+    public function construct(input: String) throws -> JsonParser {
+        return JsonParser(input, index: 0)
+    }
+
+    function eof(this) -> bool {
+        return .index >= .input.length()
+    }
+
+    public function parse(mut this) throws -> JsonValue {
+        // FIXME: Jakt::JsonParser ignores trailing whitespace for some reason.
+        let value = .parse_helper()
+        if not .eof() {
+            // FIXME: "Didn't consume all input"
+            throw Error::from_errno(9000)
+        }
+        return value
+    }
+
+    function skip_whitespace(mut this) {
+        while not .eof() {
+            if not is_whitespace(.input.byte_at(.index)) {
+                break
+            }
+            .index++
+        }
+    }
+
+    function consume_and_unescape_string(mut this) throws -> String {
+        if not .consume_specific(b'"') {
+            // FIXME: "Expected '"'
+            throw Error::from_errno(9007)
+        }
+
+        mut builder = StringBuilder::create()
+
+        loop {
+            mut ch = 0u8
+            mut peek_index = .index
+            while peek_index < .input.length() {
+                ch = .input.byte_at(peek_index)
+                if ch == b'"' or ch == b'\\' {
+                    break
+                }
+                // FIXME: This is is_ascii_c0_control()
+                if ch < 0x20 {
+                    // FIXME: "Error while parsing string"
+                    throw Error::from_errno(9008)
+                }
+                peek_index++
+            }
+
+            while peek_index != .index {
+                builder.append(.input.byte_at(.index))
+                .index++
+            }
+
+            if .eof() {
+                break
+            }
+
+            if ch == b'"' {
+                break
+            }
+
+            if ch != b'\\' {
+                builder.append(.consume())
+                continue
+            }
+
+            .ignore()
+
+            match .peek() {
+                b'"' | b'/' | b'\\' | b'n' | b'r' | b't' | b'b' | b'f' => {
+                    let ch = .consume()
+                    builder.append(match ch {
+                        b'n' => b'\n'
+                        b'r' => b'\r'
+                        b't' => b'\t'
+                        b'b' => b'\b'
+                        b'f' => b'\f'
+                        else => ch
+                    })
+                }
+                b'u' => {
+                    eprintln("FIXME: Implement unicode literals")
+                    abort()
+                }
+                else => {
+                    // FIXME: "Error while parsing string"
+                    throw Error::from_errno(9009)
+                }
+            }
+        }
+
+        if not .consume_specific(b'"') {
+            // FIXME: "Expected '"'"
+            throw Error::from_errno(9010)
+        }
+
+        return builder.to_string()
+    }
+
+    function ignore(mut this) {
+        .index++
+    }
+
+    function peek(this) -> u8 {
+        if .eof() {
+            return 0
+        }
+        return .input.byte_at(.index)
+    }
+
+    function consume(mut this) -> u8 {
+        let ch = .peek()
+        .index++
+        return ch
+    }
+
+    function consume_specific(mut this, anon expected: u8) -> bool {
+        if .peek() != expected {
+            return false
+        }
+        .index++
+        return true
+    }
+
+    function parse_helper(mut this) throws -> JsonValue {
+        .skip_whitespace()
+        return match .peek() {
+            b'{' => .parse_object()
+            b'[' => .parse_array()
+            b'"' => .parse_string()
+            b'-' => .parse_number()
+            b'0' | b'1' | b'2' | b'3' | b'4' | b'5' | b'6' | b'7' | b'8' | b'9' => .parse_number()
+            b'f' => .parse_false()
+            b't' => .parse_true()
+            b'n' => .parse_null()
+            else => .parse_failure(error_message: "Unexpected character")
+        }
+    }
+
+    function parse_failure(this, error_message: String) throws -> JsonValue {
+        throw Error::from_errno(9001)
+        // FIXME: The compiler should notice that we can't get here and allow omitting the return.
+        return JsonValue::Null
+    }
+
+    function parse_array(mut this) throws -> JsonValue {
+        mut array: [JsonValue] = []
+        if (not .consume_specific(b'[')) {
+            // Expected '['
+            throw Error::from_errno(9014)
+        }
+        loop {
+            .skip_whitespace()
+            if .peek() == b']' {
+                break
+            }
+            array.push(.parse_helper())
+            .skip_whitespace()
+            if .peek() == b']' {
+                break
+            }
+            if not .consume_specific(b',') {
+                // Expected ','
+                throw Error::from_errno(9014)
+            }
+            .skip_whitespace()
+            if .peek() == b']' {
+                // Unexpected ']'
+                throw Error::from_errno(9014)
+            }
+        }
+        if not .consume_specific(b']') {
+            // Expected ']'
+            throw Error::from_errno(9015)
+        }
+        return JsonValue::JsonArray(array)
+    }
+
+    function parse_object(mut this) throws -> JsonValue {
+        if not .consume_specific(b'{') {
+            // FIXME: "Expected '{'"
+            throw Error::from_errno(9002)
+        }
+
+        mut values: [String:JsonValue] = [:]
+
+        loop {
+            .skip_whitespace()
+            if .peek() == b'}' {
+                break
+            }
+            .skip_whitespace()
+            let key = .consume_and_unescape_string()
+            .skip_whitespace()
+            if not .consume_specific(b':') {
+                // FIXME: "Expected ':'"
+                throw Error::from_errno(9003)
+            }
+            .skip_whitespace()
+            let value = .parse_helper()
+            // FIXME: This should say `values[key] = value`, but the compiler doesn't wrap it in TRY()
+            values.set(key, value)
+            .skip_whitespace()
+            if .peek() == b'}' {
+                break
+            }
+            if not .consume_specific(b',') {
+                // FIXME: "Expected ','"
+                throw Error::from_errno(9004)
+            }
+            .skip_whitespace()
+            if .peek() == b'}' {
+                // FIXME: "Unexpected '}'"
+                throw Error::from_errno(9005)
+            }
+        }
+        if not .consume_specific(b'}') {
+            // FIXME: "Expected '}'"
+            throw Error::from_errno(9006)
+        }
+        return JsonValue::Object(values)
+    }
+
+    function char_to_f64(anon num: u8) throws -> f64 {
+        // FIXME 1: Shouldn't need this function at all
+        // FIXME 2: Shouldn't need return in else branch
+        return match num {
+            0u8 => 0.0
+            1u8 => 1.0
+            2u8 => 2.0
+            3u8 => 3.0
+            4u8 => 4.0
+            5u8 => 5.0
+            6u8 => 6.0
+            7u8 => 7.0
+            8u8 => 8.0
+            9u8 => 9.0
+            else => {
+                // FIXME: "Unexpected number"
+                throw Error::from_errno(9017)
+                return 1.0
+            }
+        }
+    }
+
+    function parse_number(mut this) throws -> JsonValue {
+        // FIXME: This implementation doesn't match JsonParser.cpp
+        let is_negative = .consume_specific(b'-')
+        mut decimal_start_index: usize? = None
+
+        mut value = 0.0
+
+        while not .eof() {
+            let ch = .peek()
+            if ch == b'.' {
+                if decimal_start_index.has_value() {
+                    // FIXME: "Unexpected '.'"
+                    throw Error::from_errno(9016)
+                }
+                decimal_start_index = .index++
+                continue
+            } else if not (ch >= b'0' and ch <= b'9') {
+                break
+            }
+
+            if not decimal_start_index.has_value() {
+                value *= 10.0
+                value += char_to_f64(ch - b'0')
+            } else {
+                mut num = char_to_f64(ch - b'0')
+                // FIXME: This should really be: `value += pow(10, -decimal_place)*num`, but: there's no pow function and you can't multiply float by usize
+                let decimal_place = .index - decimal_start_index.value()
+                for i in 0..decimal_place {
+                    num /= 10.0
+                }
+                value += num
+            }
+            .index++
+        }
+
+        if is_negative {
+            value *= -1.0
+        }
+
+        return JsonValue::Number(value)
+    }
+
+    function parse_string(mut this) throws -> JsonValue {
+        return JsonValue::JsonString(.consume_and_unescape_string())
+    }
+
+    function parse_false(mut this) throws -> JsonValue {
+        if (.consume() != b'f' or .consume() != b'a' or .consume() != b'l' or .consume() != b's' or .consume() != b'e') {
+            // FIXME: "Expected 'false'"
+            throw Error::from_errno(9011)
+        }
+        return JsonValue::Bool(false)
+    }
+
+    function parse_true(mut this) throws -> JsonValue {
+        if (.consume() != b't' or .consume() != b'r' or .consume() != b'u' or .consume() != b'e') {
+            // FIXME: "Expected 'true'"
+            throw Error::from_errno(9012)
+        }
+        return JsonValue::Bool(true)
+    }
+
+    function parse_null(mut this) throws -> JsonValue {
+        if (.consume() != b'n' or .consume() != b'u' or .consume() != b'l' or .consume() != b'l') {
+            // FIXME: "Expected 'null'"
+            throw Error::from_errno(9013)
+        }
+        return JsonValue::Null
+    }
+}
+
+function parse_json(input: String) throws -> JsonValue {
+    mut parser = JsonParser::construct(input)
+    return parser.parse()
+}
+
+function main() {
+    let value = parse_json(input: "[{\"id\":0.5,\"displayName\":\"Air\",\"name\":\"air\",\"hardness\":3.9,\"resistance\":0,\"minStateId\":0,\"maxStateId\":0,\"states\":[]}]")
+    println("{}", value)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))
+      (line_comment)
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))
+      (line_comment)
+      (enum_tuple_variant
+        (identifier)
+        (array_type
+          (type_identifier)))
+      (enum_tuple_variant
+        (identifier)
+        (dictionary_type
+          (primitive_type)
+          (identifier)))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type)))
+    (primitive_type)
+    (block
+      (return_statement
+        (match_expression
+          (identifier)
+          (match_block
+            (match_arm
+              (match_pattern
+                (binary_expression
+                  (binary_expression
+                    (binary_expression
+                      (byte_literal)
+                      (byte_literal))
+                    (byte_literal))
+                  (byte_literal)))
+              (boolean_literal))
+            (match_arm
+              (match_else)
+              (boolean_literal)))))))
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (function_declaration
+        (public_specifier)
+        (identifier)
+        (parameters
+          (parameter
+            (identifier)
+            (primitive_type)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (return_statement
+            (call_expression
+              (identifier)
+              (arguments
+                (identifier)
+                (argument
+                  (identifier)
+                  (integer_literal)))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (block
+          (return_statement
+            (binary_expression
+              (this_reference_shorthand
+                (identifier))
+              (call_expression
+                (field_expression
+                  (this_reference_shorthand
+                    (identifier))
+                  (field_identifier))
+                (arguments))))))
+      (function_declaration
+        (public_specifier)
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (line_comment)
+          (let_declaration
+            (identifier)
+            (call_expression
+              (this_reference_shorthand
+                (identifier))
+              (arguments)))
+          (if_statement
+            (logical_not
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments)))
+            (block
+              (line_comment)
+              (throw_statement
+                (call_expression
+                  (static_member_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments
+                    (integer_literal))))))
+          (return_statement
+            (identifier))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (block
+          (while_statement
+            (logical_not
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments)))
+            (block
+              (if_statement
+                (logical_not
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (call_expression
+                        (field_expression
+                          (this_reference_shorthand
+                            (identifier))
+                          (field_identifier))
+                        (arguments
+                          (this_reference_shorthand
+                            (identifier)))))))
+                (block
+                  (identifier)))
+              (this_reference_shorthand
+                (identifier))
+              (update_expression
+                (MISSING identifier))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (primitive_type)
+        (block
+          (if_statement
+            (logical_not
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments
+                  (byte_literal))))
+            (block
+              (line_comment)
+              (throw_statement
+                (call_expression
+                  (static_member_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments
+                    (integer_literal))))))
+          (mutable_declaration
+            (mutable_specifier)
+            (identifier)
+            (call_expression
+              (static_member_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))
+          (loop_statement
+            (block
+              (mutable_declaration
+                (mutable_specifier)
+                (identifier)
+                (integer_literal))
+              (mutable_declaration
+                (mutable_specifier)
+                (identifier)
+                (this_reference_shorthand
+                  (identifier)))
+              (while_statement
+                (binary_expression
+                  (identifier)
+                  (call_expression
+                    (field_expression
+                      (this_reference_shorthand
+                        (identifier))
+                      (field_identifier))
+                    (arguments)))
+                (block
+                  (assignment_expression
+                    (identifier)
+                    (call_expression
+                      (field_expression
+                        (this_reference_shorthand
+                          (identifier))
+                        (field_identifier))
+                      (arguments
+                        (identifier))))
+                  (if_statement
+                    (binary_expression
+                      (binary_expression
+                        (identifier)
+                        (byte_literal))
+                      (binary_expression
+                        (identifier)
+                        (byte_literal)))
+                    (block
+                      (identifier)))
+                  (line_comment)
+                  (if_statement
+                    (binary_expression
+                      (identifier)
+                      (integer_literal))
+                    (block
+                      (line_comment)
+                      (throw_statement
+                        (call_expression
+                          (static_member_expression
+                            (identifier)
+                            (field_identifier))
+                          (arguments
+                            (integer_literal))))))
+                  (update_expression
+                    (identifier))))
+              (while_statement
+                (binary_expression
+                  (identifier)
+                  (this_reference_shorthand
+                    (identifier)))
+                (block
+                  (call_expression
+                    (field_expression
+                      (identifier)
+                      (field_identifier))
+                    (arguments
+                      (call_expression
+                        (field_expression
+                          (this_reference_shorthand
+                            (identifier))
+                          (field_identifier))
+                        (arguments
+                          (this_reference_shorthand
+                            (identifier))))))
+                  (this_reference_shorthand
+                    (identifier))
+                  (update_expression
+                    (MISSING identifier))))
+              (if_statement
+                (call_expression
+                  (this_reference_shorthand
+                    (identifier))
+                  (arguments))
+                (block
+                  (identifier)))
+              (if_statement
+                (binary_expression
+                  (identifier)
+                  (byte_literal))
+                (block
+                  (identifier)))
+              (if_statement
+                (binary_expression
+                  (identifier)
+                  (byte_literal))
+                (block
+                  (call_expression
+                    (field_expression
+                      (identifier)
+                      (field_identifier))
+                    (arguments
+                      (call_expression
+                        (this_reference_shorthand
+                          (identifier))
+                        (arguments))))
+                  (continue_statement)))
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (match_expression
+                (call_expression
+                  (this_reference_shorthand
+                    (identifier))
+                  (arguments))
+                (match_block
+                  (match_arm
+                    (match_pattern
+                      (binary_expression
+                        (binary_expression
+                          (binary_expression
+                            (binary_expression
+                              (binary_expression
+                                (binary_expression
+                                  (binary_expression
+                                    (byte_literal)
+                                    (byte_literal))
+                                  (byte_literal))
+                                (byte_literal))
+                              (byte_literal))
+                            (byte_literal))
+                          (byte_literal))
+                        (byte_literal)))
+                    (block
+                      (let_declaration
+                        (identifier)
+                        (call_expression
+                          (this_reference_shorthand
+                            (identifier))
+                          (arguments)))
+                      (call_expression
+                        (field_expression
+                          (identifier)
+                          (field_identifier))
+                        (arguments
+                          (match_expression
+                            (identifier)
+                            (match_block
+                              (match_arm
+                                (match_pattern
+                                  (byte_literal))
+                                (byte_literal))
+                              (match_arm
+                                (match_pattern
+                                  (byte_literal))
+                                (byte_literal))
+                              (match_arm
+                                (match_pattern
+                                  (byte_literal))
+                                (byte_literal))
+                              (match_arm
+                                (match_pattern
+                                  (byte_literal))
+                                (byte_literal))
+                              (match_arm
+                                (match_pattern
+                                  (byte_literal))
+                                (byte_literal))
+                              (match_arm
+                                (match_else)
+                                (identifier))))))))
+                  (match_arm
+                    (match_pattern
+                      (byte_literal))
+                    (block
+                      (call_expression
+                        (identifier)
+                        (arguments
+                          (string_literal)))
+                      (call_expression
+                        (identifier)
+                        (arguments))))
+                  (match_arm
+                    (match_else)
+                    (block
+                      (line_comment)
+                      (throw_statement
+                        (call_expression
+                          (static_member_expression
+                            (identifier)
+                            (field_identifier))
+                          (arguments
+                            (integer_literal))))))))))
+          (if_statement
+            (logical_not
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments
+                  (byte_literal))))
+            (block
+              (line_comment)
+              (throw_statement
+                (call_expression
+                  (static_member_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments
+                    (integer_literal))))))
+          (return_statement
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (block
+          (this_reference_shorthand
+            (identifier))
+          (update_expression
+            (MISSING identifier))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (block
+          (if_statement
+            (call_expression
+              (this_reference_shorthand
+                (identifier))
+              (arguments))
+            (block
+              (return_statement
+                (integer_literal))))
+          (return_statement
+            (call_expression
+              (field_expression
+                (this_reference_shorthand
+                  (identifier))
+                (field_identifier))
+              (arguments
+                (this_reference_shorthand
+                  (identifier)))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (primitive_type)
+        (block
+          (let_declaration
+            (identifier)
+            (call_expression
+              (this_reference_shorthand
+                (identifier))
+              (arguments)))
+          (this_reference_shorthand
+            (identifier))
+          (update_expression
+            (identifier))
+          (identifier)))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference))
+          (parameter
+            (anonymous_specifier)
+            (identifier)
+            (primitive_type)))
+        (primitive_type)
+        (block
+          (if_statement
+            (binary_expression
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (identifier))
+            (block
+              (return_statement
+                (boolean_literal))))
+          (this_reference_shorthand
+            (identifier))
+          (update_expression
+            (identifier))
+          (boolean_literal)))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (call_expression
+            (this_reference_shorthand
+              (identifier))
+            (arguments))
+          (return_statement
+            (match_expression
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (match_block
+                (match_arm
+                  (match_pattern
+                    (byte_literal))
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments)))
+                (match_arm
+                  (match_pattern
+                    (byte_literal))
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments)))
+                (match_arm
+                  (match_pattern
+                    (byte_literal))
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments)))
+                (match_arm
+                  (match_pattern
+                    (byte_literal))
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments)))
+                (match_arm
+                  (match_pattern
+                    (binary_expression
+                      (binary_expression
+                        (binary_expression
+                          (binary_expression
+                            (binary_expression
+                              (binary_expression
+                                (binary_expression
+                                  (binary_expression
+                                    (binary_expression
+                                      (byte_literal)
+                                      (byte_literal))
+                                    (byte_literal))
+                                  (byte_literal))
+                                (byte_literal))
+                              (byte_literal))
+                            (byte_literal))
+                          (byte_literal))
+                        (byte_literal))
+                      (byte_literal)))
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments)))
+                (match_arm
+                  (match_pattern
+                    (byte_literal))
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments)))
+                (match_arm
+                  (match_pattern
+                    (byte_literal))
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments)))
+                (match_arm
+                  (match_pattern
+                    (byte_literal))
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments)))
+                (match_arm
+                  (match_else)
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments
+                      (argument
+                        (identifier)
+                        (string_literal))))))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference))
+          (parameter
+            (identifier)
+            (primitive_type)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (throw_statement
+            (call_expression
+              (static_member_expression
+                (identifier)
+                (field_identifier))
+              (arguments
+                (integer_literal))))
+          (line_comment)
+          (return_statement
+            (static_member_expression
+              (identifier)
+              (field_identifier)))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (mutable_declaration
+            (mutable_specifier)
+            (identifier)
+            (array_type
+              (type_identifier))
+            (array_literal))
+          (if_statement
+            (parenthesized_expression
+              (logical_not
+                (call_expression
+                  (this_reference_shorthand
+                    (identifier))
+                  (arguments
+                    (byte_literal)))))
+            (block
+              (line_comment)
+              (throw_statement
+                (call_expression
+                  (static_member_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments
+                    (integer_literal))))))
+          (loop_statement
+            (block
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (if_statement
+                (binary_expression
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments))
+                  (byte_literal))
+                (block
+                  (identifier)))
+              (call_expression
+                (field_expression
+                  (identifier)
+                  (field_identifier))
+                (arguments
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments))))
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (if_statement
+                (binary_expression
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments))
+                  (byte_literal))
+                (block
+                  (identifier)))
+              (if_statement
+                (logical_not
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments
+                      (byte_literal))))
+                (block
+                  (line_comment)
+                  (throw_statement
+                    (call_expression
+                      (static_member_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments
+                        (integer_literal))))))
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (if_statement
+                (binary_expression
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments))
+                  (byte_literal))
+                (block
+                  (line_comment)
+                  (throw_statement
+                    (call_expression
+                      (static_member_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments
+                        (integer_literal))))))))
+          (if_statement
+            (logical_not
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments
+                  (byte_literal))))
+            (block
+              (line_comment)
+              (throw_statement
+                (call_expression
+                  (static_member_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments
+                    (integer_literal))))))
+          (return_statement
+            (call_expression
+              (static_member_expression
+                (identifier)
+                (field_identifier))
+              (arguments
+                (identifier))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (if_statement
+            (logical_not
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments
+                  (byte_literal))))
+            (block
+              (line_comment)
+              (throw_statement
+                (call_expression
+                  (static_member_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments
+                    (integer_literal))))))
+          (mutable_declaration
+            (mutable_specifier)
+            (identifier)
+            (dictionary_type
+              (primitive_type)
+              (identifier))
+            (dictionary_literal))
+          (loop_statement
+            (block
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (if_statement
+                (binary_expression
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments))
+                  (byte_literal))
+                (block
+                  (identifier)))
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (let_declaration
+                (identifier)
+                (call_expression
+                  (this_reference_shorthand
+                    (identifier))
+                  (arguments)))
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (if_statement
+                (logical_not
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments
+                      (byte_literal))))
+                (block
+                  (line_comment)
+                  (throw_statement
+                    (call_expression
+                      (static_member_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments
+                        (integer_literal))))))
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (let_declaration
+                (identifier)
+                (call_expression
+                  (this_reference_shorthand
+                    (identifier))
+                  (arguments)))
+              (line_comment)
+              (call_expression
+                (field_expression
+                  (identifier)
+                  (field_identifier))
+                (arguments
+                  (identifier)
+                  (identifier)))
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (if_statement
+                (binary_expression
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments))
+                  (byte_literal))
+                (block
+                  (identifier)))
+              (if_statement
+                (logical_not
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments
+                      (byte_literal))))
+                (block
+                  (line_comment)
+                  (throw_statement
+                    (call_expression
+                      (static_member_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments
+                        (integer_literal))))))
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments))
+              (if_statement
+                (binary_expression
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments))
+                  (byte_literal))
+                (block
+                  (line_comment)
+                  (throw_statement
+                    (call_expression
+                      (static_member_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments
+                        (integer_literal))))))))
+          (if_statement
+            (logical_not
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments
+                  (byte_literal))))
+            (block
+              (line_comment)
+              (throw_statement
+                (call_expression
+                  (static_member_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments
+                    (integer_literal))))))
+          (return_statement
+            (call_expression
+              (static_member_expression
+                (identifier)
+                (field_identifier))
+              (arguments
+                (identifier))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (parameter
+            (anonymous_specifier)
+            (identifier)
+            (primitive_type)))
+        (throws_specifier)
+        (primitive_type)
+        (block
+          (line_comment)
+          (line_comment)
+          (return_statement
+            (match_expression
+              (identifier)
+              (match_block
+                (match_arm
+                  (match_pattern
+                    (integer_literal))
+                  (float_literal))
+                (match_arm
+                  (match_pattern
+                    (integer_literal))
+                  (float_literal))
+                (match_arm
+                  (match_pattern
+                    (integer_literal))
+                  (float_literal))
+                (match_arm
+                  (match_pattern
+                    (integer_literal))
+                  (float_literal))
+                (match_arm
+                  (match_pattern
+                    (integer_literal))
+                  (float_literal))
+                (match_arm
+                  (match_pattern
+                    (integer_literal))
+                  (float_literal))
+                (match_arm
+                  (match_pattern
+                    (integer_literal))
+                  (float_literal))
+                (match_arm
+                  (match_pattern
+                    (integer_literal))
+                  (float_literal))
+                (match_arm
+                  (match_pattern
+                    (integer_literal))
+                  (float_literal))
+                (match_arm
+                  (match_pattern
+                    (integer_literal))
+                  (float_literal))
+                (match_arm
+                  (match_else)
+                  (block
+                    (line_comment)
+                    (throw_statement
+                      (call_expression
+                        (static_member_expression
+                          (identifier)
+                          (field_identifier))
+                        (arguments
+                          (integer_literal))))
+                    (return_statement
+                      (float_literal)))))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (line_comment)
+          (let_declaration
+            (identifier)
+            (call_expression
+              (this_reference_shorthand
+                (identifier))
+              (arguments
+                (byte_literal))))
+          (mutable_declaration
+            (mutable_specifier)
+            (identifier)
+            (primitive_type)
+            (optional_specifier)
+            (none_expression))
+          (mutable_declaration
+            (mutable_specifier)
+            (identifier)
+            (float_literal))
+          (while_statement
+            (logical_not
+              (call_expression
+                (this_reference_shorthand
+                  (identifier))
+                (arguments)))
+            (block
+              (let_declaration
+                (identifier)
+                (call_expression
+                  (this_reference_shorthand
+                    (identifier))
+                  (arguments)))
+              (if_statement
+                (binary_expression
+                  (identifier)
+                  (byte_literal))
+                (block
+                  (if_statement
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments))
+                    (block
+                      (line_comment)
+                      (throw_statement
+                        (call_expression
+                          (static_member_expression
+                            (identifier)
+                            (field_identifier))
+                          (arguments
+                            (integer_literal))))))
+                  (assignment_expression
+                    (identifier)
+                    (this_reference_shorthand
+                      (identifier)))
+                  (update_expression
+                    (identifier)))
+                (else_clause
+                  (if_statement
+                    (logical_not
+                      (parenthesized_expression
+                        (binary_expression
+                          (binary_expression
+                            (identifier)
+                            (byte_literal))
+                          (binary_expression
+                            (identifier)
+                            (byte_literal)))))
+                    (block
+                      (identifier)))))
+              (if_statement
+                (logical_not
+                  (call_expression
+                    (field_expression
+                      (identifier)
+                      (field_identifier))
+                    (arguments)))
+                (block
+                  (assignment_expression
+                    (identifier)
+                    (float_literal))
+                  (assignment_expression
+                    (identifier)
+                    (call_expression
+                      (identifier)
+                      (arguments
+                        (binary_expression
+                          (identifier)
+                          (byte_literal))))))
+                (else_clause
+                  (block
+                    (mutable_declaration
+                      (mutable_specifier)
+                      (identifier)
+                      (call_expression
+                        (identifier)
+                        (arguments
+                          (binary_expression
+                            (identifier)
+                            (byte_literal)))))
+                    (line_comment)
+                    (let_declaration
+                      (identifier)
+                      (binary_expression
+                        (this_reference_shorthand
+                          (identifier))
+                        (call_expression
+                          (field_expression
+                            (identifier)
+                            (field_identifier))
+                          (arguments))))
+                    (for_expression
+                      (identifier)
+                      (range_expression
+                        (integer_literal)
+                        (identifier))
+                      (block
+                        (assignment_expression
+                          (identifier)
+                          (float_literal))))
+                    (assignment_expression
+                      (identifier)
+                      (identifier)))))
+              (this_reference_shorthand
+                (identifier))
+              (update_expression
+                (MISSING identifier))))
+          (if_statement
+            (identifier)
+            (block
+              (assignment_expression
+                (identifier)
+                (unary_expression
+                  (float_literal)))))
+          (return_statement
+            (call_expression
+              (static_member_expression
+                (identifier)
+                (field_identifier))
+              (arguments
+                (identifier))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (return_statement
+            (call_expression
+              (static_member_expression
+                (identifier)
+                (field_identifier))
+              (arguments
+                (call_expression
+                  (this_reference_shorthand
+                    (identifier))
+                  (arguments)))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (if_statement
+            (parenthesized_expression
+              (binary_expression
+                (binary_expression
+                  (binary_expression
+                    (binary_expression
+                      (binary_expression
+                        (call_expression
+                          (this_reference_shorthand
+                            (identifier))
+                          (arguments))
+                        (byte_literal))
+                      (binary_expression
+                        (call_expression
+                          (this_reference_shorthand
+                            (identifier))
+                          (arguments))
+                        (byte_literal)))
+                    (binary_expression
+                      (call_expression
+                        (this_reference_shorthand
+                          (identifier))
+                        (arguments))
+                      (byte_literal)))
+                  (binary_expression
+                    (call_expression
+                      (this_reference_shorthand
+                        (identifier))
+                      (arguments))
+                    (byte_literal)))
+                (binary_expression
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments))
+                  (byte_literal))))
+            (block
+              (line_comment)
+              (throw_statement
+                (call_expression
+                  (static_member_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments
+                    (integer_literal))))))
+          (return_statement
+            (call_expression
+              (static_member_expression
+                (identifier)
+                (field_identifier))
+              (arguments
+                (boolean_literal))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (if_statement
+            (parenthesized_expression
+              (binary_expression
+                (binary_expression
+                  (binary_expression
+                    (binary_expression
+                      (call_expression
+                        (this_reference_shorthand
+                          (identifier))
+                        (arguments))
+                      (byte_literal))
+                    (binary_expression
+                      (call_expression
+                        (this_reference_shorthand
+                          (identifier))
+                        (arguments))
+                      (byte_literal)))
+                  (binary_expression
+                    (call_expression
+                      (this_reference_shorthand
+                        (identifier))
+                      (arguments))
+                    (byte_literal)))
+                (binary_expression
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments))
+                  (byte_literal))))
+            (block
+              (line_comment)
+              (throw_statement
+                (call_expression
+                  (static_member_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments
+                    (integer_literal))))))
+          (return_statement
+            (call_expression
+              (static_member_expression
+                (identifier)
+                (field_identifier))
+              (arguments
+                (boolean_literal))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (type_identifier)
+        (block
+          (if_statement
+            (parenthesized_expression
+              (binary_expression
+                (binary_expression
+                  (binary_expression
+                    (binary_expression
+                      (call_expression
+                        (this_reference_shorthand
+                          (identifier))
+                        (arguments))
+                      (byte_literal))
+                    (binary_expression
+                      (call_expression
+                        (this_reference_shorthand
+                          (identifier))
+                        (arguments))
+                      (byte_literal)))
+                  (binary_expression
+                    (call_expression
+                      (this_reference_shorthand
+                        (identifier))
+                      (arguments))
+                    (byte_literal)))
+                (binary_expression
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments))
+                  (byte_literal))))
+            (block
+              (line_comment)
+              (throw_statement
+                (call_expression
+                  (static_member_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments
+                    (integer_literal))))))
+          (return_statement
+            (static_member_expression
+              (identifier)
+              (field_identifier)))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (throws_specifier)
+    (type_identifier)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (static_member_expression
+            (identifier)
+            (field_identifier))
+          (arguments
+            (identifier))))
+      (return_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (string_literal
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence)
+                (escape_sequence))))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))

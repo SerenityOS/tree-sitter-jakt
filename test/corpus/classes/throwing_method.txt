@@ -25,7 +25,8 @@ function main() {
         (public_specifier)
         (identifier)
         (parameters
-          (this_reference))
+          (this_parameter
+            (this_reference)))
         (throws_specifier)
         (block
           (throw_statement

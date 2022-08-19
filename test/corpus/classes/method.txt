@@ -29,8 +29,9 @@ class Person {
         (public_specifier)
         (identifier)
         (parameters
-          (mutable_specifier)
-          (this_reference))
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
         (block
           (field_expression
             (update_expression

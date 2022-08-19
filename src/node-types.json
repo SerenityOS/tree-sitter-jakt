@@ -314,6 +314,10 @@
         "named": true
       },
       {
+        "type": "dictionary_type",
+        "named": true
+      },
+      {
         "type": "function_return_type",
         "named": true
       },
@@ -438,17 +442,16 @@
   {
     "type": "array_type",
     "named": true,
-    "fields": {
-      "element": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "_type",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_type",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -955,6 +958,32 @@
     }
   },
   {
+    "type": "dictionary_type",
+    "named": true,
+    "fields": {
+      "identifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "else_clause",
     "named": true,
     "fields": {},
@@ -1033,23 +1062,65 @@
     }
   },
   {
-    "type": "enum_variant",
+    "type": "enum_struct_variant",
     "named": true,
     "fields": {
-      "body": {
+      "name": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
-            "type": "field_declaration_list",
+            "type": "identifier",
             "named": true
-          },
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_type",
+          "named": true
+        },
+        {
+          "type": "field_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_tuple_variant",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
           {
-            "type": "ordered_field_declaration_list",
+            "type": "identifier",
             "named": true
           }
         ]
       },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "enum_variant",
+    "named": true,
+    "fields": {
       "name": {
         "multiple": false,
         "required": true,
@@ -1080,6 +1151,14 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "enum_struct_variant",
+          "named": true
+        },
+        {
+          "type": "enum_tuple_variant",
+          "named": true
+        },
         {
           "type": "enum_variant",
           "named": true
@@ -1865,25 +1944,6 @@
     "fields": {}
   },
   {
-    "type": "ordered_field_declaration_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "field_declaration",
-          "named": true
-        },
-        {
-          "type": "primitive_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "parameter",
     "named": true,
     "fields": {
@@ -1936,15 +1996,11 @@
       "required": false,
       "types": [
         {
-          "type": "mutable_specifier",
-          "named": true
-        },
-        {
           "type": "parameter",
           "named": true
         },
         {
-          "type": "this_reference",
+          "type": "this_parameter",
           "named": true
         }
       ]
@@ -2207,6 +2263,25 @@
       "types": [
         {
           "type": "extern_specifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "this_parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "mutable_specifier",
+          "named": true
+        },
+        {
+          "type": "this_reference",
           "named": true
         }
       ]

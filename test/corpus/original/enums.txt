@@ -16,10 +16,54 @@ enum SimpleWithStructType {
     (enum_variant_list
       (enum_variant
         (identifier))
-      (enum_variant
+      (enum_tuple_variant
         (identifier)
-        (ordered_field_declaration_list
-          (primitive_type)))
+        (primitive_type))
       (enum_variant
         (identifier)))))
 
+================================================================================
+Enum variant array sum type
+================================================================================
+
+enum JsonValue {
+    Null
+    Bool(bool)
+    JsonArray([JsonValue])
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))
+      (enum_tuple_variant
+        (identifier)
+        (array_type
+          (type_identifier))))))
+
+================================================================================
+Enum dictionary variant
+================================================================================
+
+enum JsonValue {
+    JsonArray([String:JsonValue])
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (dictionary_type
+          (primitive_type)
+          (identifier))))))

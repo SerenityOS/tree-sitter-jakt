@@ -31,7 +31,8 @@ namespace Greeters {
           (function_declaration
             (identifier)
             (parameters
-              (this_reference))
+              (this_parameter
+                (this_reference)))
             (block
               (call_expression
                 (identifier)

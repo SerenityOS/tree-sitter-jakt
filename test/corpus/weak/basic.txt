@@ -32,7 +32,8 @@ function main() {
         (public_specifier)
         (identifier)
         (parameters
-          (this_reference))
+          (this_parameter
+            (this_reference)))
         (return_expression
           (string_literal)))))
   (function_declaration

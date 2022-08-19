@@ -1,0 +1,44 @@
+================================================================================
+Original tests this reference for json sample
+================================================================================
+
+function parse_failure(this, error_message: String) throws -> JsonValue {
+
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (this_parameter
+        (this_reference))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (throws_specifier)
+    (type_identifier)
+    (block)))
+
+================================================================================
+This mutable parameter
+================================================================================
+
+
+function for(mut this) throws -> void {
+
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (this_parameter
+        (mutable_specifier)
+        (this_reference)))
+    (throws_specifier)
+    (primitive_type)
+    (block)))
