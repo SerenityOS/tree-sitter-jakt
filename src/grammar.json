@@ -142,6 +142,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "generic_function_declaration"
+        },
+        {
+          "type": "SYMBOL",
           "name": "closure_function"
         }
       ]
@@ -1880,6 +1884,14 @@
         {
           "type": "SYMBOL",
           "name": "closure_function_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "generic_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "generic_type_wrapped"
         }
       ]
     },
@@ -4542,6 +4554,128 @@
         }
       ]
     },
+    "generic_type": {
+      "type": "STRING",
+      "value": "T"
+    },
+    "generic_identifier": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "generic_type_wrapped"
+      },
+      "named": true,
+      "value": "generic_identifier"
+    },
+    "generic_type_wrapped": {
+      "type": "ALIAS",
+      "content": {
+        "type": "PATTERN",
+        "value": "[_\\p{XID_Start}][_\\p{XID_Continue}]*<T>"
+      },
+      "named": true,
+      "value": "generic_type"
+    },
+    "generic_function_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "function"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "generic_identifier"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "parameters",
+          "content": {
+            "type": "SYMBOL",
+            "name": "parameters"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "throws",
+              "content": {
+                "type": "SYMBOL",
+                "name": "throws_specifier"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "->"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "return_type",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_type"
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "optional_specifier"
+                          },
+                          {
+                            "type": "BLANK"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "return_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "block"
+              }
+            ]
+          }
+        }
+      ]
+    },
     "extern_specifier": {
       "type": "STRING",
       "value": "extern"
@@ -5141,6 +5275,10 @@
     [
       "_expression",
       "array_expression"
+    ],
+    [
+      "_type",
+      "generic_function_declaration"
     ]
   ],
   "precedences": [],
@@ -5158,7 +5296,9 @@
     "_type_identifier",
     "_statement",
     "declaration",
-    "ReferenceError"
+    "ReferenceError",
+    "generic_identifier",
+    "generic_type_wrapped"
   ],
   "supertypes": [
     "_expression",

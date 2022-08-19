@@ -98,6 +98,7 @@
   "None"
   "unsafe"
   "cpp"
+  (generic_type)
 ] @variable.builtin
 
 [

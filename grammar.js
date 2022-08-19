@@ -67,10 +67,13 @@ module.exports = grammar({
     $._statement,
     $.declaration,
     $.field_identifier,
+    $.generic_identifier,
+    $.generic_type_wrapped,
   ],
 
   conflicts: $ => [
     [$._expression, $.array_expression],
+    [$._type, $.generic_function_declaration],
   ],
 
   rules: {
@@ -108,6 +111,7 @@ module.exports = grammar({
       $.class_declaration,
       $.namespace_declaration,
       $.function_declaration,
+      $.generic_function_declaration,
       $.closure_function,
     ),
 
@@ -380,6 +384,8 @@ module.exports = grammar({
       alias(choice(...primitive_types), $.primitive_type),
       $.reference_type,
       $.closure_function_type,
+      $.generic_type,
+      $.generic_type_wrapped,
     ),
 
     array_type: $ => seq(
@@ -743,6 +749,21 @@ module.exports = grammar({
       optional(choice($.restricted_specifier, $.public_specifier)),
       'function',
       field('name', $.identifier),
+      field('parameters', $.parameters),
+      optional(field('throws', $.throws_specifier)),
+      optional(seq('->', field('return_type', seq($._type, optional($.optional_specifier))))),
+      field('body', choice($.return_expression, $.block)),
+    ),
+
+    generic_type: $ => 'T',
+
+    generic_identifier: $ => alias($.generic_type_wrapped, $.generic_identifier),
+
+    generic_type_wrapped: $ => alias(/[_\p{XID_Start}][_\p{XID_Continue}]*<T>/, $.generic_type),
+
+    generic_function_declaration: $ => seq(
+      'function',
+      field('name', $.generic_identifier),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
       optional(seq('->', field('return_type', seq($._type, optional($.optional_specifier))))),

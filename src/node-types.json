@@ -244,6 +244,10 @@
         "named": true
       },
       {
+        "type": "generic_function_declaration",
+        "named": true
+      },
+      {
         "type": "guard_statement",
         "named": true
       },
@@ -319,6 +323,10 @@
       },
       {
         "type": "function_return_type",
+        "named": true
+      },
+      {
+        "type": "generic_type",
         "named": true
       },
       {
@@ -1421,6 +1429,70 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "generic_function_declaration",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "generic_identifier",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parameters",
+            "named": true
+          }
+        ]
+      },
+      "return_type": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "_type",
+            "named": true
+          },
+          {
+            "type": "optional_specifier",
+            "named": true
+          }
+        ]
+      },
+      "throws": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "throws_specifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2816,6 +2888,10 @@
   },
   {
     "type": "function_return_type",
+    "named": true
+  },
+  {
+    "type": "generic_type",
     "named": true
   },
   {
