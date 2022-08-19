@@ -155,6 +155,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "bitwisenot_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "binary_expression"
         },
         {
@@ -2903,6 +2907,23 @@
           {
             "type": "STRING",
             "value": "-"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        ]
+      }
+    },
+    "bitwisenot_expression": {
+      "type": "PREC",
+      "value": 15,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "~"
           },
           {
             "type": "SYMBOL",

@@ -1,0 +1,208 @@
+================================================================================
+Apps crc32
+================================================================================
+
+function make_lookup_table() throws -> [u32] {
+    mut data = [0u32; 256]
+    for i in 0..data.size() {
+        mut value = i as! u32
+        for j in 0..8 {
+            if (value & 1) != 0 {
+                value = 0xedb88320u32 ^ (value >> 1)
+            } else {
+                value >>= 1
+            }
+        }
+        data[i] = value
+    }
+    return data
+}
+
+function main(args: [String]) {
+    if args.size() <= 1 {
+        eprintln("usage: crc32 <path>")
+        return 1
+    }
+
+    mut file = fopen(args[1].c_string(), "r".c_string())
+    defer fclose(file)
+
+    let table = make_lookup_table()
+
+    mut state = 0xffffffffu32
+    mut c = fgetc(file)
+    while feof(file) == 0 {
+        state = table[(state ^ c) & 0xff] ^ (state >> 8);
+        c = fgetc(file)
+    }
+
+    let digest = ~state
+    println("{}", digest)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (array_type
+      (primitive_type))
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)))
+      (for_expression
+        (identifier)
+        (range_expression
+          (integer_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments)))
+        (block
+          (mutable_declaration
+            (mutable_specifier)
+            (identifier)
+            (type_conversion_expression
+              (identifier)
+              (primitive_type)))
+          (for_expression
+            (identifier)
+            (range_expression
+              (integer_literal)
+              (integer_literal))
+            (block
+              (if_statement
+                (binary_expression
+                  (parenthesized_expression
+                    (binary_expression
+                      (identifier)
+                      (integer_literal)))
+                  (integer_literal))
+                (block
+                  (assignment_expression
+                    (identifier)
+                    (binary_expression
+                      (integer_literal)
+                      (parenthesized_expression
+                        (binary_expression
+                          (identifier)
+                          (integer_literal))))))
+                (else_clause
+                  (block
+                    (binary_expression
+                      (identifier)
+                      (integer_literal)))))))
+          (assignment_expression
+            (array_expression
+              (identifier)
+              (identifier))
+            (identifier))))
+      (return_statement
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (array_type
+          (primitive_type))))
+    (block
+      (if_statement
+        (binary_expression
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))
+          (integer_literal))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)))
+          (return_statement
+            (integer_literal))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (call_expression
+              (field_expression
+                (array_expression
+                  (identifier)
+                  (integer_literal))
+                (field_identifier))
+              (arguments))
+            (call_expression
+              (field_expression
+                (string_literal)
+                (field_identifier))
+              (arguments)))))
+      (defer_statement
+        (call_expression
+          (identifier)
+          (arguments
+            (identifier))))
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (integer_literal))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (identifier))))
+      (while_statement
+        (binary_expression
+          (call_expression
+            (identifier)
+            (arguments
+              (identifier)))
+          (integer_literal))
+        (block
+          (assignment_expression
+            (identifier)
+            (binary_expression
+              (array_expression
+                (identifier)
+                (binary_expression
+                  (parenthesized_expression
+                    (binary_expression
+                      (identifier)
+                      (identifier)))
+                  (integer_literal)))
+              (parenthesized_expression
+                (binary_expression
+                  (identifier)
+                  (integer_literal)))))
+          (assignment_expression
+            (identifier)
+            (call_expression
+              (identifier)
+              (arguments
+                (identifier))))))
+      (let_declaration
+        (identifier)
+        (bitwisenot_expression
+          (identifier)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))

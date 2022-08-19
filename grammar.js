@@ -1,4 +1,5 @@
 const PREC = {
+  bitwisenot: 15,
   field: 14,
   call: 13,
   range: 12,
@@ -112,6 +113,7 @@ module.exports = grammar({
 
     _expression: $ => choice(
       $.unary_expression,
+      $.bitwisenot_expression,
       $.binary_expression,
       $._literal,
       $.this_reference_shorthand,
@@ -522,6 +524,10 @@ module.exports = grammar({
 
     unary_expression: $ => prec(PREC.unary, seq(
       '-', $._expression
+    )),
+
+    bitwisenot_expression: $ => prec(PREC.bitwisenot, seq(
+      '~', $._expression
     )),
 
     return_statement: $ => choice(
