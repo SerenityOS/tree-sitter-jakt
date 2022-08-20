@@ -124,6 +124,7 @@ module.exports = grammar({
       $.raw_pointer_identfier,
       $.optional_expression,
       $.call_expression,
+      $.generic_call_expression,
       $.range_expression,
       $.for_expression,
       $.field_expression,
@@ -260,6 +261,12 @@ module.exports = grammar({
 
     call_expression: $ => prec(PREC.call, prec.left(seq(
       field('function', $._expression),
+      field('arguments', $.arguments),
+      optional(choice($.optional_specifier, $.array_index_expression)),
+    ))),
+
+    generic_call_expression: $ => prec(PREC.call, prec.left(seq(
+      field('function', $.generic_identifier),
       field('arguments', $.arguments),
       optional(choice($.optional_specifier, $.array_index_expression)),
     ))),
@@ -778,7 +785,15 @@ module.exports = grammar({
 
     generic_identifier: $ => $._generic_type_wrapped,
 
-    _generic_type_wrapped: $ => seq($.identifier, '<', choice($.generic_type, $._primitive_types), '>'),
+    _generic_type_wrapped: $ => prec(1, seq(
+      $.identifier,
+      token.immediate('<'),
+      choice(
+        seq($._primitive_types, ',', $._primitive_types),
+        choice($.generic_type, $._primitive_types),
+      ),
+      '>',
+    )),
 
     generic_function_declaration: $ => seq(
       'function',
