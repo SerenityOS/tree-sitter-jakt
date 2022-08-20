@@ -1,0 +1,29 @@
+================================================================================
+Generics generic instantiation
+================================================================================
+
+function main() {
+    let item = Optional(100);
+
+    println("{}", item!)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (optional_identifier
+            (identifier)))))))
