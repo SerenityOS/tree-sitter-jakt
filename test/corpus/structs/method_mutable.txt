@@ -1,0 +1,96 @@
+================================================================================
+Structs mutable method
+================================================================================
+
+struct Rectangle {
+    width: i64,
+    height: i64,
+
+    function grow(mut this) {
+        this.width *= 2;
+        this.height *= 2;
+    }
+
+    function area(this) => this.width * this.height
+}
+
+function main() {
+    mut rect = Rectangle(width: 4, height: 8)
+
+    rect.grow()
+
+    println("{}", rect.area())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (block
+          (assignment_expression
+            (field_expression
+              (this_reference)
+              (field_identifier))
+            (integer_literal))
+          (assignment_expression
+            (field_expression
+              (this_reference)
+              (field_identifier))
+            (integer_literal))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (return_expression
+          (binary_expression
+            (field_expression
+              (this_reference)
+              (field_identifier))
+            (field_expression
+              (this_reference)
+              (field_identifier)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal))
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments)))))))
