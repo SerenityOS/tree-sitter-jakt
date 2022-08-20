@@ -370,10 +370,9 @@ module.exports = grammar({
       ')'
     ),
 
-    argument: $ => seq(
-      field('label', choice($._pattern)),
-      ':',
-      $._expression
+    argument: $ => choice(
+        seq(field('label', choice($._pattern)), ':', $._expression),
+        seq(field('type', choice($.identifier)), '\n'),
     ),
 
     _type: $ => choice(

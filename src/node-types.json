@@ -349,10 +349,20 @@
     "fields": {
       "label": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "_pattern",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -360,7 +370,7 @@
     },
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "_expression",

@@ -1,0 +1,93 @@
+================================================================================
+Jakt Nes Monster error: system sum type initializer
+================================================================================
+
+public function init(system: System) throws -> CPU {
+    let reset_vector = system.read_word(address: 0xfffc)
+
+    return CPU (
+        a: 0
+        x: 0
+        y: 0
+        pc: reset_vector
+        s: 0xfd
+        carry: false
+        zero: false
+        interrupt_disable: true
+        decimal: false
+        break_flag: false
+        overflow: false
+        negative: false
+        system
+        clock: 0
+    )
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (public_specifier)
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (type_identifier)))
+    (throws_specifier)
+    (type_identifier)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (return_statement
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal))
+            (argument
+              (identifier)
+              (integer_literal))
+            (argument
+              (identifier)
+              (integer_literal))
+            (argument
+              (identifier)
+              (identifier))
+            (argument
+              (identifier)
+              (integer_literal))
+            (argument
+              (identifier)
+              (boolean_literal))
+            (argument
+              (identifier)
+              (boolean_literal))
+            (argument
+              (identifier)
+              (boolean_literal))
+            (argument
+              (identifier)
+              (boolean_literal))
+            (argument
+              (identifier)
+              (boolean_literal))
+            (argument
+              (identifier)
+              (boolean_literal))
+            (argument
+              (identifier)
+              (boolean_literal))
+            (argument
+              (identifier))
+            (argument
+              (identifier)
+              (integer_literal))))))))
