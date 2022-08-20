@@ -92,7 +92,7 @@
         "named": true
       },
       {
-        "type": "raw_pointer_identfier",
+        "type": "raw_pointer_specifier",
         "named": true
       },
       {
@@ -1233,7 +1233,7 @@
             "named": true
           },
           {
-            "type": "raw_pointer_identfier",
+            "type": "raw_pointer_specifier",
             "named": true
           }
         ]
@@ -1553,6 +1553,10 @@
           },
           {
             "type": "optional_specifier",
+            "named": true
+          },
+          {
+            "type": "raw_pointer_specifier",
             "named": true
           }
         ]
@@ -2212,7 +2216,7 @@
             "named": true
           },
           {
-            "type": "raw_pointer_identfier",
+            "type": "raw_pointer_specifier",
             "named": true
           }
         ]
@@ -2288,7 +2292,7 @@
     }
   },
   {
-    "type": "raw_pointer_identfier",
+    "type": "raw_pointer_specifier",
     "named": true,
     "fields": {
       "operand": {

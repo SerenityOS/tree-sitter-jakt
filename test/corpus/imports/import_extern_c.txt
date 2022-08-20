@@ -21,7 +21,7 @@ import extern c "stdlib.h"  {
           (parameter
             (identifier)
             (primitive_type)))
-        (raw_pointer_identfier)
+        (raw_pointer_specifier)
         (primitive_type))
       (extern_function_declaration
         (extern_specifier)
@@ -31,7 +31,7 @@ import extern c "stdlib.h"  {
             (anonymous_specifier)
             (mutable_specifier)
             (identifier)
-            (raw_pointer_identfier)
+            (raw_pointer_specifier)
             (primitive_type)))
         (primitive_type)))))
 
@@ -58,7 +58,7 @@ import extern c "fcntl.h"  {
         (parameters
           (parameter
             (identifier)
-            (raw_pointer_identfier)
+            (raw_pointer_specifier)
             (primitive_type))
           (parameter
             (identifier)
@@ -74,7 +74,7 @@ import extern c "fcntl.h"  {
           (parameter
             (mutable_specifier)
             (identifier)
-            (raw_pointer_identfier)
+            (raw_pointer_specifier)
             (primitive_type))
           (parameter
             (identifier)

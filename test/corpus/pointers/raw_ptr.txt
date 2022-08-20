@@ -23,7 +23,7 @@ function main() {
         (integer_literal))
       (let_declaration
         (identifier)
-        (raw_pointer_identfier))
+        (raw_pointer_specifier))
       (identifier)
       (unsafe_block
         (call_expression

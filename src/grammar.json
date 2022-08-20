@@ -183,7 +183,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "raw_pointer_identfier"
+          "name": "raw_pointer_specifier"
         },
         {
           "type": "SYMBOL",
@@ -1577,7 +1577,7 @@
         ]
       }
     },
-    "raw_pointer_identfier": {
+    "raw_pointer_specifier": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -4789,6 +4789,18 @@
                         "members": [
                           {
                             "type": "SYMBOL",
+                            "name": "raw_pointer_specifier"
+                          },
+                          {
+                            "type": "BLANK"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
                             "name": "_type"
                           },
                           {
@@ -4890,7 +4902,7 @@
                         "members": [
                           {
                             "type": "SYMBOL",
-                            "name": "raw_pointer_identfier"
+                            "name": "raw_pointer_specifier"
                           },
                           {
                             "type": "BLANK"
@@ -5137,7 +5149,7 @@
                         "members": [
                           {
                             "type": "SYMBOL",
-                            "name": "raw_pointer_identfier"
+                            "name": "raw_pointer_specifier"
                           },
                           {
                             "type": "BLANK"

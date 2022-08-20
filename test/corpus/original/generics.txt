@@ -42,3 +42,22 @@ if window == null<GLFWwindow>() {
         (arguments)))
     (block
       (return_statement))))
+
+================================================================================
+Generics: return raw T
+================================================================================
+
+function null<T>() -> raw T {
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (generic_function_declaration
+    (generic_identifier
+      (identifier)
+      (generic_type))
+    (parameters)
+    (raw_pointer_specifier)
+    (generic_type)
+    (block)))

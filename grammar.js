@@ -121,7 +121,7 @@ module.exports = grammar({
       $.this_reference_shorthand,
       $.identifier,
       $.optional_identifier,
-      $.raw_pointer_identfier,
+      $.raw_pointer_specifier,
       $.optional_expression,
       $.call_expression,
       $.generic_call_expression,
@@ -355,7 +355,7 @@ module.exports = grammar({
       field('operator', choice( '!', '?')),
     )),
 
-    raw_pointer_identfier: $ => prec.left(seq(
+    raw_pointer_specifier: $ => prec.left(seq(
       optional(field('operator', '&')),
       'raw',
       optional(field('operand', $.identifier)),
@@ -801,7 +801,7 @@ module.exports = grammar({
       field('name', $.generic_identifier),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
-      optional(seq('->', field('return_type', seq(choice($._type,$.generic_identifier), optional($.optional_specifier))))),
+      optional(seq('->', field('return_type', seq(optional($.raw_pointer_specifier), choice($._type,$.generic_identifier), optional($.optional_specifier))))),
       field('body', choice($.return_expression, $.block)),
     ),
 
@@ -812,7 +812,7 @@ module.exports = grammar({
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters),
-      optional(seq('->', field('return_type', seq(optional($.raw_pointer_identfier), $._type)))),
+      optional(seq('->', field('return_type', seq(optional($.raw_pointer_specifier), $._type)))),
     ),
 
     throws_specifier: $ => seq('throws'),
@@ -848,7 +848,7 @@ module.exports = grammar({
       ':',
       field('type', seq(
         choice(
-          seq(optional($.raw_pointer_identfier), $._type),
+          seq(optional($.raw_pointer_specifier), $._type),
         ),
       )),
     ),
