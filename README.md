@@ -6,8 +6,6 @@ Jakt is a memory safe programming language created for SerenityOS that transpile
 
 ## Roadmap
 
-**Work in progress. Jakt is under heavy development.**
-
 tree-sitter-jakt implements 148.00 of 226 (65.5%) of passable Jakt samples as of August 20, 2022
 
 ## Screenshot
