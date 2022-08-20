@@ -40,6 +40,9 @@
     (identifier) @type
     (primitive_type))
 
+(generic_identifier
+    (identifier) @type)
+
 [
   "boxed"
   (mutable_specifier)
