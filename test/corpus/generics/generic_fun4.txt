@@ -16,7 +16,9 @@ function main() {
 
 (source_file
   (generic_function_declaration
-    (generic_identifier)
+    (generic_identifier
+      (identifier)
+      (generic_type))
     (parameters
       (parameter
         (anonymous_specifier)

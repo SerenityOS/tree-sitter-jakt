@@ -9,12 +9,10 @@
  (#match? @constructor "^[A-Z]"))
 
 ; Import
-
 "import" @include
 (import_as_clause) @include
 
 ; Function calls
-
 (call_expression
   function: (identifier) @function)
 (call_expression
@@ -28,12 +26,19 @@
 (function_declaration (identifier) @function.method)
 
 ; Other identifiers
-
 (type_identifier) @type
+
 (primitive_type) @type.builtin
 (function_return_type) @type.builtin
 (namespace_scope_expression) @type.builtin
 
+(generic_identifier
+    (identifier) @type
+    (generic_type) @variable.builtin)
+
+(generic_identifier
+    (identifier) @type
+    (primitive_type))
 
 [
   "boxed"

@@ -1,5 +1,5 @@
 ================================================================================
-Generics static with explicit types
+Generics static
 ================================================================================
 
 struct Test {
@@ -9,7 +9,7 @@ struct Test {
 }
 
 function main() {
-    println("{}", Test::test<i64>(foo: 1));
+    println("{}", Test::test(foo: 1));
 }
 
 --------------------------------------------------------------------------------
@@ -40,9 +40,7 @@ function main() {
           (string_literal)
           (static_call_expression
             (scoped_identifier)
-            (generic_identifier
-              (identifier)
-              (primitive_type))
+            (field_identifier)
             (arguments
               (argument
                 (identifier)

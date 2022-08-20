@@ -67,8 +67,6 @@ module.exports = grammar({
     $._statement,
     $.declaration,
     $.field_identifier,
-    $.generic_identifier,
-    $.generic_type_wrapped,
   ],
 
   conflicts: $ => [
@@ -286,7 +284,7 @@ module.exports = grammar({
       field('namespace', alias($.identifier, $.scoped_identifier)),
       '::',
       repeat1(seq(alias($.identifier, $.scoped_identifier), '::')),
-      field('field', choice($._field_identifier, $._generic_field_identifier_explicit_type)),
+      field('field', choice($._field_identifier, $.generic_identifier)),
       field('arguments', $.arguments),
       optional(choice($.optional_specifier, $.array_index_expression)),
     ))),
@@ -300,7 +298,7 @@ module.exports = grammar({
     static_call_expression: $ => prec(1, prec.left(seq(
       field('name', alias($.identifier, $.scoped_identifier)),
       '::',
-      field('field', choice($._field_identifier, $._generic_field_identifier_explicit_type)),
+      field('field', choice($._field_identifier, $.generic_identifier)),
       field('arguments', $.arguments),
       optional(choice($.optional_specifier, $.array_index_expression)),
     ))),
@@ -402,7 +400,6 @@ module.exports = grammar({
       $.reference_type,
       $.closure_function_type,
       $.generic_type,
-      $.generic_type_wrapped,
     ),
 
     namespace_scope_type: $ => token(repeat1(seq(identifier, '::'))),
@@ -443,7 +440,7 @@ module.exports = grammar({
       field('pattern', $._pattern),
       optional(seq(
         ':',
-        field('type', seq($._type, optional($.optional_specifier))),
+        field('type', seq(choice($._type, $.generic_identifier), optional($.optional_specifier))),
       )),
       optional(seq(
         '=',
@@ -538,12 +535,11 @@ module.exports = grammar({
     ),
 
     _field_identifier: $ => prec(1, alias($.identifier, $.field_identifier)),
-    _generic_field_identifier_explicit_type: $ => prec(1, seq(alias($.identifier, $.generic_identifier), '<', $._primitive_types, '>')),
 
     struct_declaration: $ => seq(
       optional($.extern_specifier),
       'struct',
-      field('name', choice($._type_identifier)),
+      field('name', choice($._type_identifier, $.generic_identifier)),
       field('body', $.field_declaration_list)
     ),
 
@@ -780,16 +776,16 @@ module.exports = grammar({
 
     generic_type: $ => 'T',
 
-    generic_identifier: $ => alias($.generic_type_wrapped, $.generic_identifier),
+    generic_identifier: $ => $._generic_type_wrapped,
 
-    generic_type_wrapped: $ => alias(/[_\p{XID_Start}][_\p{XID_Continue}]*<T>/, $.generic_type),
+    _generic_type_wrapped: $ => seq($.identifier, '<', choice($.generic_type, $._primitive_types), '>'),
 
     generic_function_declaration: $ => seq(
       'function',
       field('name', $.generic_identifier),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
-      optional(seq('->', field('return_type', seq($._type, optional($.optional_specifier))))),
+      optional(seq('->', field('return_type', seq(choice($._type,$.generic_identifier), optional($.optional_specifier))))),
       field('body', choice($.return_expression, $.block)),
     ),
 

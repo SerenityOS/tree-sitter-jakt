@@ -1124,7 +1124,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "_generic_field_identifier_explicit_type"
+                    "name": "generic_identifier"
                   }
                 ]
               }
@@ -1229,7 +1229,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "_generic_field_identifier_explicit_type"
+                    "name": "generic_identifier"
                   }
                 ]
               }
@@ -1912,10 +1912,6 @@
         {
           "type": "SYMBOL",
           "name": "generic_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "generic_type_wrapped"
         }
       ]
     },
@@ -2137,8 +2133,17 @@
                       "type": "SEQ",
                       "members": [
                         {
-                          "type": "SYMBOL",
-                          "name": "_type"
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "_type"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "generic_identifier"
+                            }
+                          ]
                         },
                         {
                           "type": "CHOICE",
@@ -2778,36 +2783,6 @@
         "value": "field_identifier"
       }
     },
-    "_generic_field_identifier_explicit_type": {
-      "type": "PREC",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
-            },
-            "named": true,
-            "value": "generic_identifier"
-          },
-          {
-            "type": "STRING",
-            "value": "<"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_primitive_types"
-          },
-          {
-            "type": "STRING",
-            "value": ">"
-          }
-        ]
-      }
-    },
     "struct_declaration": {
       "type": "SEQ",
       "members": [
@@ -2836,6 +2811,10 @@
               {
                 "type": "SYMBOL",
                 "name": "_type_identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "generic_identifier"
               }
             ]
           }
@@ -4625,22 +4604,38 @@
       "value": "T"
     },
     "generic_identifier": {
-      "type": "ALIAS",
-      "content": {
-        "type": "SYMBOL",
-        "name": "generic_type_wrapped"
-      },
-      "named": true,
-      "value": "generic_identifier"
+      "type": "SYMBOL",
+      "name": "_generic_type_wrapped"
     },
-    "generic_type_wrapped": {
-      "type": "ALIAS",
-      "content": {
-        "type": "PATTERN",
-        "value": "[_\\p{XID_Start}][_\\p{XID_Continue}]*<T>"
-      },
-      "named": true,
-      "value": "generic_type"
+    "_generic_type_wrapped": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "generic_type"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_primitive_types"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
     },
     "generic_function_declaration": {
       "type": "SEQ",
@@ -4698,8 +4693,17 @@
                     "type": "SEQ",
                     "members": [
                       {
-                        "type": "SYMBOL",
-                        "name": "_type"
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "_type"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "generic_identifier"
+                          }
+                        ]
                       },
                       {
                         "type": "CHOICE",
@@ -5452,9 +5456,7 @@
     "_type_identifier",
     "_statement",
     "declaration",
-    "ReferenceError",
-    "generic_identifier",
-    "generic_type_wrapped"
+    "ReferenceError"
   ],
   "supertypes": [
     "_expression",

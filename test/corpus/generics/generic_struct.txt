@@ -1,36 +1,44 @@
 ================================================================================
-Generics generic fun
+Generics generic struct
 ================================================================================
 
-function id<T>(anon x: T) => x
+struct Foo<T> {
+    x: T
+}
 
 function main() {
-    println("{}", id(3))
+    let f = Foo(x: 100);
+
+    println("{}", f.x);
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (generic_function_declaration
+  (struct_declaration
     (generic_identifier
       (identifier)
       (generic_type))
-    (parameters
-      (parameter
-        (anonymous_specifier)
-        (identifier)
-        (generic_type)))
-    (return_expression
-      (identifier)))
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (generic_type))))
   (function_declaration
     (identifier)
     (parameters)
     (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))
       (call_expression
         (identifier)
         (arguments
           (string_literal)
-          (call_expression
+          (field_expression
             (identifier)
-            (arguments
-              (integer_literal))))))))
+            (field_identifier)))))))

@@ -1,0 +1,23 @@
+================================================================================
+A generic failing test that was not colored correctly
+================================================================================
+
+let x: Foo<i64> = Bar(x: 1, y: 2)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (let_declaration
+    (identifier)
+    (generic_identifier
+      (identifier)
+      (primitive_type))
+    (call_expression
+      (identifier)
+      (arguments
+        (argument
+          (identifier)
+          (integer_literal))
+        (argument
+          (identifier)
+          (integer_literal))))))
