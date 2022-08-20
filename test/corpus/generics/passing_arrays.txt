@@ -1,0 +1,41 @@
+================================================================================
+Generics passing an array
+================================================================================
+
+function dump<T>(anon v: [T]) { return v[0] }
+
+function main() {
+    println("{}", dump([1, 2, 3]))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (generic_function_declaration
+    (generic_identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (array_type
+          (generic_type))))
+    (block
+      (return_statement
+        (array_expression
+          (identifier)
+          (integer_literal)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (identifier)
+            (arguments
+              (array_literal
+                (integer_literal)
+                (integer_literal)
+                (integer_literal)))))))))
