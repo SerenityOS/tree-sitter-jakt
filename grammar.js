@@ -312,7 +312,7 @@ module.exports = grammar({
     )),
 
     array_expression: $ => prec.right(seq(
-      $.identifier,
+      choice($.identifier, $.this_reference_shorthand),
       repeat(
         seq(
           '[',

@@ -132,3 +132,20 @@ function dex(mut this) {
             (identifier)
             (this_reference_shorthand
               (identifier))))))))
+
+================================================================================
+Binary & operator on this ref from Jakt Nes Monster
+================================================================================
+
+return .scratch_ram[address & 0x7ff]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (return_statement
+    (array_expression
+      (this_reference_shorthand
+        (identifier))
+      (binary_expression
+        (identifier)
+        (integer_literal)))))
