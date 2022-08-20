@@ -74,36 +74,28 @@ function main() {
       (mutable_declaration
         (mutable_specifier)
         (identifier)
-        (call_expression
-          (static_member_expression
-            (static_member_expression
-              (identifier)
-              (field_identifier))
-            (field_identifier))
+        (namespace_call_expression
+          (scoped_identifier)
+          (scoped_identifier)
+          (field_identifier)
           (arguments)))
       (call_expression
         (field_expression
           (identifier)
           (field_identifier))
         (arguments))
-      (call_expression
-        (static_member_expression
-          (static_member_expression
-            (static_member_expression
-              (identifier)
-              (field_identifier))
-            (field_identifier))
-          (field_identifier))
+      (namespace_call_expression
+        (scoped_identifier)
+        (scoped_identifier)
+        (scoped_identifier)
+        (field_identifier)
         (arguments))
-      (call_expression
-        (static_member_expression
-          (static_member_expression
-            (identifier)
-            (field_identifier))
-          (field_identifier))
+      (namespace_call_expression
+        (scoped_identifier)
+        (scoped_identifier)
+        (field_identifier)
         (arguments))
-      (call_expression
-        (static_member_expression
-          (identifier)
-          (field_identifier))
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
         (arguments)))))

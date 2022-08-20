@@ -27,10 +27,9 @@ function toss(anon value: i32) throws {
           (boolean_literal))
         (block
           (throw_statement
-            (call_expression
-              (static_member_expression
-                (identifier)
-                (field_identifier))
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
               (arguments
                 (integer_literal))))))
       (return_statement
@@ -45,10 +44,9 @@ function toss(anon value: i32) throws {
     (throws_specifier)
     (block
       (throw_statement
-        (call_expression
-          (static_member_expression
-            (identifier)
-            (field_identifier))
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
           (arguments
             (identifier)))))))
 

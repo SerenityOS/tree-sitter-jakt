@@ -60,6 +60,14 @@
         "named": true
       },
       {
+        "type": "namespace_call_expression",
+        "named": true
+      },
+      {
+        "type": "namespace_scope_expression",
+        "named": true
+      },
+      {
         "type": "none_expression",
         "named": true
       },
@@ -88,7 +96,7 @@
         "named": true
       },
       {
-        "type": "static_member_expression",
+        "type": "static_call_expression",
         "named": true
       },
       {
@@ -330,6 +338,10 @@
         "named": true
       },
       {
+        "type": "namespace_scope_type",
+        "named": true
+      },
+      {
         "type": "primitive_type",
         "named": true
       },
@@ -415,6 +427,30 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "array_index_expression",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "]",
+            "named": false
+          },
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -701,30 +737,6 @@
     "fields": {}
   },
   {
-    "type": "call_chain_expression",
-    "named": true,
-    "fields": {
-      "value": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "[",
-            "named": false
-          },
-          {
-            "type": "]",
-            "named": false
-          },
-          {
-            "type": "_expression",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "call_expression",
     "named": true,
     "fields": {
@@ -754,7 +766,7 @@
       "required": false,
       "types": [
         {
-          "type": "call_chain_expression",
+          "type": "array_index_expression",
           "named": true
         },
         {
@@ -1288,6 +1300,10 @@
         },
         {
           "type": "function_declaration",
+          "named": true
+        },
+        {
+          "type": "generic_function_declaration",
           "named": true
         }
       ]
@@ -1901,6 +1917,76 @@
     }
   },
   {
+    "type": "namespace_call_expression",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arguments",
+            "named": true
+          }
+        ]
+      },
+      "field": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "<",
+            "named": false
+          },
+          {
+            "type": ">",
+            "named": false
+          },
+          {
+            "type": "field_identifier",
+            "named": true
+          },
+          {
+            "type": "generic_identifier",
+            "named": true
+          },
+          {
+            "type": "primitive_type",
+            "named": true
+          }
+        ]
+      },
+      "namespace": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "scoped_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array_index_expression",
+          "named": true
+        },
+        {
+          "type": "optional_specifier",
+          "named": true
+        },
+        {
+          "type": "scoped_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "namespace_declaration",
     "named": true,
     "fields": {
@@ -1924,6 +2010,25 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "namespace_scope_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "field_identifier",
+          "named": true
+        },
+        {
+          "type": "scoped_identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2274,29 +2379,69 @@
     }
   },
   {
-    "type": "static_member_expression",
+    "type": "static_call_expression",
     "named": true,
     "fields": {
-      "field": {
+      "arguments": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "field_identifier",
+            "type": "arguments",
             "named": true
           }
         ]
       },
-      "value": {
+      "field": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "<",
+            "named": false
+          },
+          {
+            "type": ">",
+            "named": false
+          },
+          {
+            "type": "field_identifier",
+            "named": true
+          },
+          {
+            "type": "generic_identifier",
+            "named": true
+          },
+          {
+            "type": "primitive_type",
+            "named": true
+          }
+        ]
+      },
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "_expression",
+            "type": "scoped_identifier",
             "named": true
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "array_index_expression",
+          "named": true
+        },
+        {
+          "type": "optional_specifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2905,6 +3050,10 @@
     "named": true
   },
   {
+    "type": "generic_identifier",
+    "named": true
+  },
+  {
     "type": "generic_type",
     "named": true
   },
@@ -2965,6 +3114,10 @@
     "named": false
   },
   {
+    "type": "namespace_scope_type",
+    "named": true
+  },
+  {
     "type": "not",
     "named": false
   },
@@ -2991,6 +3144,10 @@
   {
     "type": "return",
     "named": false
+  },
+  {
+    "type": "scoped_identifier",
+    "named": true
   },
   {
     "type": "struct",

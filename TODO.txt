@@ -44,10 +44,6 @@
             )),
 
 
-* change static_member_expression to static_call_expression (maybe?)
-
-    I'm not sure what the C++ feature is called...
-
 * submit queries to https://github.com/nvim-treesitter/nvim-treesitter
 
     https://github.com/nvim-treesitter/nvim-treesitter/issues/2282

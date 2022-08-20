@@ -37,12 +37,10 @@ function main() {
     (function_return_type)
     (block
       (return_statement
-        (call_expression
-          (static_member_expression
-            (static_member_expression
-              (identifier)
-              (field_identifier))
-            (field_identifier))
+        (namespace_call_expression
+          (scoped_identifier)
+          (scoped_identifier)
+          (field_identifier)
           (arguments
             (argument
               (identifier)

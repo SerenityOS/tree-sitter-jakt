@@ -1,21 +1,23 @@
 ================================================================================
-String repeated static member function
+Namespace return type
 ================================================================================
 
-let exes = String::repeated(character: 'x', count: 4)
+return Foo::Bar::Biz(a: 10)
+return JsonValue::Null
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (let_declaration
-    (identifier)
-    (static_call_expression
+  (return_statement
+    (namespace_call_expression
+      (scoped_identifier)
       (scoped_identifier)
       (field_identifier)
       (arguments
         (argument
           (identifier)
-          (char_literal))
-        (argument
-          (identifier)
-          (integer_literal))))))
+          (integer_literal)))))
+  (return_statement
+    (namespace_scope_expression
+      (scoped_identifier)
+      (field_identifier))))

@@ -60,5 +60,5 @@ function main() {
               (identifier)
               (field_identifier))
             (arguments)
-            (call_chain_expression
+            (array_index_expression
               (integer_literal))))))))

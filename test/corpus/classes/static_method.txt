@@ -63,10 +63,9 @@ function main() {
     (block
       (let_declaration
         (identifier)
-        (call_expression
-          (static_member_expression
-            (identifier)
-            (field_identifier))
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
           (arguments
             (argument
               (identifier)

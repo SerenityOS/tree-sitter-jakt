@@ -477,10 +477,9 @@ function main() {
             (block
               (line_comment)
               (throw_statement
-                (call_expression
-                  (static_member_expression
-                    (identifier)
-                    (field_identifier))
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
                   (arguments
                     (integer_literal))))))
           (return_statement
@@ -536,19 +535,17 @@ function main() {
             (block
               (line_comment)
               (throw_statement
-                (call_expression
-                  (static_member_expression
-                    (identifier)
-                    (field_identifier))
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
                   (arguments
                     (integer_literal))))))
           (mutable_declaration
             (mutable_specifier)
             (identifier)
-            (call_expression
-              (static_member_expression
-                (identifier)
-                (field_identifier))
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
               (arguments)))
           (loop_statement
             (block
@@ -598,10 +595,9 @@ function main() {
                     (block
                       (line_comment)
                       (throw_statement
-                        (call_expression
-                          (static_member_expression
-                            (identifier)
-                            (field_identifier))
+                        (static_call_expression
+                          (scoped_identifier)
+                          (field_identifier)
                           (arguments
                             (integer_literal))))))
                   (update_expression
@@ -737,10 +733,9 @@ function main() {
                     (block
                       (line_comment)
                       (throw_statement
-                        (call_expression
-                          (static_member_expression
-                            (identifier)
-                            (field_identifier))
+                        (static_call_expression
+                          (scoped_identifier)
+                          (field_identifier)
                           (arguments
                             (integer_literal))))))))))
           (if_statement
@@ -753,10 +748,9 @@ function main() {
             (block
               (line_comment)
               (throw_statement
-                (call_expression
-                  (static_member_expression
-                    (identifier)
-                    (field_identifier))
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
                   (arguments
                     (integer_literal))))))
           (return_statement
@@ -960,16 +954,15 @@ function main() {
         (type_identifier)
         (block
           (throw_statement
-            (call_expression
-              (static_member_expression
-                (identifier)
-                (field_identifier))
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
               (arguments
                 (integer_literal))))
           (line_comment)
           (return_statement
-            (static_member_expression
-              (identifier)
+            (namespace_scope_expression
+              (scoped_identifier)
               (field_identifier)))))
       (function_declaration
         (identifier)
@@ -997,10 +990,9 @@ function main() {
             (block
               (line_comment)
               (throw_statement
-                (call_expression
-                  (static_member_expression
-                    (identifier)
-                    (field_identifier))
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
                   (arguments
                     (integer_literal))))))
           (loop_statement
@@ -1050,10 +1042,9 @@ function main() {
                 (block
                   (line_comment)
                   (throw_statement
-                    (call_expression
-                      (static_member_expression
-                        (identifier)
-                        (field_identifier))
+                    (static_call_expression
+                      (scoped_identifier)
+                      (field_identifier)
                       (arguments
                         (integer_literal))))))
               (call_expression
@@ -1070,10 +1061,9 @@ function main() {
                 (block
                   (line_comment)
                   (throw_statement
-                    (call_expression
-                      (static_member_expression
-                        (identifier)
-                        (field_identifier))
+                    (static_call_expression
+                      (scoped_identifier)
+                      (field_identifier)
                       (arguments
                         (integer_literal))))))))
           (if_statement
@@ -1086,17 +1076,15 @@ function main() {
             (block
               (line_comment)
               (throw_statement
-                (call_expression
-                  (static_member_expression
-                    (identifier)
-                    (field_identifier))
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
                   (arguments
                     (integer_literal))))))
           (return_statement
-            (call_expression
-              (static_member_expression
-                (identifier)
-                (field_identifier))
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
               (arguments
                 (identifier))))))
       (function_declaration
@@ -1118,10 +1106,9 @@ function main() {
             (block
               (line_comment)
               (throw_statement
-                (call_expression
-                  (static_member_expression
-                    (identifier)
-                    (field_identifier))
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
                   (arguments
                     (integer_literal))))))
           (mutable_declaration
@@ -1170,10 +1157,9 @@ function main() {
                 (block
                   (line_comment)
                   (throw_statement
-                    (call_expression
-                      (static_member_expression
-                        (identifier)
-                        (field_identifier))
+                    (static_call_expression
+                      (scoped_identifier)
+                      (field_identifier)
                       (arguments
                         (integer_literal))))))
               (call_expression
@@ -1217,10 +1203,9 @@ function main() {
                 (block
                   (line_comment)
                   (throw_statement
-                    (call_expression
-                      (static_member_expression
-                        (identifier)
-                        (field_identifier))
+                    (static_call_expression
+                      (scoped_identifier)
+                      (field_identifier)
                       (arguments
                         (integer_literal))))))
               (call_expression
@@ -1237,10 +1222,9 @@ function main() {
                 (block
                   (line_comment)
                   (throw_statement
-                    (call_expression
-                      (static_member_expression
-                        (identifier)
-                        (field_identifier))
+                    (static_call_expression
+                      (scoped_identifier)
+                      (field_identifier)
                       (arguments
                         (integer_literal))))))))
           (if_statement
@@ -1253,17 +1237,15 @@ function main() {
             (block
               (line_comment)
               (throw_statement
-                (call_expression
-                  (static_member_expression
-                    (identifier)
-                    (field_identifier))
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
                   (arguments
                     (integer_literal))))))
           (return_statement
-            (call_expression
-              (static_member_expression
-                (identifier)
-                (field_identifier))
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
               (arguments
                 (identifier))))))
       (function_declaration
@@ -1327,10 +1309,9 @@ function main() {
                   (block
                     (line_comment)
                     (throw_statement
-                      (call_expression
-                        (static_member_expression
-                          (identifier)
-                          (field_identifier))
+                      (static_call_expression
+                        (scoped_identifier)
+                        (field_identifier)
                         (arguments
                           (integer_literal))))
                     (return_statement
@@ -1389,10 +1370,9 @@ function main() {
                     (block
                       (line_comment)
                       (throw_statement
-                        (call_expression
-                          (static_member_expression
-                            (identifier)
-                            (field_identifier))
+                        (static_call_expression
+                          (scoped_identifier)
+                          (field_identifier)
                           (arguments
                             (integer_literal))))))
                   (assignment_expression
@@ -1478,10 +1458,9 @@ function main() {
                 (unary_expression
                   (float_literal)))))
           (return_statement
-            (call_expression
-              (static_member_expression
-                (identifier)
-                (field_identifier))
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
               (arguments
                 (identifier))))))
       (function_declaration
@@ -1494,10 +1473,9 @@ function main() {
         (type_identifier)
         (block
           (return_statement
-            (call_expression
-              (static_member_expression
-                (identifier)
-                (field_identifier))
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
               (arguments
                 (call_expression
                   (this_reference_shorthand
@@ -1551,17 +1529,15 @@ function main() {
             (block
               (line_comment)
               (throw_statement
-                (call_expression
-                  (static_member_expression
-                    (identifier)
-                    (field_identifier))
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
                   (arguments
                     (integer_literal))))))
           (return_statement
-            (call_expression
-              (static_member_expression
-                (identifier)
-                (field_identifier))
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
               (arguments
                 (boolean_literal))))))
       (function_declaration
@@ -1605,17 +1581,15 @@ function main() {
             (block
               (line_comment)
               (throw_statement
-                (call_expression
-                  (static_member_expression
-                    (identifier)
-                    (field_identifier))
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
                   (arguments
                     (integer_literal))))))
           (return_statement
-            (call_expression
-              (static_member_expression
-                (identifier)
-                (field_identifier))
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
               (arguments
                 (boolean_literal))))))
       (function_declaration
@@ -1659,15 +1633,14 @@ function main() {
             (block
               (line_comment)
               (throw_statement
-                (call_expression
-                  (static_member_expression
-                    (identifier)
-                    (field_identifier))
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
                   (arguments
                     (integer_literal))))))
           (return_statement
-            (static_member_expression
-              (identifier)
+            (namespace_scope_expression
+              (scoped_identifier)
               (field_identifier)))))))
   (function_declaration
     (identifier)
@@ -1681,10 +1654,9 @@ function main() {
       (mutable_declaration
         (mutable_specifier)
         (identifier)
-        (call_expression
-          (static_member_expression
-            (identifier)
-            (field_identifier))
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
           (arguments
             (identifier))))
       (return_statement

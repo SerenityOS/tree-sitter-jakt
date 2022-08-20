@@ -20,10 +20,8 @@
 (call_expression
   function: (field_expression
     field: (field_identifier) @function.method))
-; (call_expression
-;   function: (scoped_identifier
-;     "::"
-;     name: (identifier) @function))
+
+(scoped_identifier) @namespace
 
 ; Function definitions
 (function_declaration (identifier) @function.method)
@@ -33,6 +31,8 @@
 (type_identifier) @type
 (primitive_type) @type.builtin
 (function_return_type) @type.builtin
+(namespace_scope_expression) @type.builtin
+
 
 [
   "boxed"
