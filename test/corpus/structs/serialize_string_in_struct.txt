@@ -1,0 +1,35 @@
+================================================================================
+Structs string serialization
+================================================================================
+
+struct Foo {
+    name: String
+}
+
+function main() {
+    println("{}", Foo(name: "Bar"))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (identifier)
+                (string_literal)))))))))
