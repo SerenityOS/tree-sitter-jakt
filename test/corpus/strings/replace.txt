@@ -1,0 +1,39 @@
+================================================================================
+Strings hello darkness my old friend
+================================================================================
+
+function main() {
+    let original: String = "Hello darkness"
+    let corrected = original.replace(replace: "darkness", with: "friends")
+    println("{}", corrected);
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (string_literal))
+      (let_declaration
+        (identifier)
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments
+            (argument
+              (identifier)
+              (string_literal))
+            (argument
+              (identifier)
+              (string_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))
