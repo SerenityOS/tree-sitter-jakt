@@ -19,6 +19,7 @@
   function: (identifier) @function)
 (call_expression
   function: (field_expression
+    value: (identifier) @namespace
     field: (field_identifier) @function.method))
 
 (scoped_identifier) @namespace
