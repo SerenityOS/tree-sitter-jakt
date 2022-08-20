@@ -1,0 +1,78 @@
+================================================================================
+Structs this dot method shorthand
+================================================================================
+
+struct Size {
+    width: i64
+    height: i64
+
+    function area(this) => .width * .height
+
+    function volume(this) => .area() * 10
+}
+
+
+function main() {
+    let s = Size(width: 5, height: 6)
+    println("{}", s.volume())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (return_expression
+          (binary_expression
+            (this_reference_shorthand
+              (identifier))
+            (this_reference_shorthand
+              (identifier)))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (return_expression
+          (binary_expression
+            (call_expression
+              (this_reference_shorthand
+                (identifier))
+              (arguments))
+            (integer_literal))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal))
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments)))))))
