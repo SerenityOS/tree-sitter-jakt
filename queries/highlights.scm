@@ -42,7 +42,6 @@
 
 [
   "boxed"
-  (extern_specifier)
   (mutable_specifier)
   (weak_specifier)
 ] @type.qualifier
@@ -84,6 +83,7 @@
 "restricted" @keyword
 "guard" @keyword
 "yield" @keyword
+(extern_specifier) @keyword
 
 "function" @keyword.function
 "return" @keyword.return
