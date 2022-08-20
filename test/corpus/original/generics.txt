@@ -21,3 +21,24 @@ let x: Foo<i64> = Bar(x: 1, y: 2)
         (argument
           (identifier)
           (integer_literal))))))
+
+================================================================================
+Generic call with single non primitive type
+================================================================================
+if window == null<GLFWwindow>() {
+    return
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_statement
+    (binary_expression
+      (identifier)
+      (generic_call_expression
+        (generic_identifier
+          (identifier)
+          (type_identifier))
+        (arguments)))
+    (block
+      (return_statement))))

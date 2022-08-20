@@ -791,6 +791,7 @@ module.exports = grammar({
       choice(
         seq($._primitive_types, ',', $._primitive_types),
         choice($.generic_type, $._primitive_types),
+        choice($._type),
       ),
       '>',
     )),

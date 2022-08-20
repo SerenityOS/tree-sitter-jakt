@@ -4710,6 +4710,15 @@
                     "name": "_primitive_types"
                   }
                 ]
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_type"
+                  }
+                ]
               }
             ]
           },

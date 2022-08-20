@@ -1578,15 +1578,11 @@
       "required": true,
       "types": [
         {
-          "type": "generic_type",
+          "type": "_type",
           "named": true
         },
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "primitive_type",
           "named": true
         }
       ]
