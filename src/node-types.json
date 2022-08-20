@@ -2550,6 +2550,10 @@
           {
             "type": "identifier",
             "named": true
+          },
+          {
+            "type": "this_reference_shorthand",
+            "named": true
           }
         ]
       }

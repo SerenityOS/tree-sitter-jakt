@@ -514,10 +514,9 @@ function main() {
                             (identifier)))))))
                 (block
                   (identifier)))
-              (this_reference_shorthand
-                (identifier))
               (update_expression
-                (MISSING identifier))))))
+                (this_reference_shorthand
+                  (identifier)))))))
       (function_declaration
         (identifier)
         (parameters
@@ -626,10 +625,9 @@ function main() {
                         (arguments
                           (this_reference_shorthand
                             (identifier))))))
-                  (this_reference_shorthand
-                    (identifier))
                   (update_expression
-                    (MISSING identifier))))
+                    (this_reference_shorthand
+                      (identifier)))))
               (if_statement
                 (call_expression
                   (this_reference_shorthand
@@ -774,10 +772,9 @@ function main() {
             (mutable_specifier)
             (this_reference)))
         (block
-          (this_reference_shorthand
-            (identifier))
           (update_expression
-            (MISSING identifier))))
+            (this_reference_shorthand
+              (identifier)))))
       (function_declaration
         (identifier)
         (parameters
@@ -816,11 +813,11 @@ function main() {
               (this_reference_shorthand
                 (identifier))
               (arguments)))
-          (this_reference_shorthand
-            (identifier))
           (update_expression
-            (identifier))
-          (identifier)))
+            (this_reference_shorthand
+              (identifier)))
+          (return_statement
+            (identifier))))
       (function_declaration
         (identifier)
         (parameters
@@ -843,11 +840,11 @@ function main() {
             (block
               (return_statement
                 (boolean_literal))))
-          (this_reference_shorthand
-            (identifier))
           (update_expression
-            (identifier))
-          (boolean_literal)))
+            (this_reference_shorthand
+              (identifier)))
+          (return_statement
+            (boolean_literal))))
       (function_declaration
         (identifier)
         (parameters
@@ -1400,10 +1397,10 @@ function main() {
                             (integer_literal))))))
                   (assignment_expression
                     (identifier)
-                    (this_reference_shorthand
-                      (identifier)))
-                  (update_expression
-                    (identifier)))
+                    (update_expression
+                      (this_reference_shorthand
+                        (identifier))))
+                  (continue_statement))
                 (else_clause
                   (if_statement
                     (logical_not
@@ -1470,10 +1467,9 @@ function main() {
                     (assignment_expression
                       (identifier)
                       (identifier)))))
-              (this_reference_shorthand
-                (identifier))
               (update_expression
-                (MISSING identifier))))
+                (this_reference_shorthand
+                  (identifier)))))
           (if_statement
             (identifier)
             (block

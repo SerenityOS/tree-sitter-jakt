@@ -91,3 +91,44 @@ public function init(system: System) throws -> CPU {
             (argument
               (identifier)
               (integer_literal))))))))
+
+================================================================================
+Another strange function from the Jakt Nes Monster, unary on this reference
+================================================================================
+
+function dex(mut this) {
+    .pc += 1
+    .clock += 2
+    .x--
+    .test_nz_flags(value: .x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (this_parameter
+        (mutable_specifier)
+        (this_reference)))
+    (block
+      (assignment_expression
+        (this_reference_shorthand
+          (identifier))
+        (integer_literal))
+      (assignment_expression
+        (this_reference_shorthand
+          (identifier))
+        (integer_literal))
+      (update_expression
+        (this_reference_shorthand
+          (identifier)))
+      (call_expression
+        (this_reference_shorthand
+          (identifier))
+        (arguments
+          (argument
+            (identifier)
+            (this_reference_shorthand
+              (identifier))))))))

@@ -576,7 +576,7 @@ module.exports = grammar({
     },
 
     update_expression: $ => {
-      const value = field('value', $.identifier);
+      const value = field('value', choice($.identifier, $.this_reference_shorthand));
       const operator = field('operator', choice('--', '++'));
       return prec.right(PREC.unary, choice(
         seq(operator, value),
