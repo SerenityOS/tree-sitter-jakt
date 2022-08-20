@@ -1,0 +1,100 @@
+================================================================================
+Structs value semantics
+================================================================================
+
+struct Foo {
+    x: i64
+}
+
+function set_x(mut foo: Foo, x: i64) {
+    foo.x = x
+}
+
+function main() {
+    let foo = Foo(x: 5)
+    println("{}", foo.x)
+
+    set_x(foo: foo, x: 10)
+    println("{}", foo.x)
+
+    mut bar = foo
+    bar.x = 15
+    println("{}", foo.x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (mutable_specifier)
+        (identifier)
+        (type_identifier))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (block
+      (assignment_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (field_expression
+            (identifier)
+            (field_identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (identifier))
+          (argument
+            (identifier)
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (field_expression
+            (identifier)
+            (field_identifier))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (identifier))
+      (assignment_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (field_expression
+            (identifier)
+            (field_identifier)))))))
