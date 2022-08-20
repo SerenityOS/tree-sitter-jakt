@@ -13,3 +13,37 @@ mut array: [JsonValue] = []
     (array_type
       (type_identifier))
     (array_literal)))
+
+================================================================================
+Array with call expresion
+================================================================================
+
+let arr = [
+    Person(name: "Jane", age: 100),
+    Person(name: "Björn", age: 200)
+]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (let_declaration
+    (identifier)
+    (array_literal
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (string_literal))
+          (argument
+            (identifier)
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (string_literal))
+          (argument
+            (identifier)
+            (integer_literal)))))))

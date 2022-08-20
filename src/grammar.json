@@ -2250,8 +2250,17 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "STRING",
-                "value": ";"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "\n"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ";"
+                  }
+                ]
               },
               {
                 "type": "BLANK"
@@ -4188,17 +4197,8 @@
                         "type": "SEQ",
                         "members": [
                           {
-                            "type": "CHOICE",
-                            "members": [
-                              {
-                                "type": "SYMBOL",
-                                "name": "array_literal"
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "_literal_pattern"
-                              }
-                            ]
+                            "type": "SYMBOL",
+                            "name": "_expression"
                           },
                           {
                             "type": "REPEAT",
@@ -4210,17 +4210,8 @@
                                   "value": ","
                                 },
                                 {
-                                  "type": "CHOICE",
-                                  "members": [
-                                    {
-                                      "type": "SYMBOL",
-                                      "name": "array_literal"
-                                    },
-                                    {
-                                      "type": "SYMBOL",
-                                      "name": "_literal_pattern"
-                                    }
-                                  ]
+                                  "type": "SYMBOL",
+                                  "name": "_expression"
                                 }
                               ]
                             }

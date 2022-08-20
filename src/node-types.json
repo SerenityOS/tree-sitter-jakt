@@ -487,11 +487,7 @@
       "required": false,
       "types": [
         {
-          "type": "_literal_pattern",
-          "named": true
-        },
-        {
-          "type": "array_literal",
+          "type": "_expression",
           "named": true
         }
       ]

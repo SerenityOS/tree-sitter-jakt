@@ -453,7 +453,7 @@ module.exports = grammar({
         '=',
         field('value', $._expression),
       )),
-      optional(';'),
+      optional(terminator),
     )),
 
     mutable_declaration: $ => prec.left(seq(
@@ -731,7 +731,7 @@ module.exports = grammar({
     array_literal: $ => prec(1, seq(
       '[',
       choice(
-        seq(sepBy(',', choice($.array_literal, $._literal_pattern)), optional(',')),
+        seq(sepBy(',', $._expression), optional(',')),
         optional(seq(
           field('element', $._literal_pattern),
           ';',
