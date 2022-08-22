@@ -1,0 +1,58 @@
+================================================================================
+Namespaces extend
+================================================================================
+
+namespace foo {
+    namespace bar {
+        function baz() {
+            println("PASS")
+        }
+    }
+}
+
+namespace foo {
+    function run() {
+        bar::baz()
+    }
+}
+
+function main() {
+    foo::run()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (namespace_declaration
+    (identifier)
+    (block
+      (namespace_declaration
+        (identifier)
+        (block
+          (function_declaration
+            (identifier)
+            (parameters)
+            (block
+              (call_expression
+                (identifier)
+                (arguments
+                  (string_literal)))))))))
+  (namespace_declaration
+    (identifier)
+    (block
+      (function_declaration
+        (identifier)
+        (parameters)
+        (block
+          (static_call_expression
+            (scoped_identifier)
+            (field_identifier)
+            (arguments))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
+        (arguments)))))
