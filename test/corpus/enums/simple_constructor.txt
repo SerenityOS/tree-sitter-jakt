@@ -1,0 +1,126 @@
+================================================================================
+Enums simple contructor
+================================================================================
+
+enum E {
+    A
+    B
+}
+
+function main() {
+    let e1 = E::A
+    let e2 = E::B
+    let e3 = E::A()
+    let e4 = E::B()
+
+    match e1 {
+        E::A => {
+            match e2 {
+                E::B => {
+                    match e3 {
+                        E::A => {
+                            match e4 {
+                                E::B => {
+                                    println("PASS")
+                                }
+                                else => {}
+                            }
+                        }
+                        else => {}
+                    }
+                }
+                else => {}
+            }
+        }
+        else => {}
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (namespace_scope_expression
+          (scoped_identifier)
+          (field_identifier)))
+      (let_declaration
+        (identifier)
+        (namespace_scope_expression
+          (scoped_identifier)
+          (field_identifier)))
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments)))
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments)))
+      (match_expression
+        (identifier)
+        (match_block
+          (match_arm
+            (match_pattern
+              (namespace_scope_expression
+                (scoped_identifier)
+                (field_identifier)))
+            (block
+              (match_expression
+                (identifier)
+                (match_block
+                  (match_arm
+                    (match_pattern
+                      (namespace_scope_expression
+                        (scoped_identifier)
+                        (field_identifier)))
+                    (block
+                      (match_expression
+                        (identifier)
+                        (match_block
+                          (match_arm
+                            (match_pattern
+                              (namespace_scope_expression
+                                (scoped_identifier)
+                                (field_identifier)))
+                            (block
+                              (match_expression
+                                (identifier)
+                                (match_block
+                                  (match_arm
+                                    (match_pattern
+                                      (namespace_scope_expression
+                                        (scoped_identifier)
+                                        (field_identifier)))
+                                    (block
+                                      (call_expression
+                                        (identifier)
+                                        (arguments
+                                          (string_literal)))))
+                                  (match_arm
+                                    (match_else)
+                                    (block))))))
+                          (match_arm
+                            (match_else)
+                            (block))))))
+                  (match_arm
+                    (match_else)
+                    (block))))))
+          (match_arm
+            (match_else)
+            (block)))))))
