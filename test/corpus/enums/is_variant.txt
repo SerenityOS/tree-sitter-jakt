@@ -1,0 +1,40 @@
+================================================================================
+Enums is variant
+================================================================================
+
+enum Foo {
+    Bar
+    Baz
+}
+
+function main() {
+    let foo = Foo::Bar;
+    println("{}", foo is Bar);
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (namespace_scope_expression
+          (scoped_identifier)
+          (field_identifier)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (is_expression
+            (identifier)
+            (identifier)))))))
