@@ -153,6 +153,7 @@
   "while"
   "loop"
   "continue"
+  "in"
 ] @repeat
 
 (char_literal) @string

@@ -1,0 +1,191 @@
+================================================================================
+Arrays slice
+================================================================================
+
+function start() => 0
+function end() => 4
+
+function main() {
+    let x = [1, 2, 3, 4, 5]
+    mut slice = x[2..4] 
+    
+    println("slice size: {}", slice.size())
+
+    for y in slice.iterator() {
+        println("{}", y)
+    }
+
+    println("{}", slice)
+
+    println("slice first: {}", slice.first())
+    println("slice last: {}", slice.last())
+
+    println("slice contains 4: {}", slice.contains(4))
+    println("slice contains 5: {}", slice.contains(5))
+
+    slice[0] = 0
+    println("array index 0: {}", x[0])
+    println("slice index 0: {}", slice[0])
+ 
+    println("{}", x[start()..end()])
+
+    mut y = slice.to_array()
+    y[0] = 22
+
+    println("array from slice: {}", y)
+    println("slice: {}", slice)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (return_expression
+      (integer_literal)))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (return_expression
+      (integer_literal)))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (array_expression
+          (identifier)
+          (range_expression
+            (integer_literal)
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))))
+      (for_expression
+        (identifier)
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (integer_literal)))))
+      (assignment_expression
+        (array_expression
+          (identifier)
+          (integer_literal))
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (array_expression
+            (identifier)
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (array_expression
+            (identifier)
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (array_expression
+            (identifier)
+            (range_expression
+              (call_expression
+                (identifier)
+                (arguments))
+              (call_expression
+                (identifier)
+                (arguments))))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))
+      (assignment_expression
+        (array_expression
+          (identifier)
+          (integer_literal))
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))
