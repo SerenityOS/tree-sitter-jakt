@@ -39,17 +39,15 @@
   type_name: (identifier) @type @generic-type
   type_arguments: (generic_arguments (type_identifier)* @variable.builtin))
 
-(parameter
-  pattern: (identifier) @type @generic-param
-  type: [
-    (type_identifier) @variable.builtin
-    (array_type (type_identifier) @variable.builtin)
-  ])
-
 (generic_function_declaration
   name: (generic_type) @generic-type
   parameters: (parameters [
-                (parameter) @generic-param
+                (parameter
+                  pattern: (identifier) @type @generic-param
+                  type: [
+                    (type_identifier) @variable.builtin
+                    (array_type (type_identifier) @variable.builtin)
+                  ])
                 (parameter) @generic-param-array
               ])
   return_type: [

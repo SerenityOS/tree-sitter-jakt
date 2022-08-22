@@ -1,0 +1,32 @@
+================================================================================
+Match with enum arm
+================================================================================
+
+match op {
+    Operation::Add => {
+        return eval(lhs) + eval(rhs)
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (match_expression
+    (identifier)
+    (match_block
+      (match_arm
+        (match_pattern
+          (namespace_scope_expression
+            (scoped_identifier)
+            (field_identifier)))
+        (block
+          (return_statement
+            (binary_expression
+              (call_expression
+                (identifier)
+                (arguments
+                  (identifier)))
+              (call_expression
+                (identifier)
+                (arguments
+                  (identifier))))))))))

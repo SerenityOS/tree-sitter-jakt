@@ -415,7 +415,7 @@ module.exports = grammar({
 
     namespace_scope_type: $ => token(repeat1(seq(identifier, '::'))),
 
-    namespace_scope_expression: $ => seq(alias($.identifier, $.scoped_identifier), repeat1(seq('::' , alias($.identifier, $.field_identifier))), terminator),
+    namespace_scope_expression: $ => prec.left(seq(alias($.identifier, $.scoped_identifier), repeat1(seq('::' , alias($.identifier, $.field_identifier))), optional(terminator))),
 
     array_type: $ => seq(
       '[',
