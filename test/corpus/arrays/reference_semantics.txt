@@ -1,0 +1,76 @@
+================================================================================
+Arrays reference semantics
+================================================================================
+
+function change_value(mut vector: [String]) {
+    vector[1] = "bar"
+}
+
+function main() {
+    mut v = ["foo", "foo"]
+    change_value(vector: v)
+
+    mut i = 0
+    while i < v.size() as! i64 {
+        println("{}", v[i])
+        ++i
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (mutable_specifier)
+        (identifier)
+        (array_type
+          (primitive_type))))
+    (block
+      (assignment_expression
+        (array_expression
+          (identifier)
+          (integer_literal))
+        (string_literal))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (array_literal
+          (string_literal)
+          (string_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (identifier))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (integer_literal))
+      (while_statement
+        (type_conversion_expression
+          (binary_expression
+            (identifier)
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))
+          (primitive_type))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (array_expression
+                (identifier)
+                (identifier))))
+          (update_expression
+            (identifier)))))))
