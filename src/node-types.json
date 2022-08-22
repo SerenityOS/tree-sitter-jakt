@@ -2234,6 +2234,10 @@
             "named": true
           },
           {
+            "type": "optional_specifier",
+            "named": true
+          },
+          {
             "type": "raw_pointer_specifier",
             "named": true
           }

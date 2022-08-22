@@ -855,6 +855,7 @@ module.exports = grammar({
         choice(
           seq(optional($.raw_pointer_specifier), $._type),
         ),
+        optional($.optional_specifier),
       )),
     ),
 
