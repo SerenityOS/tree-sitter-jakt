@@ -1,0 +1,68 @@
+================================================================================
+Enums is variant binding else complex
+================================================================================
+
+enum E {
+    A(i64)
+}
+
+function main() {
+    let e = E::A(5)
+
+    if 3 < 5 and e is A(x) and x == 2 and x > 4 {
+        println("FAIL")
+    } else {
+        println("PASS")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (integer_literal))))
+      (if_statement
+        (is_expression
+          (binary_expression
+            (binary_expression
+              (integer_literal)
+              (integer_literal))
+            (identifier))
+          (binary_expression
+            (binary_expression
+              (call_expression
+                (identifier)
+                (arguments
+                  (identifier)))
+              (binary_expression
+                (identifier)
+                (integer_literal)))
+            (binary_expression
+              (identifier)
+              (integer_literal))))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))
+        (else_clause
+          (block
+            (call_expression
+              (identifier)
+              (arguments
+                (string_literal)))))))))

@@ -1,0 +1,61 @@
+================================================================================
+Enums is variant binding compound unmatched
+================================================================================
+
+enum Foo {
+    Bar(i64)
+}
+
+function main() {
+    let foo = Foo::Bar(5)
+
+    if foo is Bar(n) and n > 5 {
+        println("{}", n)
+    } else {
+        println("did not match")
+    }
+} 
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (integer_literal))))
+      (if_statement
+        (is_expression
+          (identifier)
+          (binary_expression
+            (call_expression
+              (identifier)
+              (arguments
+                (identifier)))
+            (binary_expression
+              (identifier)
+              (integer_literal))))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (identifier))))
+        (else_clause
+          (block
+            (call_expression
+              (identifier)
+              (arguments
+                (string_literal)))))))))

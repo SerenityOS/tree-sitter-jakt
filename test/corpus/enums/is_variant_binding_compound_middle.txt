@@ -1,0 +1,75 @@
+================================================================================
+Enums is variant binding compound middle
+================================================================================
+
+enum Foo {
+    Bar(i64)
+}
+
+function main() {
+    let foo = Foo::Bar(5)
+    let bar = Foo::Bar(7)
+
+    if 5 > 3 and foo is Bar(a) and bar is Bar(b) and a < b and 4 < 5 {
+        println("PASS")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (integer_literal))))
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (integer_literal))))
+      (if_statement
+        (is_expression
+          (is_expression
+            (binary_expression
+              (binary_expression
+                (integer_literal)
+                (integer_literal))
+              (identifier))
+            (binary_expression
+              (call_expression
+                (identifier)
+                (arguments
+                  (identifier)))
+              (identifier)))
+          (binary_expression
+            (binary_expression
+              (call_expression
+                (identifier)
+                (arguments
+                  (identifier)))
+              (binary_expression
+                (identifier)
+                (identifier)))
+            (binary_expression
+              (integer_literal)
+              (integer_literal))))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))))))

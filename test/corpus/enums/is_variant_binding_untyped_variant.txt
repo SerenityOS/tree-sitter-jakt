@@ -1,0 +1,62 @@
+================================================================================
+Enums is variant binding untyped variant
+================================================================================
+
+enum E {
+    A(x: i64)
+    B
+}
+
+function main() {
+    let e = E::B
+    if e is A(x) and x == 5 {
+        println("FAIL")
+    } else {
+        println("PASS")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_struct_variant
+        (identifier)
+        (field_declaration
+          (field_identifier)
+          (primitive_type)))
+      (enum_variant
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (namespace_scope_expression
+          (scoped_identifier)
+          (field_identifier)))
+      (if_statement
+        (is_expression
+          (identifier)
+          (binary_expression
+            (call_expression
+              (identifier)
+              (arguments
+                (identifier)))
+            (binary_expression
+              (identifier)
+              (integer_literal))))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))
+        (else_clause
+          (block
+            (call_expression
+              (identifier)
+              (arguments
+                (string_literal)))))))))
