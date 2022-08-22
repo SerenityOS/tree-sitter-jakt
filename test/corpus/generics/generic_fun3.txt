@@ -14,15 +14,16 @@ function main() {
 
 (source_file
   (generic_function_declaration
-    (generic_identifier
+    (generic_type
       (identifier)
-      (generic_type))
+      (generic_arguments
+        (type_identifier)))
     (parameters
       (parameter
         (anonymous_specifier)
         (identifier)
-        (generic_type)))
-    (generic_type)
+        (type_identifier)))
+    (type_identifier)
     (block
       (return_statement
         (identifier))))

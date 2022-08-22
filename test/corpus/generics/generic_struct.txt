@@ -16,13 +16,14 @@ function main() {
 
 (source_file
   (struct_declaration
-    (generic_identifier
+    (generic_type
       (identifier)
-      (generic_type))
+      (generic_arguments
+        (type_identifier)))
     (field_declaration_list
       (field_declaration
         (field_identifier)
-        (generic_type))))
+        (type_identifier))))
   (function_declaration
     (identifier)
     (parameters)

@@ -12,8 +12,6 @@ tree-sitter-jakt implements 148.00 of 226 (65.5%) of passable Jakt samples as of
 
 [Screenshots](https://github.com/demizer/tree-sitter-jakt/issues/1)
 
-
-
 ## How to run tests
 
 The [tree-sitter cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) is required to run tests.

@@ -9,9 +9,10 @@ let x: Foo<i64> = Bar(x: 1, y: 2)
 (source_file
   (let_declaration
     (identifier)
-    (generic_identifier
+    (generic_type
       (identifier)
-      (primitive_type))
+      (generic_arguments
+        (primitive_type)))
     (call_expression
       (identifier)
       (arguments
@@ -25,6 +26,7 @@ let x: Foo<i64> = Bar(x: 1, y: 2)
 ================================================================================
 Generic call with single non primitive type
 ================================================================================
+
 if window == null<GLFWwindow>() {
     return
 }
@@ -36,9 +38,10 @@ if window == null<GLFWwindow>() {
     (binary_expression
       (identifier)
       (generic_call_expression
-        (generic_identifier
+        (generic_type
           (identifier)
-          (type_identifier))
+          (generic_arguments
+            (type_identifier)))
         (arguments)))
     (block
       (return_statement))))
@@ -54,10 +57,11 @@ function null<T>() -> raw T {
 
 (source_file
   (generic_function_declaration
-    (generic_identifier
+    (generic_type
       (identifier)
-      (generic_type))
+      (generic_arguments
+        (type_identifier)))
     (parameters)
     (raw_pointer_specifier)
-    (generic_type)
+    (type_identifier)
     (block)))

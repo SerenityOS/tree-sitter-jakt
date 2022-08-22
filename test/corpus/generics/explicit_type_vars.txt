@@ -21,10 +21,11 @@ function main() {
         (mutable_specifier)
         (identifier)
         (generic_call_expression
-          (generic_identifier
+          (generic_type
             (identifier)
-            (primitive_type)
-            (primitive_type))
+            (generic_arguments
+              (primitive_type)
+              (primitive_type)))
           (arguments)))
       (call_expression
         (field_expression

@@ -1,0 +1,38 @@
+================================================================================
+Generic trick shots #1
+================================================================================
+
+enum SimpleWithTypeParameter<T> {
+    A(T)
+    B
+}
+
+if window == null<GLFWwindow>() {
+    return
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (type_identifier)))
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (type_identifier))
+      (enum_variant
+        (identifier))))
+  (if_statement
+    (binary_expression
+      (identifier)
+      (generic_call_expression
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (type_identifier)))
+        (arguments)))
+    (block
+      (return_statement))))

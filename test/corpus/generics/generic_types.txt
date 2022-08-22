@@ -16,19 +16,21 @@ function main() {
 
 (source_file
   (generic_function_declaration
-    (generic_identifier
+    (generic_type
       (identifier)
-      (generic_type))
+      (generic_arguments
+        (type_identifier)))
     (parameters
       (parameter
         (anonymous_specifier)
         (mutable_specifier)
         (identifier)
         (array_type
-          (generic_type))))
-    (generic_identifier
+          (type_identifier))))
+    (generic_type
       (identifier)
-      (generic_type))
+      (generic_arguments
+        (type_identifier)))
     (block
       (return_statement
         (call_expression

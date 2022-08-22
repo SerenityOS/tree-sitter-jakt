@@ -19,14 +19,15 @@ function main() {
     (type_identifier)
     (field_declaration_list
       (generic_function_declaration
-        (generic_identifier
+        (generic_type
           (identifier)
-          (generic_type))
+          (generic_arguments
+            (type_identifier)))
         (parameters
           (parameter
             (identifier)
-            (generic_type)))
-        (generic_type)
+            (type_identifier)))
+        (type_identifier)
         (block
           (return_statement
             (identifier))))))
@@ -40,9 +41,10 @@ function main() {
           (string_literal)
           (static_call_expression
             (scoped_identifier)
-            (generic_identifier
+            (generic_type
               (identifier)
-              (primitive_type))
+              (generic_arguments
+                (primitive_type)))
             (arguments
               (argument
                 (identifier)

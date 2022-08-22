@@ -1,4 +1,13 @@
 ; Identifier conventions
+(identifier) @none ; TODO: not working for some reason
+(scoped_identifier) @namespace
+(type_identifier) @type
+
+[
+  (primitive_type)
+  (function_return_type)
+  (namespace_scope_expression)
+] @type.builtin
 
 ; Assume all-caps names are constants
 ((identifier) @constant
@@ -15,33 +24,65 @@
 ; Function calls
 (call_expression
   function: (identifier) @function)
+
 (call_expression
   function: (field_expression
-    value: (identifier) @namespace
-    field: (field_identifier) @function.method))
-
-(scoped_identifier) @namespace
+             value: (identifier) @namespace
+             field: (field_identifier) @function.method))
 
 ; Function definitions
 (function_declaration (identifier) @function.method)
 
-; Other identifiers
-(type_identifier) @type
+(generic_arguments (type_identifier) @variable.builtin)
 
-(primitive_type) @type.builtin
-(function_return_type) @type.builtin
-(namespace_scope_expression) @type.builtin
+(generic_type
+  type_name: (identifier) @type @generic-type
+  type_arguments: (generic_arguments (type_identifier)* @variable.builtin))
 
-(generic_identifier
-    (identifier) @type
-    (generic_type) @variable.builtin)
+(parameter
+  pattern: (identifier) @type @generic-param
+  type: [
+    (type_identifier) @variable.builtin
+    (array_type (type_identifier) @variable.builtin)
+  ])
 
-(generic_identifier
-    (identifier) @type
-    (primitive_type))
+(generic_function_declaration
+  name: (generic_type) @generic-type
+  parameters: (parameters [
+                (parameter) @generic-param
+                (parameter) @generic-param-array
+              ])
+  return_type: [
+    (generic_type) @generic-type
+    (type_identifier) @variable.builtin
+])
 
-(generic_identifier
-    (identifier) @type)
+[
+  (enum_tuple_variant)
+  (enum_struct_variant)
+] name: (identifier) @function.method
+
+(enum_variant
+  name: (identifier) @operator) ; @operator to disable coloring, @none does not work :(
+
+(enum_declaration
+  name: (generic_type) @generic-type
+  body: (enum_variant_list
+           (enum_tuple_variant
+             name: (identifier)
+             type: (type_identifier) @variable.builtin)))
+
+(enum_declaration
+  name: (enum_integral_type
+          (identifier) @type
+          (primitive_type)))
+
+(struct_declaration
+  name: (generic_type) @generic-type
+  body: (field_declaration_list
+           (field_declaration
+             name: (field_identifier)
+             type: (type_identifier) @variable.builtin)))
 
 [
   "boxed"
@@ -101,13 +142,12 @@
 ] @keyword.operator
 
 [
-  "this"
+  (this_reference)
   "raw"
   "public"
   "None"
   "unsafe"
   "cpp"
-  (generic_type)
 ] @variable.builtin
 
 [
