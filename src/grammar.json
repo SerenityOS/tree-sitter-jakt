@@ -171,6 +171,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "this_reference"
+        },
+        {
+          "type": "SYMBOL",
           "name": "this_reference_shorthand"
         },
         {
@@ -2507,6 +2511,15 @@
                       {
                         "type": "SYMBOL",
                         "name": "enum_struct_variant"
+                      },
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "function_declaration"
+                        },
+                        "named": true,
+                        "value": "enum_method_variant"
                       }
                     ]
                   }
@@ -2536,6 +2549,15 @@
                             {
                               "type": "SYMBOL",
                               "name": "enum_struct_variant"
+                            },
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "SYMBOL",
+                                "name": "function_declaration"
+                              },
+                              "named": true,
+                              "value": "enum_method_variant"
                             }
                           ]
                         }

@@ -30,3 +30,46 @@ match op {
                 (identifier)
                 (arguments
                   (identifier))))))))))
+
+================================================================================
+Match arm on function is breaking stuff
+================================================================================
+
+function is_mutable(this) -> bool => match this {
+    Var(var) => var.is_mutable
+    IndexedStruct(expr) => expr.is_mutable()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (this_parameter
+        (this_reference)))
+    (primitive_type)
+    (return_expression
+      (match_expression
+        (this_reference)
+        (match_block
+          (match_arm
+            (match_pattern
+              (call_expression
+                (identifier)
+                (arguments
+                  (identifier))))
+            (field_expression
+              (identifier)
+              (field_identifier)))
+          (match_arm
+            (match_pattern
+              (call_expression
+                (identifier)
+                (arguments
+                  (identifier))))
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))))))))

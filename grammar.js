@@ -118,6 +118,7 @@ module.exports = grammar({
       $.bitwisenot_expression,
       $.binary_expression,
       $._literal,
+      $.this_reference,
       $.this_reference_shorthand,
       $.identifier,
       $.optional_identifier,
@@ -492,7 +493,12 @@ module.exports = grammar({
 
     enum_variant_list: $ => seq(
       '{',
-      sepBy('\n', repeat(choice($.enum_variant, $.enum_tuple_variant, $.enum_struct_variant))),
+      sepBy('\n', repeat(choice(
+          $.enum_variant,
+          $.enum_tuple_variant,
+          $.enum_struct_variant,
+          alias($.function_declaration, $.enum_method_variant),
+      ))),
       '}'
     ),
 

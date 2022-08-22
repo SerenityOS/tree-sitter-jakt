@@ -104,6 +104,10 @@
         "named": true
       },
       {
+        "type": "this_reference",
+        "named": true
+      },
+      {
         "type": "this_reference_shorthand",
         "named": true
       },
@@ -1092,6 +1096,84 @@
     }
   },
   {
+    "type": "enum_method_variant",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parameters",
+            "named": true
+          }
+        ]
+      },
+      "return_type": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "_type",
+            "named": true
+          },
+          {
+            "type": "optional_specifier",
+            "named": true
+          }
+        ]
+      },
+      "throws": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "throws_specifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "public_specifier",
+          "named": true
+        },
+        {
+          "type": "restricted_specifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "enum_struct_variant",
     "named": true,
     "fields": {
@@ -1181,6 +1263,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "enum_method_variant",
+          "named": true
+        },
         {
           "type": "enum_struct_variant",
           "named": true
@@ -1333,10 +1419,6 @@
         "types": [
           {
             "type": "_expression",
-            "named": true
-          },
-          {
-            "type": "this_reference",
             "named": true
           }
         ]
