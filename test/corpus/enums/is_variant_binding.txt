@@ -1,0 +1,78 @@
+================================================================================
+Enums is variant binding
+================================================================================
+
+enum Foo {
+    Bar(i64)
+    Baz(m: String)
+}
+
+function main() {
+    let foo = Foo::Bar(5)
+    let baz = Foo::Baz(m: "Hello")
+
+    if foo is Bar(n) {
+        if baz is Baz(m: different) {
+            println("{} {}", n, different)
+        }
+    }
+} 
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))
+      (enum_struct_variant
+        (identifier)
+        (field_declaration
+          (field_identifier)
+          (primitive_type)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (integer_literal))))
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (identifier)
+              (string_literal)))))
+      (if_statement
+        (is_expression
+          (identifier)
+          (call_expression
+            (identifier)
+            (arguments
+              (identifier))))
+        (block
+          (if_statement
+            (is_expression
+              (identifier)
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (identifier)
+                    (identifier)))))
+            (block
+              (call_expression
+                (identifier)
+                (arguments
+                  (string_literal)
+                  (identifier)
+                  (identifier))))))))))
