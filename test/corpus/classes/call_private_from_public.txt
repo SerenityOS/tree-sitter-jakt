@@ -33,7 +33,7 @@ function main() {
             (arguments
               (string_literal)))))
       (function_declaration
-        (public_specifier)
+        (visibility_specifier)
         (identifier)
         (parameters
           (this_parameter

@@ -840,11 +840,11 @@
       "required": false,
       "types": [
         {
-          "type": "public_specifier",
+          "type": "restricted_specifier",
           "named": true
         },
         {
-          "type": "restricted_specifier",
+          "type": "visibility_specifier",
           "named": true
         }
       ]
@@ -1163,11 +1163,11 @@
       "required": false,
       "types": [
         {
-          "type": "public_specifier",
+          "type": "restricted_specifier",
           "named": true
         },
         {
-          "type": "restricted_specifier",
+          "type": "visibility_specifier",
           "named": true
         }
       ]
@@ -1366,7 +1366,7 @@
       "required": false,
       "types": [
         {
-          "type": "public_specifier",
+          "type": "visibility_specifier",
           "named": true
         }
       ]
@@ -1529,11 +1529,11 @@
       "required": false,
       "types": [
         {
-          "type": "public_specifier",
+          "type": "restricted_specifier",
           "named": true
         },
         {
-          "type": "restricted_specifier",
+          "type": "visibility_specifier",
           "named": true
         }
       ]
@@ -2376,11 +2376,6 @@
     }
   },
   {
-    "type": "public_specifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "range_expression",
     "named": true,
     "fields": {},
@@ -2864,6 +2859,11 @@
     }
   },
   {
+    "type": "visibility_specifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "while_statement",
     "named": true,
     "fields": {
@@ -3279,6 +3279,10 @@
   {
     "type": "primitive_type",
     "named": true
+  },
+  {
+    "type": "private",
+    "named": false
   },
   {
     "type": "public",

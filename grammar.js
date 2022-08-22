@@ -545,7 +545,7 @@ module.exports = grammar({
     ),
 
     field_declaration: $ => seq(
-      optional($.public_specifier),
+      optional($.visibility_specifier),
       field('name', $._field_identifier),
       ':',
       field('type', seq($._type, optional($.optional_specifier))),
@@ -566,7 +566,7 @@ module.exports = grammar({
       field('body', $.field_declaration_list)
     ),
 
-    public_specifier: $ => seq('public'),
+    visibility_specifier: $ => choice('public', 'private'),
 
     mutable_specifier: $ => 'mut',
 
@@ -782,7 +782,7 @@ module.exports = grammar({
     )),
 
     function_declaration: $ => seq(
-      optional(choice($.restricted_specifier, $.public_specifier)),
+      optional(choice($.restricted_specifier, $.visibility_specifier)),
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters),
@@ -872,7 +872,7 @@ module.exports = grammar({
     ),
 
     closure_function: $ => seq(
-      optional(choice($.restricted_specifier, $.public_specifier)),
+      optional(choice($.restricted_specifier, $.visibility_specifier)),
       'function',
       field('parameters', $.parameters),
       // optional(field('throws', $.throws_specifier)),

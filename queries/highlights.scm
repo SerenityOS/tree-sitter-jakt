@@ -142,7 +142,7 @@
 [
   (this_reference)
   "raw"
-  "public"
+  (visibility_specifier)
   "None"
   "unsafe"
   "cpp"

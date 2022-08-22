@@ -26,7 +26,7 @@ function main() {
     (type_identifier)
     (field_declaration_list
       (field_declaration
-        (public_specifier)
+        (visibility_specifier)
         (field_identifier)
         (type_identifier))))
   (function_declaration

@@ -27,7 +27,7 @@ public function init(system: System) throws -> CPU {
 
 (source_file
   (function_declaration
-    (public_specifier)
+    (visibility_specifier)
     (identifier)
     (parameters
       (parameter

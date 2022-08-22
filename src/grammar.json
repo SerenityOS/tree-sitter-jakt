@@ -2825,7 +2825,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "public_specifier"
+              "name": "visibility_specifier"
             },
             {
               "type": "BLANK"
@@ -2960,12 +2960,16 @@
         }
       ]
     },
-    "public_specifier": {
-      "type": "SEQ",
+    "visibility_specifier": {
+      "type": "CHOICE",
       "members": [
         {
           "type": "STRING",
           "value": "public"
+        },
+        {
+          "type": "STRING",
+          "value": "private"
         }
       ]
     },
@@ -4571,7 +4575,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "public_specifier"
+                  "name": "visibility_specifier"
                 }
               ]
             },
@@ -5312,7 +5316,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "public_specifier"
+                  "name": "visibility_specifier"
                 }
               ]
             },

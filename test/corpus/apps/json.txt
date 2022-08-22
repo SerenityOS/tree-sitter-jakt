@@ -417,7 +417,7 @@ function main() {
         (field_identifier)
         (primitive_type))
       (function_declaration
-        (public_specifier)
+        (visibility_specifier)
         (identifier)
         (parameters
           (parameter
@@ -452,7 +452,7 @@ function main() {
                   (field_identifier))
                 (arguments))))))
       (function_declaration
-        (public_specifier)
+        (visibility_specifier)
         (identifier)
         (parameters
           (this_parameter

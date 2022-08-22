@@ -45,7 +45,7 @@ function main() {
     (type_identifier)
     (field_declaration_list
       (function_declaration
-        (public_specifier)
+        (visibility_specifier)
         (identifier)
         (parameters)
         (block

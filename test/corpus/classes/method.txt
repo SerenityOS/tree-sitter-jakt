@@ -18,15 +18,15 @@ class Person {
     (type_identifier)
     (field_declaration_list
       (field_declaration
-        (public_specifier)
+        (visibility_specifier)
         (field_identifier)
         (primitive_type))
       (field_declaration
-        (public_specifier)
+        (visibility_specifier)
         (field_identifier)
         (primitive_type))
       (function_declaration
-        (public_specifier)
+        (visibility_specifier)
         (identifier)
         (parameters
           (this_parameter
