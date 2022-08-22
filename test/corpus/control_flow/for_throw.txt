@@ -1,34 +1,52 @@
-; ================================================================================
-; NOT IMPLEMENTED Control flow for throw struct
-; ================================================================================
-;
-; struct Iter {
-;     function next(this) throws -> i64? {
-;         throw Error::from_errno(1i32)
-;         return None
-;     }
-; }
-;
-; --------------------------------------------------------------------------------
-;
-; (source_file)
-
 ================================================================================
-Control flow for throw for
+Control flow for throw
 ================================================================================
 
-for x in Iter() {
-    return 0
+struct Iter {
+    function next(this) throws -> i64? {
+        throw Error::from_errno(1i32)
+        return None
+    }
+}
+
+function main() {
+    for x in Iter() {
+        return 0
+    }
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (for_expression
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (throws_specifier)
+        (primitive_type)
+        (optional_specifier)
+        (block
+          (throw_statement
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
+              (arguments
+                (integer_literal))))
+          (return_statement
+            (none_expression))))))
+  (function_declaration
     (identifier)
-    (call_expression
-      (identifier)
-      (arguments))
+    (parameters)
     (block
-      (return_statement
-        (integer_literal)))))
+      (for_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments))
+        (block
+          (return_statement
+            (integer_literal)))))))
