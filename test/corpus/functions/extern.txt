@@ -1,0 +1,30 @@
+================================================================================
+Functions extern
+================================================================================
+
+function main() {
+    let s = String::number(5 + 10)
+    println("Five plus ten = {}", s)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (binary_expression
+              (integer_literal)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))
