@@ -358,6 +358,10 @@
         "named": true
       },
       {
+        "type": "set_type",
+        "named": true
+      },
+      {
         "type": "type_identifier",
         "named": true
       }
@@ -2517,10 +2521,26 @@
       "required": false,
       "types": [
         {
-          "type": "_literal_pattern",
+          "type": "_expression",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "set_type",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_type",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {

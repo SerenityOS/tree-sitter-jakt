@@ -1,0 +1,42 @@
+================================================================================
+Set contains
+================================================================================
+
+function main() {
+    let set = {"a", "b"}
+    println("{}", set.contains("b"))
+    println("{}", set.contains("c"))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (set_literal
+          (string_literal)
+          (string_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (string_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (string_literal))))))))

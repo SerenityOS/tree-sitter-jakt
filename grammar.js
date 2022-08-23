@@ -72,6 +72,8 @@ module.exports = grammar({
   conflicts: $ => [
     [$._expression, $.array_expression],
     [$.namespace_scope_expression, $.namespace_call_expression],
+    [$._simple_type, $.enum_variant],
+    [$.set_literal, $.block],
   ],
 
   rules: {
@@ -410,6 +412,7 @@ module.exports = grammar({
       prec.dynamic(-1, $._type_identifier),
       $.generic_type,
       $.dictionary_type,
+      $.set_type,
       $.array_type,
       $.function_return_type,
       $.namespace_scope_type,
@@ -433,6 +436,12 @@ module.exports = grammar({
       ':',
       field('type', $._type),
       ']'
+    ),
+
+    set_type: $ => seq(
+      '{',
+      field('type', $._type),
+      '}'
     ),
 
     // Not using $.identifier here due to https://github.com/tree-sitter/tree-sitter/issues/449
@@ -768,7 +777,7 @@ module.exports = grammar({
 
     set_literal: $ => seq(
       '{',
-      sepBy(',', $._literal_pattern, optional(',')),
+      optional(sepBy(',', $._expression, optional(','))),
       '}'
     ),
 

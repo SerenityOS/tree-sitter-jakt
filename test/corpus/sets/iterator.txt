@@ -1,0 +1,38 @@
+================================================================================
+Sets iterator
+================================================================================
+
+function main() {
+    let set = {1, 2, 3, 4}
+    for value in set.iterator() {
+        println("{}", value)
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (set_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (for_expression
+        (identifier)
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (identifier))))))))

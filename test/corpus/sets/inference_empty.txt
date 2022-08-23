@@ -1,0 +1,71 @@
+================================================================================
+Sets inference empty
+================================================================================
+
+function main() {
+    mut set1: {String} = {}
+    set1.add("hello")
+    set1.add("World")
+    mut set2: {i64} = {}
+    set2.add(1)
+    set2.add(2)
+    println("{} {}", set1.size(), set2.size())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (set_type
+          (primitive_type))
+        (set_literal))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (string_literal)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (string_literal)))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (set_type
+          (primitive_type))
+        (set_literal))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (integer_literal)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (integer_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments)))))))
