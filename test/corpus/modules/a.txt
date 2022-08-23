@@ -1,0 +1,28 @@
+================================================================================
+Import a
+================================================================================
+
+import b
+
+function use_cool_things() {
+    b::something_cool()
+    b::something_else_cool()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_statement
+    (identifier))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
+        (arguments))
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
+        (arguments)))))

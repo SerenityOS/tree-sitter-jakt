@@ -1,0 +1,43 @@
+================================================================================
+Import b
+================================================================================
+
+function something_cool() {
+    println("something_cool")
+}
+
+function something_else_cool() {
+    println("something_else_cool")
+}
+
+function not_cool() {
+    println("not_cool")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal))))))
