@@ -1,0 +1,42 @@
+================================================================================
+Weak assign weak to weak
+================================================================================
+
+class Foo {
+
+}
+
+function main() {
+
+    mut foo: weak Foo? = None
+    mut bar = foo
+
+    println("OK")
+    
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (weak_specifier)
+        (type_identifier)
+        (optional_specifier)
+        (none_expression))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (identifier))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal))))))
