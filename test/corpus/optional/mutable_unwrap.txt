@@ -1,0 +1,100 @@
+================================================================================
+Optional mutable unwrap
+================================================================================
+
+class Foo {
+    public x: i64
+
+    public function set(mut this, value: i64) {
+        this.x = value
+    }
+
+    public function get(this) {
+        return this.x
+    }
+}
+
+function main() {
+    mut foo = Foo(x: 1)
+    mut opt_foo: Foo? = foo
+
+    opt_foo!.set(value: 2)
+
+    println("{}", opt_foo!.get())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (visibility_specifier)
+        (field_identifier)
+        (primitive_type))
+      (function_declaration
+        (visibility_specifier)
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference))
+          (parameter
+            (identifier)
+            (primitive_type)))
+        (block
+          (assignment_expression
+            (field_expression
+              (this_reference)
+              (field_identifier))
+            (identifier))))
+      (function_declaration
+        (visibility_specifier)
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (block
+          (return_statement
+            (field_expression
+              (this_reference)
+              (field_identifier)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (type_identifier)
+        (optional_specifier)
+        (identifier))
+      (call_expression
+        (field_expression
+          (optional_identifier
+            (identifier))
+          (field_identifier))
+        (arguments
+          (argument
+            (identifier)
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (optional_identifier
+                (identifier))
+              (field_identifier))
+            (arguments)))))))

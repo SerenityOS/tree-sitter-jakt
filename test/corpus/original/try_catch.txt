@@ -1,0 +1,25 @@
+================================================================================
+Somewhat simple try catch
+================================================================================
+
+
+try {
+    println("FAIL")
+} catch {
+    println("PASS")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (try_statement
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal))))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal))))))

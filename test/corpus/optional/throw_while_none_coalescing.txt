@@ -1,0 +1,60 @@
+================================================================================
+Optional throw while none coalescing
+================================================================================
+
+function troublemaker() throws -> i64 {
+    throw Error::from_errno(0)
+}
+
+function main() {
+    let opt: i64? = None
+    try {
+        let foo = opt ?? troublemaker()
+        println("FAIL")
+    } catch {
+        println("PASS")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (throw_statement
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (integer_literal))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (optional_specifier)
+        (none_expression))
+      (try_statement
+        (block
+          (let_declaration
+            (identifier)
+            (optional_expression
+              (identifier)
+              (call_expression
+                (identifier)
+                (arguments))))
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))))))

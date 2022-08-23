@@ -178,19 +178,19 @@ module.exports = grammar({
       )
     ),
 
-    try_statement: $ => seq(
+    try_statement: $ => prec(1, seq(
       'try',
       choice(
         field('try_body', $.block),
         field('try_body', $._expression),
       ),
       'catch',
-      $.identifier,
+      optional($.identifier),
       choice(
         field('catch_body', $.block),
         field('catch_body', $._expression),
       )
-    ),
+    )),
 
     unsafe_block: $ => seq(
       'unsafe',
