@@ -1,0 +1,67 @@
+================================================================================
+Guard is guard no exit
+================================================================================
+
+enum Foo {
+    Bar(i64)
+}
+
+function main() {
+    let foo = Foo::Bar(5)
+    let bar = Foo::Bar(7)
+
+    guard foo is Bar(x) and x > 10 else {
+        println("not matched")
+    }
+
+    println("hello there: {}", x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (integer_literal))))
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (integer_literal))))
+      (guard_statement
+        (is_expression
+          (identifier)
+          (binary_expression
+            (call_expression
+              (identifier)
+              (arguments
+                (identifier)))
+            (binary_expression
+              (identifier)
+              (integer_literal))))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))
