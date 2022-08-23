@@ -219,6 +219,7 @@ module.exports = grammar({
     ),
 
     c_header_identfier: $ => token(seq('"', /.*/, '.h"')),
+    cpp_header_identfier: $ => token(seq('"', /.*/, '"')),
 
     import_as_clause: $ => 'as',
 
@@ -226,6 +227,7 @@ module.exports = grammar({
       'import',
       optional(choice(
           seq($.extern_specifier, 'c', $.c_header_identfier),
+          seq($.extern_specifier, $.cpp_header_identfier),
           seq($.identifier, optional(seq($.import_as_clause, $.identifier)))
       )),
       optional(field('body', $.import_block)),
@@ -235,6 +237,7 @@ module.exports = grammar({
       '{',
       optional(sepBy(',', seq($.identifier, optional(terminator)))),
       optional(repeat(seq($.extern_function_declaration, optional(terminator)))),
+      optional($.namespace_declaration),
       '}'
     ),
 
@@ -781,15 +784,15 @@ module.exports = grammar({
         )
     )),
 
-    function_declaration: $ => seq(
+    function_declaration: $ => prec.right(seq(
       optional(choice($.restricted_specifier, $.visibility_specifier)),
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
       optional(seq('->', field('return_type', seq(choice($._type), optional($.optional_specifier))))),
-      field('body', choice($.return_expression, $.block)),
-    ),
+      optional(field('body', choice($.return_expression, $.block))),
+    )),
 
     generic_type: $ => prec(1, seq(
       field("type_name", $.identifier),
@@ -807,14 +810,14 @@ module.exports = grammar({
         seq($._primitive_types, ',', $._primitive_types),
     )),
 
-    generic_function_declaration: $ => seq(
+    generic_function_declaration: $ => prec.right(seq(
       'function',
       field('name', $.generic_type),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
       optional(seq('->', field('return_type', seq(optional($.raw_pointer_specifier), choice($._type_identifier,$.generic_type), optional($.optional_specifier))))),
-      field('body', choice($.return_expression, $.block)),
-    ),
+      optional(field('body', choice($.return_expression, $.block))),
+    )),
 
     extern_specifier: $ => 'extern',
 

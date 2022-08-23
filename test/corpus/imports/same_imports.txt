@@ -1,0 +1,40 @@
+================================================================================
+Imports same imports
+================================================================================
+
+// sanity check: importing twice should not exclude anything previously imported
+import foo { bar }
+import foo { Bar }
+
+function main() {
+    bar()
+    println("{}", Bar::foo())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (import_statement
+    (identifier)
+    (import_block
+      (identifier)))
+  (import_statement
+    (identifier)
+    (import_block
+      (identifier)))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (static_call_expression
+            (scoped_identifier)
+            (field_identifier)
+            (arguments)))))))

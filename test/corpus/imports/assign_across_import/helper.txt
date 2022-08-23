@@ -1,0 +1,19 @@
+================================================================================
+Imports assign across imports helper
+================================================================================
+
+struct S {
+    value: String? // let's force the typechecker to create a typeid for this one.
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type)
+        (optional_specifier))
+      (line_comment))))

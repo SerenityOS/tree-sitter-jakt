@@ -1,23 +1,77 @@
-; ================================================================================
-; NOT IMPLEMENTED Imports extern cpp
-; ================================================================================
-; 
-; import extern "vector" {
-;     namespace std {
-;         extern struct vector<T> {
-;             function vector<T>() -> vector<T>
-;             function empty(this) -> bool
-;         }
-;     }
-; }
-; 
-; function main() {
-;     let v = std::vector<i32>()
-;     if v.empty() {
-;         println("PASS")
-;     }
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file
+================================================================================
+Imports extern cpp
+================================================================================
+
+import extern "vector" {
+    namespace std {
+        extern struct vector<T> {
+            function vector<T>() -> vector<T>
+            function empty(this) -> bool
+        }
+    }
+}
+
+function main() {
+    let v = std::vector<i32>()
+    if v.empty() {
+        println("PASS")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_statement
+    (extern_specifier)
+    (cpp_header_identfier)
+    (import_block
+      (namespace_declaration
+        (identifier)
+        (block
+          (struct_declaration
+            (extern_specifier)
+            (generic_type
+              (identifier)
+              (generic_arguments
+                (type_identifier)))
+            (field_declaration_list
+              (generic_function_declaration
+                (generic_type
+                  (identifier)
+                  (generic_arguments
+                    (type_identifier)))
+                (parameters)
+                (generic_type
+                  (identifier)
+                  (generic_arguments
+                    (type_identifier))))
+              (function_declaration
+                (identifier)
+                (parameters
+                  (this_parameter
+                    (this_reference)))
+                (primitive_type))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (generic_type
+            (identifier)
+            (generic_arguments
+              (primitive_type)))
+          (arguments)))
+      (if_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal))))))))

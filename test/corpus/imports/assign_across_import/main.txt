@@ -1,0 +1,48 @@
+================================================================================
+Import assign across import
+================================================================================
+
+import helper { S }
+
+function main() {
+    mut s = S(value: None)
+    // String? is not instantiated in the current module
+    // but was in the helper. Let's see if typechecker
+    // still thinks they are the same.
+    let opt: String? = None
+    s.value = opt
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_statement
+    (identifier)
+    (import_block
+      (identifier)))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (none_expression)))))
+      (line_comment)
+      (line_comment)
+      (line_comment)
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (optional_specifier)
+        (none_expression))
+      (assignment_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (identifier)))))
