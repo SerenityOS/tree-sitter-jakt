@@ -431,7 +431,7 @@ module.exports = grammar({
       '[',
       field('type', $._type),
       ':',
-      field('identifier', $.identifier),
+      field('type', $._type),
       ']'
     ),
 

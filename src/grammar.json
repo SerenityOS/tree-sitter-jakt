@@ -2160,10 +2160,10 @@
         },
         {
           "type": "FIELD",
-          "name": "identifier",
+          "name": "type",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "_type"
           }
         },
         {

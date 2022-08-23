@@ -1,0 +1,39 @@
+================================================================================
+Dictionaries lvalue
+================================================================================
+
+function main() {
+    mut dict = Dictionary<i32, String>()
+    dict[0] = "foo"
+    println("0: {}", dict[0])
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (generic_call_expression
+          (generic_type
+            (identifier)
+            (generic_arguments
+              (primitive_type)
+              (primitive_type)))
+          (arguments)))
+      (assignment_expression
+        (array_expression
+          (identifier)
+          (integer_literal))
+        (string_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (array_expression
+            (identifier)
+            (integer_literal)))))))

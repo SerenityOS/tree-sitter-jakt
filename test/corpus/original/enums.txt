@@ -66,4 +66,4 @@ enum JsonValue {
         (identifier)
         (dictionary_type
           (primitive_type)
-          (identifier))))))
+          (type_identifier))))))

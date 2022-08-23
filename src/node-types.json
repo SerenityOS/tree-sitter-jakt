@@ -995,18 +995,8 @@
     "type": "dictionary_type",
     "named": true,
     "fields": {
-      "identifier": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
       "type": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {

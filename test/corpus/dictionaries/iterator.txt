@@ -1,0 +1,48 @@
+================================================================================
+Dictionary iterator
+================================================================================
+
+function main() {
+    let dictionary = ["well": 1, "hello": 2, "friends": 3]
+    for item in dictionary.iterator() {
+        println("{}: {}", item.0, item.1)
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (dictionary_literal
+          (dictionary_element
+            (string_literal)
+            (integer_literal))
+          (dictionary_element
+            (string_literal)
+            (integer_literal))
+          (dictionary_element
+            (string_literal)
+            (integer_literal))))
+      (for_expression
+        (identifier)
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)
+              (field_expression
+                (identifier)
+                (integer_literal))
+              (field_expression
+                (identifier)
+                (integer_literal)))))))))

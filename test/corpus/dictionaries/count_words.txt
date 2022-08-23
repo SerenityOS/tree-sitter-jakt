@@ -1,0 +1,89 @@
+================================================================================
+Dictionaries count words
+================================================================================
+
+function main() {
+    let text = "midway upon the journey of our life I found myself within a forest dark for the straightforward pathway had been lost"
+    let words = text.split(' ')
+
+    mut counts = Dictionary<String, i64>();
+
+    for i in 0..words.size() {
+        counts.set(key: words[i], value: counts.get(words[i]).value_or(0) + 1)
+    }
+
+    println("the: {}", counts["the"])
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (string_literal))
+      (let_declaration
+        (identifier)
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments
+            (char_literal))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (generic_call_expression
+          (generic_type
+            (identifier)
+            (generic_arguments
+              (primitive_type)
+              (primitive_type)))
+          (arguments)))
+      (for_expression
+        (identifier)
+        (range_expression
+          (integer_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments)))
+        (block
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (argument
+                (identifier)
+                (array_expression
+                  (identifier)
+                  (identifier)))
+              (argument
+                (identifier)
+                (binary_expression
+                  (call_expression
+                    (field_expression
+                      (call_expression
+                        (field_expression
+                          (identifier)
+                          (field_identifier))
+                        (arguments
+                          (array_expression
+                            (identifier)
+                            (identifier))))
+                      (field_identifier))
+                    (arguments
+                      (integer_literal)))
+                  (integer_literal)))))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (array_expression
+            (identifier)
+            (string_literal)))))))

@@ -380,7 +380,7 @@ function main() {
         (identifier)
         (dictionary_type
           (primitive_type)
-          (identifier)))))
+          (type_identifier)))))
   (function_declaration
     (identifier)
     (parameters
@@ -1116,7 +1116,7 @@ function main() {
             (identifier)
             (dictionary_type
               (primitive_type)
-              (identifier))
+              (type_identifier))
             (dictionary_literal))
           (loop_statement
             (block
