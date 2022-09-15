@@ -555,7 +555,7 @@ implemented = 0
 name = "return_nothing.jakt"
 corpus_file_path = "test/corpus/control_flow/return_nothing.txt"
 jakt_sample_path = "samples/control_flow/return_nothing.jakt"
-jakt_sample_hash = "2ceb04e8a0c1242ed8f24af5f6771a7c"
+jakt_sample_hash = "d313bc806395697fd038c34cc287ce27"
 implemented = 0
 
 [[map]]

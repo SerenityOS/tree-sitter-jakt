@@ -7,12 +7,10 @@ function foo() {
         println("PASS")
         return
     }
-    println("FAIL")
 }
 
 function main() {
     foo()
-
 }
 
 --------------------------------------------------------------------------------
@@ -29,11 +27,7 @@ function main() {
             (identifier)
             (arguments
               (string_literal)))
-          (return_statement)))
-      (call_expression
-        (identifier)
-        (arguments
-          (string_literal)))))
+          (return_statement)))))
   (function_declaration
     (identifier)
     (parameters)
