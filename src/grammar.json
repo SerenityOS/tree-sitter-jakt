@@ -1878,6 +1878,10 @@
                         {
                           "type": "SYMBOL",
                           "name": "_expression"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "closure_function"
                         }
                       ]
                     },
@@ -1903,6 +1907,10 @@
                               {
                                 "type": "SYMBOL",
                                 "name": "_expression"
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "closure_function"
                               }
                             ]
                           }

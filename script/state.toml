@@ -1878,7 +1878,7 @@ implemented = 0
 name = "closure_with_parameter.jakt"
 corpus_file_path = "test/corpus/closures/closure_with_parameter.txt"
 jakt_sample_path = "samples/closures/closure_with_parameter.jakt"
-jakt_sample_hash = "630b23fce3c8aac316d4b9b7752296c4"
+jakt_sample_hash = "fff2e79897a982b3a6b874ad54c58cc0"
 implemented = 0
 
 [[map]]

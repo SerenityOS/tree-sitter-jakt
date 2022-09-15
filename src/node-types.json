@@ -422,6 +422,10 @@
         {
           "type": "argument",
           "named": true
+        },
+        {
+          "type": "closure_function",
+          "named": true
         }
       ]
     }
