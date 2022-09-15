@@ -935,6 +935,16 @@
             "named": true
           }
         ]
+      },
+      "throws": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "throws_specifier",
+            "named": true
+          }
+        ]
       }
     }
   },

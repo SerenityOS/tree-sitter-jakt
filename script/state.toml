@@ -1899,7 +1899,7 @@ implemented = 0
 name = "lambdas_can_throw.jakt"
 corpus_file_path = "test/corpus/closures/lambdas_can_throw.txt"
 jakt_sample_path = "samples/closures/lambdas_can_throw.jakt"
-jakt_sample_hash = "e2d1b4b981cf98b17acd599bb71037df"
+jakt_sample_hash = "ec41c0cbabcd5d5a3ff5849dd7301fa5"
 implemented = 0
 
 [[map]]

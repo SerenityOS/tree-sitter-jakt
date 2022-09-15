@@ -882,6 +882,7 @@ module.exports = grammar({
     closure_function_type: $ => seq(
       'function',
       field('parameters', $.parameters),
+      optional(field('throws', $.throws_specifier)),
       optional(seq('->', field('return_type', $._type))),
     ),
 

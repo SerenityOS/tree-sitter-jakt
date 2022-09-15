@@ -1,0 +1,54 @@
+================================================================================
+Closures lambdas can throw
+================================================================================
+
+
+function test(anon cb: function() throws -> String) throws {
+    println("{}", cb())
+}
+
+function main() {
+    test(function() throws {
+        return format("{}", 69)
+    })
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (closure_function_type
+          (parameters)
+          (throws_specifier)
+          (primitive_type))))
+    (throws_specifier)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (identifier)
+            (arguments))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (closure_function
+            (parameters)
+            (throws_specifier)
+            (block
+              (return_statement
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (string_literal)
+                    (integer_literal)))))))))))
