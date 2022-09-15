@@ -1885,7 +1885,7 @@ implemented = 0
 name = "function_as_parameter.jakt"
 corpus_file_path = "test/corpus/closures/function_as_parameter.txt"
 jakt_sample_path = "samples/closures/function_as_parameter.jakt"
-jakt_sample_hash = "01b1ab3e4bf6325ee53c11a24f1b9acf"
+jakt_sample_hash = "72375633f516f0aa39463a705a19e7ee"
 implemented = 0
 
 [[map]]

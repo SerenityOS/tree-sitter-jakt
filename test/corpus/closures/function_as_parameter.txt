@@ -1,0 +1,43 @@
+================================================================================
+Closures function as parameter
+================================================================================
+
+function hello(anon who: function() -> String) {
+    println("well, hello {}", who())
+}
+
+function main() {
+    hello(function() => "friends.")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (closure_function_type
+          (parameters)
+          (primitive_type))))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (identifier)
+            (arguments))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (closure_function
+            (parameters)
+            (return_expression
+              (string_literal))))))))
