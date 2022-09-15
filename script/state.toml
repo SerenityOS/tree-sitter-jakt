@@ -569,7 +569,7 @@ implemented = 0
 name = "never_return.jakt"
 corpus_file_path = "test/corpus/control_flow/never_return.txt"
 jakt_sample_path = "samples/control_flow/never_return.jakt"
-jakt_sample_hash = "820f45b4f0a833416e8ddc60991446b7"
+jakt_sample_hash = "ff4dafc4a3776663d81576c9a287c954"
 implemented = 0
 
 [[map]]
