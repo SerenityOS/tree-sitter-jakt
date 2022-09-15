@@ -1,0 +1,97 @@
+================================================================================
+Arrays slice of a slice
+================================================================================
+
+function slices(anon s: ArraySlice<i64>, mut total: i64) {
+    total += s[0]
+
+    if s.size() > 1 {
+        return slices(s[1..], total)
+    }
+
+    return total
+}
+
+function main() {
+    let arr = [1, 2, 3, 4, 5, 6]
+    mut total = 0
+
+    total = slices(arr[..], total)
+
+    println("{}", total)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type))))
+      (parameter
+        (mutable_specifier)
+        (identifier)
+        (primitive_type)))
+    (block
+      (assignment_expression
+        (identifier)
+        (array_expression
+          (identifier)
+          (integer_literal)))
+      (if_statement
+        (binary_expression
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))
+          (integer_literal))
+        (block
+          (return_statement
+            (call_expression
+              (identifier)
+              (arguments
+                (array_expression
+                  (identifier)
+                  (range_expression
+                    (integer_literal)))
+                (identifier))))))
+      (return_statement
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (array_expression
+              (identifier)
+              (range_expression))
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))

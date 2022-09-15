@@ -281,6 +281,8 @@ module.exports = grammar({
 
     range_expression: $ => prec.left(PREC.range, choice(
       seq($._expression, '..', $._expression),
+      // for some reason wrapping the last expression in optional in the previous statement does not work...
+      seq($._expression, '..'),
       '..'
     )),
 

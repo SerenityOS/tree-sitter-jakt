@@ -2000,3 +2000,10 @@ jakt_sample_path = "samples/compiletime_execution/string.jakt"
 jakt_sample_hash = "687ba7878fceacd115febd1378f8d8b0"
 implemented = 0
 
+[[map]]
+name = "slice_of_slice.jakt"
+corpus_file_path = "test/corpus/arrays/slice_of_slice.txt"
+jakt_sample_path = "samples/arrays/slice_of_slice.jakt"
+jakt_sample_hash = "c0cf163fbc3e2979b3c16c8ec44a4ce5"
+implemented = 0
+

@@ -197,11 +197,10 @@ function main() {
         (identifier)
         (array_expression
           (identifier)
-          (integer_literal)
-          (ERROR)))
+          (range_expression
+            (integer_literal))))
       (call_expression
         (identifier)
         (arguments
           (string_literal)
           (identifier))))))
-
