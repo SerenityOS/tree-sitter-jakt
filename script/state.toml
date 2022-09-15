@@ -1892,7 +1892,7 @@ implemented = 0
 name = "function_as_variable.jakt"
 corpus_file_path = "test/corpus/closures/function_as_variable.txt"
 jakt_sample_path = "samples/closures/function_as_variable.jakt"
-jakt_sample_hash = "2df277e5cb6f0e247d9a336f1bba0ea2"
+jakt_sample_hash = "4558f3989e142ff3084b7e2b0535dcd7"
 implemented = 0
 
 [[map]]

@@ -470,7 +470,7 @@ module.exports = grammar({
       )),
       optional(seq(
         '=',
-        field('value', $._expression),
+        field('value', choice($._expression, $.closure_function)),
       )),
       optional(terminator),
     )),
@@ -896,8 +896,8 @@ module.exports = grammar({
       'function',
       optional($._closure_capture_reference),
       field('parameters', $.parameters),
-      // optional(field('throws', $.throws_specifier)),
-      // optional(seq('->', field('return_type', seq($._type, optional($.optional_specifier))))),
+      optional(field('throws', $.throws_specifier)),
+      optional(seq('->', field('return_type', seq($._type, optional($.optional_specifier))))),
       field('body', choice($.return_expression, $.block)),
     ),
 

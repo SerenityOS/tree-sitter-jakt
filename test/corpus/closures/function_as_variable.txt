@@ -1,0 +1,47 @@
+================================================================================
+Closures function as variable
+================================================================================
+
+function main() {
+    let cb = function() => "PASS"
+    let cb2: function() -> String = function() => "PASS"
+    println("{}", cb())
+    println("{}", cb2())
+}
+
+--------------------------------------------------------------------------------
+
+(source_fil)e
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (closure_function
+          (parameters)
+          (return_expression
+            (string_literal))))
+      (let_declaration
+        (identifier)
+        (closure_function_type
+          (parameters)
+          (primitive_type))
+        (closure_function
+          (parameters)
+          (return_expression
+            (string_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (identifier)
+            (arguments))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (identifier)
+            (arguments)))))))

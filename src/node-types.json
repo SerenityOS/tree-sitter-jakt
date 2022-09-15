@@ -867,6 +867,30 @@
             "named": true
           }
         ]
+      },
+      "return_type": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "_type",
+            "named": true
+          },
+          {
+            "type": "optional_specifier",
+            "named": true
+          }
+        ]
+      },
+      "throws": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "throws_specifier",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
@@ -1911,6 +1935,10 @@
         "types": [
           {
             "type": "_expression",
+            "named": true
+          },
+          {
+            "type": "closure_function",
             "named": true
           }
         ]
