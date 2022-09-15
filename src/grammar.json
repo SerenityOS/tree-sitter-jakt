@@ -3764,6 +3764,10 @@
               {
                 "type": "SYMBOL",
                 "name": "block"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "closure_function"
               }
             ]
           }
@@ -3807,6 +3811,10 @@
               {
                 "type": "SYMBOL",
                 "name": "block"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "closure_function"
               }
             ]
           }

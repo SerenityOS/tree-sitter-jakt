@@ -2015,6 +2015,10 @@
           {
             "type": "block",
             "named": true
+          },
+          {
+            "type": "closure_function",
+            "named": true
           }
         ]
       }

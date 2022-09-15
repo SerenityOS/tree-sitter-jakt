@@ -2007,3 +2007,10 @@ jakt_sample_path = "samples/arrays/slice_of_slice.jakt"
 jakt_sample_hash = "c0cf163fbc3e2979b3c16c8ec44a4ce5"
 implemented = 0
 
+[[map]]
+name = "callable_function_expression.jakt"
+corpus_file_path = "test/corpus/closures/callable_function_expression.txt"
+jakt_sample_path = "samples/closures/callable_function_expression.jakt"
+jakt_sample_hash = "00fbc1dc3c61db0e6a0648125480e82e"
+implemented = 0
+
