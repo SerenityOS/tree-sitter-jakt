@@ -27,7 +27,7 @@ from datetime import date
 import fileinput
 import hashlib
 import sys
-from typing import Any
+from typing import Any, Optional
 from types import SimpleNamespace
 from enum import Enum
 
@@ -283,6 +283,7 @@ def write_state_file(map: TestMap) -> bool:
     """Serialize map into the state file"""
     with open(state_file, "wb") as f:
         f.write(str.encode(to_toml(map)))
+    console.log("state file updated")
     return True
 
 
@@ -314,6 +315,37 @@ def build_test_map(jakt_path: str) -> TestMap:
                 )
             )
     return filez
+
+
+def test_from_corpus_path(corpus_path: str, jakt_path: str) -> Optional[Test]:
+    """Create a list of jakt samples"""
+    if ".jakt" in corpus_path:
+        console.log(f"Skipping file: {corpus_path}")
+        return
+    file_path = pathlib.Path(corpus_path)
+    stripped_corpus_path = file_path.parts[2:-1]
+    sample_path = pathlib.Path(
+        jakt_path,
+        "samples",
+        *stripped_corpus_path,
+        file_path.name.replace(".txt", ".jakt"),
+    )
+    file_text = sample_path.read_text()
+    hash = hashlib.md5(file_text.encode("utf-8")).hexdigest()
+    console.log(f"Hash: {hash}")
+    return Test(
+        name=sample_path.name,
+        corpus_file_path=file_path.absolute(),
+        jakt_sample_path=pathlib.Path(
+            *sample_path.parts[sample_path.parts.index("samples") :]
+        ).absolute(),
+        jakt_sample_hash=hash,
+        implemented=TestImplemented(0),
+        changed=False,
+        new=False,
+        deleted=False,
+        falty=False,
+    )
 
 
 @app.command()
@@ -625,17 +657,21 @@ def update_test(
     path: str = typer.Option("", help="Update a test using the corpus path"),
 ):
     """Update the Jakt sample state for a single test."""
-
     if not state_file.exists():
         console.log(f"[red][ERROR] - State file {state_file} does not exist![/red]")
         sys.exit(1)
+
     sf = load_state_file(ctx.obj.jakt_path)
 
     if not (test := sf.get_by_corpus_path(path)):
-        console.log(f"[red][ERROR] - '{path}' not found in state file![/red]")
-        sys.exit(1)
-
-    if path:
+        console.log(f"Adding single test to state file for '{path}'")
+        if not (new_test := test_from_corpus_path(path, ctx.obj.jakt_path)):
+            console.log(
+                f"[red][ERROR] - Could not update '{path}' in state file![/red]"
+            )
+            sys.exit(1)
+        sf.map.append(new_test)
+    else:
         console.log(f"Updating state of single test: '{path}'")
         console.log(f"jakt sample path: '{test.jakt_sample_path}'")
         console.log(f"Old hash: {test.jakt_sample_hash}")
@@ -644,14 +680,14 @@ def update_test(
         ).hexdigest()
         test.jakt_sample_hash = hash
         console.log(f"New hash: {test.jakt_sample_hash}")
-        write_state_file(sf)
+
+    write_state_file(sf)
 
 
 @state_app.command("all")
 def update_state_all(ctx: typer.Context):
     """Update the Jakt sample state for all tests."""
     write_state_file(build_test_map(ctx.obj.jakt_path))  # type: ignore
-    console.log("state file updated")
 
 
 if __name__ == "__main__":
