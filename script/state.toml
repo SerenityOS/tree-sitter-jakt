@@ -191,7 +191,7 @@ implemented = 0
 name = "slice.jakt"
 corpus_file_path = "test/corpus/arrays/slice.txt"
 jakt_sample_path = "samples/arrays/slice.jakt"
-jakt_sample_hash = "da50b79e24e349ee9a898574e760652c"
+jakt_sample_hash = "40d6949ca3f4a29f733f1a8ce1012961"
 implemented = 0
 
 [[map]]

@@ -34,6 +34,10 @@ function main() {
 
     println("array from slice: {}", y)
     println("slice: {}", slice)
+
+    let out_of_bounds_slice = x[10..]
+
+    println("{}", out_of_bounds_slice)
 }
 
 --------------------------------------------------------------------------------
@@ -188,4 +192,16 @@ function main() {
         (identifier)
         (arguments
           (string_literal)
+          (identifier)))
+      (let_declaration
+        (identifier)
+        (array_expression
+          (identifier)
+          (integer_literal)
+          (ERROR)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
           (identifier))))))
+

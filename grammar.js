@@ -280,7 +280,7 @@ module.exports = grammar({
     array_index_expression: $ => field('value', seq('[', $._expression, ']')),
 
     range_expression: $ => prec.left(PREC.range, choice(
-      seq($._expression, choice('..'), $._expression),
+      seq($._expression, '..', $._expression),
       '..'
     )),
 
