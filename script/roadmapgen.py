@@ -567,7 +567,7 @@ def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
         "Total Implemented Tests (including partially implemented and original tests)",
     )
     table.add_row(
-        f"{((implemented_count + original_test_count) / total_tests) * 100:.0f}%",
+        f"{((implemented_count + original_test_count - jakt_test_changed) / total_tests) * 100:.0f}%",
         "Percentage of Implemented Jakt Samples",
     )
     table.add_row()
