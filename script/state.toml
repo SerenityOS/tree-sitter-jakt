@@ -429,7 +429,7 @@ implemented = 0
 name = "for_throw.jakt"
 corpus_file_path = "test/corpus/control_flow/for_throw.txt"
 jakt_sample_path = "samples/control_flow/for_throw.jakt"
-jakt_sample_hash = "cc5804edfe1d1365229d45e6ff442768"
+jakt_sample_hash = "48d95d8428eb220637e9a2ee145e508b"
 implemented = 0
 
 [[map]]

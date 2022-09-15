@@ -5,7 +5,6 @@ Control flow for throw
 struct Iter {
     function next(this) throws -> i64? {
         throw Error::from_errno(1i32)
-        return None
     }
 }
 
@@ -35,9 +34,7 @@ function main() {
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (integer_literal))))
-          (return_statement
-            (none_expression))))))
+                (integer_literal))))))))
   (function_declaration
     (identifier)
     (parameters)
