@@ -1,0 +1,48 @@
+================================================================================
+Closures capture by value
+================================================================================
+
+function test(cb: function() -> void) {
+    cb()
+}
+
+function main() {
+    let pass = "PASS"
+    test(cb: function[pass]() => println(pass))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (closure_function_type
+          (parameters)
+          (primitive_type))))
+    (block
+      (call_expression
+        (identifier)
+        (arguments))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (string_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (closure_function
+              (capture_reference)
+              (parameters)
+              (return_expression
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (identifier)))))))))))
