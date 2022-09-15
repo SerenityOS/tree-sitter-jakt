@@ -1864,14 +1864,14 @@ implemented = 0
 name = "capture_by_reference.jakt"
 corpus_file_path = "test/corpus/closures/capture_by_reference.txt"
 jakt_sample_path = "samples/closures/capture_by_reference.jakt"
-jakt_sample_hash = "7936775fa30078336fd75bcdc8404d30"
+jakt_sample_hash = "d56078e3ea7122130caedff93412e78a"
 implemented = 0
 
 [[map]]
 name = "capture_by_value.jakt"
 corpus_file_path = "test/corpus/closures/capture_by_value.txt"
 jakt_sample_path = "samples/closures/capture_by_value.jakt"
-jakt_sample_hash = "27db33645f06468863782dd8f31be81c"
+jakt_sample_hash = "0c8e5f604634aeb17f1749ef495afab7"
 implemented = 0
 
 [[map]]
