@@ -399,6 +399,10 @@
         {
           "type": "_expression",
           "named": true
+        },
+        {
+          "type": "closure_function",
+          "named": true
         }
       ]
     }
@@ -417,10 +421,6 @@
         },
         {
           "type": "argument",
-          "named": true
-        },
-        {
-          "type": "closure_function",
           "named": true
         }
       ]
@@ -785,6 +785,32 @@
     }
   },
   {
+    "type": "capture_reference",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "&",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "class_declaration",
     "named": true,
     "fields": {
@@ -840,9 +866,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "capture_reference",
+          "named": true
+        },
         {
           "type": "restricted_specifier",
           "named": true

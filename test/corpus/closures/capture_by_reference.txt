@@ -1,0 +1,67 @@
+================================================================================
+Closures capture by reference
+================================================================================
+
+function test(cb: function() -> void) {
+    cb()
+}
+
+class Foo {
+    public message: String
+}
+
+function main() {
+    let pass = Foo(message: "PASS")
+    test(cb: function[&pass]() => println(pass.message))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (closure_function_type
+          (parameters)
+          (primitive_type))))
+    (block
+      (call_expression
+        (identifier)
+        (arguments))))
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (visibility_specifier)
+        (field_identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (string_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (closure_function
+              (capture_reference
+                (identifier))
+              (parameters)
+              (return_expression
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (field_expression
+                      (identifier)
+                      (field_identifier))))))))))))

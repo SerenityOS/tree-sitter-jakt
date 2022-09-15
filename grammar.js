@@ -396,12 +396,12 @@ module.exports = grammar({
 
     arguments: $ => seq(
       '(',
-      optional(sepBy(',', choice(repeat($.argument), $._expression, $.closure_function))),
+      optional(sepBy(',', choice(repeat($.argument), $._expression))),
       ')'
     ),
 
     argument: $ => choice(
-        seq(field('label', choice($._pattern)), ':', $._expression),
+        seq(field('label', choice($._pattern)), ':', choice($._expression, $.closure_function)),
         seq(field('type', choice($.identifier)), terminator),
     ),
 
@@ -885,9 +885,16 @@ module.exports = grammar({
       optional(seq('->', field('return_type', $._type))),
     ),
 
+    _closure_capture_reference: $ => seq(
+      '[',
+      alias(choice($.identifier, $.reference_expression), $.capture_reference),
+      ']',
+    ),
+
     closure_function: $ => seq(
       optional(choice($.restricted_specifier, $.visibility_specifier)),
       'function',
+      optional($._closure_capture_reference),
       field('parameters', $.parameters),
       // optional(field('throws', $.throws_specifier)),
       // optional(seq('->', field('return_type', seq($._type, optional($.optional_specifier))))),
