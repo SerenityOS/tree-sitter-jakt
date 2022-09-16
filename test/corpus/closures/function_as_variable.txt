@@ -11,7 +11,7 @@ function main() {
 
 --------------------------------------------------------------------------------
 
-(source_fil)e
+(source_file
   (function_declaration
     (identifier)
     (parameters)
