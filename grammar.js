@@ -74,7 +74,8 @@ module.exports = grammar({
     [$.namespace_scope_expression, $.namespace_call_expression],
     [$._simple_type, $.enum_variant],
     [$.set_literal, $.block],
-    [$.parenthesized_expression, $.optional_parenthesized_expression ]
+    [$.parenthesized_expression, $.optional_parenthesized_expression ],
+    [$.parenthesized_expression, $.tuple_literal],
   ],
 
   rules: {
@@ -782,6 +783,12 @@ module.exports = grammar({
       ']'
     )),
 
+    tuple_expression: $ => seq(
+      '(',
+      sepBy(',', seq($._expression, optional(','))),
+      ')'
+    ),
+
     tuple_type: $ => seq(
       '(',
       sepBy(',', seq($._type, optional(','))),
@@ -790,7 +797,7 @@ module.exports = grammar({
 
     tuple_literal: $ => seq(
       '(',
-      sepBy(',', seq($._literal_pattern, optional(','))),
+      sepBy(',', seq($._expression, optional(','))),
       ')'
     ),
 
