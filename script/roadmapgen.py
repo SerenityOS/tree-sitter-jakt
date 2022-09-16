@@ -256,6 +256,14 @@ class TestMap:
                 return True
         return False
 
+    def remove_by_corpus_path(self, path: str) -> bool:
+        """Removes a test from map by corpus path"""
+        for index, x in enumerate(self.map):
+            if path in str(x.corpus_file_path):
+                del self.map[index]
+                return True
+        return False
+
 
 # FIXME: user serializer function to create pathlib objs
 def load_state_file(jakt_path: str) -> TestMap:
@@ -672,6 +680,17 @@ def update_test(
             sys.exit(1)
         sf.map.append(new_test)
     else:
+        if not pathlib.Path(test.jakt_sample_path).exists():
+            console.log("Removing deleted sample from state file")
+            if not sf.remove_by_corpus_path(path):
+                console.log(
+                    f"[red][ERROR] - Could not remove test by corpus path '{path}' from state file![/red]"
+                )
+                sys.exit(1)
+            else:
+                write_state_file(sf)
+                console.log(f"Test '{path}' removed from state file")
+                return
         console.log(f"Updating state of single test: '{path}'")
         console.log(f"jakt sample path: '{test.jakt_sample_path}'")
         console.log(f"Old hash: {test.jakt_sample_hash}")
