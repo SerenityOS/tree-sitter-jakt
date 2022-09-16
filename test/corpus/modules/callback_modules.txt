@@ -1,0 +1,45 @@
+================================================================================
+Modules callback modules
+================================================================================
+
+import a
+
+function main() {
+    let foo = a::call_function(function(x: i64) -> i64 {
+        return x + 1
+    })
+
+    println("{}", foo)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_statement
+    (identifier))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (closure_function
+              (parameters
+                (parameter
+                  (identifier)
+                  (primitive_type)))
+              (primitive_type)
+              (block
+                (return_statement
+                  (binary_expression
+                    (identifier)
+                    (integer_literal))))))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))
