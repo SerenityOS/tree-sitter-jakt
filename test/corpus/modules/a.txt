@@ -9,6 +9,10 @@ function use_cool_things() {
     b::something_else_cool()
 }
 
+function call_function(anon a: function(anon x: i64) -> i64) -> i64 {
+    return a(1)
+}
+
 --------------------------------------------------------------------------------
 
 (source_file
@@ -25,4 +29,24 @@ function use_cool_things() {
       (static_call_expression
         (scoped_identifier)
         (field_identifier)
-        (arguments)))))
+        (arguments))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (closure_function_type
+          (parameters
+            (parameter
+              (anonymous_specifier)
+              (identifier)
+              (primitive_type)))
+          (primitive_type))))
+    (primitive_type)
+    (block
+      (return_statement
+        (call_expression
+          (identifier)
+          (arguments
+            (integer_literal)))))))

@@ -1787,7 +1787,7 @@ implemented = 0
 name = "a.jakt"
 corpus_file_path = "test/corpus/modules/a.txt"
 jakt_sample_path = "samples/modules/a.jakt"
-jakt_sample_hash = "31a7a0b0633c77e89791ce35a8b83fa8"
+jakt_sample_hash = "0960909e67095597b1eddb84107774dd"
 implemented = 0
 
 [[map]]
