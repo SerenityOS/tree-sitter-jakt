@@ -76,6 +76,7 @@ module.exports = grammar({
     [$.set_literal, $.block],
     [$.parenthesized_expression, $.optional_parenthesized_expression ],
     [$.parenthesized_expression, $.tuple_literal],
+    [$._expression, $.array_expression, $.destructuring_literal]
   ],
 
   rules: {
@@ -706,6 +707,12 @@ module.exports = grammar({
       $.identifier,
     ),
 
+    destructuring_literal: $ => seq(
+      '(',
+      sepBy(',', seq($.identifier, optional(','))),
+      ')',
+    ),
+
     _literal_pattern: $ => choice(
       $.string_literal,
       $.char_literal,
@@ -713,6 +720,7 @@ module.exports = grammar({
       $.integer_literal,
       $.float_literal,
       $.negative_literal,
+      $.destructuring_literal,
     ),
 
     negative_literal: $ => seq('-', choice($.integer_literal, $.float_literal)),

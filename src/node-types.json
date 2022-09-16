@@ -196,6 +196,10 @@
         "named": true
       },
       {
+        "type": "destructuring_literal",
+        "named": true
+      },
+      {
         "type": "float_literal",
         "named": true
       },
@@ -1032,6 +1036,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "destructuring_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {

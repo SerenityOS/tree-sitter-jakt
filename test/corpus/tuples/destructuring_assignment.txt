@@ -1,0 +1,44 @@
+================================================================================
+Tuples destructuring assignment
+================================================================================
+
+function foo() -> (i64, String) {
+    return (1, "hello")
+}
+
+function main() {
+    let (x1, x2) = foo()
+    println("{} {}", x1, x2)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (tuple_type
+      (primitive_type)
+      (primitive_type))
+    (block
+      (return_statement
+        (tuple_literal
+          (integer_literal)
+          (string_literal)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (destructuring_literal
+          (identifier)
+          (identifier))
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier)
+          (identifier))))))
