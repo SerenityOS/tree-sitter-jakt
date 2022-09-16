@@ -1,0 +1,64 @@
+================================================================================
+Match match type hint
+================================================================================
+
+enum Foo {
+    Bar
+    Baz
+}
+
+function main() {
+    let a = Foo::Bar
+
+    let b: i32? = match a {
+        Bar => 2
+        Baz => None
+    }
+
+    println("{}", b.value_or(0i32))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (namespace_scope_expression
+          (scoped_identifier)
+          (field_identifier)))
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (optional_specifier)
+        (match_expression
+          (identifier)
+          (match_block
+            (match_arm
+              (match_pattern
+                (identifier))
+              (integer_literal))
+            (match_arm
+              (match_pattern
+                (identifier))
+              (none_expression)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (integer_literal))))))))

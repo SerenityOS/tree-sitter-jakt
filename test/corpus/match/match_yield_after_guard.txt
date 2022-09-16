@@ -1,0 +1,81 @@
+================================================================================
+Match match yield after guard
+================================================================================
+
+enum Foo {
+    Bar(id: i64)
+    Baz
+}
+
+function main() {
+    let a = Foo::Bar(id: 3)
+
+    let b = match a {
+        Bar(id) => {
+            guard id > 2 else {
+                return 0
+            }
+
+            yield id
+        }
+        else => 0
+    }
+
+    println("{}", b)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_struct_variant
+        (identifier)
+        (field_declaration
+          (field_identifier)
+          (primitive_type)))
+      (enum_variant
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (let_declaration
+        (identifier)
+        (match_expression
+          (identifier)
+          (match_block
+            (match_arm
+              (match_pattern
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (identifier))))
+              (block
+                (guard_statement
+                  (binary_expression
+                    (identifier)
+                    (integer_literal))
+                  (block
+                    (return_statement
+                      (integer_literal))))
+                (yield_statement
+                  (identifier))))
+            (match_arm
+              (match_else)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))

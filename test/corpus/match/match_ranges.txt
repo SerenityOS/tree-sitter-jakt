@@ -1,0 +1,51 @@
+================================================================================
+Match match ranges
+================================================================================
+
+function main() {
+    let x = 42
+
+    let y = match x {
+        0..30 => "foo"
+        30..100 => "bar"
+        else => "baz"
+    }
+
+    println("{}", y)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (let_declaration
+        (identifier)
+        (match_expression
+          (identifier)
+          (match_block
+            (match_arm
+              (match_pattern
+                (range_expression
+                  (integer_literal)
+                  (integer_literal)))
+              (string_literal))
+            (match_arm
+              (match_pattern
+                (range_expression
+                  (integer_literal)
+                  (integer_literal)))
+              (string_literal))
+            (match_arm
+              (match_else)
+              (string_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))

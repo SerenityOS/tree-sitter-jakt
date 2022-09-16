@@ -1,0 +1,103 @@
+================================================================================
+Match match optional inference
+================================================================================
+
+enum Foo {
+    Bar
+    Baz
+}
+
+function main() {
+    let a = Foo::Baz
+
+    let b = match a {
+        Bar => {
+            yield Some(2)
+        }
+        Baz => {
+            yield None
+        }
+    }
+
+    println("{}", b)
+
+    let c:i64? = match a {
+        Bar => {
+            yield 2
+        }
+        Baz => {
+            yield None
+        }
+    }
+
+    println("{}", c)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (namespace_scope_expression
+          (scoped_identifier)
+          (field_identifier)))
+      (let_declaration
+        (identifier)
+        (match_expression
+          (identifier)
+          (match_block
+            (match_arm
+              (match_pattern
+                (identifier))
+              (block
+                (yield_statement
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (integer_literal))))))
+            (match_arm
+              (match_pattern
+                (identifier))
+              (block
+                (yield_statement
+                  (none_expression)))))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier)))
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (optional_specifier)
+        (match_expression
+          (identifier)
+          (match_block
+            (match_arm
+              (match_pattern
+                (identifier))
+              (block
+                (yield_statement
+                  (integer_literal))))
+            (match_arm
+              (match_pattern
+                (identifier))
+              (block
+                (yield_statement
+                  (none_expression)))))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (identifier))))))
