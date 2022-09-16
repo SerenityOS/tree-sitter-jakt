@@ -748,13 +748,6 @@ jakt_sample_hash = "6833cf8b25e8d2a124cc616e7228da4f"
 implemented = 0
 
 [[map]]
-name = "destructuring_assignment.jakt"
-corpus_file_path = "test/corpus/enums/destructuring_assignment.txt"
-jakt_sample_path = "samples/enums/destructuring_assignment.jakt"
-jakt_sample_hash = "819d86cda0426de235944d94e1d90aa6"
-implemented = 0
-
-[[map]]
 name = "is_variant_binding.jakt"
 corpus_file_path = "test/corpus/enums/is_variant_binding.txt"
 jakt_sample_path = "samples/enums/is_variant_binding.jakt"
