@@ -2014,3 +2014,10 @@ jakt_sample_path = "samples/closures/callable_function_expression.jakt"
 jakt_sample_hash = "00fbc1dc3c61db0e6a0648125480e82e"
 implemented = 0
 
+[[map]]
+name = "generic_closure_with_parameter.jakt"
+corpus_file_path = "test/corpus/closures/generic_closure_with_parameter.txt"
+jakt_sample_path = "samples/closures/generic_closure_with_parameter.jakt"
+jakt_sample_hash = "35a367b01878f008adc226ee33263b8d"
+implemented = 0
+
