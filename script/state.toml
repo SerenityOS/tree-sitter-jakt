@@ -30,7 +30,7 @@ implemented = 0
 name = "json.jakt"
 corpus_file_path = "test/corpus/apps/json.txt"
 jakt_sample_path = "samples/apps/json.jakt"
-jakt_sample_hash = "0e8270f0e0eddd9054c739e2208bc725"
+jakt_sample_hash = "409e795d332eb392370ada800c28f7a9"
 implemented = 0
 
 [[map]]
