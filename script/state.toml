@@ -1822,21 +1822,21 @@ implemented = 0
 name = "is_guard.jakt"
 corpus_file_path = "test/corpus/guard/is_guard.txt"
 jakt_sample_path = "samples/guard/is_guard.jakt"
-jakt_sample_hash = "782fc58998f2b41a53027225bdcfed2a"
+jakt_sample_hash = "be228a836ce990a5a741afd75ba977d5"
 implemented = 0
 
 [[map]]
 name = "is_guard_compound_matched.jakt"
 corpus_file_path = "test/corpus/guard/is_guard_compound_matched.txt"
 jakt_sample_path = "samples/guard/is_guard_compound_matched.jakt"
-jakt_sample_hash = "0dd3a9a4d3be51fa5bf097e80eea90db"
+jakt_sample_hash = "42f57dc2e49bf49e2dd2cdd40b98bb31"
 implemented = 0
 
 [[map]]
 name = "is_guard_compound_unmatched.jakt"
 corpus_file_path = "test/corpus/guard/is_guard_compound_unmatched.txt"
 jakt_sample_path = "samples/guard/is_guard_compound_unmatched.jakt"
-jakt_sample_hash = "dd27e81990c7919fb5a8d95d6fe0c781"
+jakt_sample_hash = "02df1ef15a241be3d36332d9cc7c260a"
 implemented = 0
 
 [[map]]
