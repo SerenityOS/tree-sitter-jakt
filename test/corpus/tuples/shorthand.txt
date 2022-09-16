@@ -1,16 +1,46 @@
-; ================================================================================
-; NOT IMPLEMENTED Tuples shorthand
-; ================================================================================
-; 
-; function foo() -> (i64, String) {
-;     return (1, "hello")
-; }
-; 
-; function main() {
-;     let x = foo()
-;     println("{} {}", x.0, x.1)
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file
+================================================================================
+Tuples shorthand
+================================================================================
+
+function foo() -> (i64, String) {
+    return (1, "hello")
+}
+
+function main() {
+    let x = foo()
+    println("{} {}", x.0, x.1)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameters)
+    (tuple_type
+      (primitive_type)
+      (primitive_type))
+    (block
+      (return_statement
+        (tuple_literal
+          (integer_literal)
+          (string_literal)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (field_expression
+            (identifier)
+            (integer_literal))
+          (field_expression
+            (identifier)
+            (integer_literal)))))))

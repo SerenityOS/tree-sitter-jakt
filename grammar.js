@@ -436,6 +436,7 @@ module.exports = grammar({
       $.namespace_scope_type,
       $.reference_type,
       $.closure_function_type,
+      $.tuple_type,
     ),
 
     namespace_scope_type: $ => token(repeat1(seq(identifier, '::'))),
@@ -780,6 +781,12 @@ module.exports = grammar({
       ),
       ']'
     )),
+
+    tuple_type: $ => seq(
+      '(',
+      sepBy(',', seq($._type, optional(','))),
+      ')'
+    ),
 
     tuple_literal: $ => seq(
       '(',
