@@ -2,7 +2,7 @@
 Generics passing an array
 ================================================================================
 
-function dump<T>(anon v: [T]) { return v[0] }
+function dump<T>(anon v: [T]) => v[0]
 
 function main() {
     println("{}", dump([1, 2, 3]))
@@ -22,11 +22,10 @@ function main() {
         (identifier)
         (array_type
           (type_identifier))))
-    (block
-      (return_statement
-        (array_expression
-          (identifier)
-          (integer_literal)))))
+    (return_expression
+      (array_expression
+        (identifier)
+        (integer_literal))))
   (function_declaration
     (identifier)
     (parameters)

@@ -15,8 +15,6 @@ enum Foo {
                 return format("anon:{}", id)
             }
         }
-
-        return None
     }
 
     function name(this) throws {
@@ -76,9 +74,7 @@ function main() {
                       (identifier)
                       (arguments
                         (string_literal)
-                        (identifier))))))))
-          (return_statement
-            (none_expression))))
+                        (identifier))))))))))
       (enum_method_variant
         (identifier)
         (parameters

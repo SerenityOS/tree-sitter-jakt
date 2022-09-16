@@ -955,12 +955,7 @@ function main() {
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (integer_literal))))
-          (line_comment)
-          (return_statement
-            (namespace_scope_expression
-              (scoped_identifier)
-              (field_identifier)))))
+                (integer_literal))))))
       (function_declaration
         (identifier)
         (parameters
@@ -1310,9 +1305,7 @@ function main() {
                         (scoped_identifier)
                         (field_identifier)
                         (arguments
-                          (integer_literal))))
-                    (return_statement
-                      (float_literal)))))))))
+                          (integer_literal)))))))))))
       (function_declaration
         (identifier)
         (parameters

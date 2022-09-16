@@ -4,6 +4,13 @@ Function fat arrow return expression
 
 function greet() => println("Well, hello friends.")
 function num() -> i64 => 5
+function str() => "Hello friends."
+
+function main() {
+    greet()
+    println("{}", num())
+    println("{}", str().replace(replace: "Hello", with: "Goodbye"))
+}
 
 --------------------------------------------------------------------------------
 
@@ -21,4 +28,40 @@ function num() -> i64 => 5
     (parameters)
     (primitive_type)
     (return_expression
-      (integer_literal))))
+      (integer_literal)))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (return_expression
+      (string_literal)))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (identifier)
+            (arguments))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (call_expression
+                (identifier)
+                (arguments))
+              (field_identifier))
+            (arguments
+              (argument
+                (identifier)
+                (string_literal))
+              (argument
+                (identifier)
+                (string_literal)))))))))
