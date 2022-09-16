@@ -1,30 +1,94 @@
-; ================================================================================
-; NOT IMPLEMENTED Control flow try expression
-; ================================================================================
-; 
-; struct Foo {
-;     x: usize
-; }
-; 
-; function throw_for_fun() throws -> Foo {
-;     throw Error::from_errno(123)
-; }
-; 
-; function pretend_to_throw_for_fun() throws -> Foo {
-;     return Foo(x: 123)
-; }
-; 
-; function main() {
-;     println("{}", (try pretend_to_throw_for_fun())?.x)
-;     try throw_for_fun() catch {
-;         println("PASS")
-;         return 0
-;     }
-; 
-;     println("FAIL")
-;     return 1
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file
+================================================================================
+Control flow try expression
+================================================================================
+
+struct Foo {
+    x: usize
+}
+
+function throw_for_fun() throws -> Foo {
+    throw Error::from_errno(123)
+}
+
+function pretend_to_throw_for_fun() throws -> Foo {
+    return Foo(x: 123)
+}
+
+function main() {
+    println("{}", (try pretend_to_throw_for_fun())?.x)
+    try throw_for_fun() catch {
+        println("PASS")
+        return 0
+    }
+
+    println("FAIL")
+    return 1
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (type_identifier)
+    (block
+      (throw_statement
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (integer_literal))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (type_identifier)
+    (block
+      (return_statement
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (field_expression
+            (optional_parenthesized_expression
+              (try_expression
+                (call_expression
+                  (identifier)
+                  (arguments)))
+              (optional_specifier))
+            (field_identifier))))
+      (try_statement
+        (call_expression
+          (identifier)
+          (arguments))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (string_literal)))
+          (return_statement
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)))
+      (return_statement
+        (integer_literal)))))

@@ -84,6 +84,10 @@
         "named": true
       },
       {
+        "type": "optional_parenthesized_expression",
+        "named": true
+      },
+      {
         "type": "parenthesized_expression",
         "named": true
       },
@@ -109,6 +113,10 @@
       },
       {
         "type": "this_reference_shorthand",
+        "named": true
+      },
+      {
+        "type": "try_expression",
         "named": true
       },
       {
@@ -2367,6 +2375,25 @@
     }
   },
   {
+    "type": "optional_parenthesized_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "optional_specifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "optional_specifier",
     "named": true,
     "fields": {}
@@ -2802,6 +2829,21 @@
     "type": "throws_specifier",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "try_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "try_statement",

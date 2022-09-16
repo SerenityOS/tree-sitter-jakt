@@ -74,6 +74,7 @@ module.exports = grammar({
     [$.namespace_scope_expression, $.namespace_call_expression],
     [$._simple_type, $.enum_variant],
     [$.set_literal, $.block],
+    [$.parenthesized_expression, $.optional_parenthesized_expression ]
   ],
 
   rules: {
@@ -115,15 +116,16 @@ module.exports = grammar({
       $.closure_function,
     ),
 
+
     _expression: $ => choice(
+      $.identifier,
+      $.optional_identifier,
       $.unary_expression,
       $.bitwisenot_expression,
       $.binary_expression,
       $._literal,
       $.this_reference,
       $.this_reference_shorthand,
-      $.identifier,
-      $.optional_identifier,
       $.raw_pointer_specifier,
       $.optional_expression,
       $.call_expression,
@@ -146,12 +148,21 @@ module.exports = grammar({
       $.dereference_expression,
       $.mutable_reference_expression,
       $.parenthesized_expression,
+      $.optional_parenthesized_expression,
+      $.try_expression,
     ),
 
     parenthesized_expression: $ => seq(
       '(',
       $._expression,
-      ')'
+      ')',
+    ),
+
+    optional_parenthesized_expression: $ => seq(
+      '(',
+      $._expression,
+      ')',
+      $.optional_specifier,
     ),
 
     while_statement: $ => seq(
@@ -192,6 +203,11 @@ module.exports = grammar({
         field('catch_body', $.block),
         field('catch_body', $._expression),
       )
+    )),
+
+    try_expression: $ => prec.left(seq(
+      'try',
+      $._expression,
     )),
 
     unsafe_block: $ => seq(

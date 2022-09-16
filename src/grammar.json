@@ -155,6 +155,14 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "optional_identifier"
+        },
+        {
+          "type": "SYMBOL",
           "name": "unary_expression"
         },
         {
@@ -176,14 +184,6 @@
         {
           "type": "SYMBOL",
           "name": "this_reference_shorthand"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "optional_identifier"
         },
         {
           "type": "SYMBOL",
@@ -272,6 +272,14 @@
         {
           "type": "SYMBOL",
           "name": "parenthesized_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "optional_parenthesized_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "try_expression"
         }
       ]
     },
@@ -289,6 +297,27 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "optional_parenthesized_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "optional_specifier"
         }
       ]
     },
@@ -457,6 +486,23 @@
                 }
               }
             ]
+          }
+        ]
+      }
+    },
+    "try_expression": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "try"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
           }
         ]
       }
@@ -5906,6 +5952,10 @@
     [
       "set_literal",
       "block"
+    ],
+    [
+      "parenthesized_expression",
+      "optional_parenthesized_expression"
     ]
   ],
   "precedences": [],
