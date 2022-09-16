@@ -1696,14 +1696,14 @@ implemented = 0
 name = "import_extern_c.jakt"
 corpus_file_path = "test/corpus/imports/import_extern_c.txt"
 jakt_sample_path = "samples/imports/import_extern_c.jakt"
-jakt_sample_hash = "14b5ac373f998acec8df4b16494354db"
+jakt_sample_hash = "8f9450dbc55862a6d0e9825ec3020405"
 implemented = 0
 
 [[map]]
 name = "import_extern_cpp.jakt"
 corpus_file_path = "test/corpus/imports/import_extern_cpp.txt"
 jakt_sample_path = "samples/imports/import_extern_cpp.jakt"
-jakt_sample_hash = "401e80bc1ccf104c378e13c180f915d7"
+jakt_sample_hash = "34cf4d04beb1180e47ed7ca4bf8419ca"
 implemented = 0
 
 [[map]]
@@ -1717,14 +1717,14 @@ implemented = 0
 name = "helper.jakt"
 corpus_file_path = "test/corpus/imports/assign_across_import/helper.txt"
 jakt_sample_path = "samples/imports/assign_across_import/helper.jakt"
-jakt_sample_hash = "e3e0b7f080f24752af10712bf1b080bd"
+jakt_sample_hash = "40a460b2f42e533d3242334add005a76"
 implemented = 0
 
 [[map]]
 name = "main.jakt"
 corpus_file_path = "test/corpus/imports/assign_across_import/main.txt"
 jakt_sample_path = "samples/imports/assign_across_import/main.jakt"
-jakt_sample_hash = "4bf5d8086458128780c4bda6d948c67a"
+jakt_sample_hash = "cd49cffbb7ac98b81cf3c39d120a64da"
 implemented = 0
 
 [[map]]

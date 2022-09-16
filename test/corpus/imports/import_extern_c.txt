@@ -7,6 +7,54 @@ import extern c "stdlib.h"  {
     extern function free(anon mut ptr: raw void) -> i32
 }
 
+import extern c "fcntl.h"  {
+    extern function open(path: raw c_char, flags: i32) -> i32
+    extern function read(fd: i32, mut buffer: raw void, max_len: usize) -> i64
+    extern function close(fd: i32) -> i32
+}
+
+// FIXME: Windows-only, for open/read/close (#1015)
+import extern c "io.h" {
+}
+
+function main() {
+    // NOTE: that zero is O_RDONLY.
+    let fd = open(path: "import_extern_text.txt".c_string(),  flags: 0)
+    if fd == -1i32 {
+        eprintln("Could not open 'import_extern_text.txt'")
+        unsafe { cpp { "return Error::from_errno(errno);" }}
+    }
+
+    mut buffer = malloc(size: 512)
+    // I can't cast the pointer to compare it!
+    unsafe { 
+        cpp {
+            "if (buffer == NULL) {"
+        }
+        eprintln("Could not allocate memory")
+        cpp { 
+            "    return Error::from_errno(ENOMEM);" 
+            "}" 
+        }
+    }
+    let read_amount = read(fd, buffer, max_len: 512)
+    if read_amount == -1i64 {
+        eprintln("Could not read from 'import_extern_text.txt'")
+        unsafe { cpp { "return Error::from_errno(errno);" }}
+    }
+
+    mut builder = StringBuilder::create();
+    for i in 0..read_amount {
+        unsafe { cpp {
+                "TRY(builder.append(((u8*)buffer)[i]));"
+        }}
+    }
+    print("{}", builder.to_string())
+
+    free(buffer)
+    close(fd)
+}
+
 --------------------------------------------------------------------------------
 
 (source_file
@@ -33,21 +81,7 @@ import extern c "stdlib.h"  {
             (identifier)
             (raw_pointer_specifier)
             (primitive_type)))
-        (primitive_type)))))
-
-================================================================================
-Imports import extern c (second)
-================================================================================
-
-import extern c "fcntl.h"  {
-    extern function open(path: raw c_char, flags: i32) -> i32
-    extern function read(fd: i32, mut buffer: raw void, max_len: usize) -> i64
-    extern function close(fd: i32) -> i32
-}
-
---------------------------------------------------------------------------------
-
-(source_file
+        (primitive_type))))
   (import_statement
     (extern_specifier)
     (c_header_identfier)
@@ -87,53 +121,12 @@ import extern c "fcntl.h"  {
           (parameter
             (identifier)
             (primitive_type)))
-        (primitive_type)))))
-
-================================================================================
-Imports import extern c (main func)
-================================================================================
-
-function main() {
-    // NOTE: that zero is O_RDONLY.
-    let fd = open(path: "import_extern_text.txt".c_string(),  flags: 0)
-    if fd == -1i32 {
-        eprintln("Could not open 'import_extern_text.txt'")
-        unsafe { cpp { "return Error::from_errno(errno);" }}
-    }
-
-    mut buffer = malloc(size: 512)
-    // I can't cast the pointer to compare it!
-    unsafe {
-        cpp {
-            "if (buffer == NULL) {"
-        }
-        eprintln("Could not allocate memory")
-        cpp {
-            "    return Error::from_errno(ENOMEM);"
-            "}"
-        }
-    }
-    let read_amount = read(fd, buffer, max_len: 512)
-    if read_amount == -1i64 {
-        eprintln("Could not read from 'import_extern_text.txt'")
-        unsafe { cpp { "return Error::from_errno(errno);" }}
-    }
-
-    mut builder = StringBuilder::create();
-    for i in 0..read_amount {
-        unsafe { cpp {
-                "TRY(builder.append(((u8*)buffer)[i]));"
-        }}
-    }
-    print("{}", builder.to_string())
-
-    free(buffer)
-    close(fd)
-}
-
---------------------------------------------------------------------------------
-
-(source_file
+        (primitive_type))))
+  (line_comment)
+  (import_statement
+    (extern_specifier)
+    (c_header_identfier)
+    (import_block))
   (function_declaration
     (identifier)
     (parameters)
