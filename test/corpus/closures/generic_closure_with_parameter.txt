@@ -40,8 +40,8 @@ function main() {
               (identifier)
               (type_identifier)))
           (primitive_type))))
-    (type_identifier)
-    (optional_specifier)
+    (optional_type
+      (type_identifier))
     (block
       (for_expression
         (identifier)

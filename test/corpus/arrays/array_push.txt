@@ -51,9 +51,9 @@ function main() {
             (identifier)
             (arguments
               (string_literal)
-              (call_expression
-                (field_expression
-                  (identifier)
-                  (field_identifier))
-                (arguments)
-                (optional_specifier)))))))))
+              (optional_value_expression
+                (call_expression
+                  (field_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments))))))))))

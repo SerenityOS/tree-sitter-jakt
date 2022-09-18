@@ -79,8 +79,8 @@ function main() {
           (identifier)))
       (let_declaration
         (identifier)
-        (primitive_type)
-        (optional_specifier)
+        (optional_type
+          (primitive_type))
         (match_expression
           (identifier)
           (match_block

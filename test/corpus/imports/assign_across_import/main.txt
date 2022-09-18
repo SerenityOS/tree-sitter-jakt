@@ -38,8 +38,8 @@ function main() {
       (line_comment)
       (let_declaration
         (identifier)
-        (primitive_type)
-        (optional_specifier)
+        (optional_type
+          (primitive_type))
         (none_expression))
       (assignment_expression
         (field_expression

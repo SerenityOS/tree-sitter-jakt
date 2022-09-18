@@ -68,12 +68,12 @@ function main() {
         (arguments
           (string_literal)
           (field_expression
-            (optional_parenthesized_expression
-              (try_expression
-                (call_expression
-                  (identifier)
-                  (arguments)))
-              (optional_specifier))
+            (optional_value_expression
+              (parenthesized_expression
+                (try_expression
+                  (call_expression
+                    (identifier)
+                    (arguments)))))
             (field_identifier))))
       (try_statement
         (call_expression

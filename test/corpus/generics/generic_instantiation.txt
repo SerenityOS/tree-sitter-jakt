@@ -25,5 +25,5 @@ function main() {
         (identifier)
         (arguments
           (string_literal)
-          (optional_identifier
+          (optional_value_expression
             (identifier)))))))

@@ -31,8 +31,8 @@ function main() {
       (mutable_declaration
         (mutable_specifier)
         (identifier)
-        (primitive_type)
-        (optional_specifier)
+        (optional_type
+          (primitive_type))
         (none_expression))
       (unsafe_block
         (cpp_block
@@ -54,5 +54,5 @@ function main() {
         (identifier)
         (arguments
           (string_literal)
-          (optional_identifier
+          (optional_value_expression
             (identifier)))))))

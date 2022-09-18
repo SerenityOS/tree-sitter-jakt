@@ -17,13 +17,13 @@ function main() {
     (block
       (let_declaration
         (identifier)
-        (primitive_type)
-        (optional_specifier)
+        (optional_type
+          (primitive_type))
         (integer_literal))
       (let_declaration
         (identifier)
         (binary_expression
-          (optional_identifier
+          (optional_value_expression
             (identifier))
           (integer_literal)))
       (call_expression

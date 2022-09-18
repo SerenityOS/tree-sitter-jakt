@@ -20,15 +20,15 @@ function main() {
     (block
       (let_declaration
         (identifier)
-        (array_type
-          (primitive_type))
-        (optional_specifier)
+        (optional_type
+          (array_type
+            (primitive_type)))
         (none_expression))
       (let_declaration
         (identifier)
-        (array_type
-          (primitive_type))
-        (optional_specifier)
+        (optional_type
+          (array_type
+            (primitive_type)))
         (array_literal
           (integer_literal)
           (integer_literal)
@@ -85,15 +85,15 @@ function main() {
     (block
       (let_declaration
         (identifier)
-        (array_type
-          (primitive_type))
-        (optional_specifier)
+        (optional_type
+          (array_type
+            (primitive_type)))
         (none_expression))
       (let_declaration
         (identifier)
-        (array_type
-          (primitive_type))
-        (optional_specifier)
+        (optional_type
+          (array_type
+            (primitive_type)))
         (array_literal
           (integer_literal)
           (integer_literal)

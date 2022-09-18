@@ -36,8 +36,8 @@ function main() {
               (identifier)
               (primitive_type)))
           (primitive_type))))
-    (primitive_type)
-    (optional_specifier)
+    (optional_type
+      (primitive_type))
     (block
       (for_expression
         (identifier)

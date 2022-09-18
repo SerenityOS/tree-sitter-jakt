@@ -154,6 +154,10 @@
         "named": true
       },
       {
+        "type": "destructuring_literal",
+        "named": true
+      },
+      {
         "type": "dictionary_literal",
         "named": true
       },
@@ -983,6 +987,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "destructuring_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {

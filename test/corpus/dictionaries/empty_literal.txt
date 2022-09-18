@@ -42,16 +42,16 @@ function main() {
         (identifier)
         (arguments
           (string_literal)
-          (call_expression
-            (field_expression
-              (call_expression
-                (field_expression
-                  (identifier)
-                  (field_identifier))
-                (arguments
-                  (string_literal))
-                (optional_specifier))
-              (field_identifier))
-            (arguments
-              (integer_literal))
-            (optional_specifier)))))))
+          (optional_value_expression
+            (call_expression
+              (field_expression
+                (optional_value_expression
+                  (call_expression
+                    (field_expression
+                      (identifier)
+                      (field_identifier))
+                    (arguments
+                      (string_literal))))
+                (field_identifier))
+              (arguments
+                (integer_literal)))))))))

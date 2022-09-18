@@ -47,8 +47,8 @@ function main() {
           (this_parameter
             (this_reference)))
         (throws_specifier)
-        (primitive_type)
-        (optional_specifier)
+        (optional_type
+          (primitive_type))
         (block
           (match_expression
             (this_reference)

@@ -73,7 +73,6 @@ module.exports = grammar({
     [$.array_expression, $.try_statement],
     [$.namespace_scope_expression, $.namespace_call_expression],
     [$._simple_type, $.enum_variant],
-    [$.parenthesized_expression, $.optional_parenthesized_expression ],
     [$.set_literal, $.block],
     [$.parenthesized_expression, $.tuple_literal],
     [$.destructuring_literal, $._expression],
@@ -121,15 +120,15 @@ module.exports = grammar({
 
     _expression: $ => choice(
       $.identifier,
-      $.optional_identifier,
-      $.unary_expression,
-      $.bitwisenot_expression,
-      $.binary_expression,
       $._literal,
       $.this_reference,
       $.this_reference_shorthand,
       $.raw_pointer_specifier,
+      $.unary_expression,
+      $.bitwisenot_expression,
+      $.binary_expression,
       $.optional_expression,
+      $.optional_value_expression,
       $.call_expression,
       $.generic_call_expression,
       $.range_expression,
@@ -149,7 +148,6 @@ module.exports = grammar({
       $.dereference_expression,
       $.mutable_reference_expression,
       $.parenthesized_expression,
-      $.optional_parenthesized_expression,
       $.try_expression,
       $.array_expression,
     ),
@@ -158,13 +156,6 @@ module.exports = grammar({
       '(',
       $._expression,
       ')',
-    )),
-
-    optional_parenthesized_expression: $ => prec.left(1, seq(
-      '(',
-      $._expression,
-      ')',
-      $.optional_specifier,
     )),
 
     while_statement: $ => seq(
@@ -286,7 +277,6 @@ module.exports = grammar({
     call_expression: $ => prec.right(PREC.call, seq(
       field('callee', $._expression),
       field('arguments', $.arguments),
-      optional($.optional_specifier)
     )),
 
     generic_call_expression: $ => prec(PREC.call, prec.left(seq(
@@ -316,7 +306,6 @@ module.exports = grammar({
       repeat1(seq(alias($.identifier, $.scoped_identifier), '::')),
       field('field', choice($._field_identifier, $.generic_type)),
       field('arguments', $.arguments),
-      optional(choice($.optional_specifier, $.array_index_expression)),
     ))),
 
     is_expression: $ =>  prec.left(seq(
@@ -330,7 +319,6 @@ module.exports = grammar({
       '::',
       field('field', choice($._field_identifier, $.generic_type)),
       field('arguments', $.arguments),
-      optional(choice($.optional_specifier, $.array_index_expression)),
     ))),
 
     type_conversion_expression: $ =>  seq(
@@ -361,11 +349,6 @@ module.exports = grammar({
       ),
     )),
 
-    optional_identifier: $ => prec.right(seq(
-      field('operand', $.identifier),
-      field('operator', choice( '!', '?')),
-    )),
-
     raw_pointer_specifier: $ => prec.left(seq(
       optional(field('operator', '&')),
       'raw',
@@ -393,7 +376,9 @@ module.exports = grammar({
       field('right', $._expression),
     )),
 
-    optional_specifier: $ => token.immediate(choice('!', '?')),
+    optional_type: $ => seq($._type, choice('!', '?')),
+
+    optional_value_expression: $ => seq($._expression, choice('!', '?')),
 
     none_expression: $ => seq('None'),
 
@@ -474,7 +459,7 @@ module.exports = grammar({
       field('pattern', $._pattern),
       optional(seq(
         ':',
-        field('type', seq($._type, optional($.optional_specifier))),
+        field('type', choice($._type, $.optional_type)),
       )),
       optional(seq(
         '=',
@@ -488,7 +473,7 @@ module.exports = grammar({
       optional(seq(
         ':',
         optional($.weak_specifier),
-        field('type', seq($._type, optional($.optional_specifier))),
+        field('type', choice($._type, $.optional_type)),
       )),
       optional(seq(
         '=',
@@ -568,7 +553,7 @@ module.exports = grammar({
       optional($.visibility_specifier),
       field('name', $._field_identifier),
       ':',
-      field('type', seq($._type, optional($.optional_specifier))),
+      field('type', choice($._type, $.optional_type)),
     ),
 
     _field_identifier: $ => prec(1, alias($.identifier, $.field_identifier)),
@@ -820,7 +805,7 @@ module.exports = grammar({
       field('name', $.identifier),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
-      optional(seq('->', field('return_type', seq(choice($._type), optional($.optional_specifier))))),
+      optional(seq('->', field('return_type', choice($._type, $.optional_type)))),
       optional(field('body', choice($.return_expression, $.block))),
     )),
 
@@ -845,7 +830,7 @@ module.exports = grammar({
       field('name', $.generic_type),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
-      optional(seq('->', field('return_type', seq(optional($.raw_pointer_specifier), choice($._type_identifier,$.generic_type), optional($.optional_specifier))))),
+      optional(seq('->', field('return_type', seq(optional($.raw_pointer_specifier), choice($._type_identifier,$.generic_type, $.optional_type))))),
       optional(field('body', choice($.return_expression, $.block))),
     )),
 
@@ -893,8 +878,8 @@ module.exports = grammar({
       field('type', seq(
         choice(
           seq(optional($.raw_pointer_specifier), $._type),
+          $.optional_type,
         ),
-        optional($.optional_specifier),
       )),
     ),
 
@@ -917,7 +902,7 @@ module.exports = grammar({
       optional($._closure_capture_reference),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
-      optional(seq('->', field('return_type', seq($._type, optional($.optional_specifier))))),
+      optional(seq('->', field('return_type', choice($._type, $.optional_type)))),
       field('body', choice($.return_expression, $.block)),
     ),
 

@@ -1326,8 +1326,8 @@ function main() {
           (mutable_declaration
             (mutable_specifier)
             (identifier)
-            (primitive_type)
-            (optional_specifier)
+            (optional_type
+              (primitive_type))
             (none_expression))
           (mutable_declaration
             (mutable_specifier)

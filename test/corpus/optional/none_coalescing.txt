@@ -27,8 +27,8 @@ function main() {
     (block
       (let_declaration
         (identifier)
-        (primitive_type)
-        (optional_specifier)
+        (optional_type
+          (primitive_type))
         (string_literal))
       (call_expression
         (identifier)
@@ -39,8 +39,8 @@ function main() {
             (string_literal))))
       (let_declaration
         (identifier)
-        (primitive_type)
-        (optional_specifier)
+        (optional_type
+          (primitive_type))
         (none_expression))
       (call_expression
         (identifier)
@@ -56,8 +56,8 @@ function main() {
         (integer_literal))
       (let_declaration
         (identifier)
-        (primitive_type)
-        (optional_specifier)
+        (optional_type
+          (primitive_type))
         (integer_literal))
       (let_declaration
         (identifier)

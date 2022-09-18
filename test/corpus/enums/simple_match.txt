@@ -141,8 +141,8 @@ function main() {
       (parameter
         (anonymous_specifier)
         (identifier)
-        (type_identifier)
-        (optional_specifier)))
+        (optional_type
+          (type_identifier))))
     (generic_type
       (identifier)
       (generic_arguments
@@ -160,7 +160,7 @@ function main() {
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (optional_identifier
+                (optional_value_expression
                   (identifier)))))))
       (return_statement
         (static_call_expression
@@ -236,8 +236,8 @@ function main() {
             (block
               (let_declaration
                 (identifier)
-                (primitive_type)
-                (optional_specifier)
+                (optional_type
+                  (primitive_type))
                 (identifier))
               (match_expression
                 (call_expression

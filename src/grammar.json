@@ -1003,7 +1003,7 @@
       ]
     },
     "call_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC_RIGHT",
       "value": 13,
       "content": {
         "type": "SEQ",
@@ -3714,6 +3714,10 @@
           {
             "type": "SYMBOL",
             "name": "set_literal"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "destructuring_literal"
           }
         ]
       }
@@ -5852,6 +5856,10 @@
     [
       "parenthesized_expression",
       "tuple_literal"
+    ],
+    [
+      "destructuring_literal",
+      "_expression"
     ]
   ],
   "precedences": [],

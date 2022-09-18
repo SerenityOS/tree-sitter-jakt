@@ -44,8 +44,8 @@ function main() {
         (mutable_specifier)
         (identifier)
         (weak_specifier)
-        (type_identifier)
-        (optional_specifier)
+        (optional_type
+          (type_identifier))
         (none_expression))
       (call_expression
         (identifier)
@@ -80,7 +80,7 @@ function main() {
             (string_literal)
             (call_expression
               (field_expression
-                (optional_identifier
+                (optional_value_expression
                   (identifier))
                 (field_identifier))
               (arguments)))))

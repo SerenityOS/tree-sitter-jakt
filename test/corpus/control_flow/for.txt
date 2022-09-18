@@ -37,8 +37,8 @@ function main() {
           (this_parameter
             (mutable_specifier)
             (this_reference)))
-        (primitive_type)
-        (optional_specifier)
+        (optional_type
+          (primitive_type))
         (block
           (if_statement
             (binary_expression
