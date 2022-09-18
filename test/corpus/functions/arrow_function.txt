@@ -42,5 +42,7 @@ function greeting(name: String) throws -> String => format("Hello, {}!", name)
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

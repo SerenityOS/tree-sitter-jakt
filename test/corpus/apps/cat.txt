@@ -43,7 +43,8 @@ function main(args: [String]) {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)))
+              (argument
+                (string_literal))))
           (return_statement
             (integer_literal))))
       (let_declaration
@@ -57,43 +58,50 @@ function main(args: [String]) {
         (call_expression
           (identifier)
           (arguments
-            (call_expression
-              (field_expression
-                (identifier)
-                (field_identifier))
-              (arguments))
-            (call_expression
-              (field_expression
-                (string_literal)
-                (field_identifier))
-              (arguments)))))
+            (argument
+              (call_expression
+                (field_expression
+                  (identifier)
+                  (field_identifier))
+                (arguments)))
+            (argument
+              (call_expression
+                (field_expression
+                  (string_literal)
+                  (field_identifier))
+                (arguments))))))
       (defer_statement
         (call_expression
           (identifier)
           (arguments
-            (identifier))))
+            (argument
+              (identifier)))))
       (mutable_declaration
         (mutable_specifier)
         (identifier)
         (call_expression
           (identifier)
           (arguments
-            (identifier))))
+            (argument
+              (identifier)))))
       (while_statement
         (binary_expression
           (call_expression
             (identifier)
             (arguments
-              (identifier)))
+              (argument
+                (identifier))))
           (integer_literal))
         (block
           (call_expression
             (identifier)
             (arguments
-              (identifier)))
+              (argument
+                (identifier))))
           (assignment_expression
             (identifier)
             (call_expression
               (identifier)
               (arguments
-                (identifier)))))))))
+                (argument
+                  (identifier))))))))))

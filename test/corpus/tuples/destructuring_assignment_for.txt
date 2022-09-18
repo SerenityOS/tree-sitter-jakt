@@ -40,9 +40,12 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)
-              (identifier)
-              (identifier))))))))
+              (argument
+                (string_literal))
+              (argument
+                (identifier))
+              (argument
+                (identifier)))))))))
 
 ================================================================================
 Tuples destructuring assignment for (no commas)
@@ -67,13 +70,12 @@ function main() {
         (mutable_specifier)
         (identifier)
         (array_literal
-          (call_expression
-            (tuple_literal
-              (integer_literal)
-              (string_literal))
-            (arguments
-              (integer_literal)
-              (string_literal)))))
+          (tuple_literal
+            (integer_literal)
+            (string_literal))
+          (tuple_literal
+            (integer_literal)
+            (string_literal))))
       (for_expression
         (destructuring_literal
           (identifier)
@@ -87,9 +89,12 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)
-              (identifier)
-              (identifier))))))))
+              (argument
+                (string_literal))
+              (argument
+                (identifier))
+              (argument
+                (identifier)))))))))
 
 ================================================================================
 Tuples destructuring assignment for (isolated)
@@ -124,10 +129,31 @@ mut list = [(1, "Hello") (2, "World")]
     (mutable_specifier)
     (identifier)
     (array_literal
-      (call_expression
-        (tuple_literal
-          (integer_literal)
-          (string_literal))
-        (arguments
-          (integer_literal)
-          (string_literal))))))
+      (tuple_literal
+        (integer_literal)
+        (string_literal))
+      (tuple_literal
+        (integer_literal)
+        (string_literal)))))
+
+================================================================================
+Tuples destructuring assignment for (isolated, no commas, split)
+================================================================================
+
+mut list = [(1, "Hello") 
+
+(2, "World")]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (mutable_declaration
+    (mutable_specifier)
+    (identifier)
+    (array_literal
+      (tuple_literal
+        (integer_literal)
+        (string_literal))
+      (tuple_literal
+        (integer_literal)
+        (string_literal)))))

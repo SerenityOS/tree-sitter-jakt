@@ -42,7 +42,8 @@ function main() {
                   (call_expression
                     (identifier)
                     (arguments
-                      (string_literal)))))
+                      (argument
+                        (string_literal))))))
               (function_declaration
                 (identifier)
                 (parameters)
@@ -50,7 +51,8 @@ function main() {
                   (call_expression
                     (identifier)
                     (arguments
-                      (string_literal)))))))
+                      (argument
+                        (string_literal))))))))
           (function_declaration
             (identifier)
             (parameters)
@@ -58,7 +60,8 @@ function main() {
               (call_expression
                 (identifier)
                 (arguments
-                  (string_literal)))))))
+                  (argument
+                    (string_literal))))))))
       (function_declaration
         (identifier)
         (parameters)
@@ -66,7 +69,8 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)))))))
+              (argument
+                (string_literal))))))))
   (function_declaration
     (identifier)
     (parameters)

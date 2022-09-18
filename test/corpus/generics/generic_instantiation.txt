@@ -20,10 +20,13 @@ function main() {
         (call_expression
           (identifier)
           (arguments
-            (integer_literal))))
+            (argument
+              (integer_literal)))))
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (optional_value_expression
-            (identifier)))))))
+          (argument
+            (string_literal))
+          (argument
+            (optional_value_expression
+              (identifier))))))))

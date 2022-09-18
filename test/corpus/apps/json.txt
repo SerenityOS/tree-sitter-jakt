@@ -427,7 +427,8 @@ function main() {
             (call_expression
               (identifier)
               (arguments
-                (identifier)
+                (argument
+                  (identifier))
                 (argument
                   (identifier)
                   (integer_literal)))))))
@@ -478,7 +479,8 @@ function main() {
                   (scoped_identifier)
                   (field_identifier)
                   (arguments
-                    (integer_literal))))))
+                    (argument
+                      (integer_literal)))))))
           (return_statement
             (identifier))))
       (function_declaration
@@ -500,14 +502,16 @@ function main() {
                   (call_expression
                     (identifier)
                     (arguments
-                      (call_expression
-                        (field_expression
-                          (this_reference_shorthand
-                            (identifier))
-                          (field_identifier))
-                        (arguments
-                          (this_reference_shorthand
-                            (identifier)))))))
+                      (argument
+                        (call_expression
+                          (field_expression
+                            (this_reference_shorthand
+                              (identifier))
+                            (field_identifier))
+                          (arguments
+                            (argument
+                              (this_reference_shorthand
+                                (identifier)))))))))
                 (block
                   (identifier)))
               (update_expression
@@ -528,7 +532,8 @@ function main() {
                 (this_reference_shorthand
                   (identifier))
                 (arguments
-                  (byte_literal))))
+                  (argument
+                    (byte_literal)))))
             (block
               (line_comment)
               (throw_statement
@@ -536,7 +541,8 @@ function main() {
                   (scoped_identifier)
                   (field_identifier)
                   (arguments
-                    (integer_literal))))))
+                    (argument
+                      (integer_literal)))))))
           (mutable_declaration
             (mutable_specifier)
             (identifier)
@@ -573,7 +579,8 @@ function main() {
                           (identifier))
                         (field_identifier))
                       (arguments
-                        (identifier))))
+                        (argument
+                          (identifier)))))
                   (if_statement
                     (logical_expression
                       (binary_expression
@@ -596,7 +603,8 @@ function main() {
                           (scoped_identifier)
                           (field_identifier)
                           (arguments
-                            (integer_literal))))))
+                            (argument
+                              (integer_literal)))))))
                   (update_expression
                     (identifier))))
               (while_statement
@@ -610,14 +618,16 @@ function main() {
                       (identifier)
                       (field_identifier))
                     (arguments
-                      (call_expression
-                        (field_expression
-                          (this_reference_shorthand
-                            (identifier))
-                          (field_identifier))
-                        (arguments
-                          (this_reference_shorthand
-                            (identifier))))))
+                      (argument
+                        (call_expression
+                          (field_expression
+                            (this_reference_shorthand
+                              (identifier))
+                            (field_identifier))
+                          (arguments
+                            (argument
+                              (this_reference_shorthand
+                                (identifier))))))))
                   (update_expression
                     (this_reference_shorthand
                       (identifier)))))
@@ -644,10 +654,11 @@ function main() {
                       (identifier)
                       (field_identifier))
                     (arguments
-                      (call_expression
-                        (this_reference_shorthand
-                          (identifier))
-                        (arguments))))
+                      (argument
+                        (call_expression
+                          (this_reference_shorthand
+                            (identifier))
+                          (arguments)))))
                   (continue_statement)))
               (call_expression
                 (this_reference_shorthand
@@ -688,32 +699,33 @@ function main() {
                           (identifier)
                           (field_identifier))
                         (arguments
-                          (match_expression
-                            (identifier)
-                            (match_block
-                              (match_arm
-                                (match_pattern
+                          (argument
+                            (match_expression
+                              (identifier)
+                              (match_block
+                                (match_arm
+                                  (match_pattern
+                                    (byte_literal))
                                   (byte_literal))
-                                (byte_literal))
-                              (match_arm
-                                (match_pattern
+                                (match_arm
+                                  (match_pattern
+                                    (byte_literal))
                                   (byte_literal))
-                                (byte_literal))
-                              (match_arm
-                                (match_pattern
+                                (match_arm
+                                  (match_pattern
+                                    (byte_literal))
                                   (byte_literal))
-                                (byte_literal))
-                              (match_arm
-                                (match_pattern
+                                (match_arm
+                                  (match_pattern
+                                    (byte_literal))
                                   (byte_literal))
-                                (byte_literal))
-                              (match_arm
-                                (match_pattern
+                                (match_arm
+                                  (match_pattern
+                                    (byte_literal))
                                   (byte_literal))
-                                (byte_literal))
-                              (match_arm
-                                (match_else)
-                                (identifier))))))))
+                                (match_arm
+                                  (match_else)
+                                  (identifier)))))))))
                   (match_arm
                     (match_pattern
                       (byte_literal))
@@ -721,7 +733,8 @@ function main() {
                       (call_expression
                         (identifier)
                         (arguments
-                          (string_literal)))
+                          (argument
+                            (string_literal))))
                       (call_expression
                         (identifier)
                         (arguments))))
@@ -734,14 +747,16 @@ function main() {
                           (scoped_identifier)
                           (field_identifier)
                           (arguments
-                            (integer_literal))))))))))
+                            (argument
+                              (integer_literal)))))))))))
           (if_statement
             (logical_expression
               (call_expression
                 (this_reference_shorthand
                   (identifier))
                 (arguments
-                  (byte_literal))))
+                  (argument
+                    (byte_literal)))))
             (block
               (line_comment)
               (throw_statement
@@ -749,7 +764,8 @@ function main() {
                   (scoped_identifier)
                   (field_identifier)
                   (arguments
-                    (integer_literal))))))
+                    (argument
+                      (integer_literal)))))))
           (return_statement
             (call_expression
               (field_expression
@@ -788,8 +804,9 @@ function main() {
                   (identifier))
                 (field_identifier))
               (arguments
-                (this_reference_shorthand
-                  (identifier)))))))
+                (argument
+                  (this_reference_shorthand
+                    (identifier))))))))
       (function_declaration
         (identifier)
         (parameters
@@ -955,7 +972,8 @@ function main() {
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (integer_literal))))))
+                (argument
+                  (integer_literal)))))))
       (function_declaration
         (identifier)
         (parameters
@@ -978,7 +996,8 @@ function main() {
                   (this_reference_shorthand
                     (identifier))
                   (arguments
-                    (byte_literal)))))
+                    (argument
+                      (byte_literal))))))
             (block
               (line_comment)
               (throw_statement
@@ -986,7 +1005,8 @@ function main() {
                   (scoped_identifier)
                   (field_identifier)
                   (arguments
-                    (integer_literal))))))
+                    (argument
+                      (integer_literal)))))))
           (loop_statement
             (block
               (call_expression
@@ -1007,10 +1027,11 @@ function main() {
                   (identifier)
                   (field_identifier))
                 (arguments
-                  (call_expression
-                    (this_reference_shorthand
-                      (identifier))
-                    (arguments))))
+                  (argument
+                    (call_expression
+                      (this_reference_shorthand
+                        (identifier))
+                      (arguments)))))
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -1030,7 +1051,8 @@ function main() {
                     (this_reference_shorthand
                       (identifier))
                     (arguments
-                      (byte_literal))))
+                      (argument
+                        (byte_literal)))))
                 (block
                   (line_comment)
                   (throw_statement
@@ -1038,7 +1060,8 @@ function main() {
                       (scoped_identifier)
                       (field_identifier)
                       (arguments
-                        (integer_literal))))))
+                        (argument
+                          (integer_literal)))))))
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -1057,14 +1080,16 @@ function main() {
                       (scoped_identifier)
                       (field_identifier)
                       (arguments
-                        (integer_literal))))))))
+                        (argument
+                          (integer_literal)))))))))
           (if_statement
             (logical_expression
               (call_expression
                 (this_reference_shorthand
                   (identifier))
                 (arguments
-                  (byte_literal))))
+                  (argument
+                    (byte_literal)))))
             (block
               (line_comment)
               (throw_statement
@@ -1072,13 +1097,15 @@ function main() {
                   (scoped_identifier)
                   (field_identifier)
                   (arguments
-                    (integer_literal))))))
+                    (argument
+                      (integer_literal)))))))
           (return_statement
             (static_call_expression
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (identifier))))))
+                (argument
+                  (identifier)))))))
       (function_declaration
         (identifier)
         (parameters
@@ -1094,7 +1121,8 @@ function main() {
                 (this_reference_shorthand
                   (identifier))
                 (arguments
-                  (byte_literal))))
+                  (argument
+                    (byte_literal)))))
             (block
               (line_comment)
               (throw_statement
@@ -1102,7 +1130,8 @@ function main() {
                   (scoped_identifier)
                   (field_identifier)
                   (arguments
-                    (integer_literal))))))
+                    (argument
+                      (integer_literal)))))))
           (mutable_declaration
             (mutable_specifier)
             (identifier)
@@ -1145,7 +1174,8 @@ function main() {
                     (this_reference_shorthand
                       (identifier))
                     (arguments
-                      (byte_literal))))
+                      (argument
+                        (byte_literal)))))
                 (block
                   (line_comment)
                   (throw_statement
@@ -1153,7 +1183,8 @@ function main() {
                       (scoped_identifier)
                       (field_identifier)
                       (arguments
-                        (integer_literal))))))
+                        (argument
+                          (integer_literal)))))))
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -1170,8 +1201,10 @@ function main() {
                   (identifier)
                   (field_identifier))
                 (arguments
-                  (identifier)
-                  (identifier)))
+                  (argument
+                    (identifier))
+                  (argument
+                    (identifier))))
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -1191,7 +1224,8 @@ function main() {
                     (this_reference_shorthand
                       (identifier))
                     (arguments
-                      (byte_literal))))
+                      (argument
+                        (byte_literal)))))
                 (block
                   (line_comment)
                   (throw_statement
@@ -1199,7 +1233,8 @@ function main() {
                       (scoped_identifier)
                       (field_identifier)
                       (arguments
-                        (integer_literal))))))
+                        (argument
+                          (integer_literal)))))))
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -1218,14 +1253,16 @@ function main() {
                       (scoped_identifier)
                       (field_identifier)
                       (arguments
-                        (integer_literal))))))))
+                        (argument
+                          (integer_literal)))))))))
           (if_statement
             (logical_expression
               (call_expression
                 (this_reference_shorthand
                   (identifier))
                 (arguments
-                  (byte_literal))))
+                  (argument
+                    (byte_literal)))))
             (block
               (line_comment)
               (throw_statement
@@ -1233,13 +1270,15 @@ function main() {
                   (scoped_identifier)
                   (field_identifier)
                   (arguments
-                    (integer_literal))))))
+                    (argument
+                      (integer_literal)))))))
           (return_statement
             (static_call_expression
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (identifier))))))
+                (argument
+                  (identifier)))))))
       (function_declaration
         (identifier)
         (parameters
@@ -1305,7 +1344,8 @@ function main() {
                         (scoped_identifier)
                         (field_identifier)
                         (arguments
-                          (integer_literal)))))))))))
+                          (argument
+                            (integer_literal))))))))))))
       (function_declaration
         (identifier)
         (parameters
@@ -1322,7 +1362,8 @@ function main() {
               (this_reference_shorthand
                 (identifier))
               (arguments
-                (byte_literal))))
+                (argument
+                  (byte_literal)))))
           (mutable_declaration
             (mutable_specifier)
             (identifier)
@@ -1364,7 +1405,8 @@ function main() {
                           (scoped_identifier)
                           (field_identifier)
                           (arguments
-                            (integer_literal))))))
+                            (argument
+                              (integer_literal)))))))
                   (assignment_expression
                     (identifier)
                     (update_expression
@@ -1400,9 +1442,10 @@ function main() {
                     (call_expression
                       (identifier)
                       (arguments
-                        (binary_expression
-                          (identifier)
-                          (byte_literal))))))
+                        (argument
+                          (binary_expression
+                            (identifier)
+                            (byte_literal)))))))
                 (else_clause
                   (block
                     (mutable_declaration
@@ -1411,9 +1454,10 @@ function main() {
                       (call_expression
                         (identifier)
                         (arguments
-                          (binary_expression
-                            (identifier)
-                            (byte_literal)))))
+                          (argument
+                            (binary_expression
+                              (identifier)
+                              (byte_literal))))))
                     (line_comment)
                     (let_declaration
                       (identifier)
@@ -1452,7 +1496,8 @@ function main() {
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (identifier))))))
+                (argument
+                  (identifier)))))))
       (function_declaration
         (identifier)
         (parameters
@@ -1467,10 +1512,11 @@ function main() {
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (call_expression
-                  (this_reference_shorthand
-                    (identifier))
-                  (arguments)))))))
+                (argument
+                  (call_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (arguments))))))))
       (function_declaration
         (identifier)
         (parameters
@@ -1523,13 +1569,15 @@ function main() {
                   (scoped_identifier)
                   (field_identifier)
                   (arguments
-                    (integer_literal))))))
+                    (argument
+                      (integer_literal)))))))
           (return_statement
             (static_call_expression
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (boolean_literal))))))
+                (argument
+                  (boolean_literal)))))))
       (function_declaration
         (identifier)
         (parameters
@@ -1575,13 +1623,15 @@ function main() {
                   (scoped_identifier)
                   (field_identifier)
                   (arguments
-                    (integer_literal))))))
+                    (argument
+                      (integer_literal)))))))
           (return_statement
             (static_call_expression
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (boolean_literal))))))
+                (argument
+                  (boolean_literal)))))))
       (function_declaration
         (identifier)
         (parameters
@@ -1627,7 +1677,8 @@ function main() {
                   (scoped_identifier)
                   (field_identifier)
                   (arguments
-                    (integer_literal))))))
+                    (argument
+                      (integer_literal)))))))
           (return_statement
             (namespace_scope_expression
               (scoped_identifier)
@@ -1648,7 +1699,8 @@ function main() {
           (scoped_identifier)
           (field_identifier)
           (arguments
-            (identifier))))
+            (argument
+              (identifier)))))
       (return_statement
         (call_expression
           (field_expression
@@ -1690,5 +1742,7 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

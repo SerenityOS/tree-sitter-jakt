@@ -19,8 +19,10 @@ while (x > 0) {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier)))
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
       (assignment_expression
         (identifier)
         (binary_expression

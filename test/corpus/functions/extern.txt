@@ -20,11 +20,14 @@ function main() {
           (scoped_identifier)
           (field_identifier)
           (arguments
-            (binary_expression
-              (integer_literal)
-              (integer_literal)))))
+            (argument
+              (binary_expression
+                (integer_literal)
+                (integer_literal))))))
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

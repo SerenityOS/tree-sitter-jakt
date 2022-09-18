@@ -14,4 +14,5 @@ let result = "foo bar".split(' ')
         (string_literal)
         (field_identifier))
       (arguments
-        (char_literal)))))
+        (argument
+          (char_literal))))))

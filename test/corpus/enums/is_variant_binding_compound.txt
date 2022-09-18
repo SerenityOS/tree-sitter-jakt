@@ -33,7 +33,8 @@ function main() {
           (scoped_identifier)
           (field_identifier)
           (arguments
-            (integer_literal))))
+            (argument
+              (integer_literal)))))
       (if_statement
         (logical_expression
           (is_expression
@@ -41,7 +42,8 @@ function main() {
             (call_expression
               (identifier)
               (arguments
-                (identifier))))
+                (argument
+                  (identifier)))))
           (logical_expression
             (binary_expression
               (identifier)
@@ -61,5 +63,7 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)
-              (identifier))))))))
+              (argument
+                (string_literal))
+              (argument
+                (identifier)))))))))

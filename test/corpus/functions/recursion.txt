@@ -36,8 +36,10 @@ function recurse(count: i64) {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier)))
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
       (if_statement
         (binary_expression
           (identifier)

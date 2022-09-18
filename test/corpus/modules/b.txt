@@ -24,7 +24,8 @@ function not_cool() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)))))
+          (argument
+            (string_literal))))))
   (function_declaration
     (identifier)
     (parameters)
@@ -32,7 +33,8 @@ function not_cool() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)))))
+          (argument
+            (string_literal))))))
   (function_declaration
     (identifier)
     (parameters)
@@ -40,4 +42,5 @@ function not_cool() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal))))))
+          (argument
+            (string_literal)))))))

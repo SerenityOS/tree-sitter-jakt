@@ -42,7 +42,8 @@ function main() {
           (scoped_identifier)
           (field_identifier)
           (arguments
-            (integer_literal))))
+            (argument
+              (integer_literal)))))
       (let_declaration
         (identifier)
         (static_call_expression
@@ -58,7 +59,8 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (identifier))))
+              (argument
+                (identifier)))))
         (block
           (if_statement
             (is_expression
@@ -73,6 +75,9 @@ function main() {
               (call_expression
                 (identifier)
                 (arguments
-                  (string_literal)
-                  (identifier)
-                  (identifier))))))))))
+                  (argument
+                    (string_literal))
+                  (argument
+                    (identifier))
+                  (argument
+                    (identifier)))))))))))

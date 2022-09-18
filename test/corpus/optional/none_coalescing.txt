@@ -33,10 +33,12 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (optional_expression
-            (identifier)
-            (string_literal))))
+          (argument
+            (string_literal))
+          (argument
+            (optional_expression
+              (identifier)
+              (string_literal)))))
       (let_declaration
         (identifier)
         (optional_type
@@ -45,10 +47,12 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (optional_expression
-            (identifier)
-            (string_literal))))
+          (argument
+            (string_literal))
+          (argument
+            (optional_expression
+              (identifier)
+              (string_literal)))))
       (line_comment)
       (mutable_declaration
         (mutable_specifier)
@@ -68,5 +72,7 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

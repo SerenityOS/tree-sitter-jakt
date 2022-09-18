@@ -52,19 +52,23 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)
-              (static_call_expression
-                (scoped_identifier)
-                (field_identifier)
-                (arguments))))
+              (argument
+                (string_literal))
+              (argument
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
+                  (arguments)))))
           (call_expression
             (identifier)
             (arguments
-              (string_literal)
-              (static_call_expression
-                (scoped_identifier)
-                (field_identifier)
-                (arguments))))))))
+              (argument
+                (string_literal))
+              (argument
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
+                  (arguments)))))))))
   (class_declaration
     (type_identifier)
     (field_declaration_list))

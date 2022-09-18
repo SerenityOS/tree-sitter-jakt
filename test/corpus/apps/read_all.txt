@@ -36,7 +36,8 @@ function main(args: [String]) throws {
           (scoped_identifier)
           (field_identifier)
           (arguments
-            (identifier))))
+            (argument
+              (identifier)))))
       (mutable_declaration
         (mutable_specifier)
         (identifier)
@@ -61,7 +62,8 @@ function main(args: [String]) throws {
               (identifier)
               (field_identifier))
             (arguments
-              (identifier)))))
+              (argument
+                (identifier))))))
       (return_statement
         (call_expression
           (field_expression
@@ -89,5 +91,7 @@ function main(args: [String]) throws {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

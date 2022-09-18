@@ -60,7 +60,8 @@ function main() {
                 (call_expression
                   (identifier)
                   (arguments
-                    (identifier))))
+                    (argument
+                      (identifier)))))
               (block
                 (guard_statement
                   (binary_expression
@@ -77,5 +78,7 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

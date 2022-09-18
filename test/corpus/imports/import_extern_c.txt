@@ -156,7 +156,8 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)))
+              (argument
+                (string_literal))))
           (unsafe_block
             (cpp_block
               (cpp_code_start)
@@ -180,7 +181,8 @@ function main() {
         (call_expression
           (identifier)
           (arguments
-            (string_literal)))
+            (argument
+              (string_literal))))
         (cpp_block
           (cpp_code_start)
           (cpp_code)
@@ -193,8 +195,10 @@ function main() {
         (call_expression
           (identifier)
           (arguments
-            (identifier)
-            (identifier)
+            (argument
+              (identifier))
+            (argument
+              (identifier))
             (argument
               (identifier)
               (integer_literal)))))
@@ -207,7 +211,8 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)))
+              (argument
+                (string_literal))))
           (unsafe_block
             (cpp_block
               (cpp_code_start)
@@ -234,17 +239,21 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (call_expression
-            (field_expression
-              (identifier)
-              (field_identifier))
-            (arguments))))
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))))
       (call_expression
         (identifier)
         (arguments
-          (identifier)))
+          (argument
+            (identifier))))
       (call_expression
         (identifier)
         (arguments
-          (identifier))))))
+          (argument
+            (identifier)))))))

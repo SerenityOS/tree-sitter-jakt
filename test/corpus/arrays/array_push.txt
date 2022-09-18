@@ -38,7 +38,8 @@ function main() {
               (identifier)
               (field_identifier))
             (arguments
-              (identifier)))))
+              (argument
+                (identifier))))))
       (while_statement
         (logical_expression
           (call_expression
@@ -50,10 +51,12 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)
-              (optional_value_expression
-                (call_expression
-                  (field_expression
-                    (identifier)
-                    (field_identifier))
-                  (arguments))))))))))
+              (argument
+                (string_literal))
+              (argument
+                (optional_value_expression
+                  (call_expression
+                    (field_expression
+                      (identifier)
+                      (field_identifier))
+                    (arguments)))))))))))

@@ -25,11 +25,13 @@ match op {
               (call_expression
                 (identifier)
                 (arguments
-                  (identifier)))
+                  (argument
+                    (identifier))))
               (call_expression
                 (identifier)
                 (arguments
-                  (identifier))))))))))
+                  (argument
+                    (identifier)))))))))))
 
 ================================================================================
 Match arm on function is breaking stuff
@@ -58,7 +60,8 @@ function is_mutable(this) -> bool => match this {
               (call_expression
                 (identifier)
                 (arguments
-                  (identifier))))
+                  (argument
+                    (identifier)))))
             (field_expression
               (identifier)
               (field_identifier)))
@@ -67,7 +70,8 @@ function is_mutable(this) -> bool => match this {
               (call_expression
                 (identifier)
                 (arguments
-                  (identifier))))
+                  (argument
+                    (identifier)))))
             (call_expression
               (field_expression
                 (identifier)

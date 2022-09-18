@@ -62,10 +62,12 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (field_expression
-            (identifier)
-            (field_identifier))))
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier)))))
       (call_expression
         (identifier)
         (arguments
@@ -78,10 +80,12 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (field_expression
-            (identifier)
-            (field_identifier))))
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier)))))
       (mutable_declaration
         (mutable_specifier)
         (identifier)
@@ -94,7 +98,9 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (field_expression
-            (identifier)
-            (field_identifier)))))))
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier))))))))

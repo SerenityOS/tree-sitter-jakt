@@ -391,7 +391,7 @@ module.exports = grammar({
 
     arguments: $ => prec.left(seq(
       '(',
-      optional(repeat(seq(choice($.argument, $._expression, $.closure_function), optional(',')))),
+      optional(repeat(seq(choice($.argument, $.closure_function), optional(',')))),
       ')'
     )),
 
@@ -402,6 +402,7 @@ module.exports = grammar({
         field('value', choice($._expression, $.closure_function)),
       ),
       seq(field('type', choice($.identifier)), terminator),
+      field("value", seq($._expression)),
     )),
 
     _type: $ => choice(
@@ -749,7 +750,7 @@ module.exports = grammar({
     array_literal: $ => prec(1, seq(
       '[',
       optional(choice(
-        sepByPost(optional(','), seq($._expression)),
+        sepBy1(optional(','), $._expression),
         seq(
           field('element', $._literal),
           ';',
@@ -773,7 +774,7 @@ module.exports = grammar({
 
     tuple_literal: $ => prec(1, seq(
       '(',
-      sepByPost(optional(','), seq($._expression)),
+      seq($._expression, repeat(seq(',', $._expression))),
       ')'
     )),
 

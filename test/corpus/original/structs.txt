@@ -48,7 +48,8 @@ struct Foo {
           (call_expression
             (identifier)
             (arguments
-              (binary_expression
-                (this_reference_shorthand
-                  (identifier))
-                (integer_literal)))))))))
+              (argument
+                (binary_expression
+                  (this_reference_shorthand
+                    (identifier))
+                  (integer_literal))))))))))

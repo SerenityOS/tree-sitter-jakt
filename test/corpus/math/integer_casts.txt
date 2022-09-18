@@ -22,14 +22,16 @@ let h = (1 as! i8)
     (call_expression
       (identifier)
       (arguments
-        (integer_literal))))
+        (argument
+          (integer_literal)))))
   (let_declaration
     (identifier)
     (primitive_type)
     (call_expression
       (identifier)
       (arguments
-        (integer_literal))))
+        (argument
+          (integer_literal)))))
   (let_declaration
     (identifier)
     (type_conversion_expression
@@ -47,23 +49,26 @@ let h = (1 as! i8)
     (call_expression
       (identifier)
       (arguments
-        (unary_expression
-          (integer_literal)))))
+        (argument
+          (unary_expression
+            (integer_literal))))))
   (let_declaration
     (identifier)
     (primitive_type)
     (call_expression
       (identifier)
       (arguments
-        (unary_expression
-          (integer_literal)))))
+        (argument
+          (unary_expression
+            (integer_literal))))))
   (let_declaration
     (identifier)
     (primitive_type)
     (call_expression
       (identifier)
       (arguments
-        (integer_literal))))
+        (argument
+          (integer_literal)))))
   (line_comment)
   (let_declaration
     (identifier)

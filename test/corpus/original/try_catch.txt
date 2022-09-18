@@ -17,9 +17,11 @@ try {
       (call_expression
         (identifier)
         (arguments
-          (string_literal))))
+          (argument
+            (string_literal)))))
     (block
       (call_expression
         (identifier)
         (arguments
-          (string_literal))))))
+          (argument
+            (string_literal)))))))

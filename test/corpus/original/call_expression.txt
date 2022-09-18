@@ -1,0 +1,73 @@
+================================================================================
+Tricky call expression with array literal
+================================================================================
+
+let list = [(1, "Hello"), (2, "World")]
+println("{} {}", list[0].1, list[1].1)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (let_declaration
+    (identifier)
+    (array_literal
+      (tuple_literal
+        (integer_literal)
+        (string_literal))
+      (tuple_literal
+        (integer_literal)
+        (string_literal))))
+  (call_expression
+    (identifier)
+    (arguments
+      (argument
+        (string_literal))
+      (argument
+        (field_expression
+          (array_expression
+            (identifier)
+            (integer_literal))
+          (integer_literal)))
+      (argument
+        (field_expression
+          (array_expression
+            (identifier)
+            (integer_literal))
+          (integer_literal))))))
+
+================================================================================
+Tricky call expression with array literal (expressive)
+================================================================================
+
+let list = [(1, "Hello") (2, "World")]
+println("{} {}" list[0].1 list[1].1)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (let_declaration
+    (identifier)
+    (array_literal
+      (tuple_literal
+        (integer_literal)
+        (string_literal))
+      (tuple_literal
+        (integer_literal)
+        (string_literal))))
+  (call_expression
+    (identifier)
+    (arguments
+      (argument
+        (string_literal))
+      (argument
+        (field_expression
+          (array_expression
+            (identifier)
+            (integer_literal))
+          (integer_literal)))
+      (argument
+        (field_expression
+          (array_expression
+            (identifier)
+            (integer_literal))
+          (integer_literal))))))

@@ -31,12 +31,18 @@ function main() {
         (call_expression
           (identifier)
           (arguments
-            (string_literal)
-            (identifier)
-            (identifier)
-            (identifier))))
+            (argument
+              (string_literal))
+            (argument
+              (identifier))
+            (argument
+              (identifier))
+            (argument
+              (identifier)))))
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

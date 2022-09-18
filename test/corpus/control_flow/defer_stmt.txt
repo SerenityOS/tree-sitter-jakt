@@ -11,5 +11,6 @@ defer println(" friends!\n")
     (call_expression
       (identifier)
       (arguments
-        (string_literal
-          (escape_sequence))))))
+        (argument
+          (string_literal
+            (escape_sequence)))))))

@@ -31,7 +31,8 @@ function toss(anon value: i32) throws {
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (integer_literal))))))
+                (argument
+                  (integer_literal)))))))
       (return_statement
         (integer_literal))))
   (function_declaration
@@ -48,7 +49,8 @@ function toss(anon value: i32) throws {
           (scoped_identifier)
           (field_identifier)
           (arguments
-            (identifier)))))))
+            (argument
+              (identifier))))))))
 
 ================================================================================
 Control flow try catch 1
@@ -65,18 +67,21 @@ try toss(1234) catch error {
     (call_expression
       (identifier)
       (arguments
-        (integer_literal)))
+        (argument
+          (integer_literal))))
     (identifier)
     (block
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (call_expression
-            (field_expression
-              (identifier)
-              (field_identifier))
-            (arguments)))))))
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))))))))
 
 ================================================================================
 Control flow try catch 2
@@ -96,18 +101,21 @@ try {
       (call_expression
         (identifier)
         (arguments
-          (integer_literal))))
+          (argument
+            (integer_literal)))))
     (identifier)
     (block
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (call_expression
-            (field_expression
-              (identifier)
-              (field_identifier))
-            (arguments)))))))
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))))))))
 
 ================================================================================
 Control flow try catch 2 (now with more call expressions)
@@ -132,19 +140,23 @@ try {
       (call_expression
         (identifier)
         (arguments
-          (integer_literal)))
+          (argument
+            (integer_literal))))
       (call_expression
         (identifier)
         (arguments
-          (string_literal))))
+          (argument
+            (string_literal)))))
     (identifier)
     (block
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (call_expression
-            (field_expression
-              (identifier)
-              (field_identifier))
-            (arguments)))))))
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))))))))

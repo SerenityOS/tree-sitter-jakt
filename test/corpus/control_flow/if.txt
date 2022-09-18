@@ -16,4 +16,5 @@ if (true) {
       (call_expression
         (identifier)
         (arguments
-          (string_literal))))))
+          (argument
+            (string_literal)))))))

@@ -37,21 +37,24 @@ function main() {
           (identifier)
           (field_identifier))
         (arguments
-          (call_expression
-            (identifier)
-            (arguments
-              (argument
-                (identifier)
-                (string_literal))))))
+          (argument
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (identifier)
+                  (string_literal)))))))
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (field_expression
-            (optional_value_expression
-              (call_expression
-                (field_expression
-                  (identifier)
-                  (field_identifier))
-                (arguments)))
-            (field_identifier)))))))
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (optional_value_expression
+                (call_expression
+                  (field_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments)))
+              (field_identifier))))))))

@@ -57,11 +57,13 @@ function main() {
             (call_expression
               (identifier)
               (arguments
-                (array_expression
-                  (identifier)
-                  (range_expression
-                    (integer_literal)))
-                (identifier))))))
+                (argument
+                  (array_expression
+                    (identifier)
+                    (range_expression
+                      (integer_literal))))
+                (argument
+                  (identifier)))))))
       (return_statement
         (identifier))))
   (function_declaration
@@ -86,12 +88,16 @@ function main() {
         (call_expression
           (identifier)
           (arguments
-            (array_expression
-              (identifier)
-              (range_expression))
-            (identifier))))
+            (argument
+              (array_expression
+                (identifier)
+                (ERROR)))
+            (argument
+              (identifier)))))
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

@@ -26,7 +26,8 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)))
+              (argument
+                (string_literal))))
           (return_statement)))))
   (function_declaration
     (identifier)

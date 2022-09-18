@@ -37,8 +37,11 @@ namespace Greeters {
               (call_expression
                 (identifier)
                 (arguments
-                  (string_literal)
-                  (this_reference_shorthand
-                    (identifier))
-                  (this_reference_shorthand
-                    (identifier)))))))))))
+                  (argument
+                    (string_literal))
+                  (argument
+                    (this_reference_shorthand
+                      (identifier)))
+                  (argument
+                    (this_reference_shorthand
+                      (identifier))))))))))))

@@ -37,31 +37,37 @@ function main() {
           (scoped_identifier)
           (field_identifier)
           (arguments
-            (integer_literal))))
+            (argument
+              (integer_literal)))))
       (let_declaration
         (identifier)
         (static_call_expression
           (scoped_identifier)
           (field_identifier)
           (arguments
-            (integer_literal))))
+            (argument
+              (integer_literal)))))
       (guard_statement
         (is_expression
           (identifier)
           (call_expression
             (identifier)
             (arguments
-              (identifier))))
+              (argument
+                (identifier)))))
         (block
           (call_expression
             (identifier)
             (arguments
-              (string_literal)))
+              (argument
+                (string_literal))))
           (return_statement
             (unary_expression
               (integer_literal)))))
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

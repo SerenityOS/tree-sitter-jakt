@@ -49,4 +49,5 @@ function call_function(anon a: function(anon x: i64) -> i64) -> i64 {
         (call_expression
           (identifier)
           (arguments
-            (integer_literal)))))))
+            (argument
+              (integer_literal))))))))

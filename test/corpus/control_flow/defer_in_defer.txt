@@ -32,8 +32,10 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier)))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
   (function_declaration
     (identifier)
     (parameters)
@@ -41,24 +43,29 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (integer_literal)))
+          (argument
+            (integer_literal))))
       (defer_statement
         (block
           (call_expression
             (identifier)
             (arguments
-              (integer_literal)))
+              (argument
+                (integer_literal))))
           (defer_statement
             (block
               (call_expression
                 (identifier)
                 (arguments
-                  (integer_literal)))))
+                  (argument
+                    (integer_literal))))))
           (call_expression
             (identifier)
             (arguments
-              (integer_literal)))))
+              (argument
+                (integer_literal))))))
       (call_expression
         (identifier)
         (arguments
-          (integer_literal))))))
+          (argument
+            (integer_literal)))))))

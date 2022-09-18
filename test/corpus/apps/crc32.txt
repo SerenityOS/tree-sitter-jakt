@@ -126,7 +126,8 @@ function main(args: [String]) {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)))
+              (argument
+                (string_literal))))
           (return_statement
             (integer_literal))))
       (mutable_declaration
@@ -135,23 +136,26 @@ function main(args: [String]) {
         (call_expression
           (identifier)
           (arguments
-            (call_expression
-              (field_expression
-                (array_expression
-                  (identifier)
-                  (integer_literal))
-                (field_identifier))
-              (arguments))
-            (call_expression
-              (field_expression
-                (string_literal)
-                (field_identifier))
-              (arguments)))))
+            (argument
+              (call_expression
+                (field_expression
+                  (array_expression
+                    (identifier)
+                    (integer_literal))
+                  (field_identifier))
+                (arguments)))
+            (argument
+              (call_expression
+                (field_expression
+                  (string_literal)
+                  (field_identifier))
+                (arguments))))))
       (defer_statement
         (call_expression
           (identifier)
           (arguments
-            (identifier))))
+            (argument
+              (identifier)))))
       (let_declaration
         (identifier)
         (call_expression
@@ -167,13 +171,15 @@ function main(args: [String]) {
         (call_expression
           (identifier)
           (arguments
-            (identifier))))
+            (argument
+              (identifier)))))
       (while_statement
         (binary_expression
           (call_expression
             (identifier)
             (arguments
-              (identifier)))
+              (argument
+                (identifier))))
           (integer_literal))
         (block
           (assignment_expression
@@ -196,7 +202,8 @@ function main(args: [String]) {
             (call_expression
               (identifier)
               (arguments
-                (identifier))))))
+                (argument
+                  (identifier)))))))
       (let_declaration
         (identifier)
         (bitwisenot_expression
@@ -204,5 +211,7 @@ function main(args: [String]) {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

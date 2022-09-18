@@ -65,7 +65,8 @@ function main() {
                   (call_expression
                     (identifier)
                     (arguments
-                      (integer_literal))))))
+                      (argument
+                        (integer_literal)))))))
             (match_arm
               (match_pattern
                 (identifier))
@@ -75,8 +76,10 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier)))
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
       (let_declaration
         (identifier)
         (optional_type
@@ -99,5 +102,7 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

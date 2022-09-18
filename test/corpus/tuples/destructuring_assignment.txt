@@ -39,6 +39,9 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier))
+          (argument
+            (identifier)))))))

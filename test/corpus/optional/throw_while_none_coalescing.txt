@@ -30,7 +30,8 @@ function main() {
           (scoped_identifier)
           (field_identifier)
           (arguments
-            (integer_literal))))))
+            (argument
+              (integer_literal)))))))
   (function_declaration
     (identifier)
     (parameters)
@@ -52,9 +53,11 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal))))
+              (argument
+                (string_literal)))))
         (block
           (call_expression
             (identifier)
             (arguments
-              (string_literal))))))))
+              (argument
+                (string_literal)))))))))

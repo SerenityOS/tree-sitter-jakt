@@ -27,7 +27,9 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (array_expression
-            (identifier)
-            (string_literal)))))))
+          (argument
+            (string_literal))
+          (argument
+            (array_expression
+              (identifier)
+              (string_literal))))))))

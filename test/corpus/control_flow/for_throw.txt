@@ -34,7 +34,8 @@ function main() {
               (scoped_identifier)
               (field_identifier)
               (arguments
-                (integer_literal))))))))
+                (argument
+                  (integer_literal)))))))))
   (function_declaration
     (identifier)
     (parameters)

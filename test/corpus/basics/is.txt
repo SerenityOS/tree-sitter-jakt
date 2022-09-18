@@ -67,7 +67,8 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)))))
+              (argument
+                (string_literal))))))
       (if_statement
         (is_expression
           (identifier)
@@ -76,7 +77,8 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)))))
+              (argument
+                (string_literal))))))
       (if_statement
         (is_expression
           (call_expression
@@ -90,7 +92,8 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)))))
+              (argument
+                (string_literal))))))
       (if_statement
         (is_expression
           (call_expression
@@ -104,4 +107,5 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal))))))))
+              (argument
+                (string_literal)))))))))

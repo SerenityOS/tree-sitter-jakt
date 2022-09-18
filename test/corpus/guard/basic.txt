@@ -81,9 +81,11 @@ function main() {
           (call_expression
             (identifier)
             (arguments
-              (string_literal)
-              (update_expression
-                (identifier))))))))
+              (argument
+                (string_literal))
+              (argument
+                (update_expression
+                  (identifier)))))))))
   (function_declaration
     (identifier)
     (parameters)
@@ -91,11 +93,14 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (call_expression
-            (identifier)
-            (arguments
-              (integer_literal)))))
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (integer_literal)))))))
       (call_expression
         (identifier)
         (arguments)))))

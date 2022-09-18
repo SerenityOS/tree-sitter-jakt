@@ -83,19 +83,23 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (boolean_literal)
+          (argument
+            (boolean_literal))
           (argument
             (identifier)
             (boolean_literal))))
       (call_expression
         (identifier)
         (arguments
-          (boolean_literal)
-          (boolean_literal)))
+          (argument
+            (boolean_literal))
+          (argument
+            (boolean_literal))))
       (let_declaration
         (identifier)
         (boolean_literal))
       (call_expression
         (identifier)
         (arguments
-          (identifier))))))
+          (argument
+            (identifier)))))))

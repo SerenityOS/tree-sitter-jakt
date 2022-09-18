@@ -19,7 +19,9 @@ while (x < 10) {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier)))
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
       (update_expression
         (identifier)))))

@@ -15,16 +15,18 @@ println("{}", match "test" {
   (call_expression
     (identifier)
     (arguments
-      (string_literal)
-      (match_expression
-        (string_literal)
-        (match_block
-          (match_arm
-            (match_pattern
-              (string_literal))
-            (block
-              (yield_statement
-                (string_literal))))
-          (match_arm
-            (match_else)
-            (string_literal)))))))
+      (argument
+        (string_literal))
+      (argument
+        (match_expression
+          (string_literal)
+          (match_block
+            (match_arm
+              (match_pattern
+                (string_literal))
+              (block
+                (yield_statement
+                  (string_literal))))
+            (match_arm
+              (match_else)
+              (string_literal))))))))

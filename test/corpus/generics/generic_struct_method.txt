@@ -48,10 +48,13 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (call_expression
-            (field_expression
-              (identifier)
-              (field_identifier))
-            (arguments
-              (string_literal))))))))
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments
+                (argument
+                  (string_literal))))))))))

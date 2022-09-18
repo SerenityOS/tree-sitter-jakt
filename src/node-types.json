@@ -28,10 +28,6 @@
         "named": true
       },
       {
-        "type": "dereference_expression",
-        "named": true
-      },
-      {
         "type": "field_expression",
         "named": true
       },
@@ -89,14 +85,6 @@
       },
       {
         "type": "range_expression",
-        "named": true
-      },
-      {
-        "type": "raw_pointer_specifier",
-        "named": true
-      },
-      {
-        "type": "reference_expression",
         "named": true
       },
       {
@@ -397,10 +385,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
         {
           "type": "argument",
           "named": true
@@ -950,32 +934,6 @@
           {
             "type": "block",
             "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "dereference_expression",
-    "named": true,
-    "fields": {
-      "operand": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "operator": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "*",
-            "named": false
           }
         ]
       }
@@ -2432,7 +2390,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "_expression",
@@ -2447,32 +2405,6 @@
     "fields": {
       "operand": {
         "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "operator": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "&",
-            "named": false
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "reference_expression",
-    "named": true,
-    "fields": {
-      "operand": {
-        "multiple": false,
         "required": true,
         "types": [
           {
@@ -2483,7 +2415,7 @@
       },
       "operator": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "&",
@@ -2827,7 +2759,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "_expression",

@@ -17,22 +17,26 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (binary_expression
-            (integer_literal)
+          (argument
+            (string_literal))
+          (argument
+            (binary_expression
+              (integer_literal)
+              (binary_expression
+                (binary_expression
+                  (integer_literal)
+                  (integer_literal))
+                (integer_literal))))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
             (binary_expression
               (binary_expression
                 (integer_literal)
                 (integer_literal))
-              (integer_literal)))))
-      (call_expression
-        (identifier)
-        (arguments
-          (string_literal)
-          (binary_expression
-            (binary_expression
-              (integer_literal)
-              (integer_literal))
-            (binary_expression
-              (integer_literal)
-              (integer_literal))))))))
+              (binary_expression
+                (integer_literal)
+                (integer_literal)))))))))

@@ -30,10 +30,13 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (binary_expression
-            (call_expression
-              (identifier)
-              (arguments
-                (integer_literal)))
-            (integer_literal)))))))
+          (argument
+            (string_literal))
+          (argument
+            (binary_expression
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (integer_literal))))
+              (integer_literal))))))))

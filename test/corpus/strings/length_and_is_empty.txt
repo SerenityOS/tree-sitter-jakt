@@ -18,27 +18,33 @@ println("{}", "".is_empty())
   (call_expression
     (identifier)
     (arguments
-      (string_literal)
-      (call_expression
-        (field_expression
-          (identifier)
-          (field_identifier))
-        (arguments))))
+      (argument
+        (string_literal))
+      (argument
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))))
   (call_expression
     (identifier)
     (arguments
-      (string_literal)
-      (call_expression
-        (field_expression
-          (identifier)
-          (field_identifier))
-        (arguments))))
+      (argument
+        (string_literal))
+      (argument
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))))
   (call_expression
     (identifier)
     (arguments
-      (string_literal)
-      (call_expression
-        (field_expression
-          (string_literal)
-          (field_identifier))
-        (arguments)))))
+      (argument
+        (string_literal))
+      (argument
+        (call_expression
+          (field_expression
+            (string_literal)
+            (field_identifier))
+          (arguments))))))

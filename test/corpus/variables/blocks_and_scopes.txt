@@ -22,10 +22,14 @@ println("{}", x)
     (call_expression
       (identifier)
       (arguments
-        (string_literal)
-        (identifier))))
+        (argument
+          (string_literal))
+        (argument
+          (identifier)))))
   (call_expression
     (identifier)
     (arguments
-      (string_literal)
-      (identifier))))
+      (argument
+        (string_literal))
+      (argument
+        (identifier)))))
