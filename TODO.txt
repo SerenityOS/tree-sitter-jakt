@@ -1,3 +1,21 @@
+* test "Enums is variant binding compound multiple" is wrong
+
+  need to give binary expression higher precedence than is expression I think
+
+  Another test: "Enums is variant binding else complex"
+
+  Basically, all of the "Enum is variant" tests do not look accurate...
+
+* array literals need custom parser
+
+  Tests:  Tuples destructuring assignment for* 
+
+  An array literal with two tuples gets parsed as a "call expression". Which is incorrect.
+
+* corpus tests for jakt samples should have one per file
+
+    Any extra tests should be considered "original"
+
 * rename "this_reference" to "type_qualifier"
 
   do the same for all "*_specifier"
