@@ -57,7 +57,7 @@ module.exports = grammar({
     $._expression,
     $._type,
     $._literal,
-    $._literal_pattern,
+    $._literal,
     $._statement,
     $._pattern,
   ],
@@ -335,12 +335,6 @@ module.exports = grammar({
       field('arguments', $.arguments),
       optional(choice($.optional_specifier, $.array_index_expression)),
     ))),
-
-    is_expression: $ =>  prec.left(seq(
-      field('left', $._expression),
-      'is',
-      field('right', $._expression),
-    )),
 
     type_conversion_expression: $ =>  seq(
       prec.left(field('left', $._expression)),
@@ -687,7 +681,7 @@ module.exports = grammar({
 
     match_else: $ => 'else',
 
-    _literal: $ => prec(1, choice(
+    _literal: $ => prec.left(choice(
       $.string_literal,
       $.char_literal,
       $.byte_literal,
@@ -702,7 +696,7 @@ module.exports = grammar({
     )),
 
     _pattern: $ => choice(
-      $._literal_pattern,
+      $._literal,
       alias(choice(...primitive_types), $.identifier),
       $.identifier,
     ),
@@ -711,16 +705,6 @@ module.exports = grammar({
       '(',
       sepBy(',', seq($.identifier, optional(','))),
       ')',
-    ),
-
-    _literal_pattern: $ => choice(
-      $.string_literal,
-      $.char_literal,
-      $.boolean_literal,
-      $.integer_literal,
-      $.float_literal,
-      $.negative_literal,
-      $.destructuring_literal,
     ),
 
     negative_literal: $ => seq('-', choice($.integer_literal, $.float_literal)),
@@ -783,7 +767,7 @@ module.exports = grammar({
       choice(
         seq(sepBy(',', $._expression), optional(',')),
         optional(seq(
-          field('element', $._literal_pattern),
+          field('element', $._literal),
           ';',
           field('length', $._expression)
         )),
@@ -821,7 +805,7 @@ module.exports = grammar({
       '}'
     ),
 
-    dictionary_element: $ =>seq(field('key', $._literal_pattern), ':', field('value', $._literal_pattern)),
+    dictionary_element: $ =>seq(field('key', $._literal), ':', field('value', $._literal)),
 
     escape_sequence: $ => token.immediate(
       seq('\\',
