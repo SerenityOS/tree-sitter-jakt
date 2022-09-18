@@ -51,7 +51,7 @@ function main(args: [String]) {
           (scoped_identifier)
           (field_identifier)
           (arguments
-            (array_index_expression
+            (array_expression
               (identifier)
               (integer_literal)))))
       (mutable_declaration
@@ -85,6 +85,6 @@ function main(args: [String]) {
                 (identifier)
                 (arguments
                   (string_literal)
-                  (array_index_expression
+                  (array_expression
                     (identifier)
                     (identifier)))))))))))

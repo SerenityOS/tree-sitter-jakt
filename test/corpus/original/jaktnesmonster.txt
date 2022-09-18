@@ -143,7 +143,7 @@ return .scratch_ram[address & 0x7ff]
 
 (source_file
   (return_statement
-    (array_index_expression
+    (array_expression
       (this_reference_shorthand
         (identifier))
       (binary_expression

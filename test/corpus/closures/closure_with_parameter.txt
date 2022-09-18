@@ -55,12 +55,12 @@ function main() {
               (arguments
                 (argument
                   (identifier)
-                  (array_index_expression
+                  (array_expression
                     (identifier)
                     (identifier)))))
             (block
               (return_statement
-                (array_index_expression
+                (array_expression
                   (identifier)
                   (identifier)))))))
       (return_statement

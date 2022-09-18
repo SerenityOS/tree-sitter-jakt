@@ -30,7 +30,7 @@ function main() {
           (primitive_type))))
     (block
       (assignment_expression
-        (array_index_expression
+        (array_expression
           (identifier)
           (integer_literal))
         (string_literal))))
@@ -69,7 +69,7 @@ function main() {
             (identifier)
             (arguments
               (string_literal)
-              (array_index_expression
+              (array_expression
                 (identifier)
                 (identifier))))
           (update_expression

@@ -57,7 +57,6 @@ module.exports = grammar({
     $._expression,
     $._type,
     $._literal,
-    $._literal,
     $._statement,
     $._pattern,
   ],
@@ -71,6 +70,7 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.array_literal, $.array_expression],
+    [$.array_expression, $.try_statement],
     [$.namespace_scope_expression, $.namespace_call_expression],
     [$._simple_type, $.enum_variant],
     [$.parenthesized_expression, $.optional_parenthesized_expression ],
@@ -142,7 +142,6 @@ module.exports = grammar({
       $.type_conversion_expression,
       $.logical_not,
       $.assignment_expression,
-      $.array_expression,
       $.none_expression,
       $.update_expression,
       $.match_expression,
@@ -152,7 +151,7 @@ module.exports = grammar({
       $.parenthesized_expression,
       $.optional_parenthesized_expression,
       $.try_expression,
-      $.array_index_expression,
+      $.array_expression,
     ),
 
     parenthesized_expression: $ => prec.left(1, seq(
@@ -284,7 +283,7 @@ module.exports = grammar({
       field('body', $.block)
     ),
 
-    call_expression: $ => prec(PREC.call, seq(
+    call_expression: $ => prec.right(PREC.call, seq(
       field('callee', $._expression),
       field('arguments', $.arguments),
       optional($.optional_specifier)
@@ -294,11 +293,6 @@ module.exports = grammar({
       field('function', $.generic_type),
       field('arguments', $.arguments),
     ))),
-
-    array_index_expression: $ => seq(
-        field('value', $._expression),
-        field('index', seq(token.immediate('['), $._expression, ']')),
-    ),
 
     range_expression: $ => prec.right(PREC.range, choice(
       seq($._expression, '..', $._expression),
@@ -356,12 +350,14 @@ module.exports = grammar({
       field('right', $._expression)
     )),
 
-    array_expression: $ => prec.right(1, seq(
-      choice($.identifier, $.this_reference_shorthand),
-      seq(
-        '[',
-        optional(repeat(seq($._expression, optional(',')))),
-        ']',
+    array_expression: $ => prec.left(1, seq(
+      field("identifier", $._expression),
+      field("fill",
+        seq(
+          '[',
+          optional(repeat(seq($._expression, optional(',')))),
+          ']',
+        ),
       ),
     )),
 

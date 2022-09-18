@@ -29,8 +29,8 @@ function main() {
         (identifier)
         (arguments
           (string_literal)
-          (array_index_expression
-            (array_index_expression
+          (array_expression
+            (array_expression
               (identifier)
               (integer_literal))
             (integer_literal)))))))

@@ -36,7 +36,7 @@ function main() {
         (mutable_specifier)
         (identifier)
         (set_literal
-          (array_index_expression
+          (array_expression
             (identifier)
             (integer_literal))))
       (for_expression
@@ -54,7 +54,7 @@ function main() {
               (identifier)
               (field_identifier))
             (arguments
-              (array_index_expression
+              (array_expression
                 (identifier)
                 (identifier))))))
       (call_expression

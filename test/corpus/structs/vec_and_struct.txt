@@ -59,7 +59,7 @@ function main() {
         (arguments
           (string_literal)
           (field_expression
-            (array_index_expression
+            (array_expression
               (identifier)
               (integer_literal))
             (field_identifier))))
@@ -68,7 +68,7 @@ function main() {
         (arguments
           (string_literal)
           (field_expression
-            (array_index_expression
+            (array_expression
               (identifier)
               (integer_literal))
             (field_identifier)))))))

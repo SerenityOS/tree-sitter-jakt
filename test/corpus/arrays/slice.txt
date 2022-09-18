@@ -68,7 +68,7 @@ function main() {
       (mutable_declaration
         (mutable_specifier)
         (identifier)
-        (array_index_expression
+        (array_expression
           (identifier)
           (range_expression
             (integer_literal)
@@ -139,7 +139,7 @@ function main() {
             (arguments
               (integer_literal)))))
       (assignment_expression
-        (array_index_expression
+        (array_expression
           (identifier)
           (integer_literal))
         (integer_literal))
@@ -147,21 +147,21 @@ function main() {
         (identifier)
         (arguments
           (string_literal)
-          (array_index_expression
+          (array_expression
             (identifier)
             (integer_literal))))
       (call_expression
         (identifier)
         (arguments
           (string_literal)
-          (array_index_expression
+          (array_expression
             (identifier)
             (integer_literal))))
       (call_expression
         (identifier)
         (arguments
           (string_literal)
-          (array_index_expression
+          (array_expression
             (identifier)
             (range_expression
               (call_expression
@@ -179,7 +179,7 @@ function main() {
             (field_identifier))
           (arguments)))
       (assignment_expression
-        (array_index_expression
+        (array_expression
           (identifier)
           (integer_literal))
         (integer_literal))
@@ -195,7 +195,7 @@ function main() {
           (identifier)))
       (let_declaration
         (identifier)
-        (array_index_expression
+        (array_expression
           (identifier)
           (range_expression
             (integer_literal))))

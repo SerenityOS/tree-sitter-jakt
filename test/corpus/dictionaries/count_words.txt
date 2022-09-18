@@ -60,7 +60,7 @@ function main() {
             (arguments
               (argument
                 (identifier)
-                (array_index_expression
+                (array_expression
                   (identifier)
                   (identifier)))
               (argument
@@ -73,7 +73,7 @@ function main() {
                           (identifier)
                           (field_identifier))
                         (arguments
-                          (array_index_expression
+                          (array_expression
                             (identifier)
                             (identifier))))
                       (field_identifier))
@@ -84,6 +84,6 @@ function main() {
         (identifier)
         (arguments
           (string_literal)
-          (array_index_expression
+          (array_expression
             (identifier)
             (string_literal)))))))

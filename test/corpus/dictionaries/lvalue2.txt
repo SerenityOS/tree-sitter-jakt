@@ -23,7 +23,7 @@ function main() {
             (string_literal)
             (integer_literal))))
       (assignment_expression
-        (array_index_expression
+        (array_expression
           (identifier)
           (string_literal))
         (integer_literal))
@@ -31,6 +31,6 @@ function main() {
         (identifier)
         (arguments
           (string_literal)
-          (array_index_expression
+          (array_expression
             (identifier)
             (string_literal)))))))

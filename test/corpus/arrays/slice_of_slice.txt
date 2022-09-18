@@ -41,7 +41,7 @@ function main() {
     (block
       (assignment_expression
         (identifier)
-        (array_index_expression
+        (array_expression
           (identifier)
           (integer_literal)))
       (if_statement
@@ -57,7 +57,7 @@ function main() {
             (call_expression
               (identifier)
               (arguments
-                (array_index_expression
+                (array_expression
                   (identifier)
                   (range_expression
                     (integer_literal)))
@@ -86,7 +86,7 @@ function main() {
         (call_expression
           (identifier)
           (arguments
-            (array_index_expression
+            (array_expression
               (identifier)
               (range_expression))
             (identifier))))

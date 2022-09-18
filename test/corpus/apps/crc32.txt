@@ -100,7 +100,7 @@ function main(args: [String]) {
                       (identifier)
                       (integer_literal)))))))
           (assignment_expression
-            (array_index_expression
+            (array_expression
               (identifier)
               (identifier))
             (identifier))))
@@ -137,7 +137,7 @@ function main(args: [String]) {
           (arguments
             (call_expression
               (field_expression
-                (array_index_expression
+                (array_expression
                   (identifier)
                   (integer_literal))
                 (field_identifier))
@@ -179,7 +179,7 @@ function main(args: [String]) {
           (assignment_expression
             (identifier)
             (binary_expression
-              (array_index_expression
+              (array_expression
                 (identifier)
                 (binary_expression
                   (parenthesized_expression
