@@ -19,12 +19,12 @@ function main() {
         (arguments
           (string_literal)
           (binary_expression
+            (integer_literal)
             (binary_expression
-              (integer_literal)
               (binary_expression
                 (integer_literal)
-                (integer_literal)))
-            (integer_literal))))
+                (integer_literal))
+              (integer_literal)))))
       (call_expression
         (identifier)
         (arguments

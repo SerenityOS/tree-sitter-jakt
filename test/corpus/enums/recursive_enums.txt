@@ -157,3 +157,34 @@ function main() {
             (identifier)
             (arguments
               (identifier))))))))
+
+================================================================================
+Enums recursive enums (no commas)
+================================================================================
+
+boxed enum AST {
+    Int(i64)
+    BinaryOperation(lhs: AST, op: Operation, rhs: AST)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (boxed_specifier)
+    (type_identifier)
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))
+      (enum_struct_variant
+        (identifier)
+        (field_declaration
+          (field_identifier)
+          (type_identifier))
+        (field_declaration
+          (field_identifier)
+          (type_identifier))
+        (field_declaration
+          (field_identifier)
+          (type_identifier))))))

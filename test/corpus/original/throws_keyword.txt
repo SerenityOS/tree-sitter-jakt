@@ -19,9 +19,9 @@ function infinity(width: i32, height: i32) throws => width * height * infinity()
     (throws_specifier)
     (return_expression
       (binary_expression
+        (identifier)
         (binary_expression
           (identifier)
-          (identifier))
-        (call_expression
-          (identifier)
-          (arguments))))))
+          (call_expression
+            (identifier)
+            (arguments)))))))

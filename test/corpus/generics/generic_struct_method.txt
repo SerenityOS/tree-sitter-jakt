@@ -1,0 +1,57 @@
+================================================================================
+Generic struct method
+================================================================================
+
+struct A<T> {
+    public function test(this, anon x: T) => x
+}
+
+function main() {
+    let instance: A<String> = A()
+    println("{}", instance.test("PASS"))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (type_identifier)))
+    (field_declaration_list
+      (function_declaration
+        (visibility_specifier)
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference))
+          (parameter
+            (anonymous_specifier)
+            (identifier)
+            (type_identifier)))
+        (return_expression
+          (identifier)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)))
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (identifier)
+        (arguments
+          (string_literal)
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (string_literal))))))))

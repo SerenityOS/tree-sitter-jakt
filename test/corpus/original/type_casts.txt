@@ -7,11 +7,11 @@ l += 5 as? u64
 --------------------------------------------------------------------------------
 
 (source_file
-  (type_conversion_expression
-      (assignment_expression
-        (identifier)
-        (integer_literal))
-      (primitive_type)))
+  (assignment_expression
+    (identifier)
+    (type_conversion_expression
+      (integer_literal)
+      (primitive_type))))
 
 ================================================================================
 Type casts (abort)
@@ -22,8 +22,8 @@ l += 5 as! u64
 --------------------------------------------------------------------------------
 
 (source_file
-  (type_conversion_expression
-      (assignment_expression
-        (identifier)
-        (integer_literal))
-      (primitive_type)))
+  (assignment_expression
+    (identifier)
+    (type_conversion_expression
+      (integer_literal)
+      (primitive_type))))

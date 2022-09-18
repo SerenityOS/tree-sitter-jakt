@@ -27,10 +27,10 @@ println("{}", match p {
           (match_arm
             (match_pattern
               (binary_expression
+                (string_literal)
                 (binary_expression
                   (string_literal)
-                  (string_literal))
-                (string_literal)))
+                  (string_literal))))
             (block
               (yield_statement
                 (string_literal))))

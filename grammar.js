@@ -70,12 +70,13 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
+    [$.array_literal, $.array_expression],
     [$.namespace_scope_expression, $.namespace_call_expression],
     [$._simple_type, $.enum_variant],
-    [$.set_literal, $.block],
     [$.parenthesized_expression, $.optional_parenthesized_expression ],
+    [$.set_literal, $.block],
     [$.parenthesized_expression, $.tuple_literal],
-    [$._expression, $.array_expression, $.destructuring_literal]
+    [$.destructuring_literal, $._expression],
   ],
 
   rules: {
@@ -154,18 +155,18 @@ module.exports = grammar({
       $.array_index_expression,
     ),
 
-    parenthesized_expression: $ => seq(
+    parenthesized_expression: $ => prec.left(1, seq(
       '(',
       $._expression,
       ')',
-    ),
+    )),
 
-    optional_parenthesized_expression: $ => seq(
+    optional_parenthesized_expression: $ => prec.left(1, seq(
       '(',
       $._expression,
       ')',
       $.optional_specifier,
-    ),
+    )),
 
     while_statement: $ => seq(
       'while',
@@ -299,7 +300,7 @@ module.exports = grammar({
         field('index', seq(token.immediate('['), $._expression, ']')),
     ),
 
-    range_expression: $ => prec.left(PREC.range, choice(
+    range_expression: $ => prec.right(PREC.range, choice(
       seq($._expression, '..', $._expression),
       // for some reason wrapping the last expression in optional in the previous statement does not work...
       seq($._expression, '..'),
@@ -349,7 +350,7 @@ module.exports = grammar({
       $._expression,
     )),
 
-    assignment_expression: $ => prec.left(PREC.assign, seq(
+    assignment_expression: $ => prec.right(PREC.assign, seq(
       field('left', $._expression),
       field('operator', choice('=', '+=', '-=', '&=', '|=', '^=', '*=', '/=', '%=')),
       field('right', $._expression)
@@ -396,20 +397,24 @@ module.exports = grammar({
       field('right', $._expression),
     )),
 
-    optional_specifier: $ => choice('!', '?'),
+    optional_specifier: $ => token.immediate(choice('!', '?')),
 
     none_expression: $ => seq('None'),
 
-    arguments: $ => seq(
+    arguments: $ => prec.left(seq(
       '(',
-      optional(sepBy(',', choice(repeat($.argument), $._expression, $.closure_function))),
+      optional(repeat(seq(choice($.argument, $._expression, $.closure_function), optional(',')))),
       ')'
-    ),
+    )),
 
-    argument: $ => choice(
-        seq(field('label', choice($._pattern)), ':', choice($._expression, $.closure_function)),
-        seq(field('type', choice($.identifier)), terminator),
-    ),
+    argument: $ => prec.left(choice(
+      seq(
+        field('label', $._pattern),
+        ':',
+        field('value', choice($._expression, $.closure_function)),
+      ),
+      seq(field('type', choice($.identifier)), terminator),
+    )),
 
     _type: $ => choice(
       $._primitive_types,
@@ -479,7 +484,6 @@ module.exports = grammar({
         '=',
         field('value', choice($._expression, $.closure_function)),
       )),
-      optional(terminator),
     )),
 
     mutable_declaration: $ => prec.left(seq(
@@ -545,8 +549,7 @@ module.exports = grammar({
       '(',
       choice(
         $._type,
-        sepByPost('\n', $.field_declaration),
-        sepBy(',', $.field_declaration),
+        sepByPost(optional(choice('\n', ',')), seq($.field_declaration)),
       ),
       ')',
     )),
@@ -554,7 +557,7 @@ module.exports = grammar({
     field_declaration_list: $ => seq(
       '{',
         optional(
-          repeat(
+          repeat1(
             choice(
               seq($.field_declaration, optional(choice(',','\n'))),
               $.function_declaration,
@@ -626,7 +629,7 @@ module.exports = grammar({
         [PREC.multiplicative, choice('*', '/','%')],
       ];
 
-      return choice(...table.map(([precedence, operator]) => prec.left(precedence, seq(
+      return choice(...table.map(([precedence, operator]) => prec.right(precedence, seq(
         field('left', $._expression),
         field('operator', operator),
         field('right', $._expression),
@@ -687,6 +690,7 @@ module.exports = grammar({
       $.tuple_literal,
       $.dictionary_literal,
       $.set_literal,
+      $.destructuring_literal,
     )),
 
     _pattern: $ => choice(
@@ -697,7 +701,7 @@ module.exports = grammar({
 
     destructuring_literal: $ => seq(
       '(',
-      sepBy(',', seq($.identifier, optional(','))),
+      repeat1(seq($.identifier, optional(','))),
       ')',
     ),
 
@@ -758,14 +762,14 @@ module.exports = grammar({
 
     array_literal: $ => prec(1, seq(
       '[',
-      choice(
-        seq(sepBy(',', $._expression), optional(',')),
-        optional(seq(
+      optional(choice(
+        sepByPost(optional(','), seq($._expression)),
+        seq(
           field('element', $._literal),
           ';',
           field('length', $._expression)
-        )),
-      ),
+        ),
+      )),
       ']'
     )),
 
@@ -781,23 +785,26 @@ module.exports = grammar({
       ')'
     ),
 
-    tuple_literal: $ => seq(
+    tuple_literal: $ => prec(1, seq(
       '(',
-      sepBy(',', seq($._expression, optional(','))),
+      sepByPost(optional(','), seq($._expression)),
       ')'
-    ),
+    )),
 
     dictionary_literal: $ => seq(
       '[',
-      choice(":", sepBy(',', $.dictionary_element, optional(','))),
+      choice(
+          seq(':'),
+          repeat1(seq($.dictionary_element, optional(','))),
+      ),
       ']'
     ),
 
-    set_literal: $ => seq(
+    set_literal: $ => prec.right(seq(
       '{',
-      optional(sepBy(',', $._expression, optional(','))),
+          optional(repeat1(seq($._expression, optional(',')))),
       '}'
-    ),
+    )),
 
     dictionary_element: $ =>seq(field('key', $._literal), ':', field('value', $._literal)),
 
@@ -928,7 +935,7 @@ module.exports = grammar({
 
     if_statement: $ => seq(
       'if',
-      field('condition', seq($._expression)),
+      field('condition', $._expression),
       field('consequence', $.block),
       optional(field("alternative", $.else_clause))
 
@@ -959,10 +966,6 @@ module.exports = grammar({
 
 function sepBy1(sep, rule) {
   return seq(rule, repeat(seq(sep, rule)))
-}
-
-function sepBy2(sep, rule) {
-  return repeat(seq(rule, sep))
 }
 
 function sepBy(sep, rule) {

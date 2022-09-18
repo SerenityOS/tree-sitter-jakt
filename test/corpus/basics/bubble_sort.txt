@@ -65,17 +65,17 @@ function main() {
             (binary_expression
               (identifier)
               (binary_expression
+                (parenthesized_expression
+                  (type_conversion_expression
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments))
+                    (primitive_type)))
                 (binary_expression
-                  (parenthesized_expression
-                    (type_conversion_expression
-                      (call_expression
-                        (field_expression
-                          (identifier)
-                          (field_identifier))
-                        (arguments))
-                      (primitive_type)))
-                  (identifier))
-                (integer_literal)))
+                  (identifier)
+                  (integer_literal))))
             (block
               (if_statement
                 (array_index_expression

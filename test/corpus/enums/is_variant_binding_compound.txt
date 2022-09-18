@@ -38,25 +38,25 @@ function main() {
         (is_expression
           (identifier)
           (binary_expression
+            (call_expression
+              (identifier)
+              (arguments
+                (identifier)))
             (binary_expression
-              (binary_expression
-                (binary_expression
-                  (call_expression
-                    (identifier)
-                    (arguments
-                      (identifier)))
-                  (binary_expression
-                    (identifier)
-                    (integer_literal)))
-                (binary_expression
-                  (identifier)
-                  (integer_literal)))
               (binary_expression
                 (identifier)
-                (integer_literal)))
-            (binary_expression
-              (identifier)
-              (integer_literal))))
+                (integer_literal))
+              (binary_expression
+                (binary_expression
+                  (identifier)
+                  (integer_literal))
+                (binary_expression
+                  (binary_expression
+                    (identifier)
+                    (integer_literal))
+                  (binary_expression
+                    (identifier)
+                    (integer_literal)))))))
         (block
           (call_expression
             (identifier)

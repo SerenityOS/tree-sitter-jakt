@@ -57,17 +57,17 @@ function main() {
                   (identifier)))
               (identifier)))
           (binary_expression
-            (binary_expression
-              (call_expression
-                (identifier)
-                (arguments
-                  (identifier)))
-              (binary_expression
-                (identifier)
+            (call_expression
+              (identifier)
+              (arguments
                 (identifier)))
             (binary_expression
-              (integer_literal)
-              (integer_literal))))
+              (binary_expression
+                (identifier)
+                (identifier))
+              (binary_expression
+                (integer_literal)
+                (integer_literal)))))
         (block
           (call_expression
             (identifier)
