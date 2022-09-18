@@ -23,10 +23,10 @@
 
 ; Function calls
 (call_expression
-  function: (identifier) @function)
+  callee: (identifier) @function)
 
 (call_expression
-  function: (field_expression
+  callee: (field_expression
              value: (identifier) @namespace
              field: (field_identifier) @function.method))
 
@@ -138,13 +138,15 @@
 "return" @keyword.return
 
 [
+  "is"
   "in"
   "and"
   "or"
   "not"
   "as!"
   "as?"
-] @keyword.operator
+; ] @keyword.operator
+] @keyword
 
 [
   (this_reference)

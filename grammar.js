@@ -283,8 +283,8 @@ module.exports = grammar({
       field('body', $.block)
     ),
 
-    call_expression: $ => prec(PREC.call, prec.left(seq(
-      field('function', $._expression),
+    call_expression: $ => prec(PREC.call, seq(
+      field('callee', $._expression),
       field('arguments', $.arguments),
       optional(choice($.optional_specifier, $.array_index_expression)),
     ))),
