@@ -1,11 +1,3 @@
-* test "Enums is variant binding compound multiple" is wrong
-
-  need to give binary expression higher precedence than is expression I think
-
-  Another test: "Enums is variant binding else complex"
-
-  Basically, all of the "Enum is variant" tests do not look accurate...
-
 * array literals need custom parser
 
   Tests:  Tuples destructuring assignment for* 

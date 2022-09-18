@@ -43,31 +43,31 @@ function main() {
           (arguments
             (integer_literal))))
       (if_statement
-        (is_expression
-          (is_expression
-            (binary_expression
-              (binary_expression
-                (integer_literal)
-                (integer_literal))
-              (identifier))
-            (binary_expression
+        (logical_expression
+          (binary_expression
+            (integer_literal)
+            (integer_literal))
+          (logical_expression
+            (is_expression
+              (identifier)
               (call_expression
                 (identifier)
                 (arguments
-                  (identifier)))
-              (identifier)))
-          (binary_expression
-            (call_expression
-              (identifier)
-              (arguments
-                (identifier)))
-            (binary_expression
-              (binary_expression
+                  (identifier))))
+            (logical_expression
+              (is_expression
                 (identifier)
-                (identifier))
-              (binary_expression
-                (integer_literal)
-                (integer_literal)))))
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (identifier))))
+              (logical_expression
+                (binary_expression
+                  (identifier)
+                  (identifier))
+                (binary_expression
+                  (integer_literal)
+                  (integer_literal))))))
         (block
           (call_expression
             (identifier)

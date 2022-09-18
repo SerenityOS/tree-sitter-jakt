@@ -37,18 +37,18 @@ function main() {
           (arguments
             (integer_literal))))
       (if_statement
-        (is_expression
+        (logical_expression
           (binary_expression
-            (binary_expression
-              (integer_literal)
-              (integer_literal))
-            (identifier))
-          (binary_expression
-            (call_expression
+            (integer_literal)
+            (integer_literal))
+          (logical_expression
+            (is_expression
               (identifier)
-              (arguments
-                (identifier)))
-            (binary_expression
+              (call_expression
+                (identifier)
+                (arguments
+                  (identifier))))
+            (logical_expression
               (binary_expression
                 (identifier)
                 (integer_literal))

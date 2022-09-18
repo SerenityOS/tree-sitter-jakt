@@ -46,16 +46,16 @@ function main() {
           (arguments
             (integer_literal))))
       (guard_statement
-        (is_expression
-          (identifier)
-          (binary_expression
+        (logical_expression
+          (is_expression
+            (identifier)
             (call_expression
               (identifier)
               (arguments
-                (identifier)))
-            (binary_expression
-              (identifier)
-              (integer_literal))))
+                (identifier))))
+          (binary_expression
+            (identifier)
+            (integer_literal)))
         (block
           (call_expression
             (identifier)

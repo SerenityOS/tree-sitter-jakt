@@ -23,7 +23,7 @@ function toss(anon value: i32) throws {
     (primitive_type)
     (block
       (if_statement
-        (logical_not
+        (logical_expression
           (boolean_literal))
         (block
           (throw_statement

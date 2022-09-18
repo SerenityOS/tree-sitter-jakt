@@ -466,7 +466,7 @@ function main() {
                 (identifier))
               (arguments)))
           (if_statement
-            (logical_not
+            (logical_expression
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -489,14 +489,14 @@ function main() {
             (this_reference)))
         (block
           (while_statement
-            (logical_not
+            (logical_expression
               (call_expression
                 (this_reference_shorthand
                   (identifier))
                 (arguments)))
             (block
               (if_statement
-                (logical_not
+                (logical_expression
                   (call_expression
                     (identifier)
                     (arguments
@@ -523,7 +523,7 @@ function main() {
         (primitive_type)
         (block
           (if_statement
-            (logical_not
+            (logical_expression
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -575,7 +575,7 @@ function main() {
                       (arguments
                         (identifier))))
                   (if_statement
-                    (binary_expression
+                    (logical_expression
                       (binary_expression
                         (identifier)
                         (byte_literal))
@@ -736,7 +736,7 @@ function main() {
                           (arguments
                             (integer_literal))))))))))
           (if_statement
-            (logical_not
+            (logical_expression
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -973,7 +973,7 @@ function main() {
             (array_literal))
           (if_statement
             (parenthesized_expression
-              (logical_not
+              (logical_expression
                 (call_expression
                   (this_reference_shorthand
                     (identifier))
@@ -1025,7 +1025,7 @@ function main() {
                 (block
                   (identifier)))
               (if_statement
-                (logical_not
+                (logical_expression
                   (call_expression
                     (this_reference_shorthand
                       (identifier))
@@ -1059,7 +1059,7 @@ function main() {
                       (arguments
                         (integer_literal))))))))
           (if_statement
-            (logical_not
+            (logical_expression
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -1089,7 +1089,7 @@ function main() {
         (type_identifier)
         (block
           (if_statement
-            (logical_not
+            (logical_expression
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -1140,7 +1140,7 @@ function main() {
                   (identifier))
                 (arguments))
               (if_statement
-                (logical_not
+                (logical_expression
                   (call_expression
                     (this_reference_shorthand
                       (identifier))
@@ -1186,7 +1186,7 @@ function main() {
                 (block
                   (identifier)))
               (if_statement
-                (logical_not
+                (logical_expression
                   (call_expression
                     (this_reference_shorthand
                       (identifier))
@@ -1220,7 +1220,7 @@ function main() {
                       (arguments
                         (integer_literal))))))))
           (if_statement
-            (logical_not
+            (logical_expression
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -1334,7 +1334,7 @@ function main() {
             (identifier)
             (float_literal))
           (while_statement
-            (logical_not
+            (logical_expression
               (call_expression
                 (this_reference_shorthand
                   (identifier))
@@ -1373,9 +1373,9 @@ function main() {
                   (continue_statement))
                 (else_clause
                   (if_statement
-                    (logical_not
+                    (logical_expression
                       (parenthesized_expression
-                        (binary_expression
+                        (logical_expression
                           (binary_expression
                             (identifier)
                             (byte_literal))
@@ -1385,7 +1385,7 @@ function main() {
                     (block
                       (identifier)))))
               (if_statement
-                (logical_not
+                (logical_expression
                   (call_expression
                     (field_expression
                       (identifier)
@@ -1482,28 +1482,28 @@ function main() {
         (block
           (if_statement
             (parenthesized_expression
-              (binary_expression
+              (logical_expression
                 (binary_expression
                   (call_expression
                     (this_reference_shorthand
                       (identifier))
                     (arguments))
                   (byte_literal))
-                (binary_expression
+                (logical_expression
                   (binary_expression
                     (call_expression
                       (this_reference_shorthand
                         (identifier))
                       (arguments))
                     (byte_literal))
-                  (binary_expression
+                  (logical_expression
                     (binary_expression
                       (call_expression
                         (this_reference_shorthand
                           (identifier))
                         (arguments))
                       (byte_literal))
-                    (binary_expression
+                    (logical_expression
                       (binary_expression
                         (call_expression
                           (this_reference_shorthand
@@ -1541,21 +1541,21 @@ function main() {
         (block
           (if_statement
             (parenthesized_expression
-              (binary_expression
+              (logical_expression
                 (binary_expression
                   (call_expression
                     (this_reference_shorthand
                       (identifier))
                     (arguments))
                   (byte_literal))
-                (binary_expression
+                (logical_expression
                   (binary_expression
                     (call_expression
                       (this_reference_shorthand
                         (identifier))
                       (arguments))
                     (byte_literal))
-                  (binary_expression
+                  (logical_expression
                     (binary_expression
                       (call_expression
                         (this_reference_shorthand
@@ -1593,21 +1593,21 @@ function main() {
         (block
           (if_statement
             (parenthesized_expression
-              (binary_expression
+              (logical_expression
                 (binary_expression
                   (call_expression
                     (this_reference_shorthand
                       (identifier))
                     (arguments))
                   (byte_literal))
-                (binary_expression
+                (logical_expression
                   (binary_expression
                     (call_expression
                       (this_reference_shorthand
                         (identifier))
                       (arguments))
                     (byte_literal))
-                  (binary_expression
+                  (logical_expression
                     (binary_expression
                       (call_expression
                         (this_reference_shorthand

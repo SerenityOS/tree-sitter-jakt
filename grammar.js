@@ -124,6 +124,7 @@ module.exports = grammar({
       $.this_reference,
       $.this_reference_shorthand,
       $.raw_pointer_specifier,
+      $.logical_expression,
       $.unary_expression,
       $.bitwisenot_expression,
       $.binary_expression,
@@ -139,7 +140,6 @@ module.exports = grammar({
       $.namespace_scope_expression,
       $.is_expression,
       $.type_conversion_expression,
-      $.logical_not,
       $.assignment_expression,
       $.none_expression,
       $.update_expression,
@@ -327,9 +327,16 @@ module.exports = grammar({
       prec.right($._primitive_types),
     ),
 
-    logical_not: $ =>  prec.left(seq(
-      'not',
-      $._expression,
+    logical_expression: $ =>  prec.right(choice(
+        seq(
+          field('opeator', 'not'),
+          field('operand', $._expression),
+        ),
+        seq(
+          field('left', $._expression),
+          field('operator', choice('and', 'or')),
+          field('right', $._expression),
+        ),
     )),
 
     assignment_expression: $ => prec.right(PREC.assign, seq(
@@ -599,8 +606,6 @@ module.exports = grammar({
 
     binary_expression: $ => {
       const table = [
-        [PREC.and, 'and'],
-        [PREC.or, 'or'],
         [PREC.bitand, '&', '&='],
         [PREC.bitor, '|', '|='],
         [PREC.bitxor, '^', '^='],

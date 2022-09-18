@@ -40,7 +40,7 @@ function main() {
             (arguments
               (identifier)))))
       (while_statement
-        (logical_not
+        (logical_expression
           (call_expression
             (field_expression
               (identifier)

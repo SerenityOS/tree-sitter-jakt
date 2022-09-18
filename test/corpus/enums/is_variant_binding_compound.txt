@@ -35,28 +35,28 @@ function main() {
           (arguments
             (integer_literal))))
       (if_statement
-        (is_expression
-          (identifier)
-          (binary_expression
+        (logical_expression
+          (is_expression
+            (identifier)
             (call_expression
               (identifier)
               (arguments
-                (identifier)))
+                (identifier))))
+          (logical_expression
             (binary_expression
+              (identifier)
+              (integer_literal))
+            (logical_expression
               (binary_expression
                 (identifier)
                 (integer_literal))
-              (binary_expression
+              (logical_expression
                 (binary_expression
                   (identifier)
                   (integer_literal))
                 (binary_expression
-                  (binary_expression
-                    (identifier)
-                    (integer_literal))
-                  (binary_expression
-                    (identifier)
-                    (integer_literal)))))))
+                  (identifier)
+                  (integer_literal))))))
         (block
           (call_expression
             (identifier)

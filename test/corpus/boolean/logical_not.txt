@@ -21,7 +21,7 @@ function main() {
     (parameters)
     (block
       (if_statement
-        (logical_not
+        (logical_expression
           (parenthesized_expression
             (binary_expression
               (integer_literal)
@@ -35,7 +35,7 @@ function main() {
         (identifier)
         (boolean_literal))
       (if_statement
-        (logical_not
+        (logical_expression
           (identifier))
         (block
           (call_expression
