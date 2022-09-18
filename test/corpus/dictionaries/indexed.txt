@@ -28,6 +28,6 @@ function main() {
         (identifier)
         (arguments
           (string_literal)
-          (array_expression
+          (array_index_expression
             (identifier)
             (string_literal)))))))

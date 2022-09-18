@@ -59,7 +59,7 @@ function main() {
               (arguments
                 (argument
                   (identifier)
-                  (array_expression
+                  (array_index_expression
                     (identifier)
                     (identifier)))))
             (block

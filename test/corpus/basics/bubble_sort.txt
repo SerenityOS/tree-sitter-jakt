@@ -78,32 +78,32 @@ function main() {
                 (integer_literal)))
             (block
               (if_statement
-                (binary_expression
-                  (array_expression
-                    (identifier)
-                    (identifier))
-                  (array_expression
-                    (identifier)
-                    (binary_expression
+                (array_index_expression
+                  (binary_expression
+                    (array_index_expression
                       (identifier)
-                      (integer_literal))))
+                      (identifier))
+                    (identifier))
+                  (binary_expression
+                    (identifier)
+                    (integer_literal)))
                 (block
                   (let_declaration
                     (identifier)
-                    (array_expression
+                    (array_index_expression
                       (identifier)
                       (identifier)))
                   (assignment_expression
-                    (array_expression
+                    (array_index_expression
                       (identifier)
                       (identifier))
-                    (array_expression
+                    (array_index_expression
                       (identifier)
                       (binary_expression
                         (identifier)
                         (integer_literal))))
                   (assignment_expression
-                    (array_expression
+                    (array_index_expression
                       (identifier)
                       (binary_expression
                         (identifier)
@@ -154,7 +154,7 @@ function main() {
             (identifier)
             (arguments
               (string_literal)
-              (array_expression
+              (array_index_expression
                 (identifier)
                 (identifier))))
           (update_expression

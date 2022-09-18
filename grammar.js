@@ -70,7 +70,6 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$._expression, $.array_expression],
     [$.namespace_scope_expression, $.namespace_call_expression],
     [$._simple_type, $.enum_variant],
     [$.set_literal, $.block],
@@ -152,6 +151,7 @@ module.exports = grammar({
       $.parenthesized_expression,
       $.optional_parenthesized_expression,
       $.try_expression,
+      $.array_index_expression,
     ),
 
     parenthesized_expression: $ => seq(
@@ -286,16 +286,18 @@ module.exports = grammar({
     call_expression: $ => prec(PREC.call, seq(
       field('callee', $._expression),
       field('arguments', $.arguments),
-      optional(choice($.optional_specifier, $.array_index_expression)),
-    ))),
+      optional($.optional_specifier)
+    )),
 
     generic_call_expression: $ => prec(PREC.call, prec.left(seq(
       field('function', $.generic_type),
       field('arguments', $.arguments),
-      optional(choice($.optional_specifier, $.array_index_expression)),
     ))),
 
-    array_index_expression: $ => field('value', seq('[', $._expression, ']')),
+    array_index_expression: $ => seq(
+        field('value', $._expression),
+        field('index', seq(token.immediate('['), $._expression, ']')),
+    ),
 
     range_expression: $ => prec.left(PREC.range, choice(
       seq($._expression, '..', $._expression),
@@ -353,20 +355,12 @@ module.exports = grammar({
       field('right', $._expression)
     )),
 
-    array_expression: $ => prec.right(seq(
+    array_expression: $ => prec.right(1, seq(
       choice($.identifier, $.this_reference_shorthand),
-      repeat(
-        seq(
-          '[',
-          choice(
-            seq(
-              sepBy(',', $._expression),
-              optional(',')
-            ),
-            $._expression,
-          ),
-          ']',
-        ),
+      seq(
+        '[',
+        optional(repeat(seq($._expression, optional(',')))),
+        ']',
       ),
     )),
 

@@ -23,7 +23,7 @@ function main() {
         (array_type
           (type_identifier))))
     (return_expression
-      (array_expression
+      (array_index_expression
         (identifier)
         (integer_literal))))
   (function_declaration

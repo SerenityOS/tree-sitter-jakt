@@ -53,7 +53,7 @@ function main() {
             (identifier)
             (arguments
               (string_literal)
-              (array_expression
+              (array_index_expression
                 (identifier)
                 (identifier))))
           (update_expression

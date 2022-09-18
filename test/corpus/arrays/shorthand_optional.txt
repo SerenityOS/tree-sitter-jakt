@@ -55,10 +55,10 @@ function main() {
         (identifier)
         (arguments
           (string_literal)
-          (call_expression
-            (field_expression
-              (identifier)
-              (field_identifier))
-            (arguments)
-            (array_index_expression
-              (integer_literal))))))))
+          (array_index_expression
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))
+            (integer_literal)))))))
