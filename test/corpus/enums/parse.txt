@@ -116,6 +116,36 @@ function main() {}
     (block)))
 
 ================================================================================
+Enums parse enum (isolated)
+================================================================================
+
+enum SimpleWithStructType {
+    A (
+        a: i32,
+        b: u32
+    )
+    B(i32)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_struct_variant
+        (identifier)
+        (field_declaration
+          (field_identifier)
+          (primitive_type))
+        (field_declaration
+          (field_identifier)
+          (primitive_type)))
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type)))))
+
+================================================================================
 Enums parse enum (no commas)
 ================================================================================
 

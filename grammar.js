@@ -523,10 +523,13 @@ module.exports = grammar({
     enum_struct_variant: $ => prec(-1, seq(
       field("name", $.identifier),
       '(',
-      choice(
-        $._type,
-        sepByPost(optional(choice('\n', ',')), seq($.field_declaration)),
-      ),
+        optional(
+          repeat1(
+            choice(
+              seq($.field_declaration, optional(choice('\n', ','))),
+            )
+          )
+        ),
       ')',
     )),
 
@@ -535,8 +538,8 @@ module.exports = grammar({
         optional(
           repeat1(
             choice(
-              seq($.field_declaration, optional(choice(',','\n'))),
               $.function_declaration,
+              seq($.field_declaration, optional(choice('\n', ','))),
               $.generic_function_declaration,
             )
           )
@@ -945,8 +948,4 @@ function sepBy1(sep, rule) {
 
 function sepBy(sep, rule) {
   return optional(sepBy1(sep, rule))
-}
-
-function sepByPost(sep, rule) {
-  return optional(sepBy1(rule, sep))
 }

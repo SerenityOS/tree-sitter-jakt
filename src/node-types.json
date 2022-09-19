@@ -1205,10 +1205,6 @@
       "required": false,
       "types": [
         {
-          "type": "_type",
-          "named": true
-        },
-        {
           "type": "field_declaration",
           "named": true
         }

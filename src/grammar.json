@@ -2601,80 +2601,45 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_type"
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "CHOICE",
-                            "members": [
-                              {
-                                "type": "STRING",
-                                "value": "\n"
-                              },
-                              {
-                                "type": "STRING",
-                                "value": ","
-                              }
-                            ]
-                          },
-                          {
-                            "type": "BLANK"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "REPEAT",
-                        "content": {
-                          "type": "SEQ",
+                "type": "REPEAT1",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "field_declaration"
+                        },
+                        {
+                          "type": "CHOICE",
                           "members": [
-                            {
-                              "type": "SEQ",
-                              "members": [
-                                {
-                                  "type": "SYMBOL",
-                                  "name": "field_declaration"
-                                }
-                              ]
-                            },
                             {
                               "type": "CHOICE",
                               "members": [
                                 {
-                                  "type": "CHOICE",
-                                  "members": [
-                                    {
-                                      "type": "STRING",
-                                      "value": "\n"
-                                    },
-                                    {
-                                      "type": "STRING",
-                                      "value": ","
-                                    }
-                                  ]
+                                  "type": "STRING",
+                                  "value": "\n"
                                 },
                                 {
-                                  "type": "BLANK"
+                                  "type": "STRING",
+                                  "value": ","
                                 }
                               ]
+                            },
+                            {
+                              "type": "BLANK"
                             }
                           ]
                         }
-                      }
-                    ]
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "BLANK"
               }
             ]
           },
@@ -2701,6 +2666,10 @@
                 "type": "CHOICE",
                 "members": [
                   {
+                    "type": "SYMBOL",
+                    "name": "function_declaration"
+                  },
+                  {
                     "type": "SEQ",
                     "members": [
                       {
@@ -2715,11 +2684,11 @@
                             "members": [
                               {
                                 "type": "STRING",
-                                "value": ","
+                                "value": "\n"
                               },
                               {
                                 "type": "STRING",
-                                "value": "\n"
+                                "value": ","
                               }
                             ]
                           },
@@ -2729,10 +2698,6 @@
                         ]
                       }
                     ]
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "function_declaration"
                   },
                   {
                     "type": "SYMBOL",
