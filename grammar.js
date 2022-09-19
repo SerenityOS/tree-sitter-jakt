@@ -565,7 +565,8 @@ module.exports = grammar({
 
     class_declaration: $ => seq(
       'class',
-      field('name', choice($._type_identifier)),
+      field('name', $._type_identifier),
+      optional(seq(':', field('parent', $._type_identifier))),
       field('body', $.field_declaration_list)
     ),
 

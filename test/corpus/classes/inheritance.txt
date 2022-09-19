@@ -1,0 +1,54 @@
+================================================================================
+Classes inheritance
+================================================================================
+
+ class Parent {
+    public function greet(this) {
+        println("I am the parent")
+    }
+}
+
+class Child: Parent {
+}
+
+function main() {
+    let child = Child()
+    child.greet()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (visibility_specifier)
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))))))))
+  (class_declaration
+    (type_identifier)
+    (type_identifier)
+    (field_declaration_list))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments)))))

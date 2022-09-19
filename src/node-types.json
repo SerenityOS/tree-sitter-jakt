@@ -794,6 +794,16 @@
             "named": true
           }
         ]
+      },
+      "parent": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
       }
     }
   },
