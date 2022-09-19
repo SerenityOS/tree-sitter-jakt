@@ -226,6 +226,10 @@
         "named": true
       },
       {
+        "type": "generic_class_declaration",
+        "named": true
+      },
+      {
         "type": "generic_function_declaration",
         "named": true
       },
@@ -1600,6 +1604,42 @@
         "types": [
           {
             "type": "generic_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "generic_class_declaration",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "field_declaration_list",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "generic_type",
+            "named": true
+          }
+        ]
+      },
+      "parent": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_identifier",
             "named": true
           }
         ]

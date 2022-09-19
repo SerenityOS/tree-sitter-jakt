@@ -111,6 +111,7 @@ module.exports = grammar({
       $.enum_declaration,
       $.struct_declaration,
       $.class_declaration,
+      $.generic_class_declaration,
       $.namespace_declaration,
       $.function_declaration,
       $.generic_function_declaration,
@@ -570,6 +571,13 @@ module.exports = grammar({
       field('body', $.field_declaration_list)
     ),
 
+    generic_class_declaration: $ => seq(
+      'class',
+      field('name', $.generic_type),
+      optional(seq(':', field('parent', $._type_identifier))),
+      field('body', $.field_declaration_list)
+    ),
+
     visibility_specifier: $ => choice('public', 'private'),
 
     mutable_specifier: $ => 'mut',
@@ -812,7 +820,7 @@ module.exports = grammar({
     )),
 
     generic_arguments: $ => seq(
-      token.immediate('<'),
+      '<',
       sepBy(optional(','), $._generic_argument),
       '>',
     ),

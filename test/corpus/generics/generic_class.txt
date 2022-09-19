@@ -1,0 +1,48 @@
+================================================================================
+Generics generic class
+================================================================================
+
+class Foo<T> {
+    public x: T
+}
+
+function main() {
+    let f = Foo(x: 100);
+
+    println("{}", f.x);
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (generic_class_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (type_identifier)))
+    (field_declaration_list
+      (field_declaration
+        (visibility_specifier)
+        (field_identifier)
+        (type_identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier))))))))

@@ -1,0 +1,60 @@
+================================================================================
+Generics generic class method
+================================================================================
+
+class A<T> {
+    public function test(this, anon x: T) => x
+}
+
+function main() {
+    let instance: A<String> = A()
+    println("{}", instance.test("PASS"))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (generic_class_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (type_identifier)))
+    (field_declaration_list
+      (function_declaration
+        (visibility_specifier)
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference))
+          (parameter
+            (anonymous_specifier)
+            (identifier)
+            (type_identifier)))
+        (return_expression
+          (identifier)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)))
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments
+                (argument
+                  (string_literal))))))))))
