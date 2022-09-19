@@ -91,7 +91,7 @@ function main() {
             (argument
               (array_expression
                 (identifier)
-                (ERROR)))
+                (range_expression)))
             (argument
               (identifier)))))
       (call_expression

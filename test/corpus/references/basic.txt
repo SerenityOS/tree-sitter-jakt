@@ -38,12 +38,12 @@ function main() {
           (primitive_type))))
     (block
       (assignment_expression
-        (dereference_expression
+        (pointer_expression
           (identifier))
         (binary_expression
-          (dereference_expression
+          (pointer_expression
             (identifier))
-          (dereference_expression
+          (pointer_expression
             (identifier))))))
   (function_declaration
     (identifier)
@@ -62,15 +62,20 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (reference_expression
-            (identifier))
-          (reference_expression
-            (identifier))
-          (mutable_reference_expression
-            (mutable_specifier)
-            (identifier))))
+          (argument
+            (pointer_expression
+              (identifier)))
+          (argument
+            (pointer_expression
+              (identifier)))
+          (argument
+            (pointer_expression
+              (mutable_specifier)
+              (identifier)))))
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (identifier))))))
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

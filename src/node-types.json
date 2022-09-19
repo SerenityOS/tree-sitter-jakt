@@ -56,10 +56,6 @@
         "named": true
       },
       {
-        "type": "mutable_reference_expression",
-        "named": true
-      },
-      {
         "type": "namespace_call_expression",
         "named": true
       },
@@ -81,6 +77,10 @@
       },
       {
         "type": "parenthesized_expression",
+        "named": true
+      },
+      {
+        "type": "pointer_expression",
         "named": true
       },
       {
@@ -752,9 +752,23 @@
           {
             "type": "&",
             "named": false
+          },
+          {
+            "type": "*",
+            "named": false
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "mutable_specifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1138,6 +1152,10 @@
           {
             "type": "optional_type",
             "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
           }
         ]
       },
@@ -1301,7 +1319,7 @@
         ]
       },
       "return_type": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -1309,7 +1327,7 @@
             "named": true
           },
           {
-            "type": "raw_pointer_specifier",
+            "type": "pointer_type",
             "named": true
           }
         ]
@@ -1504,6 +1522,10 @@
           {
             "type": "optional_type",
             "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
           }
         ]
       },
@@ -1617,7 +1639,7 @@
         ]
       },
       "return_type": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -1626,10 +1648,6 @@
           },
           {
             "type": "optional_type",
-            "named": true
-          },
-          {
-            "type": "raw_pointer_specifier",
             "named": true
           },
           {
@@ -2103,36 +2121,6 @@
     }
   },
   {
-    "type": "mutable_reference_expression",
-    "named": true,
-    "fields": {
-      "operand": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "operator": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "&",
-            "named": false
-          },
-          {
-            "type": "mutable_specifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "namespace_call_expression",
     "named": true,
     "fields": {
@@ -2317,7 +2305,7 @@
         ]
       },
       "type": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -2329,7 +2317,7 @@
             "named": true
           },
           {
-            "type": "raw_pointer_specifier",
+            "type": "pointer_type",
             "named": true
           }
         ]
@@ -2385,22 +2373,7 @@
     }
   },
   {
-    "type": "range_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "raw_pointer_specifier",
+    "type": "pointer_expression",
     "named": true,
     "fields": {
       "operand": {
@@ -2415,14 +2388,69 @@
       },
       "operator": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "&",
             "named": false
+          },
+          {
+            "type": "*",
+            "named": false
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "mutable_specifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pointer_type",
+    "named": true,
+    "fields": {
+      "qualifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "raw",
+            "named": false
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "range_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
     }
   },
   {

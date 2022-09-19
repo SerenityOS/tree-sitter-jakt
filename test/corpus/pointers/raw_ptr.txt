@@ -23,12 +23,14 @@ function main() {
         (integer_literal))
       (let_declaration
         (identifier)
-        (raw_pointer_specifier))
-      (identifier)
+        (pointer_expression
+          (identifier)))
       (unsafe_block
         (call_expression
           (identifier)
           (arguments
-            (string_literal)
-            (dereference_expression
-              (identifier))))))))
+            (argument
+              (string_literal))
+            (argument
+              (pointer_expression
+                (identifier)))))))))

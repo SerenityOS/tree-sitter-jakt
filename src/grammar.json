@@ -251,7 +251,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "mutable_reference_expression"
+          "name": "pointer_expression"
         },
         {
           "type": "SYMBOL",
@@ -1074,6 +1074,14 @@
                 ]
               }
             ]
+          },
+          {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": ".."
+            }
           }
         ]
       }
@@ -1527,71 +1535,9 @@
         ]
       }
     },
-    "raw_pointer_specifier": {
+    "pointer_expression": {
       "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "operator",
-                "content": {
-                  "type": "STRING",
-                  "value": "&"
-                }
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "STRING",
-            "value": "raw"
-          },
-          {
-            "type": "FIELD",
-            "name": "operand",
-            "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
-            }
-          }
-        ]
-      }
-    },
-    "reference_expression": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "operator",
-            "content": {
-              "type": "STRING",
-              "value": "&"
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "operand",
-            "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
-            }
-          }
-        ]
-      }
-    },
-    "dereference_expression": {
-      "type": "PREC_LEFT",
-      "value": 0,
+      "value": 1,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1603,10 +1549,35 @@
               "members": [
                 {
                   "type": "STRING",
+                  "value": "&"
+                },
+                {
+                  "type": "STRING",
                   "value": "*"
                 }
               ]
             }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "raw"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "mutable_specifier"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           },
           {
             "type": "FIELD",
@@ -1619,32 +1590,28 @@
         ]
       }
     },
-    "mutable_reference_expression": {
+    "pointer_type": {
       "type": "PREC_LEFT",
-      "value": 0,
+      "value": 1,
       "content": {
         "type": "SEQ",
         "members": [
           {
             "type": "FIELD",
-            "name": "operator",
+            "name": "qualifier",
             "content": {
-              "type": "SEQ",
+              "type": "CHOICE",
               "members": [
                 {
                   "type": "STRING",
-                  "value": "&"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "mutable_specifier"
+                  "value": "raw"
                 }
               ]
             }
           },
           {
             "type": "FIELD",
-            "name": "operand",
+            "name": "type",
             "content": {
               "type": "SYMBOL",
               "name": "identifier"
@@ -4664,6 +4631,10 @@
                         {
                           "type": "SYMBOL",
                           "name": "optional_type"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "pointer_type"
                         }
                       ]
                     }
@@ -4880,36 +4851,19 @@
                     "type": "FIELD",
                     "name": "return_type",
                     "content": {
-                      "type": "SEQ",
+                      "type": "CHOICE",
                       "members": [
                         {
-                          "type": "CHOICE",
-                          "members": [
-                            {
-                              "type": "SYMBOL",
-                              "name": "raw_pointer_specifier"
-                            },
-                            {
-                              "type": "BLANK"
-                            }
-                          ]
+                          "type": "SYMBOL",
+                          "name": "_type_identifier"
                         },
                         {
-                          "type": "CHOICE",
-                          "members": [
-                            {
-                              "type": "SYMBOL",
-                              "name": "_type_identifier"
-                            },
-                            {
-                              "type": "SYMBOL",
-                              "name": "generic_type"
-                            },
-                            {
-                              "type": "SYMBOL",
-                              "name": "optional_type"
-                            }
-                          ]
+                          "type": "SYMBOL",
+                          "name": "generic_type"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "optional_type"
                         }
                       ]
                     }
@@ -4994,23 +4948,15 @@
                   "type": "FIELD",
                   "name": "return_type",
                   "content": {
-                    "type": "SEQ",
+                    "type": "CHOICE",
                     "members": [
-                      {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "raw_pointer_specifier"
-                          },
-                          {
-                            "type": "BLANK"
-                          }
-                        ]
-                      },
                       {
                         "type": "SYMBOL",
                         "name": "_type"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "pointer_type"
                       }
                     ]
                   }
@@ -5241,25 +5187,12 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "raw_pointer_specifier"
-                          },
-                          {
-                            "type": "BLANK"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_type"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "_type"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "pointer_type"
                   },
                   {
                     "type": "SYMBOL",
@@ -5348,7 +5281,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "reference_expression"
+                "name": "pointer_expression"
               }
             ]
           },

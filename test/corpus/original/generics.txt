@@ -62,6 +62,6 @@ function null<T>() -> raw T {
       (generic_arguments
         (type_identifier)))
     (parameters)
-    (raw_pointer_specifier)
-    (type_identifier)
-    (block)))
+    (type_identifier))
+  (identifier)
+  (block))

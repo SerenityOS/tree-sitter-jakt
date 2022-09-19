@@ -48,8 +48,9 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (reference_expression
-            (identifier))))
+          (argument
+            (pointer_expression
+              (identifier)))))
       (mutable_declaration
         (mutable_specifier)
         (identifier)
@@ -57,10 +58,12 @@ function main() {
       (call_expression
         (identifier)
         (arguments
-          (mutable_reference_expression
-            (mutable_specifier)
-            (identifier))))
+          (argument
+            (pointer_expression
+              (mutable_specifier)
+              (identifier)))))
       (call_expression
         (identifier)
         (arguments
-          (string_literal))))))
+          (argument
+            (string_literal)))))))

@@ -69,8 +69,8 @@ function main() {
           (parameter
             (identifier)
             (primitive_type)))
-        (raw_pointer_specifier)
-        (primitive_type))
+        (pointer_type
+          (identifier)))
       (extern_function_declaration
         (extern_specifier)
         (identifier)
@@ -79,8 +79,8 @@ function main() {
             (anonymous_specifier)
             (mutable_specifier)
             (identifier)
-            (raw_pointer_specifier)
-            (primitive_type)))
+            (pointer_type
+              (identifier))))
         (primitive_type))))
   (import_statement
     (extern_specifier)
@@ -92,8 +92,8 @@ function main() {
         (parameters
           (parameter
             (identifier)
-            (raw_pointer_specifier)
-            (primitive_type))
+            (pointer_type
+              (identifier)))
           (parameter
             (identifier)
             (primitive_type)))
@@ -108,8 +108,8 @@ function main() {
           (parameter
             (mutable_specifier)
             (identifier)
-            (raw_pointer_specifier)
-            (primitive_type))
+            (pointer_type
+              (identifier)))
           (parameter
             (identifier)
             (primitive_type)))

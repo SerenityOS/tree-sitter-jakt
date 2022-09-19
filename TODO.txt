@@ -2,10 +2,6 @@
 
     Any extra tests should be considered "original"
 
-* rename "this_reference" to "type_qualifier"
-
-  do the same for all "*_specifier"
-
 * submit queries to https://github.com/nvim-treesitter/nvim-treesitter
 
     https://github.com/nvim-treesitter/nvim-treesitter/issues/2282

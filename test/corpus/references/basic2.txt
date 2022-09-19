@@ -37,7 +37,7 @@ function main() {
       (assignment_expression
         (field_expression
           (parenthesized_expression
-            (dereference_expression
+            (pointer_expression
               (identifier)))
           (field_identifier))
         (string_literal))))
@@ -59,13 +59,15 @@ function main() {
         (arguments
           (argument
             (identifier)
-            (mutable_reference_expression
+            (pointer_expression
               (mutable_specifier)
               (identifier)))))
       (call_expression
         (identifier)
         (arguments
-          (string_literal)
-          (field_expression
-            (identifier)
-            (field_identifier)))))))
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier))))))))

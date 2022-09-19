@@ -123,7 +123,6 @@ module.exports = grammar({
       $._literal,
       $.this_reference,
       $.this_reference_shorthand,
-      $.raw_pointer_specifier,
       $.logical_expression,
       $.unary_expression,
       $.bitwisenot_expression,
@@ -144,9 +143,7 @@ module.exports = grammar({
       $.none_expression,
       $.update_expression,
       $.match_expression,
-      $.reference_expression,
-      $.dereference_expression,
-      $.mutable_reference_expression,
+      $.pointer_expression,
       $.parenthesized_expression,
       $.try_expression,
       $.array_expression,
@@ -284,12 +281,12 @@ module.exports = grammar({
       field('arguments', $.arguments),
     ))),
 
-    range_expression: $ => prec.right(PREC.range, choice(
-      seq($._expression, '..', $._expression),
-      // for some reason wrapping the last expression in optional in the previous statement does not work...
-      seq($._expression, '..'),
-      '..'
-    )),
+    range_expression: $ => prec.right(PREC.range,
+      choice(
+        seq($._expression, '..', optional($._expression)),
+        prec(1, '..'),
+      ),
+    ),
 
     field_expression: $ => prec(PREC.field, seq(
       field('value', choice($.this_reference, $._expression)),
@@ -356,25 +353,15 @@ module.exports = grammar({
       ),
     )),
 
-    raw_pointer_specifier: $ => prec.left(seq(
-      optional(field('operator', '&')),
-      'raw',
-      optional(field('operand', $.identifier)),
-    )),
-
-    reference_expression: $ => prec.left(seq(
-      field('operator', choice('&')),
+    pointer_expression: $ => prec.left(1, seq(
+      field('operator', choice('&', '*')),
+      optional(choice('raw', $.mutable_specifier)),
       field('operand', $.identifier),
     )),
 
-    dereference_expression: $ => prec.left(seq(
-      field('operator', choice('*')),
-      field('operand', $.identifier),
-    )),
-
-    mutable_reference_expression: $ => prec.left(seq(
-      field('operator', seq('&' , $.mutable_specifier)),
-      field('operand', $.identifier),
+    pointer_type: $ => prec.left(1, seq(
+      field("qualifier", choice('raw')),
+      field('type', $.identifier),
     )),
 
     optional_expression: $ => prec.left(seq(
@@ -811,7 +798,7 @@ module.exports = grammar({
       field('name', $.identifier),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
-      optional(seq('->', field('return_type', choice($._type, $.optional_type)))),
+      optional(seq('->', field('return_type', choice($._type, $.optional_type, $.pointer_type)))),
       optional(field('body', choice($.return_expression, $.block))),
     )),
 
@@ -836,7 +823,7 @@ module.exports = grammar({
       field('name', $.generic_type),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
-      optional(seq('->', field('return_type', seq(optional($.raw_pointer_specifier), choice($._type_identifier,$.generic_type, $.optional_type))))),
+      optional(seq('->', field('return_type', choice($._type_identifier,$.generic_type, $.optional_type)))),
       optional(field('body', choice($.return_expression, $.block))),
     )),
 
@@ -847,7 +834,7 @@ module.exports = grammar({
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters),
-      optional(seq('->', field('return_type', seq(optional($.raw_pointer_specifier), $._type)))),
+      optional(seq('->', field('return_type', choice($._type, $.pointer_type)))),
     ),
 
     throws_specifier: $ => seq('throws'),
@@ -883,7 +870,8 @@ module.exports = grammar({
       ':',
       field('type', seq(
         choice(
-          seq(optional($.raw_pointer_specifier), $._type),
+          $._type,
+          $.pointer_type,
           $.optional_type,
         ),
       )),
@@ -898,7 +886,7 @@ module.exports = grammar({
 
     _closure_capture_reference: $ => seq(
       '[',
-      alias(choice($.identifier, $.reference_expression), $.capture_reference),
+      alias(choice($.identifier, $.pointer_expression), $.capture_reference),
       ']',
     ),
 
