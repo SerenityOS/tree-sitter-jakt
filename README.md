@@ -29,7 +29,7 @@ Note: this step is only temporary. The highlighter will eventually be added to t
 
 1. Add the following to the neovim (lua) config:
 
-   ```
+   ```lua
    local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
    parser_config.jakt = {
      install_info = {
@@ -69,5 +69,11 @@ Note: this step is only temporary. The highlighter will eventually be added to t
 1. `jakt` should be contained in the tree-sitter parsers and should it should have a check
    under `highlight`.
 
-1. Load a jakt source file and set filetype to jakt and enjoy
+1. Configure filetype detection
+ 
+   ```lua
+   vim.filetype.add { extension = { jakt = "jakt"} }
+   ```
+   
+1. Open a jakt file
 
