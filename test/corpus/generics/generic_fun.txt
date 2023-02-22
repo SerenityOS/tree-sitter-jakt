@@ -1,10 +1,13 @@
 ================================================================================
-Generics generic fun
+Generics Generic Fun ID=43OH82R
 ================================================================================
 
-function id<T>(anon x: T) => x
+/// Expect:
+/// - output: "3\n"
 
-function main() {
+fn id<T>(anon x: T) => x
+
+fn main() {
     println("{}", id(3))
 }
 

@@ -1,14 +1,17 @@
 ================================================================================
-Generics static
+Generics Generic Static ID=1GQBKP4
 ================================================================================
 
+/// Expect:
+/// - output: "1\n"
+
 struct Test {
-    function test<T>(foo: T) -> T {
+    fn test<T>(foo: T) -> T {
         return foo;
     }
 }
 
-function main() {
+fn main() {
     println("{}", Test::test(foo: 1));
 }
 

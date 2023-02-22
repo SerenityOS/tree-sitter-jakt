@@ -1,16 +1,19 @@
 ================================================================================
-Structs this dot shorthand
+Structs This Dot Shorthand ID=2252WOY
 ================================================================================
+
+/// Expect:
+/// - output: "30\n"
 
 struct Size {
     width: i64
     height: i64
 
-    function area(this) => .width * .height
+    fn area(this) -> i64 => .width * .height
 }
 
 
-function main() {
+fn main() {
     let s = Size(width: 5, height: 6)
     println("{}", s.area())
 }

@@ -1,12 +1,15 @@
 ================================================================================
-Enums is variant binding compound unmatched
+Enums Is Variant Binding Compound Unmatched ID=WE3M4W8
 ================================================================================
+
+/// Expect:
+/// - output: "did not match\n"
 
 enum Foo {
     Bar(i64)
 }
 
-function main() {
+fn main() {
     let foo = Foo::Bar(5)
 
     if foo is Bar(n) and n > 5 {
@@ -14,7 +17,7 @@ function main() {
     } else {
         println("did not match")
     }
-}
+} 
 
 --------------------------------------------------------------------------------
 

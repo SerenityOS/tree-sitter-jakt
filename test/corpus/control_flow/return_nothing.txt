@@ -1,15 +1,18 @@
 ================================================================================
-Control flow return nothing
+Control Flow Return Nothing ID=SZ1MME9
 ================================================================================
 
-function foo() {
+/// Expect:
+/// - output: "PASS\n"
+
+fn foo() {
     if true {
         println("PASS")
         return
     }
 }
 
-function main() {
+fn main() {
     foo()
 }
 

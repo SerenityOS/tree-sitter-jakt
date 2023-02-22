@@ -1,12 +1,15 @@
 ================================================================================
-Optional format
+Optional Format ID=7LRWEG3
 ================================================================================
+
+/// Expect:
+/// - output: "None, Foo(x: 5)\n"
 
 struct Foo {
     x: i64?
 }
 
-function main() {
+fn main() {
     let y: i64? = None
     println("{}, {}", y, Foo(x: 5))
 }

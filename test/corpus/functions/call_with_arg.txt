@@ -1,8 +1,17 @@
 ================================================================================
-Function call with arg
+Functions Call With Arg ID=W26I9OA
 ================================================================================
 
-greet(msg: "Well, hello friends.")
+/// Expect:
+/// - output: "Well, hello friends.\n"
+
+fn greet(msg: String) {
+    println("{}", msg)
+}
+
+fn main() {
+    greet(msg: "Well, hello friends.")
+}
 
 --------------------------------------------------------------------------------
 

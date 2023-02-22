@@ -1,12 +1,15 @@
 ================================================================================
-Generics generic fun 4
+Generics Generic Fun4 ID=MPKVFUK
 ================================================================================
 
-function id<T>(anon x: T) -> T {
+/// Expect:
+/// - output: "1003\n"
+
+fn id<T>(anon x: T) -> T {
     return x;
 }
 
-function main() {
+fn main() {
     let y = id(3);
 
     println("{}", y + 1000)

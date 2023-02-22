@@ -1,12 +1,15 @@
 ================================================================================
-Tuples destructuring assignment
+Tuples Destructuring Assignment ID=576QKFP
 ================================================================================
 
-function foo() -> (i64, String) {
+/// Expect:
+/// - output: "1 hello\n"
+
+fn foo() -> (i64, String) {
     return (1, "hello")
 }
 
-function main() {
+fn main() {
     let (x1, x2) = foo()
     println("{} {}", x1, x2)
 }

@@ -1,12 +1,15 @@
 ================================================================================
-Optional throw while none coalescing
+Optional Throw While None Coalescing ID=0RN6WK9
 ================================================================================
 
-function troublemaker() throws -> i64 {
+/// Expect:
+/// - output: "PASS\n"
+
+fn troublemaker() throws -> i64 {
     throw Error::from_errno(0)
 }
 
-function main() {
+fn main() {
     let opt: i64? = None
     try {
         let foo = opt ?? troublemaker()

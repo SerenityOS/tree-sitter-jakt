@@ -1,13 +1,16 @@
 ================================================================================
-Enums is variant binding
+Enums Is Variant Binding ID=HSW26D8
 ================================================================================
+
+/// Expect:
+/// - output: "5 Hello\n"
 
 enum Foo {
     Bar(i64)
     Baz(m: String)
 }
 
-function main() {
+fn main() {
     let foo = Foo::Bar(5)
     let baz = Foo::Baz(m: "Hello")
 
@@ -16,7 +19,7 @@ function main() {
             println("{} {}", n, different)
         }
     }
-}
+} 
 
 --------------------------------------------------------------------------------
 

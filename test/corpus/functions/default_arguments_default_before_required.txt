@@ -1,0 +1,18 @@
+; ================================================================================
+; NOT IMPLEMENTED Functions Default Arguments Default Before Required ID=9820IJ8
+; ================================================================================
+; 
+; /// Expect:
+; /// - output: "Hello 5 false WHF 121\n"
+; 
+; fn say(text: String = "Hello", number: i64 = 5, boolean: bool = false, optional: String?, byte: u8) {
+;     println("{} {} {} {} {}", text, number, boolean, optional, byte)
+; }
+; 
+; fn main() {
+;     say(optional: "WHF", byte: b'y')
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

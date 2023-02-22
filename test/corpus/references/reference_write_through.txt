@@ -1,0 +1,20 @@
+; ================================================================================
+; NOT IMPLEMENTED References Reference Write Through ID=IG6JWKY
+; ================================================================================
+; 
+; /// Expect:
+; /// - error: "Attempt to rebind a reference will result in write-through\n"
+; 
+; fn main() {
+;     let i = 0
+;     mut ref = &i
+;     {
+;         let x = 1
+;         ref = &x
+;     }
+;     println("{}", *ref)
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

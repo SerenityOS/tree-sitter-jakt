@@ -1,8 +1,14 @@
 ================================================================================
-Variables let declaration
+Variables Var ID=6YSC3OS
 ================================================================================
 
-let msg: String = "Well, hello friends."
+/// Expect:
+/// - output: "Well, hello friends.\n"
+
+fn main() {
+    let msg: String = "Well, hello friends."
+    println("{}", msg)
+}
 
 --------------------------------------------------------------------------------
 

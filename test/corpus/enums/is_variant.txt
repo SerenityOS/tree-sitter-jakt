@@ -1,13 +1,16 @@
 ================================================================================
-Enums is variant
+Enums Is Variant ID=910VCO6
 ================================================================================
+
+/// Expect:
+/// - output: "true\n"
 
 enum Foo {
     Bar
     Baz
 }
 
-function main() {
+fn main() {
     let foo = Foo::Bar;
     println("{}", foo is Bar);
 }

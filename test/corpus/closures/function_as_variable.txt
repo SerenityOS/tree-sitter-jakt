@@ -1,10 +1,13 @@
 ================================================================================
-Closures function as variable
+Closures Function As Variable ID=3H4RXBI
 ================================================================================
 
-function main() {
-    let cb = function() => "PASS"
-    let cb2: function() -> String = function() => "PASS"
+/// Expect:
+/// - output: "PASS\nPASS\n"
+
+fn main() {
+    let cb = fn() => "PASS"
+    let cb2: fn() -> String = fn() => "PASS"
     println("{}", cb())
     println("{}", cb2())
 }

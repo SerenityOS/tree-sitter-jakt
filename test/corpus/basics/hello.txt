@@ -1,8 +1,11 @@
 ================================================================================
-Basics hello friends
+Basics Hello ID=C9JB80L
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "Well, hello friends.\n"
+
+fn main() {
     println("Well, hello friends.")
 }
 

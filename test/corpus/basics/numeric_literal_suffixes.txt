@@ -1,31 +1,47 @@
 ================================================================================
-Basics numeric literal suffixes
+Basics Numeric Literal Suffixes ID=VZQL1OA
 ================================================================================
 
-mut a = 0uz
-a += 5 as! usize
+/// Expect:
+/// - output: "5\n5\n5\n5\n5\n5\n5\n5\n5\n"
 
-{
-    mut i = 0u8
-    mut j = 0u16
-    mut k = 0u32
-    mut l = 0u64
+fn main() {
+    mut a = 0uz
+    a += 5 as! usize
+    println("{}", a)
 
-    i += 5 as! u8
-    j += 5 as! u16
-    k += 5 as! u32
-    l += 5 as! u64
-}
-{
-    mut i = 0i8
-    mut j = 0i16
-    mut k = 0i32
-    mut l = 0i64
+    {
+        mut i = 0u8
+        mut j = 0u16
+        mut k = 0u32
+        mut l = 0u64
 
-    i += 5 as! i8
-    j += 5 as! i16
-    k += 5 as! i32
-    l += 5 as! i64
+        i += 5 as! u8
+        j += 5 as! u16
+        k += 5 as! u32
+        l += 5 as! u64
+        
+        println("{}", i)
+        println("{}", j)
+        println("{}", k)
+        println("{}", l)
+    }
+    {
+        mut i = 0i8
+        mut j = 0i16
+        mut k = 0i32
+        mut l = 0i64
+
+        i += 5 as! i8
+        j += 5 as! i16
+        k += 5 as! i32
+        l += 5 as! i64
+
+        println("{}", i)
+        println("{}", j)
+        println("{}", k)
+        println("{}", l)
+    }
 }
 
 --------------------------------------------------------------------------------

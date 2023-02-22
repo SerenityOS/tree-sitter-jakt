@@ -1,14 +1,27 @@
 ================================================================================
-Match catch all
+Match Match Catch All ID=M0CAE5T
 ================================================================================
 
-match x {
-    C => {
-    }
-    B => {
-    }
-    else => {
-        println("Correct!")
+/// Expect:
+/// - output: "Correct!\n"
+
+enum Foo {
+    A
+    B
+    C
+}
+
+fn main() {
+    let x = Foo::A()
+
+    match x {
+        C => {
+        }
+        B => {
+        }
+        else => {
+            println("Correct!")
+        }
     }
 }
 

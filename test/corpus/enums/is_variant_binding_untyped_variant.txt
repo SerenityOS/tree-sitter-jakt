@@ -1,13 +1,16 @@
 ================================================================================
-Enums is variant binding untyped variant
+Enums Is Variant Binding Untyped Variant ID=V5L4P0M
 ================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
 
 enum E {
     A(x: i64)
     B
 }
 
-function main() {
+fn main() {
     let e = E::B
     if e is A(x) and x == 5 {
         println("FAIL")

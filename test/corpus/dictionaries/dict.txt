@@ -1,8 +1,11 @@
 ================================================================================
-Dictionaries basic
+Dictionaries Dict ID=I6PVK9X
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "2\nfalse\n"
+
+fn main() {
     let dict = ["a": 1, "b": 2]
 
     println("{}", dict.get("b")!)

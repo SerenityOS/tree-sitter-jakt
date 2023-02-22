@@ -1,0 +1,22 @@
+; ================================================================================
+; NOT IMPLEMENTED Enums Methods Access Violation ID=CZ4BWJU
+; ================================================================================
+; 
+; /// Expect:
+; /// - error: "Can't access method ‘test’, because it is marked private\n"
+; 
+; enum Foo {
+;     Bar
+; 
+;     private fn test(this) {
+;     }
+; }
+; 
+; fn main() {
+;     let x = Foo::Bar()
+;     x.test() // Should not compile, access violation.
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

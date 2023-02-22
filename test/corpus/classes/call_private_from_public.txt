@@ -1,17 +1,20 @@
 ================================================================================
-Classes call private from public
+Classes Call Private From Public ID=I53B3HF
 ================================================================================
 
+/// Expect:
+/// - output: "PASS\n"
+
 class Class {
-    function private_function(this) {
+    fn private_function(this) {
         println("PASS")
     }
-    public function public_function(this) {
+    public fn public_function(this) {
         this.private_function()
     }
 }
 
-function main() {
+fn main() {
     let c = Class()
     c.public_function()
 }

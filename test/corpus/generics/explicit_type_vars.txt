@@ -1,8 +1,11 @@
 ================================================================================
-Generics explicit type vars
+Generics Explicit Type Vars ID=UHDYM6W
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "123\n"
+
+fn main() {
     mut item = Dictionary<String, i64>();
 
     item.set(key: "bob", value: 123);

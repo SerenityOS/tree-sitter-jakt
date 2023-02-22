@@ -1,12 +1,15 @@
 ================================================================================
-Dictionaries reference semantics
+Dictionaries Reference Semantics ID=L2IAH6M
 ================================================================================
 
-function change_value(mut dictionary: [String:String]) throws {
+/// Expect:
+/// - output: "PASS\n"
+
+fn change_value(mut dictionary: [String:String]) throws {
     dictionary.set(key: "foo", value: "PASS")
 }
 
-function main() {
+fn main() {
     mut dictionary = ["foo": "FAIL", "bar": ":^)"]
     change_value(dictionary)
 

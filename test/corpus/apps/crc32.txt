@@ -1,8 +1,13 @@
 ================================================================================
-Apps crc32
+Apps Crc32 ID=CGIP1MD
 ================================================================================
 
-function make_lookup_table() throws -> [u32] {
+/// Expect:
+/// - stderr: "usage: crc32 <path>\n"
+
+import jakt::libc::io { fopen, fclose, fgetc, feof }
+
+fn make_lookup_table() throws -> [u32] {
     mut data = [0u32; 256]
     for i in 0..data.size() {
         mut value = i as! u32
@@ -18,7 +23,7 @@ function make_lookup_table() throws -> [u32] {
     return data
 }
 
-function main(args: [String]) {
+fn main(args: [String]) -> c_int {
     if args.size() <= 1 {
         eprintln("usage: crc32 <path>")
         return 1
@@ -38,6 +43,7 @@ function main(args: [String]) {
 
     let digest = ~state
     println("{}", digest)
+    return 0
 }
 
 --------------------------------------------------------------------------------

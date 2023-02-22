@@ -1,6 +1,9 @@
 ================================================================================
-Enums parse enum
+Enums Parse ID=KYUGWCW
 ================================================================================
+
+/// Expect:
+/// - output: ""
 
 enum Simple {
     A
@@ -37,150 +40,7 @@ enum IntegralWithUnderlyingType: i32 {
     Two
 }
 
-function main() {}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (enum_declaration
-    (type_identifier)
-    (enum_variant_list
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier))))
-  (enum_declaration
-    (type_identifier)
-    (enum_variant_list
-      (enum_tuple_variant
-        (identifier)
-        (primitive_type))
-      (enum_tuple_variant
-        (identifier)
-        (primitive_type))))
-  (enum_declaration
-    (type_identifier)
-    (enum_variant_list
-      (enum_struct_variant
-        (identifier)
-        (field_declaration
-          (field_identifier)
-          (primitive_type))
-        (field_declaration
-          (field_identifier)
-          (primitive_type)))
-      (enum_tuple_variant
-        (identifier)
-        (primitive_type))))
-  (enum_declaration
-    (generic_type
-      (identifier)
-      (generic_arguments
-        (type_identifier)))
-    (enum_variant_list
-      (enum_tuple_variant
-        (identifier)
-        (type_identifier))
-      (enum_variant
-        (identifier))))
-  (enum_declaration
-    (generic_type
-      (identifier)
-      (generic_arguments
-        (type_identifier)
-        (type_identifier)))
-    (enum_variant_list
-      (enum_tuple_variant
-        (identifier)
-        (type_identifier))
-      (enum_tuple_variant
-        (identifier)
-        (type_identifier))))
-  (enum_declaration
-    (enum_integral_type
-      (identifier)
-      (primitive_type))
-    (enum_variant_list
-      (enum_variant
-        (identifier))
-      (enum_variant
-        (identifier)
-        (integer_literal))
-      (enum_variant
-        (identifier))))
-  (function_declaration
-    (identifier)
-    (parameters)
-    (block)))
-
-================================================================================
-Enums parse enum (isolated)
-================================================================================
-
-enum SimpleWithStructType {
-    A (
-        a: i32,
-        b: u32
-    )
-    B(i32)
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (enum_declaration
-    (type_identifier)
-    (enum_variant_list
-      (enum_struct_variant
-        (identifier)
-        (field_declaration
-          (field_identifier)
-          (primitive_type))
-        (field_declaration
-          (field_identifier)
-          (primitive_type)))
-      (enum_tuple_variant
-        (identifier)
-        (primitive_type)))))
-
-================================================================================
-Enums parse enum (no commas)
-================================================================================
-
-enum SimpleWithStructType {
-    A ( a: i32 b: u32)
-    B(i32)
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (enum_declaration
-    (type_identifier)
-    (enum_variant_list
-      (enum_struct_variant
-        (identifier)
-        (field_declaration
-          (field_identifier)
-          (primitive_type))
-        (field_declaration
-          (field_identifier)
-          (primitive_type)))
-      (enum_tuple_variant
-        (identifier)
-        (primitive_type)))))
-
-================================================================================
-Enums parse enum (one comma)
-================================================================================
-
-enum SimpleWithStructType {
-    A ( a: i32,
-    b: u32)
-    B(i32)
-}
+fn main() {}
 
 --------------------------------------------------------------------------------
 

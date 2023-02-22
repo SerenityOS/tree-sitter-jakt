@@ -1,13 +1,20 @@
 ================================================================================
-Import submodules
+Modules Sub Modules ID=KY8XRG5
 ================================================================================
+
+/// Expect:
+/// - output: "something_cool\nsomething_else_cool\nnot_cool\nprinted\nHello\n"
+/// - cppincludes: "subfolder"
 
 import a
 import b
+import subfolder::submodule { get_hello, Printer }
 
-function main() {
+fn main() {
     a::use_cool_things()
     b::not_cool()
+    Printer::print_something()
+    println("{}", get_hello())
 }
 
 --------------------------------------------------------------------------------

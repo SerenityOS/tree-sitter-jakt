@@ -1,12 +1,15 @@
 ================================================================================
-References basic
+References Basic ID=9YJ9OIT
 ================================================================================
 
-function sum(anon a: &i64, anon b: &i64, anon result: &mut i64) {
+/// Expect:
+/// - output: "3\n"
+
+fn sum(anon a: &i64, anon b: &i64, anon result: &mut i64) {
     *result = *a + *b
 }
 
-function main() {
+fn main() {
     let x = 1
     let y = 2
     mut result = 0

@@ -1,8 +1,13 @@
 ================================================================================
-Apps cat sys open
+Apps Cat ID=7A9J1HO
 ================================================================================
 
-function main(args: [String]) {
+/// Expect:
+/// - stderr: "usage: cat <path>\n"
+
+import jakt::libc::io { fopen, fclose, fgetc, feof, putchar }
+
+fn main(args: [String]) -> c_int {
     if args.size() <= 1 {
         eprintln("usage: cat <path>")
         return 1
@@ -18,6 +23,8 @@ function main(args: [String]) {
         putchar(c)
         c = fgetc(file)
     }
+
+    return 0
 }
 
 --------------------------------------------------------------------------------

@@ -1,0 +1,56 @@
+; ================================================================================
+; NOT IMPLEMENTED Traits Basic ID=YMFOFRG
+; ================================================================================
+; 
+; /// Expect:
+; /// - output: "100\n69\n"
+; 
+; // trait definition
+; trait Hashable {
+;     fn hash(this) -> u64
+; }
+; 
+; trait Bar {
+;     fn bar(mut this)
+; }
+; 
+; 
+; // implementation on a struct
+; struct S implements(Hashable, Bar) {
+;     fn hash(this) => 100u64
+;     fn bar(mut this) {
+;         println("S::bar")
+;     }
+; }
+; 
+; enum Baz implements(Hashable) {
+;     Foo
+;     Bar
+; 
+;     fn hash(this) -> u64 => match this {
+;         Foo => 44u64
+;         Bar => 100u64
+;     }
+; }
+; 
+; // implementing traits for builtin types can be done
+; // through a newtype pattern.
+; struct U64Hash implements(Hashable) {
+;     value: u64
+; 
+;     fn hash(this) -> u64 => .value
+; }
+; 
+; // trait requiremennt on function
+; fn print_hash<T requires(Hashable)>(anon value: T) {
+;     println("{}", value.hash())
+; }
+; 
+; fn main() {
+;     print_hash(S())
+;     print_hash(U64Hash(value: 69u64))
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

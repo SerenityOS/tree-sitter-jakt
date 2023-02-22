@@ -1,85 +1,17 @@
 ================================================================================
-Arrays shorthand optional
+Arrays Shorthand Optional ID=6B3B5JD
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "false\ntrue\n3\n"
+
+fn main() {
     let a: [i64]? = None
     let b: [i64]? = [1, 2, 3]
 
     println("{}", a.has_value())
     println("{}", b.has_value())
     println("{}", b.value()[2])
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (function_declaration
-    (identifier)
-    (parameters)
-    (block
-      (let_declaration
-        (identifier)
-        (optional_type
-          (array_type
-            (primitive_type)))
-        (none_expression))
-      (let_declaration
-        (identifier)
-        (optional_type
-          (array_type
-            (primitive_type)))
-        (array_literal
-          (integer_literal)
-          (integer_literal)
-          (integer_literal)))
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (call_expression
-              (field_expression
-                (identifier)
-                (field_identifier))
-              (arguments)))))
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (call_expression
-              (field_expression
-                (identifier)
-                (field_identifier))
-              (arguments)))))
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (array_expression
-              (call_expression
-                (field_expression
-                  (identifier)
-                  (field_identifier))
-                (arguments))
-              (integer_literal))))))))
-
-================================================================================
-Arrays shorthand optional (expressive)
-================================================================================
-
-function main() {
-    let a: [i64]? = None
-    let b: [i64]? = [1 2 3]
-
-    println("{}", a.has_value())
-    println("{}", b.has_value())
-    println("{}", b.value() [2])
 }
 
 --------------------------------------------------------------------------------

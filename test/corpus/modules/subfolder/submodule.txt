@@ -1,0 +1,17 @@
+; ================================================================================
+; NOT IMPLEMENTED Modules Subfolder Submodule ID=F00OXJG
+; ================================================================================
+; 
+; /// Expect: Skip
+; 
+; import extern "Hello.h" {
+;     extern fn get_hello() -> String
+; 
+;     extern class Printer {
+;         public fn print_something() -> void
+;     }
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

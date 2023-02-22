@@ -1,8 +1,11 @@
 ================================================================================
-Optional assignment
+Optional Assignment ID=YU8UE4V
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "hello\nPASS\n"
+
+fn main() {
     mut a: String? = None
     a = "hello"
     println("{}", a!)

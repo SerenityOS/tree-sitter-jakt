@@ -1,8 +1,11 @@
 ================================================================================
-Control flow defer
+Control Flow Defer ID=YNO529T
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "Hello\n friends!\n\n"
+
+fn main() {
     defer {
         println(" friends!\n")
     }

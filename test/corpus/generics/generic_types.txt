@@ -1,12 +1,15 @@
 ================================================================================
-Generics basic generic function
+Generics Generic Types ID=UNDGO2O
 ================================================================================
 
-function do_pop<T>(anon mut arr: [T]) -> Optional<T> {
+/// Expect:
+/// - output: "3\n"
+
+fn do_pop<T>(anon mut arr: [T]) -> Optional<T> {
   return arr.pop()
 }
 
-function main() {
+fn main() {
   mut arr = [1, 2, 3];
 
   println("{}", do_pop(arr)!)

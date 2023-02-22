@@ -1,10 +1,13 @@
 ================================================================================
-Generics generic fun 2
+Generics Generic Fun2 ID=PT3P19N
 ================================================================================
 
-function id<T>(anon x: T) => x
+/// Expect:
+/// - output: "13\n"
 
-function main() {
+fn id<T>(anon x: T) => x
+
+fn main() {
     println("{}", id(3) + 10)
 }
 

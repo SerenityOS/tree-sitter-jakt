@@ -1,0 +1,18 @@
+; ================================================================================
+; NOT IMPLEMENTED Functions Default Arguments Mixed ID=T3GXFKR
+; ================================================================================
+; 
+; /// Expect:
+; /// - output: "WHF 5 true None 97\n"
+; 
+; fn say(text: String, number: i64 = 5, boolean: bool, optional: String?, byte: u8 = b'a') {
+;     println("{} {} {} {} {}", text, number, boolean, optional, byte)
+; }
+; 
+; fn main() {
+;     say(text: "WHF", boolean: true, optional: None)
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

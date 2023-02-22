@@ -1,13 +1,18 @@
 ================================================================================
-String builder
+Strings String Builder ID=YUOST9D
 ================================================================================
 
-mut s = StringBuilder::create()
+/// Expect:
+/// - output: "abc123\n"
 
-s.append_c_string("abc".c_string());
-s.append_c_string("123".c_string());
+fn main() {
+    mut s = StringBuilder::create()
 
-println("{}", s.to_string())
+    s.append_c_string("abc".c_string());
+    s.append_c_string("123".c_string());
+
+    println("{}", s.to_string())
+}
 
 --------------------------------------------------------------------------------
 

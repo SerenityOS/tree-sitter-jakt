@@ -1,12 +1,15 @@
 ================================================================================
-Guard is guard no exit
+Guard Is Guard No Exit ID=BCNTT86
 ================================================================================
+
+/// Expect:
+/// - error: "Else block of guard must either `return`, `break`, `continue`, or `throw`"
 
 enum Foo {
     Bar(i64)
 }
 
-function main() {
+fn main() {
     let foo = Foo::Bar(5)
     let bar = Foo::Bar(7)
 

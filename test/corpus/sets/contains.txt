@@ -1,8 +1,11 @@
 ================================================================================
-Set contains
+Sets Contains ID=XHV6FMA
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "true\nfalse\n"
+
+fn main() {
     let set = {"a", "b"}
     println("{}", set.contains("b"))
     println("{}", set.contains("c"))

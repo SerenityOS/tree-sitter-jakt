@@ -1,12 +1,15 @@
 ================================================================================
-Guard is guard compound unmatched
+Guard Is Guard Compound Unmatched ID=XNXRAOC
 ================================================================================
+
+/// Expect:
+/// - output: "not matched\n"
 
 enum Foo {
     Bar(i64)
 }
 
-function main() {
+fn main() -> c_int {
     let foo = Foo::Bar(5)
     let bar = Foo::Bar(7)
 
@@ -16,6 +19,7 @@ function main() {
     }
 
     println("hello there: {}", x)
+    return 1
 }
 
 --------------------------------------------------------------------------------

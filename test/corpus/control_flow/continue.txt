@@ -1,12 +1,18 @@
 ================================================================================
-While loop with continue
+Control Flow Continue ID=549M4GT
 ================================================================================
 
-mut i = 0
-while i < 10 {
-    i++
-    if i % 2 == 0 {
-        continue
+/// Expect:
+/// - output: "1\n3\n5\n7\n9\n"
+
+fn main() {
+    mut i = 0
+    while i < 10 {
+        i++
+        if i % 2 == 0 {
+            continue
+        }
+        println("{}", i)
     }
 }
 

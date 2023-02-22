@@ -1,8 +1,23 @@
 ================================================================================
-Enum on single line
+Enums One Line Enum Declaration ID=ILM1883
 ================================================================================
 
+/// Expect:
+/// - output: "Granny Smith\n"
+
 enum Apple { GrannySmith }
+
+fn apple_name(apple: Apple) {
+    match (apple) {
+        Apple::GrannySmith => {
+            println("Granny Smith")
+        }
+    }
+}
+
+fn main() {
+    apple_name(apple: Apple::GrannySmith())
+}
 
 --------------------------------------------------------------------------------
 

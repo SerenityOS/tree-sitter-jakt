@@ -1,12 +1,15 @@
 ================================================================================
-Enums is variant binding compound middle
+Enums Is Variant Binding Compound Middle ID=TQHMVE8
 ================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
 
 enum Foo {
     Bar(i64)
 }
 
-function main() {
+fn main() {
     let foo = Foo::Bar(5)
     let bar = Foo::Bar(7)
 

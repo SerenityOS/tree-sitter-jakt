@@ -1,12 +1,15 @@
 ================================================================================
-Weak assign weak to weak
+Weak Assign Weak To Weak ID=EQP2JBU
 ================================================================================
+
+/// Expect:
+/// - output: "OK\n"
 
 class Foo {
 
 }
 
-function main() {
+fn main() {
 
     mut foo: weak Foo? = None
     mut bar = foo

@@ -1,7 +1,8 @@
 ================================================================================
-Imports assign across imports helper
+Imports Assign Across Import Helper ID=XYGAMV7
 ================================================================================
 
+/// Expect: Skip
 struct S {
     value: String? // let's force the typechecker to create a typeid for this one.
 }

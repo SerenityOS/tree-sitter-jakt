@@ -1,8 +1,14 @@
 ================================================================================
-Control flow defer statement
+Control Flow Defer Stmt ID=ARY9MD4
 ================================================================================
 
-defer println(" friends!\n")
+/// Expect:
+/// - output: "Well, hello\n friends!\n\n"
+
+fn main() {
+    defer println(" friends!\n")
+    println("Well, hello")
+}
 
 --------------------------------------------------------------------------------
 

@@ -1,12 +1,15 @@
 ================================================================================
-Generics generic struct
+Generics Generic Struct ID=FGI804C
 ================================================================================
+
+/// Expect:
+/// - output: "100\n"
 
 struct Foo<T> {
     x: T
 }
 
-function main() {
+fn main() {
     let f = Foo(x: 100);
 
     println("{}", f.x);

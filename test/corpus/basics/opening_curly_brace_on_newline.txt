@@ -1,10 +1,16 @@
 ================================================================================
-Basics  opening curly brace on newline
+Basics Opening Curly Brace On Newline ID=NV9QYT3
 ================================================================================
 
-if true
+/// Expect:
+/// - output: "Well, hello friends."
+
+fn main()
 {
-    print("Well, hello friends.")
+    if true
+    {
+        print("Well, hello friends.")
+    }
 }
 
 --------------------------------------------------------------------------------

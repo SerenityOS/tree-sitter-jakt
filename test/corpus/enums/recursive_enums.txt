@@ -1,6 +1,9 @@
 ================================================================================
-Enums recursive enums
+Enums Recursive Enums ID=BDZZRGM
 ================================================================================
+
+/// Expect:
+/// - output: "result: 15\n"
 
 enum Operation {
     Add
@@ -11,7 +14,7 @@ boxed enum AST {
     BinaryOperation(lhs: AST, op: Operation, rhs: AST)
 }
 
-function eval(anon ast: AST) -> i64 {
+fn eval(anon ast: AST) -> i64 {
     match ast {
         AST::Int(i) => {
             return i
@@ -26,7 +29,7 @@ function eval(anon ast: AST) -> i64 {
     }
 }
 
-function main() {
+fn main() {
     let ast = AST::BinaryOperation(
         lhs: AST::Int(5), 
         op: Operation::Add(), 
@@ -34,145 +37,6 @@ function main() {
     )
 
     println("result: {}", eval(ast))
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (enum_declaration
-    (type_identifier)
-    (enum_variant_list
-      (enum_variant
-        (identifier))))
-  (enum_declaration
-    (boxed_specifier)
-    (type_identifier)
-    (enum_variant_list
-      (enum_tuple_variant
-        (identifier)
-        (primitive_type))
-      (enum_struct_variant
-        (identifier)
-        (field_declaration
-          (field_identifier)
-          (type_identifier))
-        (field_declaration
-          (field_identifier)
-          (type_identifier))
-        (field_declaration
-          (field_identifier)
-          (type_identifier)))))
-  (function_declaration
-    (identifier)
-    (parameters
-      (parameter
-        (anonymous_specifier)
-        (identifier)
-        (type_identifier)))
-    (primitive_type)
-    (block
-      (match_expression
-        (identifier)
-        (match_block
-          (match_arm
-            (match_pattern
-              (static_call_expression
-                (scoped_identifier)
-                (field_identifier)
-                (arguments
-                  (argument
-                    (identifier)))))
-            (block
-              (return_statement
-                (identifier))))
-          (match_arm
-            (match_pattern
-              (static_call_expression
-                (scoped_identifier)
-                (field_identifier)
-                (arguments
-                  (argument
-                    (identifier)
-                    (identifier))
-                  (argument
-                    (identifier)
-                    (identifier))
-                  (argument
-                    (identifier)
-                    (identifier)))))
-            (block
-              (match_expression
-                (identifier)
-                (match_block
-                  (match_arm
-                    (match_pattern
-                      (namespace_scope_expression
-                        (scoped_identifier)
-                        (field_identifier)))
-                    (block
-                      (return_statement
-                        (binary_expression
-                          (call_expression
-                            (identifier)
-                            (arguments
-                              (argument
-                                (identifier))))
-                          (call_expression
-                            (identifier)
-                            (arguments
-                              (argument
-                                (identifier))))))))))))))))
-  (function_declaration
-    (identifier)
-    (parameters)
-    (block
-      (let_declaration
-        (identifier)
-        (static_call_expression
-          (scoped_identifier)
-          (field_identifier)
-          (arguments
-            (argument
-              (identifier)
-              (static_call_expression
-                (scoped_identifier)
-                (field_identifier)
-                (arguments
-                  (argument
-                    (integer_literal)))))
-            (argument
-              (identifier)
-              (static_call_expression
-                (scoped_identifier)
-                (field_identifier)
-                (arguments)))
-            (argument
-              (identifier)
-              (static_call_expression
-                (scoped_identifier)
-                (field_identifier)
-                (arguments
-                  (argument
-                    (integer_literal))))))))
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (call_expression
-              (identifier)
-              (arguments
-                (argument
-                  (identifier))))))))))
-
-================================================================================
-Enums recursive enums (no commas)
-================================================================================
-
-boxed enum AST {
-    Int(i64)
-    BinaryOperation(lhs: AST, op: Operation, rhs: AST)
 }
 
 --------------------------------------------------------------------------------

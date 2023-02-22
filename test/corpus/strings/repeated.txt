@@ -1,8 +1,14 @@
 ================================================================================
-String repeated static member function
+Strings Repeated ID=RKUUXHA
 ================================================================================
 
-let exes = String::repeated(character: 'x', count: 4)
+/// Expect:
+/// - output: "xxxxHello\n"
+
+fn main() {
+    let exes = String::repeated(character: c'x', count: 4)
+    println("{}Hello", exes);
+}
 
 --------------------------------------------------------------------------------
 

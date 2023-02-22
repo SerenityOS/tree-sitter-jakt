@@ -1,18 +1,30 @@
 ================================================================================
-Match pattern or
+Match Match Pattern Or ID=B4YYN4A
 ================================================================================
 
-println("{}", match "foo" {
-    "foo" | "bar" | "baz" => {
-        yield "PASS"
-    }
-    else => "FAIL"
-})
+/// Expect:
+/// - output: "PASS\nPASS\n"
 
-println("{}", match p {
-    Bar => "PASS"
-    Baz | else => "FAIL"
-})
+enum Foo {
+    Bar
+    Baz
+    Bat
+}
+
+fn main() {
+    println("{}", match "foo" {
+        "foo" | "bar" | "baz" => {
+            yield "PASS"
+        }
+        else => "FAIL"
+    })
+
+    let p = Foo::Bar
+    println("{}", match p {
+        Bar => "PASS"
+        Baz | else => "FAIL"
+    })
+}
 
 --------------------------------------------------------------------------------
 

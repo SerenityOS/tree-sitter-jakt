@@ -1,0 +1,20 @@
+; ================================================================================
+; NOT IMPLEMENTED Modules Std Module ID=TNP91RX
+; ================================================================================
+; 
+; /// Expect:
+; /// - output: "PASS\n"
+; 
+; import jakt::arguments { ArgsParser }
+; 
+; fn main() {
+;     mut args_parser = ArgsParser::from_args(["-h"])
+; 
+;     if args_parser.flag(["-h", "--help"]) {
+;         println("PASS")
+;     }
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

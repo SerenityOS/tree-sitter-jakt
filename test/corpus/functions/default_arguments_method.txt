@@ -1,0 +1,21 @@
+; ================================================================================
+; NOT IMPLEMENTED Functions Default Arguments Method ID=W6KHQDE
+; ================================================================================
+; 
+; /// Expect:
+; /// - output: "Well, hello friends. My name is Jane and I am 36 years old.\n"
+; 
+; class Person {
+;     public fn greet(this, name: String = "Jane", age: i64 = 36) {
+;         println("Well, hello friends. My name is {} and I am {} years old.", name, age)
+;     }
+; }
+; 
+; fn main() {
+;     let p = Person()
+;     p.greet()
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

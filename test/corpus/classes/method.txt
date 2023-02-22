@@ -1,14 +1,25 @@
 ================================================================================
-Classes method
+Classes Method ID=M0YOR6V
 ================================================================================
+
+/// Expect:
+/// - output: "1001\n"
 
 class Person {
     public name: String
     public age: i64
 
-    public function birthday(mut this) {
+    public fn birthday(mut this) {
         ++this.age
     }
+}
+
+fn main() {
+    mut p = Person(name: "Bob", age: 1000)
+
+    p.birthday()
+
+    println("{}", p.age)
 }
 
 --------------------------------------------------------------------------------

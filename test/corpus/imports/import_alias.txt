@@ -1,10 +1,13 @@
 ================================================================================
-Imports import alias
+Imports Import Alias ID=TI2PRKN
 ================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
 
 import foo as baz
 
-function main() {
+fn main() {
     baz::bar()
 }
 

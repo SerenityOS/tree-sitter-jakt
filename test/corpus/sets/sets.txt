@@ -1,8 +1,11 @@
 ================================================================================
-Sets basic set
+Sets Sets ID=5J4BHD7
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "2\nfalse\n5\n"
+
+fn main() {
     let set1 = {"a", "b"}
     println("{}", set1.size())
     println("{}", set1.is_empty())

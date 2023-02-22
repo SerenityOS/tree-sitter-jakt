@@ -1,68 +1,16 @@
 ================================================================================
-Dictionaries set
+Dictionaries Set ID=A14IUNL
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "3\n"
+
+fn main() {
     mut dict = ["a": 1, "b": 2]
 
     dict.set(key: "c", value: 3);
 
     println("{}", dict.get("c")!)
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (function_declaration
-    (identifier)
-    (parameters)
-    (block
-      (mutable_declaration
-        (mutable_specifier)
-        (identifier)
-        (dictionary_literal
-          (dictionary_element
-            (string_literal)
-            (integer_literal))
-          (dictionary_element
-            (string_literal)
-            (integer_literal))))
-      (call_expression
-        (field_expression
-          (identifier)
-          (field_identifier))
-        (arguments
-          (argument
-            (identifier)
-            (string_literal))
-          (argument
-            (identifier)
-            (integer_literal))))
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (optional_value_expression
-              (call_expression
-                (field_expression
-                  (identifier)
-                  (field_identifier))
-                (arguments
-                  (argument
-                    (string_literal)))))))))))
-
-================================================================================
-Dictionaries set (expressive)
-================================================================================
-
-function main() {
-    mut dict = ["a": 1 "b": 2]
-
-    dict.set(key: "c" value: 3)
-
-    println("{}" dict.get("c") !)
 }
 
 --------------------------------------------------------------------------------

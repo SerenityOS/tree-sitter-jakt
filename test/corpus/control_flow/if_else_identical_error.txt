@@ -1,0 +1,18 @@
+; ================================================================================
+; NOT IMPLEMENTED Control Flow If Else Identical Error ID=RH5DPRZ
+; ================================================================================
+; 
+; /// Expect:
+; /// - error: "if and else have identical blocks"
+; 
+; fn main() {
+;     if true {
+;         println("hello")
+;     } else {
+;         println("hello")
+;     }
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

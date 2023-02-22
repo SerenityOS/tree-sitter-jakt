@@ -1,8 +1,11 @@
 ================================================================================
-Match an expression
+Match Match An Expression ID=Q811ZOR
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "PASS\n"
+
+fn main() {
     let i = 0
     match i + 1 {
         (1) => println("PASS")

@@ -1,13 +1,16 @@
 ================================================================================
-Structs lvalue
+Structs Lvalue ID=CEDJL8E
 ================================================================================
+
+/// Expect:
+/// - output: "99\n"
 
 struct Person {
     name: String
     age: i64
 }
 
-function main() {
+fn main() {
     mut p = Person(name: "Jane", age: 100)
 
     p.age = 99;

@@ -1,8 +1,11 @@
 ================================================================================
-Apps cat lib open
+Apps Cat-Std ID=RDQ2AYM
 ================================================================================
 
-function main(args: [String]) {
+/// Expect:
+/// - stderr: "usage: cat <path>\n"
+
+fn main(args: [String]) -> c_int {
     if args.size() <= 1 {
         eprintln("usage: cat <path>")
         return 1
@@ -16,6 +19,8 @@ function main(args: [String]) {
             print("{:c}", array[idx])
         }
     }
+
+    return 0
 }
 
 --------------------------------------------------------------------------------

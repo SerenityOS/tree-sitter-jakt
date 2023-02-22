@@ -1,13 +1,18 @@
 ================================================================================
-String type methods
+Strings Length And Is Empty ID=S1Z1VWG
 ================================================================================
 
-let x = "Well, hello friends"
+/// Expect:
+/// - output: "19\nfalse\ntrue\n"
 
-println("{}", x.length())
-println("{}", x.is_empty())
+fn main() {
+    let x = "Well, hello friends"
 
-println("{}", "".is_empty())
+    println("{}", x.length())
+    println("{}", x.is_empty())
+
+    println("{}", "".is_empty())
+}
 
 --------------------------------------------------------------------------------
 

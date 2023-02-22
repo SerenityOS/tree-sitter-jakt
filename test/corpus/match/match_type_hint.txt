@@ -1,13 +1,16 @@
 ================================================================================
-Match match type hint
+Match Match Type Hint ID=9NE6OJD
 ================================================================================
+
+/// Expect:
+/// - output: "2\n"
 
 enum Foo {
     Bar
     Baz
 }
 
-function main() {
+fn main() {
     let a = Foo::Bar
 
     let b: i32? = match a {

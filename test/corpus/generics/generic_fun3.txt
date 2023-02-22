@@ -1,12 +1,15 @@
 ================================================================================
-Generics generic fun 3
+Generics Generic Fun3 ID=U3TDP85
 ================================================================================
 
-function id<T>(anon x: T) -> T {
+/// Expect:
+/// - output: "103\n"
+
+fn id<T>(anon x: T) -> T {
     return x;
 }
 
-function main() {
+fn main() {
     println("{}", id(3) + 100)
 }
 
