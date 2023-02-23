@@ -4613,7 +4613,7 @@
           },
           {
             "type": "STRING",
-            "value": "function"
+            "value": "fn"
           },
           {
             "type": "FIELD",

@@ -806,7 +806,7 @@ module.exports = grammar({
 
     function_declaration: $ => prec.right(seq(
       optional(choice($.restricted_specifier, $.visibility_specifier)),
-      'function',
+      'fn',
       field('name', $.identifier),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),

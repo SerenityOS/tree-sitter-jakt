@@ -3290,6 +3290,10 @@
     "named": true
   },
   {
+    "type": "fn",
+    "named": false
+  },
+  {
     "type": "for",
     "named": false
   },
