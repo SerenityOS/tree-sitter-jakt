@@ -34,6 +34,7 @@ import hashlib
 import sys
 import random
 import string
+import subprocess
 from typing import Any, Optional
 from types import SimpleNamespace
 from enum import Enum
@@ -61,8 +62,8 @@ class TestImplemented(Enum):
     """Enum with variants for test completion status."""
 
     UNIMPLEMENTED = 0
-    IMPLEMENTED = 1
-    PARTIAL = 2
+    IMPLEMENTED = 1  # The corpus file exists and is passing Treesitter tests
+    FAILING = 2  # The Treesitter test is failing
 
 
 def build_test_list(jakt_path: str) -> list:
@@ -201,7 +202,7 @@ class Test:
             corpus_tests_path, ts_test_expect.as_posix().replace(".jakt", ".txt")
         )
 
-    def is_fully_implemented(self) -> TestImplemented:
+    def is_implemented(self) -> TestImplemented:
         """Returns true if the corpus test does not contain 'NOT IMPLEMENTED' tests."""
         # Strip out scheme comments
         if not self.corpus_file_path.exists():
@@ -209,15 +210,10 @@ class Test:
         stripped_text = (
             self.corpus_file_path.read_text().replace("; ", "").replace(";", "")
         )
-        num_tests_not_implemented = 0
         for x in re.findall(corpus_test_header_pattern, stripped_text):
             if "NOT IMPLEMENTED" in x:
-                num_tests_not_implemented += 1
-        if num_tests_not_implemented == 0:
-            return TestImplemented(1)
-        elif num_tests_not_implemented > 0:
-            return TestImplemented(2)
-        return TestImplemented(0)
+                return TestImplemented(0)
+        return TestImplemented(1)
 
 
 @serialize
@@ -389,6 +385,50 @@ def test_from_corpus_path(corpus_path: str, jakt_path: str) -> Optional[Test]:
     )
 
 
+def generate_treesitter_parser():
+    """Generate the Treesitter parse.
+
+    Will hard exit non-zero if the command fails.
+    """
+    try:
+        subprocess.run(
+            ["tree-sitter", "generate"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=True,
+        )
+    except subprocess.CalledProcessError:
+        console.log(
+            "[red]ERROR - a problem occurred generating Treesitter parser[/red]"
+        )
+        sys.exit(1)
+    console.log("generated Treesitter parser successfully")
+
+
+def run_tree_sitter_test(test: Test):
+    """Runs a Treesitter test.
+
+    The result is stored in test.implemented.
+    """
+    if "NOT IMPLEMENTED" in test.title:
+        console.log(f"treesitter test for '{test.title}' is unimplemented")
+        test.implemented = TestImplemented.UNIMPLEMENTED
+        return
+    try:
+        subprocess.run(
+            ["tree-sitter", "test", "--filter", f"{test.title}"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=True,
+        )
+    except subprocess.CalledProcessError:
+        console.log(f"treesitter test failed for '{test.title}'")
+        test.implemented = TestImplemented.FAILING
+        return
+    test.implemented = TestImplemented.IMPLEMENTED
+    console.log(f"treesitter test for '{test.title}' succeeded")
+
+
 @app.command()
 def check(
     jakt_path: str = typer.Option(
@@ -397,6 +437,8 @@ def check(
 ):
     """Check for jakt samples changes"""
     state_file_loaded: bool = False
+
+    generate_treesitter_parser()
 
     # The samples dir in the jakt project directory is the single source of truth (SSOT)
     ssot = build_test_map(jakt_path)
@@ -416,7 +458,7 @@ def check(
         if (
             corpus_path := convert_jakt_sample_path_to_ts_path(test.jakt_sample_path)
         ).as_posix() in corpus_list:
-            test.implemented = test.is_fully_implemented()
+            test.implemented = test.is_implemented()
             test.corpus_file_path = corpus_path
         if state_file_loaded:
             # if we have a state file, we now have to resolve the differences...
@@ -429,6 +471,8 @@ def check(
                 test.changed = True
                 merged_map.map.append(test)
                 continue
+            elif test.title:
+                run_tree_sitter_test(test)
         merged_map.map.append(test)
 
     for test in sf.map:
@@ -439,21 +483,18 @@ def check(
             merged_map.map.append(test)
 
     # print table of changes
-    console.log("Tests that produce an error, skipping for now")
-    print_falty_testmap_table(merged_map)
-    console.log("Tests that are valid")
-    print_parsable_testmap_table(merged_map)
+    print_testmap_table(merged_map)
     print_test_report(merged_map, corpus_list)
 
 
-def print_parsable_testmap_table(tests: TestMap):
+def print_testmap_table(tests: TestMap):
     """Print a pretty table of state changes"""
     table = Table(show_header=True, header_style="bold magenta")
 
     table.add_column("#")
-    table.add_column("MD5")
-    table.add_column("Expected Corpus Path", justify="left")
-    table.add_column("Done", justify="center")
+    table.add_column("Corpus Path", justify="left")
+    table.add_column("Implemented", justify="center")
+    table.add_column("Pass/Fail", justify="center")
 
     if tests.has_changed_tests():
         table.add_column("Changed", justify="center")
@@ -468,40 +509,42 @@ def print_parsable_testmap_table(tests: TestMap):
     new_count = 0
 
     for num, test in enumerate(tests.map):
-        if test.falty:
-            continue
         corpus_path = test.corpus_file_path
         corpus_path_mod = corpus_path.parts[corpus_path.parts.index("corpus") :]
         color: Style = Style(color=None)
 
         renderables: list = [
             str(num + 1),
-            test.jakt_sample_hash,
             str(pathlib.Path(*corpus_path_mod)),
         ]
 
-        if test.implemented == TestImplemented.IMPLEMENTED:
-            color = Style(color="blue")
-            renderables.append(":ballot_box_with_check:")
+        if test.implemented in [TestImplemented.IMPLEMENTED, TestImplemented.FAILING]:
+            color = Style(color="green")
+            renderables.append(":heavy_check_mark:")
             implemented_count += 1
-        elif test.implemented == TestImplemented.PARTIAL:
-            color = Style(color="pale_turquoise1")
-            renderables.append("(partial)")
+        else:
+            renderables.append("")
+
+        if test.implemented == TestImplemented.FAILING:
+            color = Style(color="red")
+            renderables.append(":heavy_multiplication_x:")
+        elif test.implemented == TestImplemented.IMPLEMENTED:
+            renderables.append(":heavy_check_mark:")
         else:
             renderables.append("")
 
         if test.changed and test.implemented == TestImplemented.IMPLEMENTED:
             color = Style(color="red", blink=True, bold=True)
-            renderables.append(":ballot_box_with_check:")
+            renderables.append(":heavy_check_mark:")
         elif test.changed:
             color = Style(color="wheat1")
-            renderables.append(":ballot_box_with_check:")
+            renderables.append(":heavy_check_mark:")
         elif any(str(x.header) in "Changed" for x in table.columns):
             renderables.append("")
 
         if test.new:
             color = Style(color="green")
-            renderables.append(":ballot_box_with_check:")
+            renderables.append(":heavy_check_mark:")
             if not test.falty:
                 new_count += 1
         elif any(str(x.header) in "New" for x in table.columns):
@@ -509,62 +552,7 @@ def print_parsable_testmap_table(tests: TestMap):
 
         if test.deleted:
             color = Style(color="red")
-            renderables.append(":ballot_box_with_check:")
-        elif any(str(x.header) in "Deleted" for x in table.columns):
-            renderables.append("")
-
-        table.add_row(*renderables, style=color)
-    console.log(table)
-
-
-def print_falty_testmap_table(tests: TestMap):
-    """Print a pretty table of state changes"""
-    table = Table(show_header=True, header_style="bold magenta")
-
-    table.add_column("#")
-    table.add_column("MD5")
-    table.add_column("Expected Corpus Path", justify="left")
-
-    table.add_column("Falty", justify="center")
-
-    if tests.has_new_tests():
-        table.add_column("New", justify="center")
-
-    if tests.has_deleted_tests():
-        table.add_column("Deleted", justify="center")
-
-    falty_count = 0
-    new_count = 0
-
-    for num, test in enumerate(tests.map):
-        if not test.falty:
-            continue
-        corpus_path = test.corpus_file_path
-        corpus_path_mod = corpus_path.parts[corpus_path.parts.index("corpus") :]
-        color: Style = Style(color=None)
-
-        renderables: list = [
-            str(num + 1),
-            test.jakt_sample_hash,
-            str(pathlib.Path(*corpus_path_mod)),
-        ]
-
-        if test.falty:
-            color = Style(color=None, dim=True)
-            falty_count += 1
-            renderables.append(":ballot_box_with_check:")
-
-        if test.new:
-            color = Style(color="green")
-            renderables.append(":ballot_box_with_check:")
-            if not test.falty:
-                new_count += 1
-        elif any(str(x.header) in "New" for x in table.columns):
-            renderables.append("")
-
-        if test.deleted:
-            color = Style(color="red")
-            renderables.append(":ballot_box_with_check:")
+            renderables.append(":heavy_check_mark:")
         elif any(str(x.header) in "Deleted" for x in table.columns):
             renderables.append("")
 
@@ -580,98 +568,95 @@ def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
     new_count = 0
     jakt_sample_count = 0
     implemented_changed_count = 0
+    unimplemented_count = 0
     jakt_test_changed = 0
     deleted = 0
+    failed_count = 0
     for _, test in enumerate(tests.map):
         jakt_sample_count += 1
-        if test.implemented == TestImplemented.IMPLEMENTED:
+
+        if test.implemented == TestImplemented.UNIMPLEMENTED:
+            unimplemented_count += 1
+        elif test.implemented == TestImplemented.IMPLEMENTED:
             implemented_count += 1
-        if test.changed and test.implemented == TestImplemented.IMPLEMENTED:
-            implemented_changed_count += 1
-        elif test.changed:
-            if not test.falty:
-                jakt_test_changed += 1
+        elif test.implemented == TestImplemented.FAILING:
+            failed_count += 1
+
+        if test.changed:
+            jakt_test_changed += 1
+            if test.implemented == TestImplemented.IMPLEMENTED:
+                implemented_changed_count += 1
+
         if test.new:
             if not test.falty:
                 new_count += 1
             else:
                 falty_new += 1
+
         if test.falty:
             falty_count += 1
+
         if test.deleted:
             deleted += 1
-
-    original_test_count = count_original_tests(corpus_list)
 
     table = Table(box=box.MINIMAL_DOUBLE_HEAD)
     table.add_column("Count", justify="right")
     table.add_column("Description", justify="left")
-    table.add_row(str(len(tests.map) + original_test_count), "Total Tests")
-    table.add_row(str(jakt_sample_count), "Total Jakt Samples")
-    table.add_row(str(original_test_count), "Total Original Tests")
-    table.add_row()
     jakt_passable_tests = len(tests.map) - falty_count
-    table.add_row(str(jakt_passable_tests), "Jakt Passable Samples (no errors)")
-    if new_count > 0:
-        color = Style(color="green", bold=True)
-        table.add_row(
-            str(new_count),
-            "Jakt Passable Samples (New)",
-            style=color,
-        )
-    if jakt_test_changed > 0:
-        color = Style(color="yellow", bold=True)
-        table.add_row(
-            str(jakt_test_changed), "Jakt Passable Samples (Changed)", style=color
-        )
-    if implemented_changed_count > 0:
-        color = Style(color="red", bold=True)
-        table.add_row(
-            str(implemented_changed_count),
-            "Jakt Passable Implemented Samples (Changed)",
-            style=color,
-        )
-    table.add_row(str(implemented_count), "Jakt Implemented Passable Samples")
-    table.add_row()
-    total_tests = jakt_passable_tests + original_test_count
-    table.add_row(str(total_tests), "Total Passable Tests")
-    table.add_row(
-        str(implemented_count + original_test_count),
-        "Total Implemented Tests (including partially implemented and original tests)",
-    )
-    table.add_row(
-        f"{((implemented_count + original_test_count - jakt_test_changed) / total_tests) * 100:.0f}%",
-        "Percentage of Implemented Jakt Samples",
-    )
-    table.add_row()
+    table.add_row(str(jakt_passable_tests), "Jakt 'good' Samples (no expected errors)")
     table.add_row(
         str(falty_count),
-        "Jakt Falty Samples (produce errors)",
+        "Jakt 'bad' Samples (produce errors)",
         style=Style(color=None, dim=True),
     )
     if falty_new > 0:
         color = Style(color="green", dim=True)
         table.add_row(
             str(falty_new),
-            "Jakt Falty Samples (New)",
+            "Jakt 'bad' Samples (new)",
             style=color,
         )
+    if jakt_test_changed > 0:
+        color = Style(color="yellow", bold=True)
+        table.add_row(
+            str(jakt_test_changed), "Implemented Jakt Samples (changed)", style=color
+        )
+    if implemented_changed_count > 0:
+        color = Style(color="red", bold=True)
+        table.add_row(
+            str(implemented_changed_count),
+            "Implemented Jakt Samples (changed)",
+            style=color,
+        )
+    table.add_row(str(jakt_sample_count), "Total Jakt Samples")
+    if new_count > 0:
+        color = Style(color="green", bold=True)
+        table.add_row(
+            str(new_count + falty_new),
+            "Total New Jakt Samples",
+            style=color,
+        )
+    table.add_row()
+    total_tests = jakt_passable_tests + falty_count
+    table.add_row(
+        str(unimplemented_count),
+        "Total Unimplemented Tests",
+    )
+    table.add_row(
+        str(implemented_count),
+        "Total Passing Jakt Sample Tests",
+    )
+    table.add_row()
+    table.add_row(
+        f"{(implemented_count / total_tests) * 100:.0f}%",
+        "Percentage of Jakt Samples implemented and PASSING for Treesitter",
+    )
     if deleted > 0:
         table.add_row()
         color = Style(color="red", bold=True)
-        table.add_row(str(deleted), "Jakt Deleted Samples", style=color)
+        table.add_row(str(deleted), "Deleted Jakt Samples", style=color)
 
     console.log(table)
-    console.log("[yellow][bold]WARNING[/yellow] - state file is unsaved[/bold]")
-
-
-def count_original_tests(tests: dict[str, list]) -> int:
-    """Count the number of original tests."""
-    count = 0
-    for x, _ in tests.items():
-        if "original/" in x:
-            count += 1
-    return count
 
 
 @update_app.callback()
