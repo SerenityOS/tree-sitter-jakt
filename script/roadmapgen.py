@@ -493,7 +493,6 @@ def print_testmap_table(tests: TestMap):
 
     table.add_column("#")
     table.add_column("Corpus Path", justify="left")
-    table.add_column("Implemented", justify="center")
     table.add_column("Pass/Fail", justify="center")
 
     if tests.has_changed_tests():
@@ -518,17 +517,11 @@ def print_testmap_table(tests: TestMap):
             str(pathlib.Path(*corpus_path_mod)),
         ]
 
-        if test.implemented in [TestImplemented.IMPLEMENTED, TestImplemented.FAILING]:
-            color = Style(color="green")
-            renderables.append(":heavy_check_mark:")
-            implemented_count += 1
-        else:
-            renderables.append("")
-
         if test.implemented == TestImplemented.FAILING:
             color = Style(color="red")
             renderables.append(":heavy_multiplication_x:")
         elif test.implemented == TestImplemented.IMPLEMENTED:
+            color = Style(color="green")
             renderables.append(":heavy_check_mark:")
         else:
             renderables.append("")
