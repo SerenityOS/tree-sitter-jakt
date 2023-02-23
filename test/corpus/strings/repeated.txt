@@ -13,15 +13,30 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (let_declaration
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (static_call_expression
-      (scoped_identifier)
-      (field_identifier)
-      (arguments
-        (argument
-          (identifier)
-          (char_literal))
-        (argument
-          (identifier)
-          (integer_literal))))))
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (identifier)
+              (identifier))
+            (argument
+              (char_literal))
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

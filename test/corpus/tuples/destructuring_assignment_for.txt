@@ -16,13 +16,34 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (mutable_declaration
-    (mutable_specifier)
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (array_literal
-      (tuple_literal
-        (integer_literal)
-        (string_literal))
-      (tuple_literal
-        (integer_literal)
-        (string_literal)))))
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (array_literal
+          (tuple_literal
+            (integer_literal)
+            (string_literal))
+          (tuple_literal
+            (integer_literal)
+            (string_literal))))
+      (for_expression
+        (destructuring_literal
+          (identifier)
+          (identifier))
+        (identifier)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (identifier))
+              (argument
+                (identifier)))))))))

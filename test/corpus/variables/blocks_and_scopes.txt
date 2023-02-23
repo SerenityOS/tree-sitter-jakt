@@ -17,24 +17,30 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (let_declaration
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (integer_literal))
-  (block
-    (let_declaration
-      (identifier)
-      (integer_literal))
-    (call_expression
-      (identifier)
-      (arguments
-        (argument
-          (string_literal))
-        (argument
-          (identifier)))))
-  (call_expression
-    (identifier)
-    (arguments
-      (argument
-        (string_literal))
-      (argument
-        (identifier)))))
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (block
+        (let_declaration
+          (identifier)
+          (integer_literal))
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (string_literal))
+            (argument
+              (identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

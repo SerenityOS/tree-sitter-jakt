@@ -21,6 +21,8 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list
@@ -35,6 +37,7 @@ fn main() {
         (parameters
           (this_parameter
             (this_reference)))
+        (primitive_type)
         (return_expression
           (binary_expression
             (field_expression
@@ -42,4 +45,30 @@ fn main() {
               (field_identifier))
             (field_expression
               (this_reference)
-              (field_identifier))))))))
+              (field_identifier)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal))
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))))))))
