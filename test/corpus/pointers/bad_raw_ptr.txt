@@ -1,17 +1,38 @@
-; ================================================================================
-; NOT IMPLEMENTED Pointers Bad Raw Ptr ID=8QF78V5
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Dereference of raw pointer outside of unsafe block"
-; 
-; fn main() {
-;     let x = 10
-;     let y = &raw x
-; 
-;     println("{}", *y)
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Pointers Bad Raw Ptr ID=8QF78V5
+================================================================================
+
+/// Expect:
+/// - error: "Dereference of raw pointer outside of unsafe block"
+
+fn main() {
+    let x = 10
+    let y = &raw x
+
+    println("{}", *y)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (let_declaration
+        (identifier)
+        (pointer_expression
+          (identifier)))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (pointer_expression
+              (identifier))))))))

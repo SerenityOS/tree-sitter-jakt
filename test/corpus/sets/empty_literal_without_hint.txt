@@ -1,14 +1,23 @@
-; ================================================================================
-; NOT IMPLEMENTED Sets Empty Literal Without Hint ID=J3ULAUB
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Cannot infer generic type for Set<T>\n"
-; 
-; fn main() {
-;     let x = {}
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Sets Empty Literal Without Hint ID=J3ULAUB
+================================================================================
+
+/// Expect:
+/// - error: "Cannot infer generic type for Set<T>\n"
+
+fn main() {
+    let x = {}
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (set_literal)))))

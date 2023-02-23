@@ -18,16 +18,29 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (mutable_declaration
-    (mutable_specifier)
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (integer_literal))
-  (for_expression
-    (identifier)
-    (range_expression
-      (integer_literal)
-      (integer_literal))
+    (parameters)
     (block
-      (assignment_expression
+      (mutable_declaration
+        (mutable_specifier)
         (identifier)
-        (identifier)))))
+        (integer_literal))
+      (for_expression
+        (identifier)
+        (range_expression
+          (integer_literal)
+          (integer_literal))
+        (block
+          (assignment_expression
+            (identifier)
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))
