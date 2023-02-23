@@ -1,17 +1,42 @@
-; ================================================================================
-; NOT IMPLEMENTED Functions Argument Labels Bad ID=WWD0HVG
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Wrong parameter name in argument label"
-; 
-; fn foo(a: bool, b: bool) {
-; }
-; 
-; fn main() {
-;     foo(x: true, y: false)
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Functions Argument Labels Bad ID=WWD0HVG
+================================================================================
+
+/// Expect:
+/// - error: "Wrong parameter name in argument label"
+
+fn foo(a: bool, b: bool) {
+}
+
+fn main() {
+    foo(x: true, y: false)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (block))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (boolean_literal))
+          (argument
+            (identifier)
+            (boolean_literal)))))))
