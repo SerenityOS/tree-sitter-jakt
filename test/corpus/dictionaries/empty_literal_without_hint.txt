@@ -1,14 +1,23 @@
-; ================================================================================
-; NOT IMPLEMENTED Dictionaries Empty Literal Without Hint ID=WU3WV6W
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Cannot infer key type for Dictionary<K, V>\n"
-; 
-; fn main() {
-;     let x = [:]
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Dictionaries Empty Literal Without Hint ID=WU3WV6W
+================================================================================
+
+/// Expect:
+/// - error: "Cannot infer key type for Dictionary<K, V>\n"
+
+fn main() {
+    let x = [:]
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (dictionary_literal)))))

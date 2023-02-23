@@ -1,15 +1,40 @@
-; ================================================================================
-; NOT IMPLEMENTED Dictionaries Dict Index Unwrap ID=ZV36NFX
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Forced unwrap only works on Optional\n"
-; 
-; fn main() {
-;     let a = [1:2, 3:4]
-;     println("{}", a[1]!)
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Dictionaries Dict Index Unwrap ID=ZV36NFX
+================================================================================
+
+/// Expect:
+/// - error: "Forced unwrap only works on Optional\n"
+
+fn main() {
+    let a = [1:2, 3:4]
+    println("{}", a[1]!)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (dictionary_literal
+          (dictionary_element
+            (integer_literal)
+            (integer_literal))
+          (dictionary_element
+            (integer_literal)
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (optional_value_expression
+              (array_expression
+                (identifier)
+                (integer_literal)))))))))

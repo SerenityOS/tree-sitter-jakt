@@ -14,6 +14,8 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)
@@ -21,13 +23,14 @@ fn main() {
       (mutable_declaration
         (mutable_specifier)
         (identifier)
-        (generic_call_expression
-          (generic_type
+        (binary_expression
+          (binary_expression
             (identifier)
-            (generic_arguments
-              (primitive_type)
-              (primitive_type)))
-          (arguments)))
+            (identifier))
+          (ERROR
+            (identifier))
+          (destructuring_literal
+            (MISSING identifier))))
       (assignment_expression
         (array_expression
           (identifier)
