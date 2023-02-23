@@ -1,14 +1,24 @@
-; ================================================================================
-; NOT IMPLEMENTED Namespaces Bogus Namespace2 ID=VTNXGAS
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Not a namespace, enum, class, or struct: ‘NS’\n"
-; 
-; fn main() {
-;     NS::foo()
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Namespaces Bogus Namespace2 ID=VTNXGAS
+================================================================================
+
+/// Expect:
+/// - error: "Not a namespace, enum, class, or struct: ‘NS’\n"
+
+fn main() {
+    NS::foo()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
+        (arguments)))))

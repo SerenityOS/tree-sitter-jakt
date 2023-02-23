@@ -25,6 +25,8 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (namespace_declaration
     (identifier)
     (block
@@ -53,4 +55,25 @@ fn main() {
                       (identifier)))
                   (argument
                     (this_reference_shorthand
-                      (identifier))))))))))))
+                      (identifier)))))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (identifier)
+              (string_literal))
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments)))))
