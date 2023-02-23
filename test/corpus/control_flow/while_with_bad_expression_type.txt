@@ -1,14 +1,23 @@
-; ================================================================================
-; NOT IMPLEMENTED Control Flow While With Bad Expression Type ID=Z9LJCB3
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Condition must be a boolean expression\n"
-; 
-; fn main() {
-;     while "foo" {}
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Control Flow While With Bad Expression Type ID=Z9LJCB3
+================================================================================
+
+/// Expect:
+/// - error: "Condition must be a boolean expression\n"
+
+fn main() {
+    while "foo" {}
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (while_statement
+        (string_literal)
+        (block)))))

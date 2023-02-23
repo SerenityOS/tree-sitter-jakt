@@ -1,41 +1,149 @@
-; ================================================================================
-; NOT IMPLEMENTED Control Flow Try Catch ID=9G77SE9
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "Caught 1234\nCaught 6969\nCaught 5252\n"
-; 
-; fn notoss() throws -> i32 {
-;     if not true {
-;         throw Error::from_errno(123456)
-;     }
-;     return 5
-; }
-; 
-; fn toss(anon value: i32) throws {
-;     throw Error::from_errno(value)
-; }
-; 
-; fn main() {
-;     try toss(1234) catch error {
-;         println("Caught {}", error.code())
-;     }
-; 
-;     try {
-;         toss(6969)
-;     } catch error {
-;         println("Caught {}", error.code())
-;     }
-; 
-;     try {
-;         notoss()
-;         toss(5252)
-;         println("FAIL")
-;     } catch error {
-;         println("Caught {}", error.code())
-;     }
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Control Flow Try Catch ID=9G77SE9
+================================================================================
+
+/// Expect:
+/// - output: "Caught 1234\nCaught 6969\nCaught 5252\n"
+
+fn notoss() throws -> i32 {
+    if not true {
+        throw Error::from_errno(123456)
+    }
+    return 5
+}
+
+fn toss(anon value: i32) throws {
+    throw Error::from_errno(value)
+}
+
+fn main() {
+    try toss(1234) catch error {
+        println("Caught {}", error.code())
+    }
+
+    try {
+        toss(6969)
+    } catch error {
+        println("Caught {}", error.code())
+    }
+
+    try {
+        notoss()
+        toss(5252)
+        println("FAIL")
+    } catch error {
+        println("Caught {}", error.code())
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (if_statement
+        (logical_expression
+          (boolean_literal))
+        (block
+          (throw_statement
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
+              (arguments
+                (argument
+                  (integer_literal)))))))
+      (return_statement
+        (integer_literal))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type)))
+    (throws_specifier)
+    (block
+      (throw_statement
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (identifier)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (try_statement
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (integer_literal))))
+        (identifier)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (call_expression
+                  (field_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments)))))))
+      (try_statement
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (integer_literal)))))
+        (identifier)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (call_expression
+                  (field_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments)))))))
+      (try_statement
+        (block
+          (call_expression
+            (identifier)
+            (arguments))
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (integer_literal))))
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))
+        (identifier)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (call_expression
+                  (field_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments))))))))))

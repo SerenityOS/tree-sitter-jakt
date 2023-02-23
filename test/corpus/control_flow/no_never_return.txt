@@ -1,15 +1,26 @@
-; ================================================================================
-; NOT IMPLEMENTED Control Flow No Never Return ID=DWMJ5M9
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Control reaches end of never-returning function\n"
-; 
-; fn test() -> never {
-; }
-; 
-; fn main() {}
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Control Flow No Never Return ID=DWMJ5M9
+================================================================================
+
+/// Expect:
+/// - error: "Control reaches end of never-returning function\n"
+
+fn test() -> never {
+}
+
+fn main() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (type_identifier)
+    (block))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block)))

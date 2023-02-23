@@ -1,14 +1,23 @@
-; ================================================================================
-; NOT IMPLEMENTED Control Flow If With Bad Expression Type ID=XJ40HEX
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Condition must be a boolean expression\n"
-; 
-; fn main() {
-;     if "foo" {}
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Control Flow If With Bad Expression Type ID=XJ40HEX
+================================================================================
+
+/// Expect:
+/// - error: "Condition must be a boolean expression\n"
+
+fn main() {
+    if "foo" {}
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (if_statement
+        (string_literal)
+        (block)))))

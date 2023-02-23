@@ -1,15 +1,29 @@
-; ================================================================================
-; NOT IMPLEMENTED Control Flow Statements After Never Return ID=M8JCNZX
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Unreachable code\n"
-; 
-; fn main() {
-;     abort()
-;     println("hello")
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Control Flow Statements After Never Return ID=M8JCNZX
+================================================================================
+
+/// Expect:
+/// - error: "Unreachable code\n"
+
+fn main() {
+    abort()
+    println("hello")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal)))))))

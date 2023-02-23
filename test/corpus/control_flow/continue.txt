@@ -19,22 +19,35 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (mutable_declaration
-    (mutable_specifier)
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (integer_literal))
-  (while_statement
-    (binary_expression
-      (identifier)
-      (integer_literal))
+    (parameters)
     (block
-      (update_expression
-        (identifier))
-      (if_statement
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (integer_literal))
+      (while_statement
         (binary_expression
-          (binary_expression
-            (identifier)
-            (integer_literal))
+          (identifier)
           (integer_literal))
         (block
-          (continue_statement))))))
+          (update_expression
+            (identifier))
+          (if_statement
+            (binary_expression
+              (binary_expression
+                (identifier)
+                (integer_literal))
+              (integer_literal))
+            (block
+              (continue_statement)))
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (identifier)))))))))

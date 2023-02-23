@@ -37,7 +37,7 @@ end, { noremap = true, silent = true })
 -- update a test
 vim.keymap.set("v", "<F3>", function()
     TSTEST = vim.getVisualSelection()
-    vim.cmd("TermExec cmd='tree-sitter generate && tree-sitter test -d -f \"" .. TSTEST .. "\" -u'<CR>")
+    vim.cmd("TermExec cmd='tree-sitter test -d -f \"" .. TSTEST .. "\" -u'<CR>")
 end, { noremap = true, silent = true })
 
 vim.keymap.set("n", "<F4>", function()

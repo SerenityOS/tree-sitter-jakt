@@ -17,19 +17,30 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (while_statement
-    (parenthesized_expression
-      (binary_expression
-        (identifier)
-        (integer_literal)))
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
     (block
-      (call_expression
+      (mutable_declaration
+        (mutable_specifier)
         (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (identifier))))
-      (assignment_expression
-        (identifier)
-        (integer_literal)))))
+        (primitive_type)
+        (integer_literal))
+      (while_statement
+        (parenthesized_expression
+          (binary_expression
+            (identifier)
+            (integer_literal)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (identifier))))
+          (assignment_expression
+            (identifier)
+            (integer_literal)))))))

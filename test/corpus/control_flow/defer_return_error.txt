@@ -1,22 +1,47 @@
-; ================================================================================
-; NOT IMPLEMENTED Control Flow Defer Return Error ID=EG5TE5R
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "‘return’ is not allowed inside ‘defer’\n"
-; 
-; fn foo() {
-;     defer {
-;         return 2
-;     }
-; 
-;     return 1
-; }
-; 
-; fn main() {
-;     println("foo returned {}", foo())
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Control Flow Defer Return Error ID=EG5TE5R
+================================================================================
+
+/// Expect:
+/// - error: "‘return’ is not allowed inside ‘defer’\n"
+
+fn foo() {
+    defer {
+        return 2
+    }
+
+    return 1
+}
+
+fn main() {
+    println("foo returned {}", foo())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (defer_statement
+        (block
+          (return_statement
+            (integer_literal))))
+      (return_statement
+        (integer_literal))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (identifier)
+              (arguments))))))))
