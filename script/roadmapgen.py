@@ -607,33 +607,31 @@ def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
     table.add_row(
         str(falty_count),
         "Jakt 'bad' Samples (produce errors)",
-        style=Style(color=None, dim=True),
     )
+    table.add_row(str(jakt_sample_count), "Total Jakt Samples")
+    table.add_row()
+    if new_count > 0:
+        color = Style(color="green", bold=True)
+        table.add_row(
+            str(new_count),
+            "NEW Jakt Samples",
+            style=color,
+        )
     if falty_new > 0:
-        color = Style(color="green", dim=True)
+        color = Style(color="green")
         table.add_row(
             str(falty_new),
-            "Jakt 'bad' Samples (new)",
+            "NEW Jakt 'bad' Samples",
             style=color,
         )
     if jakt_test_changed > 0:
         color = Style(color="yellow", bold=True)
-        table.add_row(
-            str(jakt_test_changed), "Implemented Jakt Samples (changed)", style=color
-        )
+        table.add_row(str(jakt_test_changed), "CHANGED Jakt Samples", style=color)
     if implemented_changed_count > 0:
         color = Style(color="red", bold=True)
         table.add_row(
             str(implemented_changed_count),
-            "Implemented Jakt Samples (changed)",
-            style=color,
-        )
-    table.add_row(str(jakt_sample_count), "Total Jakt Samples")
-    if new_count > 0:
-        color = Style(color="green", bold=True)
-        table.add_row(
-            str(new_count + falty_new),
-            "Total New Jakt Samples",
+            "CHANGED Implemented Jakt Samples",
             style=color,
         )
     table.add_row()
@@ -657,6 +655,7 @@ def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
         table.add_row(str(deleted), "Deleted Jakt Samples", style=color)
 
     console.log(table)
+    console.log("[yellow][bold]WARNING[/yellow] - state file is unsaved[/bold]")
 
 
 @update_app.callback()
