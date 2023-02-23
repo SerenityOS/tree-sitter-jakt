@@ -16,11 +16,17 @@ fn main()
 --------------------------------------------------------------------------------
 
 (source_file
-  (if_statement
-    (boolean_literal)
-    (block
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (string_literal)))))))
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters))
+  (block
+    (if_statement
+      (boolean_literal)
+      (block
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (string_literal))))))))

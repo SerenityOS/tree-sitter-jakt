@@ -13,4 +13,15 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (line_comment))
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (line_comment)
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal)))))))
