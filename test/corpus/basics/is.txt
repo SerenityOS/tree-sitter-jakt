@@ -1,111 +1,38 @@
-================================================================================
-Basics is expression (class)
-================================================================================
-
-class Foo {
-    public x: i64
-}
-
-class Bar {
-    public y: i64
-}
-
-function main() {
-    let foo = Foo(x: 1)
-
-    if foo is Foo {
-        println("OK")
-    }
-
-    if foo is Bar {
-        println("Error: Foo should not be Bar")
-    }
-
-    if Bar(y: 5) is Bar {
-        println("OK")
-    }
-
-    if Bar(y: 10) is Foo {
-        println("Error: Bar should not be Foo")
-    }
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (class_declaration
-    (type_identifier)
-    (field_declaration_list
-      (field_declaration
-        (visibility_specifier)
-        (field_identifier)
-        (primitive_type))))
-  (class_declaration
-    (type_identifier)
-    (field_declaration_list
-      (field_declaration
-        (visibility_specifier)
-        (field_identifier)
-        (primitive_type))))
-  (function_declaration
-    (identifier)
-    (parameters)
-    (block
-      (let_declaration
-        (identifier)
-        (call_expression
-          (identifier)
-          (arguments
-            (argument
-              (identifier)
-              (integer_literal)))))
-      (if_statement
-        (is_expression
-          (identifier)
-          (identifier))
-        (block
-          (call_expression
-            (identifier)
-            (arguments
-              (argument
-                (string_literal))))))
-      (if_statement
-        (is_expression
-          (identifier)
-          (identifier))
-        (block
-          (call_expression
-            (identifier)
-            (arguments
-              (argument
-                (string_literal))))))
-      (if_statement
-        (is_expression
-          (call_expression
-            (identifier)
-            (arguments
-              (argument
-                (identifier)
-                (integer_literal))))
-          (identifier))
-        (block
-          (call_expression
-            (identifier)
-            (arguments
-              (argument
-                (string_literal))))))
-      (if_statement
-        (is_expression
-          (call_expression
-            (identifier)
-            (arguments
-              (argument
-                (identifier)
-                (integer_literal))))
-          (identifier))
-        (block
-          (call_expression
-            (identifier)
-            (arguments
-              (argument
-                (string_literal)))))))))
+; ================================================================================
+; NOT IMPLEMENTED Basics Is ID=9VXGFF3
+; ================================================================================
+; 
+; /// Expect:
+; /// - output: "OK\nOK\n"
+; 
+; class Foo {
+;     public x: i64
+; }
+; 
+; class Bar {
+;     public y: i64
+; }
+; 
+; fn main() {
+;     let foo = Foo(x: 1)
+; 
+;     if foo is Foo {
+;         println("OK")
+;     }
+; 
+;     if foo is Bar {
+;         println("Error: Foo should not be Bar")
+;     }
+; 
+;     if Bar(y: 5) is Bar {
+;         println("OK")
+;     }
+; 
+;     if Bar(y: 10) is Foo {
+;         println("Error: Bar should not be Foo")
+;     }
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

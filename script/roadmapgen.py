@@ -180,6 +180,7 @@ class Test:
     """A tree sitter test and corresponding Jakt sample."""
 
     name: str
+    title: str
     corpus_file_path: pathlib.Path
     jakt_sample_path: pathlib.Path
     jakt_sample_hash: str
@@ -279,6 +280,7 @@ def load_state_file(jakt_path: str) -> TestMap:
         filezm.map.append(
             Test(
                 name=test["name"],
+                title="",
                 implemented=test["implemented"],
                 corpus_file_path=pathlib.Path(os.getcwd(), test["corpus_file_path"]),
                 jakt_sample_path=pathlib.Path(jakt_path, test["jakt_sample_path"]),
@@ -294,8 +296,14 @@ def load_state_file(jakt_path: str) -> TestMap:
 
 def write_state_file(map: TestMap) -> bool:
     """Serialize map into the state file"""
+    created = False
+    if not state_file.exists():
+        created = True
     with open(state_file, "wb") as f:
         f.write(str.encode(to_toml(map)))
+    if created:
+        console.log("state file created")
+        return True
     console.log("state file updated")
     return True
 
@@ -309,15 +317,34 @@ def build_test_map(jakt_path: str) -> TestMap:
             if ".jakt" not in str(file_path):
                 console.log(f"skipping file: {file_path}")
                 continue
+
             file_text = file_path.read_text()
             hash = hashlib.md5(file_text.encode("utf-8")).hexdigest()
+
             falty = False
             if "/// - error:" in file_text:
                 falty = True
+
+            title = ""
+            corpus_test_path = convert_jakt_sample_path_to_ts_path(file_path)
+            if corpus_test_path.exists():
+                with open(corpus_test_path, "rb") as f:
+                    corpus_content = f.read()
+                if m := re.match(
+                    r"(?s)[; ]*=+\s+[; ]*([\w\-= ]+)\s+[; ]*=+", corpus_content.decode()
+                ):
+                    title = m.groups()[0]
+                else:
+                    console.log(
+                        "[yellow][bold]WARNING[/yellow] - "
+                        + f"title regex did not match for file: '{corpus_test_path}'[/bold]"
+                    )
+
             filez.map.append(
                 Test(
                     name=name,
-                    corpus_file_path=convert_jakt_sample_path_to_ts_path(file_path),
+                    title=title,
+                    corpus_file_path=corpus_test_path,
                     jakt_sample_path=file_path,
                     jakt_sample_hash=hash,
                     implemented=TestImplemented(0),
@@ -348,6 +375,7 @@ def test_from_corpus_path(corpus_path: str, jakt_path: str) -> Optional[Test]:
     console.log(f"Hash: {hash}")
     return Test(
         name=sample_path.name,
+        title="",
         corpus_file_path=file_path.absolute(),
         jakt_sample_path=pathlib.Path(
             *sample_path.parts[sample_path.parts.index("samples") :]
@@ -672,10 +700,20 @@ def sync(
         return
     console.log("syncing corpus test suite with Jakt sample suite")
     map = build_test_map(jakt_path)
-    sf = load_state_file(jakt_path)
+
+    sf: TestMap
+    state_file_loaded = False
+    if not state_file.exists():
+        write_state_file(map)
+        sf = map
+    else:
+        sf = load_state_file(jakt_path)
+        state_file_loaded = True
     state_sync_deleted(sf)
-    for _, v in enumerate(map.map):
-        fill_test_props(sf, v)
+
+    for v in map.map:
+        if state_file_loaded:
+            fill_test_props(sf, v)
         if v.corpus_file_path.exists() and v.deleted:
             v.corpus_file_path.unlink()
             console.log(f"deleted '{v.corpus_file_path}'")
@@ -685,10 +723,13 @@ def sync(
             sample_content = f.read()
         v.corpus_file_path.parent.mkdir(0o744, True, True)
         if not v.corpus_file_path.exists():
-            write_new_corpus_test(v.corpus_file_path, sample_content)
+            write_new_corpus_test(v, sample_content)
             continue
-        update_corpus_test(v.corpus_file_path, sample_content)
+        if v.changed:
+            update_corpus_test(v, sample_content)
+
     write_state_file(map)
+
     console.log(
         "[yellow][bold]WARNING[/yellow] - "
         + "please run the `check` command to run tree-sitter tests to finish updating the state[/bold]"
@@ -776,7 +817,7 @@ def corpus_test_title(corpus_file_path) -> str:
     return f"{ts_test_name} {uid}"
 
 
-def write_new_corpus_test(corpus_file_path: pathlib.Path, sample_content: bytes):
+def write_new_corpus_test(test: Test, sample_content: bytes):
     """Writes a new corpus test using sample_content and a default s-expression.
 
     NOT IMPLEMENTED is appended to the test title so the check command will show that it
@@ -787,31 +828,39 @@ def write_new_corpus_test(corpus_file_path: pathlib.Path, sample_content: bytes)
     prevent TS CLI from running the test so the failing test does not pollute the TS test
     suite with false negatives.
     """
-    ts_title = f"NOT IMPLEMENTED {corpus_test_title(corpus_file_path)}"
-    ts_banner = corpus_test_banner(ts_title)
-    console.log(f"creating new test: {ts_title!r}")
+    test.title = f"NOT IMPLEMENTED {corpus_test_title(test.corpus_file_path)}"
+    ts_banner = corpus_test_banner(test.title)
+    console.log(f"creating new test: {test.title!r}")
     sepb = "-" * 80
     content = f"{ts_banner}{sample_content.decode()}\n{sepb}\n\n(source_file)"
     commented_content = ""
     for lin in content.splitlines():
         commented_content += "; " + lin + "\n"
-    with open(corpus_file_path, "w") as f:
+    with open(test.corpus_file_path, "w") as f:
         f.write(commented_content)
 
 
-def update_corpus_test(corpus_file_path: pathlib.Path, sample_content: bytes):
+def update_corpus_test(test: Test, sample_content: bytes):
     """Update an existing corpus test with content from the jakt sample"""
-    with open(corpus_file_path, "rb") as f:
+    with open(test.corpus_file_path, "rb") as f:
         corpus_content = f.read()
-    if m := re.match(r"(?s)=+\s+[\w ]+\s+=+\s+.+\s+-+\s+(.+)", corpus_content.decode()):
-        ts_title = corpus_test_title(corpus_file_path)
-        ts_banner = corpus_test_banner(ts_title)
-        console.log(f"updating existing test: {ts_title!r}")
+    if m := re.search(
+        r"(?s)([\;\ ]*\(source_file.+)",
+        corpus_content.decode(),
+    ):
+        test.title = corpus_test_title(test.corpus_file_path)
+        ts_banner = corpus_test_banner(test.title)
+        console.log(f"updating existing test: {test.title!r}")
         sepb = "-" * 80
         sexpr = m.groups()[0]
         content_new = f"{ts_banner}{sample_content.decode()}\n{sepb}\n\n{sexpr}"
-        with open(corpus_file_path, "w") as f:
+        with open(test.corpus_file_path, "w") as f:
             f.write(content_new)
+    else:
+        console.log(
+            "[yellow][bold]WARNING[/yellow] - "
+            + f"s-expr regex did not match for file: '{test.corpus_file_path}'[/bold]"
+        )
 
 
 @update_app.command("readme")
