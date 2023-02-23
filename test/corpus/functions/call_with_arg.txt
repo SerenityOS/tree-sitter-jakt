@@ -16,9 +16,29 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (call_expression
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (arguments
-      (argument
+    (parameters
+      (parameter
         (identifier)
-        (string_literal)))))
+        (primitive_type)))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (string_literal)))))))

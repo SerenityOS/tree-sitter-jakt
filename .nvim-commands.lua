@@ -26,12 +26,12 @@ TSTEST = ""
 -- run a test with the visually selected string
 vim.keymap.set("v", "<F2>", function()
     TSTEST = vim.getVisualSelection()
-    vim.cmd("TermExec cmd='tree-sitter generate && tree-sitter test -d -f \"" .. TSTEST .. "\" -D'<CR>")
+    vim.cmd("TermExec cmd='tree-sitter generate && tree-sitter test -d -f \"" .. TSTEST .. "\"'<CR>")
 end, { noremap = true, silent = true })
 
 -- rerun last visually selected test
 vim.keymap.set("n", "<F2>", function()
-    vim.cmd("TermExec cmd='tree-sitter generate && tree-sitter test -d -f \"" .. TSTEST .. "\" -D'<CR>")
+    vim.cmd("TermExec cmd='tree-sitter generate && tree-sitter test -d -f \"" .. TSTEST .. "\"'<CR>")
 end, { noremap = true, silent = true })
 
 -- update a test

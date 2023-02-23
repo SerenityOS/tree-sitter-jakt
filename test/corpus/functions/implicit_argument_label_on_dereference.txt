@@ -1,23 +1,70 @@
-; ================================================================================
-; NOT IMPLEMENTED Functions Implicit Argument Label On Dereference ID=CSZT59S
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "5\n"
-; 
-; fn bar(a: i64) -> i64 {
-;     return a
-; }
-; 
-; fn foo(a: &i64) -> i64 {
-;     return bar(*a)
-; }
-; 
-; fn main() {
-;     let a = 5
-;     println("{}", foo(&a))
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Functions Implicit Argument Label On Dereference ID=CSZT59S
+================================================================================
+
+/// Expect:
+/// - output: "5\n"
+
+fn bar(a: i64) -> i64 {
+    return a
+}
+
+fn foo(a: &i64) -> i64 {
+    return bar(*a)
+}
+
+fn main() {
+    let a = 5
+    println("{}", foo(&a))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (primitive_type)
+    (block
+      (return_statement
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (primitive_type)
+    (block
+      (return_statement
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (pointer_expression
+                (identifier))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (pointer_expression
+                    (identifier)))))))))))

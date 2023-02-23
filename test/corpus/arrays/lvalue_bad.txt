@@ -1,17 +1,43 @@
-; ================================================================================
-; NOT IMPLEMENTED Arrays Lvalue Bad ID=5SQT4FN
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Assignment to immutable variable"
-; 
-; fn main() {
-;     let x = [1, 2, 3]
-;     x[1] = 55
-; 
-;     println("{}", x[1])
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Arrays Lvalue Bad ID=5SQT4FN
+================================================================================
+
+/// Expect:
+/// - error: "Assignment to immutable variable"
+
+fn main() {
+    let x = [1, 2, 3]
+    x[1] = 55
+
+    println("{}", x[1])
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (assignment_expression
+        (array_expression
+          (identifier)
+          (integer_literal))
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (array_expression
+              (identifier)
+              (integer_literal))))))))

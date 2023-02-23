@@ -131,7 +131,9 @@ module.exports = grammar({
       $.optional_expression,
       $.optional_value_expression,
       $.call_expression,
-      $.generic_call_expression,
+
+      // $.generic_call_expression, // FIXME: breaking binary_expression
+
       $.range_expression,
       $.for_expression,
       $.field_expression,

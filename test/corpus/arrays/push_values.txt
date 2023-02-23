@@ -1,19 +1,59 @@
-; ================================================================================
-; NOT IMPLEMENTED Arrays Push Values ID=9ON2X3X
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "x: [1, 2, 3, 5]\ny: [5]\n"
-; 
-; fn main() {
-;     mut x = [1, 2, 3]
-;     mut y = [5]
-; 
-;     x.push_values(&y)
-;     println("x: {}", x)
-;     println("y: {}", y)
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Arrays Push Values ID=9ON2X3X
+================================================================================
+
+/// Expect:
+/// - output: "x: [1, 2, 3, 5]\ny: [5]\n"
+
+fn main() {
+    mut x = [1, 2, 3]
+    mut y = [5]
+
+    x.push_values(&y)
+    println("x: {}", x)
+    println("y: {}", y)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (array_literal
+          (integer_literal)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (pointer_expression
+              (identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

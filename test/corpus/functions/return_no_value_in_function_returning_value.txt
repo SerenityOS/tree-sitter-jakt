@@ -1,16 +1,24 @@
-; ================================================================================
-; NOT IMPLEMENTED Functions Return No Value In Function Returning Value ID=GQIORWU
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Error: ’return’ with no value in function ’test’ returning ’i32’\n"
-; 
-; fn test() -> i32 {
-; 	return
-; }
-; 
-; 
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Functions Return No Value In Function Returning Value ID=GQIORWU
+================================================================================
+
+/// Expect:
+/// - error: "Error: ’return’ with no value in function ’test’ returning ’i32’\n"
+
+fn test() -> i32 {
+	return
+}
+
+
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (block
+      (return_statement))))

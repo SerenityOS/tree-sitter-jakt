@@ -1,14 +1,27 @@
-; ================================================================================
-; NOT IMPLEMENTED Arrays Throws ID=R8RNRO3
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Array initialization inside non-throwing scope\n"
-; 
-; fn a() -> [u8] => []
-; 
-; fn main() {}
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Arrays Throws ID=R8RNRO3
+================================================================================
+
+/// Expect:
+/// - error: "Array initialization inside non-throwing scope\n"
+
+fn a() -> [u8] => []
+
+fn main() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (array_type
+      (primitive_type))
+    (return_expression
+      (array_literal)))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block)))
