@@ -1,19 +1,46 @@
-; ================================================================================
-; NOT IMPLEMENTED Classes Mutating Method Called On Immutable Object Instance ID=ERAOQN5
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Cannot call mutating method on an immutable object instance"
-; 
-; class Foo {
-;     public fn bar(mut this) {}
-; }
-; 
-; fn main() {
-;     let foo = Foo()
-;     foo.bar()
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Classes Mutating Method Called On Immutable Object Instance ID=ERAOQN5
+================================================================================
+
+/// Expect:
+/// - error: "Cannot call mutating method on an immutable object instance"
+
+class Foo {
+    public fn bar(mut this) {}
+}
+
+fn main() {
+    let foo = Foo()
+    foo.bar()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (visibility_specifier)
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (block))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments)))))

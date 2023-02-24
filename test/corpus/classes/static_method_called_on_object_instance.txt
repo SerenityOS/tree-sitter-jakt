@@ -1,21 +1,50 @@
-; ================================================================================
-; NOT IMPLEMENTED Classes Static Method Called On Object Instance ID=0FA12OR
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Cannot call static method on an instance of an object"
-; 
-; class Foo {
-;     public fn bar() {
-;         println("I am a static method")
-;     }
-; }
-; 
-; fn main() {
-;     let foo = Foo()
-;     foo.bar()
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Classes Static Method Called On Object Instance ID=0FA12OR
+================================================================================
+
+/// Expect:
+/// - error: "Cannot call static method on an instance of an object"
+
+class Foo {
+    public fn bar() {
+        println("I am a static method")
+    }
+}
+
+fn main() {
+    let foo = Foo()
+    foo.bar()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (visibility_specifier)
+        (identifier)
+        (parameters)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments)))))

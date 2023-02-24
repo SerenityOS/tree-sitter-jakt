@@ -25,6 +25,8 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (class_declaration
     (type_identifier)
     (field_declaration_list
@@ -47,4 +49,34 @@ fn main() {
           (field_expression
             (update_expression
               (identifier))
-            (field_identifier)))))))
+            (field_identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (string_literal))
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier))))))))

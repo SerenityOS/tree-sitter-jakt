@@ -77,3 +77,16 @@ function is_mutable(this) -> bool => match this {
                 (identifier)
                 (field_identifier))
               (arguments))))))))
+
+================================================================================
+Match Match Default Binding Shortened
+================================================================================
+
+match a {
+    A(x) => println("I found an A {}", x)
+    C(x) | B default(x = 2) => println("Just {}", x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
