@@ -1,21 +1,59 @@
-; ================================================================================
-; NOT IMPLEMENTED Modules Common Import ID=PLT62SZ
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "PASS\n"
-; 
-; import jakt::arguments { ArgsParser }
-; import c { test_common_import }
-; 
-; fn main() {
-;     mut args_parser = ArgsParser::from_args(["-h"])
-; 
-;     if test_common_import(args: args_parser) {
-;         println("PASS")
-;     }
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Modules Common Import ID=PLT62SZ
+================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
+
+import jakt::arguments { ArgsParser }
+import c { test_common_import }
+
+fn main() {
+    mut args_parser = ArgsParser::from_args(["-h"])
+
+    if test_common_import(args: args_parser) {
+        println("PASS")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (import_statement
+    (scoped_identifier)
+    (field_identifier)
+    (import_block
+      (identifier)))
+  (import_statement
+    (identifier)
+    (import_block
+      (identifier)))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (array_literal
+                (string_literal))))))
+      (if_statement
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (identifier))))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))))))

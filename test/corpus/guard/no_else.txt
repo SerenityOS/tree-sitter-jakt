@@ -1,16 +1,28 @@
-; ================================================================================
-; NOT IMPLEMENTED Guard No Else ID=39WQ9HX
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Expected `else` keyword"
-; 
-; fn a() {
-;     guard true
-; }
-; 
-; fn main() {}
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Guard No Else ID=39WQ9HX
+================================================================================
+
+/// Expect:
+/// - error: "Expected `else` keyword"
+
+fn a() {
+    guard true
+}
+
+fn main() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (ERROR
+        (boolean_literal))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block)))

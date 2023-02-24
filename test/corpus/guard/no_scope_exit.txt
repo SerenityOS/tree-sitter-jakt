@@ -1,16 +1,29 @@
-; ================================================================================
-; NOT IMPLEMENTED Guard No Scope Exit ID=70RRSLY
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Else block of guard must either `return`, `break`, `continue`, or `throw`"
-; 
-; fn a() {
-;     guard true else {}
-; }
-; 
-; fn main() {}
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Guard No Scope Exit ID=70RRSLY
+================================================================================
+
+/// Expect:
+/// - error: "Else block of guard must either `return`, `break`, `continue`, or `throw`"
+
+fn a() {
+    guard true else {}
+}
+
+fn main() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (guard_statement
+        (boolean_literal)
+        (block))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block)))

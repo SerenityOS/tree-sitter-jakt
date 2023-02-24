@@ -1808,6 +1808,24 @@
             "named": true
           }
         ]
+      },
+      "namespace": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "::",
+            "named": false
+          },
+          {
+            "type": "field_identifier",
+            "named": true
+          },
+          {
+            "type": "scoped_identifier",
+            "named": true
+          }
+        ]
       }
     },
     "children": {

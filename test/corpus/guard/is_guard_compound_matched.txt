@@ -25,6 +25,8 @@ fn main() -> c_int {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (type_identifier)
     (enum_variant_list
@@ -34,6 +36,7 @@ fn main() -> c_int {
   (function_declaration
     (identifier)
     (parameters)
+    (primitive_type)
     (block
       (let_declaration
         (identifier)
@@ -70,12 +73,13 @@ fn main() -> c_int {
               (argument
                 (string_literal))))
           (return_statement
-            (unary_expression
-              (integer_literal)))))
+            (integer_literal))))
       (call_expression
         (identifier)
         (arguments
           (argument
             (string_literal))
           (argument
-            (identifier)))))))
+            (identifier))))
+      (return_statement
+        (integer_literal)))))

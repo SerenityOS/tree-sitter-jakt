@@ -20,10 +20,19 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
+  (line_comment)
   (import_statement
     (identifier))
   (import_statement
     (identifier))
+  (import_statement
+    (scoped_identifier)
+    (field_identifier)
+    (import_block
+      (identifier)
+      (identifier)))
   (function_declaration
     (identifier)
     (parameters)
@@ -35,4 +44,17 @@ fn main() {
       (static_call_expression
         (scoped_identifier)
         (field_identifier)
-        (arguments)))))
+        (arguments))
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
+        (arguments))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (identifier)
+              (arguments))))))))

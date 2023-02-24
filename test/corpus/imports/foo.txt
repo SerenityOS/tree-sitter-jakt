@@ -15,6 +15,7 @@ struct Bar {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

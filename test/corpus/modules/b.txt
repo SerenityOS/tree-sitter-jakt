@@ -19,6 +19,7 @@ fn not_cool() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

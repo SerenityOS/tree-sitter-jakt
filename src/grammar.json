@@ -708,6 +708,32 @@
                         ]
                       }
                     ]
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "namespace",
+                    "content": {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "identifier"
+                          },
+                          "named": true,
+                          "value": "scoped_identifier"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "::"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "_field_identifier"
+                        }
+                      ]
+                    }
                   }
                 ]
               },

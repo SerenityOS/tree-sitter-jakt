@@ -18,6 +18,8 @@ fn main() {
 
 (source_file
   (line_comment)
+  (line_comment)
+  (line_comment)
   (import_statement
     (identifier)
     (import_block

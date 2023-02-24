@@ -1,20 +1,57 @@
-; ================================================================================
-; NOT IMPLEMENTED Modules Std Module ID=TNP91RX
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "PASS\n"
-; 
-; import jakt::arguments { ArgsParser }
-; 
-; fn main() {
-;     mut args_parser = ArgsParser::from_args(["-h"])
-; 
-;     if args_parser.flag(["-h", "--help"]) {
-;         println("PASS")
-;     }
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Modules Std Module ID=TNP91RX
+================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
+
+import jakt::arguments { ArgsParser }
+
+fn main() {
+    mut args_parser = ArgsParser::from_args(["-h"])
+
+    if args_parser.flag(["-h", "--help"]) {
+        println("PASS")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (import_statement
+    (scoped_identifier)
+    (field_identifier)
+    (import_block
+      (identifier)))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (array_literal
+                (string_literal))))))
+      (if_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments
+            (argument
+              (array_literal
+                (string_literal)
+                (string_literal)))))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))))))

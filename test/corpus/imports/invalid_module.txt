@@ -1,14 +1,22 @@
-; ================================================================================
-; NOT IMPLEMENTED Imports Invalid Module ID=Q75Z6NJ
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "No module in module set {baz} was found"
-; 
-; import baz
-; 
-; fn main() {}
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Imports Invalid Module ID=Q75Z6NJ
+================================================================================
+
+/// Expect:
+/// - error: "No module in module set {baz} was found"
+
+import baz
+
+fn main() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (import_statement
+    (identifier))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block)))

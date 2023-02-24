@@ -10,6 +10,7 @@ struct S {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list

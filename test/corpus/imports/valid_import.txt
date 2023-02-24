@@ -14,5 +14,15 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (import_statement
-    (identifier)))
+    (identifier))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
+        (arguments)))))

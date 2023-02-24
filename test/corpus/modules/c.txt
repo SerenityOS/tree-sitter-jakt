@@ -1,15 +1,41 @@
-; ================================================================================
-; NOT IMPLEMENTED Modules C ID=33R7L2X
-; ================================================================================
-; 
-; /// Expect: Skip
-; 
-; import jakt::arguments { ArgsParser }
-; 
-; fn test_common_import(mut args: ArgsParser) throws -> bool {
-;     return args.flag(["-h", "--help"])
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Modules C ID=33R7L2X
+================================================================================
+
+/// Expect: Skip
+
+import jakt::arguments { ArgsParser }
+
+fn test_common_import(mut args: ArgsParser) throws -> bool {
+    return args.flag(["-h", "--help"])
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (import_statement
+    (scoped_identifier)
+    (field_identifier)
+    (import_block
+      (identifier)))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (mutable_specifier)
+        (identifier)
+        (type_identifier)))
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (return_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments
+            (argument
+              (array_literal
+                (string_literal)
+                (string_literal)))))))))
