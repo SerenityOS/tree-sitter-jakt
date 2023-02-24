@@ -1,15 +1,29 @@
-; ================================================================================
-; NOT IMPLEMENTED References No Reference Struct Fields ID=J1HST9L
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Reference type ‘&i64’ not usable in this context"
-; 
-; struct Foo {
-;     x: &i64
-;     y: &mut i64
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+References No Reference Struct Fields ID=J1HST9L
+================================================================================
+
+/// Expect:
+/// - error: "Reference type ‘&i64’ not usable in this context"
+
+struct Foo {
+    x: &i64
+    y: &mut i64
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (reference_type
+          (primitive_type)))
+      (field_declaration
+        (field_identifier)
+        (reference_type
+          (mutable_specifier)
+          (primitive_type))))))

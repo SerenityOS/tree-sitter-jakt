@@ -21,6 +21,8 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (type_identifier)
     (enum_variant_list
@@ -68,13 +70,13 @@ fn main() {
                   (arguments
                     (argument
                       (identifier)))))
-              (logical_expression
-                (binary_expression
-                  (identifier)
-                  (identifier))
-                (binary_expression
-                  (integer_literal)
-                  (integer_literal))))))
+              (ERROR
+                (identifier)
+                (type_identifier)
+                (type_identifier))
+              (binary_expression
+                (integer_literal)
+                (integer_literal)))))
         (block
           (call_expression
             (identifier)

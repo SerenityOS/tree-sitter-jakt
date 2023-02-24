@@ -1,15 +1,29 @@
-; ================================================================================
-; NOT IMPLEMENTED References No Reference Return Type ID=WYV6QFB
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Reference type ‘&i64’ not usable in this context"
-; 
-; fn foo() -> &i64 {
-;     let x = 1
-;     return &x
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+References No Reference Return Type ID=WYV6QFB
+================================================================================
+
+/// Expect:
+/// - error: "Reference type ‘&i64’ not usable in this context"
+
+fn foo() -> &i64 {
+    let x = 1
+    return &x
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (reference_type
+      (primitive_type))
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (return_statement
+        (pointer_expression
+          (identifier))))))

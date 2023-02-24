@@ -45,6 +45,26 @@ fn main() {}
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))))
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))))
   (enum_declaration
     (type_identifier)
     (enum_variant_list
@@ -58,4 +78,44 @@ fn main() {}
           (primitive_type)))
       (enum_tuple_variant
         (identifier)
-        (primitive_type)))))
+        (primitive_type))))
+  (enum_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (type_identifier)))
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (type_identifier))
+      (enum_variant
+        (identifier))))
+  (enum_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (type_identifier)
+        (type_identifier)))
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (type_identifier))
+      (enum_tuple_variant
+        (identifier)
+        (type_identifier))))
+  (enum_declaration
+    (enum_integral_type
+      (identifier)
+      (primitive_type))
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier)
+        (integer_literal))
+      (enum_variant
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block)))
