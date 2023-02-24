@@ -23,6 +23,8 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (generic_function_declaration
     (generic_type
       (identifier)
@@ -67,7 +69,9 @@ fn main() {
                     (identifier)))))
             (block
               (return_statement
-                (identifier))))))
+                (type_conversion_expression
+                  (identifier)
+                  (generic_identifier)))))))
       (return_statement
         (none_expression))))
   (function_declaration

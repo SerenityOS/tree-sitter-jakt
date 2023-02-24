@@ -1,23 +1,64 @@
-; ================================================================================
-; NOT IMPLEMENTED Closures Trailing Closure Parameter ID=9JTP8N4
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "Before\nWell, hello friends!\nAfter\n"
-; 
-; fn wrapped(anon action: &fn() -> void) {
-;     println("Before")
-;     action()
-;     println("After")
-; }
-; 
-; fn main() {
-;     let message = "Well, hello friends!"
-;     wrapped() {
-;         println(message)
-;     }
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Closures Trailing Closure Parameter ID=9JTP8N4
+================================================================================
+
+/// Expect:
+/// - output: "Before\nWell, hello friends!\nAfter\n"
+
+fn wrapped(anon action: &fn() -> void) {
+    println("Before")
+    action()
+    println("After")
+}
+
+fn main() {
+    let message = "Well, hello friends!"
+    wrapped() {
+        println(message)
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (closure_function_type
+          (parameters)
+          (primitive_type))))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))))
+      (call_expression
+        (identifier)
+        (arguments))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (string_literal))
+      (call_expression
+        (identifier)
+        (arguments))
+      (block
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier))))))))

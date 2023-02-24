@@ -134,7 +134,7 @@
 "yield" @keyword
 (extern_specifier) @keyword
 
-"function" @keyword.function
+"fn" @keyword.function
 "return" @keyword.return
 
 [

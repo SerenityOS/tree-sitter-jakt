@@ -18,6 +18,8 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters
@@ -49,6 +51,7 @@ fn main() {
           (closure_function
             (parameters)
             (throws_specifier)
+            (primitive_type)
             (block
               (return_statement
                 (call_expression
