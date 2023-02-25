@@ -38,6 +38,7 @@
   arguments: (generic_arguments (generic_type_identifier) @variable.builtin))
 
 (generic_type_identifier) @variable.builtin
+(trait_identifier) @variable.builtin
 
 [
   (enum_tuple_variant)
@@ -103,6 +104,7 @@
 "let" @keyword
 "enum" @keyword
 "struct" @keyword
+"trait" @keyword
 "class" @keyword
 "defer" @keyword
 "match" @keyword
@@ -112,6 +114,8 @@
 (extern_specifier) @keyword
 
 "fn" @keyword.function
+"implements" @define
+"requires" @define
 "return" @keyword.return
 
 [

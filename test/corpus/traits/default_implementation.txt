@@ -1,49 +1,155 @@
-; ================================================================================
-; NOT IMPLEMENTED Traits Default Implementation ID=F6RZHOB
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "I'm so boring\nI'm so boring\nI'm so boring\nI'm not boring\nI'm not boring, but I'm doing it twice\n"
-; 
-; trait Fancy {
-;     fn do_something(this) -> void
-;     fn do_something_twice(this) -> void {
-;         .do_something()
-;         .do_something()
-;     }
-; }
-; 
-; struct Boring implements(Fancy) {
-;     fn do_something(this) -> void {
-;         println("I'm so boring")
-;     }
-; 
-;     // Note that we don't have to implement `do_something_twice` here, because it has a default implementation.
-; }
-; 
-; struct Better implements(Fancy) {
-;     fn do_something(this) -> void {
-;         println("I'm not boring")
-;     }
-; 
-;     // However, a custom implementation is still valid.
-;     fn do_something_twice(this) -> void {
-;         println("I'm not boring, but I'm doing it twice")
-;     }
-; }
-; 
-; fn main() {
-;     let boring = Boring()
-;     
-;     boring.do_something()
-;     boring.do_something_twice()
-; 
-;     let better = Better()
-; 
-;     better.do_something()
-;     better.do_something_twice()
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Traits Default Implementation ID=F6RZHOB
+================================================================================
+
+/// Expect:
+/// - output: "I'm so boring\nI'm so boring\nI'm so boring\nI'm not boring\nI'm not boring, but I'm doing it twice\n"
+
+trait Fancy {
+    fn do_something(this) -> void
+    fn do_something_twice(this) -> void {
+        .do_something()
+        .do_something()
+    }
+}
+
+struct Boring implements(Fancy) {
+    fn do_something(this) -> void {
+        println("I'm so boring")
+    }
+
+    // Note that we don't have to implement `do_something_twice` here, because it has a default implementation.
+}
+
+struct Better implements(Fancy) {
+    fn do_something(this) -> void {
+        println("I'm not boring")
+    }
+
+    // However, a custom implementation is still valid.
+    fn do_something_twice(this) -> void {
+        println("I'm not boring, but I'm doing it twice")
+    }
+}
+
+fn main() {
+    let boring = Boring()
+    
+    boring.do_something()
+    boring.do_something_twice()
+
+    let better = Better()
+
+    better.do_something()
+    better.do_something_twice()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (trait_declaration
+    (trait_identifier)
+    (field_declaration_list
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (block
+          (call_expression
+            (this_reference_shorthand
+              (identifier))
+            (arguments))
+          (call_expression
+            (this_reference_shorthand
+              (identifier))
+            (arguments))))))
+  (struct_declaration
+    (type_identifier)
+    (trait_identifier)
+    (field_declaration_list
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))))))
+      (line_comment)))
+  (struct_declaration
+    (type_identifier)
+    (trait_identifier)
+    (field_declaration_list
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))))))
+      (line_comment)
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments))
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments)))))

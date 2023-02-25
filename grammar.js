@@ -65,6 +65,7 @@ module.exports = grammar({
 
   inline: $ => [
     $._type_identifier,
+    $.trait_identifier,
     $._statement,
     $.declaration,
     $.field_identifier,
@@ -114,6 +115,7 @@ module.exports = grammar({
       $.mutable_declaration,
       $.enum_declaration,
       $.struct_declaration,
+      $.trait_declaration,
       $.class_declaration,
       $.generic_class_declaration,
       $.namespace_declaration,
@@ -471,6 +473,7 @@ module.exports = grammar({
       optional($.boxed_specifier),
       'enum',
       field('name', choice($._type, optional($.enum_integral_type))),
+      optional(field('implements', $._implements)),
       field('body', $.enum_variant_list)
     ),
 
@@ -544,10 +547,25 @@ module.exports = grammar({
 
     _field_identifier: $ => prec(1, alias($.identifier, $.field_identifier)),
 
+    _implements: $ => seq(
+      'implements',
+      '(',
+       sepBy1(optional(','), $.trait_identifier),
+      ')',
+    ),
+
     struct_declaration: $ => seq(
       optional($.extern_specifier),
       'struct',
       field('name', choice($._type_identifier, $.generic_type)),
+      optional(field('implements', $._implements)),
+      field('body', $.field_declaration_list)
+    ),
+
+    trait_declaration: $ => seq(
+      // optional($.extern_specifier),
+      'trait',
+      field('name', choice(alias($.identifier, $.trait_identifier), $.generic_type)),
       field('body', $.field_declaration_list)
     ),
 
@@ -794,10 +812,23 @@ module.exports = grammar({
         )
     )),
 
+    trait_requirement: $ => seq(
+      field("name", $.identifier),
+      field("arguments", seq(
+        '<',
+        $.trait_identifier,
+        'requires',
+        '(',
+        sepBy1(optional(','), $.trait_identifier),
+        ')',
+        '>',
+      ),
+    )),
+
     function_declaration: $ => prec.right(seq(
       optional(choice($.restricted_specifier, $.visibility_specifier)),
       'fn',
-      field('name', $.identifier),
+      field('name', choice($.identifier, $.trait_requirement)),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
       optional(seq('->', field('return_type', choice($._type, $.optional_type, $.pointer_type)))),
@@ -935,6 +966,7 @@ module.exports = grammar({
 
     identifier: $ => identifier,
     _type_identifier: $ => alias($.identifier, $.type_identifier),
+    trait_identifier: $ => alias($.identifier, $.trait_identifier),
 
     _primitive_types: $ => alias(choice(...primitive_types), $.primitive_type),
   }

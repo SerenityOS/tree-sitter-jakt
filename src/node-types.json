@@ -266,6 +266,10 @@
         "named": true
       },
       {
+        "type": "trait_declaration",
+        "named": true
+      },
+      {
         "type": "try_statement",
         "named": true
       },
@@ -1090,6 +1094,32 @@
           }
         ]
       },
+      "implements": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "implements",
+            "named": false
+          },
+          {
+            "type": "trait_identifier",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": false,
@@ -1159,6 +1189,10 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "trait_requirement",
             "named": true
           }
         ]
@@ -1525,6 +1559,10 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "trait_requirement",
             "named": true
           }
         ]
@@ -2658,6 +2696,32 @@
           }
         ]
       },
+      "implements": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "implements",
+            "named": false
+          },
+          {
+            "type": "trait_identifier",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -2743,6 +2807,86 @@
     "type": "throws_specifier",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "trait_declaration",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "field_declaration_list",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "generic_type",
+            "named": true
+          },
+          {
+            "type": "trait_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "trait_requirement",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "<",
+            "named": false
+          },
+          {
+            "type": ">",
+            "named": false
+          },
+          {
+            "type": "requires",
+            "named": false
+          },
+          {
+            "type": "trait_identifier",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "try_expression",
@@ -3302,6 +3446,10 @@
     "named": false
   },
   {
+    "type": "implements",
+    "named": false
+  },
+  {
     "type": "import",
     "named": false
   },
@@ -3374,6 +3522,10 @@
     "named": false
   },
   {
+    "type": "requires",
+    "named": false
+  },
+  {
     "type": "restricted",
     "named": false
   },
@@ -3400,6 +3552,14 @@
   {
     "type": "throws",
     "named": false
+  },
+  {
+    "type": "trait",
+    "named": false
+  },
+  {
+    "type": "trait_identifier",
+    "named": true
   },
   {
     "type": "true",
