@@ -56,7 +56,7 @@ implemented = 0
 
 [[map]]
 name = "array_bad.jakt"
-title = "NOT IMPLEMENTED Arrays Array Bad ID=VUKBIN0"
+title = "Arrays Array Bad ID=VUKBIN0"
 corpus_file_path = "test/corpus/arrays/array_bad.txt"
 jakt_sample_path = "samples/arrays/array_bad.jakt"
 jakt_sample_hash = "8e3329716d1e2115f8cc5ee1ec91bc81"
@@ -64,7 +64,7 @@ implemented = 0
 
 [[map]]
 name = "array_bad2.jakt"
-title = "NOT IMPLEMENTED Arrays Array Bad2 ID=4GFGUAS"
+title = "Arrays Array Bad2 ID=4GFGUAS"
 corpus_file_path = "test/corpus/arrays/array_bad2.txt"
 jakt_sample_path = "samples/arrays/array_bad2.jakt"
 jakt_sample_hash = "e6b0ea10cc43ce068e40024e80fae939"
@@ -72,7 +72,7 @@ implemented = 0
 
 [[map]]
 name = "array_insert.jakt"
-title = "NOT IMPLEMENTED Arrays Array Insert ID=EQGON66"
+title = "Arrays Array Insert ID=EQGON66"
 corpus_file_path = "test/corpus/arrays/array_insert.txt"
 jakt_sample_path = "samples/arrays/array_insert.jakt"
 jakt_sample_hash = "2246644a5da49bdd60ff4dba03ba6ebb"
@@ -136,7 +136,7 @@ implemented = 0
 
 [[map]]
 name = "empty_infer_call_bad.jakt"
-title = "NOT IMPLEMENTED Arrays Empty Infer Call Bad ID=CJOJG56"
+title = "Arrays Empty Infer Call Bad ID=CJOJG56"
 corpus_file_path = "test/corpus/arrays/empty_infer_call_bad.txt"
 jakt_sample_path = "samples/arrays/empty_infer_call_bad.jakt"
 jakt_sample_hash = "c8314de9689872a2175bb266213fa3b8"
@@ -144,7 +144,7 @@ implemented = 0
 
 [[map]]
 name = "empty_literal_without_hint.jakt"
-title = "NOT IMPLEMENTED Arrays Empty Literal Without Hint ID=IB4QYL4"
+title = "Arrays Empty Literal Without Hint ID=IB4QYL4"
 corpus_file_path = "test/corpus/arrays/empty_literal_without_hint.txt"
 jakt_sample_path = "samples/arrays/empty_literal_without_hint.jakt"
 jakt_sample_hash = "c0039b1247bd3e60e92d339886f71931"
@@ -168,7 +168,7 @@ implemented = 0
 
 [[map]]
 name = "lvalue_bad.jakt"
-title = "NOT IMPLEMENTED Arrays Lvalue Bad ID=5SQT4FN"
+title = "Arrays Lvalue Bad ID=5SQT4FN"
 corpus_file_path = "test/corpus/arrays/lvalue_bad.txt"
 jakt_sample_path = "samples/arrays/lvalue_bad.jakt"
 jakt_sample_hash = "f145d28e6e137563dc5c96319b13aabd"
@@ -200,7 +200,7 @@ implemented = 0
 
 [[map]]
 name = "push_values.jakt"
-title = "NOT IMPLEMENTED Arrays Push Values ID=9ON2X3X"
+title = "Arrays Push Values ID=9ON2X3X"
 corpus_file_path = "test/corpus/arrays/push_values.txt"
 jakt_sample_path = "samples/arrays/push_values.jakt"
 jakt_sample_hash = "39ebc9a2fb3559e18adfcacb0823bdae"
@@ -248,7 +248,7 @@ implemented = 0
 
 [[map]]
 name = "throws.jakt"
-title = "NOT IMPLEMENTED Arrays Throws ID=R8RNRO3"
+title = "Arrays Throws ID=R8RNRO3"
 corpus_file_path = "test/corpus/arrays/throws.txt"
 jakt_sample_path = "samples/arrays/throws.jakt"
 jakt_sample_hash = "af239708a784c6abe6fe6abc3aa0fc52"
@@ -288,7 +288,7 @@ implemented = 0
 
 [[map]]
 name = "error.jakt"
-title = "NOT IMPLEMENTED Basics Error ID=XDQ4SH1"
+title = "Basics Error ID=XDQ4SH1"
 corpus_file_path = "test/corpus/basics/error.txt"
 jakt_sample_path = "samples/basics/error.jakt"
 jakt_sample_hash = "e27724883494571ead6ad3c2c64d7fde"
@@ -344,7 +344,7 @@ implemented = 0
 
 [[map]]
 name = "is.jakt"
-title = "NOT IMPLEMENTED Basics Is ID=9VXGFF3"
+title = "Basics Is ID=9VXGFF3"
 corpus_file_path = "test/corpus/basics/is.txt"
 jakt_sample_path = "samples/basics/is.jakt"
 jakt_sample_hash = "8c1118d66c80525fc8fa8e879c91a2d8"
@@ -376,7 +376,7 @@ implemented = 0
 
 [[map]]
 name = "reserved_variable.jakt"
-title = "NOT IMPLEMENTED Basics Reserved Variable ID=VTFA75S"
+title = "Basics Reserved Variable ID=VTFA75S"
 corpus_file_path = "test/corpus/basics/reserved_variable.txt"
 jakt_sample_path = "samples/basics/reserved_variable.jakt"
 jakt_sample_hash = "5498b3def838749f8acd979170d96b35"
@@ -448,7 +448,7 @@ implemented = 0
 
 [[map]]
 name = "mutating_method_called_on_immutable_object_instance.jakt"
-title = "NOT IMPLEMENTED Classes Mutating Method Called On Immutable Object Instance ID=ERAOQN5"
+title = "Classes Mutating Method Called On Immutable Object Instance ID=ERAOQN5"
 corpus_file_path = "test/corpus/classes/mutating_method_called_on_immutable_object_instance.txt"
 jakt_sample_path = "samples/classes/mutating_method_called_on_immutable_object_instance.jakt"
 jakt_sample_hash = "1d8f2546b9181003cf5bc87b563612d4"
@@ -456,7 +456,7 @@ implemented = 0
 
 [[map]]
 name = "overload_methods.jakt"
-title = "NOT IMPLEMENTED Classes Overload Methods ID=AJUTWTV"
+title = "Classes Overload Methods ID=AJUTWTV"
 corpus_file_path = "test/corpus/classes/overload_methods.txt"
 jakt_sample_path = "samples/classes/overload_methods.jakt"
 jakt_sample_hash = "f5c4172e52ecf6ae7160e57e49d6d81b"
@@ -472,7 +472,7 @@ implemented = 0
 
 [[map]]
 name = "restricted_method_inaccessible.jakt"
-title = "NOT IMPLEMENTED Classes Restricted Method Inaccessible ID=1QAVTH1"
+title = "Classes Restricted Method Inaccessible ID=1QAVTH1"
 corpus_file_path = "test/corpus/classes/restricted_method_inaccessible.txt"
 jakt_sample_path = "samples/classes/restricted_method_inaccessible.jakt"
 jakt_sample_hash = "a3f822a708878db8e68413b3dd1ea075"
@@ -488,7 +488,7 @@ implemented = 0
 
 [[map]]
 name = "static_method_called_on_object_instance.jakt"
-title = "NOT IMPLEMENTED Classes Static Method Called On Object Instance ID=0FA12OR"
+title = "Classes Static Method Called On Object Instance ID=0FA12OR"
 corpus_file_path = "test/corpus/classes/static_method_called_on_object_instance.txt"
 jakt_sample_path = "samples/classes/static_method_called_on_object_instance.jakt"
 jakt_sample_hash = "36a5663fb37d5fa1fa829cc213f71d9d"
@@ -528,7 +528,7 @@ implemented = 0
 
 [[map]]
 name = "defer_return_error.jakt"
-title = "NOT IMPLEMENTED Control Flow Defer Return Error ID=EG5TE5R"
+title = "Control Flow Defer Return Error ID=EG5TE5R"
 corpus_file_path = "test/corpus/control_flow/defer_return_error.txt"
 jakt_sample_path = "samples/control_flow/defer_return_error.jakt"
 jakt_sample_hash = "68fe6161f1f7f3710f7ce1344d5ecbff"
@@ -608,7 +608,7 @@ implemented = 0
 
 [[map]]
 name = "if_else_identical_error.jakt"
-title = "NOT IMPLEMENTED Control Flow If Else Identical Error ID=RH5DPRZ"
+title = "Control Flow If Else Identical Error ID=RH5DPRZ"
 corpus_file_path = "test/corpus/control_flow/if_else_identical_error.txt"
 jakt_sample_path = "samples/control_flow/if_else_identical_error.jakt"
 jakt_sample_hash = "35570cbca707f2dd22180384128e9395"
@@ -616,7 +616,7 @@ implemented = 0
 
 [[map]]
 name = "if_with_bad_assignment.jakt"
-title = "NOT IMPLEMENTED Control Flow If With Bad Assignment ID=2SSLIVW"
+title = "Control Flow If With Bad Assignment ID=2SSLIVW"
 corpus_file_path = "test/corpus/control_flow/if_with_bad_assignment.txt"
 jakt_sample_path = "samples/control_flow/if_with_bad_assignment.jakt"
 jakt_sample_hash = "0ba151ec42cfc7b9672632f1b67e8340"
@@ -624,7 +624,7 @@ implemented = 0
 
 [[map]]
 name = "if_with_bad_expression_type.jakt"
-title = "NOT IMPLEMENTED Control Flow If With Bad Expression Type ID=XJ40HEX"
+title = "Control Flow If With Bad Expression Type ID=XJ40HEX"
 corpus_file_path = "test/corpus/control_flow/if_with_bad_expression_type.txt"
 jakt_sample_path = "samples/control_flow/if_with_bad_expression_type.jakt"
 jakt_sample_hash = "5e9356082575c8de15de447d62fd3310"
@@ -648,7 +648,7 @@ implemented = 0
 
 [[map]]
 name = "no_never_return.jakt"
-title = "NOT IMPLEMENTED Control Flow No Never Return ID=DWMJ5M9"
+title = "Control Flow No Never Return ID=DWMJ5M9"
 corpus_file_path = "test/corpus/control_flow/no_never_return.txt"
 jakt_sample_path = "samples/control_flow/no_never_return.jakt"
 jakt_sample_hash = "fb675a6aabb51af7535d18da72068cce"
@@ -664,7 +664,7 @@ implemented = 0
 
 [[map]]
 name = "statements_after_never_return.jakt"
-title = "NOT IMPLEMENTED Control Flow Statements After Never Return ID=M8JCNZX"
+title = "Control Flow Statements After Never Return ID=M8JCNZX"
 corpus_file_path = "test/corpus/control_flow/statements_after_never_return.txt"
 jakt_sample_path = "samples/control_flow/statements_after_never_return.jakt"
 jakt_sample_hash = "a35c73b31c53b51737b56e0bce9789f1"
@@ -672,7 +672,7 @@ implemented = 0
 
 [[map]]
 name = "try_catch.jakt"
-title = "NOT IMPLEMENTED Control Flow Try Catch ID=9G77SE9"
+title = "Control Flow Try Catch ID=9G77SE9"
 corpus_file_path = "test/corpus/control_flow/try_catch.txt"
 jakt_sample_path = "samples/control_flow/try_catch.jakt"
 jakt_sample_hash = "a4723a3b9f6bfcd91c2d56d87e223ad6"
@@ -712,7 +712,7 @@ implemented = 0
 
 [[map]]
 name = "while_with_bad_expression_type.jakt"
-title = "NOT IMPLEMENTED Control Flow While With Bad Expression Type ID=Z9LJCB3"
+title = "Control Flow While With Bad Expression Type ID=Z9LJCB3"
 corpus_file_path = "test/corpus/control_flow/while_with_bad_expression_type.txt"
 jakt_sample_path = "samples/control_flow/while_with_bad_expression_type.jakt"
 jakt_sample_hash = "6888750a78fb55da56d2acdc5ed9bd48"
@@ -744,7 +744,7 @@ implemented = 0
 
 [[map]]
 name = "dict_index_unwrap.jakt"
-title = "NOT IMPLEMENTED Dictionaries Dict Index Unwrap ID=ZV36NFX"
+title = "Dictionaries Dict Index Unwrap ID=ZV36NFX"
 corpus_file_path = "test/corpus/dictionaries/dict_index_unwrap.txt"
 jakt_sample_path = "samples/dictionaries/dict_index_unwrap.jakt"
 jakt_sample_hash = "bf33357dab381e4654e1fecade4ded8b"
@@ -760,7 +760,7 @@ implemented = 0
 
 [[map]]
 name = "empty_literal_without_hint.jakt"
-title = "NOT IMPLEMENTED Dictionaries Empty Literal Without Hint ID=WU3WV6W"
+title = "Dictionaries Empty Literal Without Hint ID=WU3WV6W"
 corpus_file_path = "test/corpus/dictionaries/empty_literal_without_hint.txt"
 jakt_sample_path = "samples/dictionaries/empty_literal_without_hint.jakt"
 jakt_sample_hash = "628709d0e39cf70337ae7b493c09921b"
@@ -816,7 +816,7 @@ implemented = 0
 
 [[map]]
 name = "with_class.jakt"
-title = "NOT IMPLEMENTED Dictionaries With Class ID=SOVP6S4"
+title = "Dictionaries With Class ID=SOVP6S4"
 corpus_file_path = "test/corpus/dictionaries/with_class.txt"
 jakt_sample_path = "samples/dictionaries/with_class.jakt"
 jakt_sample_hash = "2578d14c0b92eaeea9bcf5004e0c4f9d"
@@ -824,7 +824,7 @@ implemented = 0
 
 [[map]]
 name = "common_members.jakt"
-title = "NOT IMPLEMENTED Enums Common Members ID=R9XMPCJ"
+title = "Enums Common Members ID=R9XMPCJ"
 corpus_file_path = "test/corpus/enums/common_members.txt"
 jakt_sample_path = "samples/enums/common_members.jakt"
 jakt_sample_hash = "ae12016a8d8671292790b11c4753b8d6"
@@ -832,7 +832,7 @@ implemented = 0
 
 [[map]]
 name = "empty_enum.jakt"
-title = "NOT IMPLEMENTED Enums Empty Enum ID=R0XQD1H"
+title = "Enums Empty Enum ID=R0XQD1H"
 corpus_file_path = "test/corpus/enums/empty_enum.txt"
 jakt_sample_path = "samples/enums/empty_enum.jakt"
 jakt_sample_hash = "0d596b011e2a55c069d1eaabc6f4ed22"
@@ -920,7 +920,7 @@ implemented = 0
 
 [[map]]
 name = "methods.jakt"
-title = "NOT IMPLEMENTED Enums Methods ID=D2YNG3A"
+title = "Enums Methods ID=D2YNG3A"
 corpus_file_path = "test/corpus/enums/methods.txt"
 jakt_sample_path = "samples/enums/methods.jakt"
 jakt_sample_hash = "d225f99638225552be1edd4e93d38cae"
@@ -928,7 +928,7 @@ implemented = 0
 
 [[map]]
 name = "methods_access_violation.jakt"
-title = "NOT IMPLEMENTED Enums Methods Access Violation ID=CZ4BWJU"
+title = "Enums Methods Access Violation ID=CZ4BWJU"
 corpus_file_path = "test/corpus/enums/methods_access_violation.txt"
 jakt_sample_path = "samples/enums/methods_access_violation.jakt"
 jakt_sample_hash = "fad443565abb294fe86b127dd5b1504f"
@@ -960,7 +960,7 @@ implemented = 0
 
 [[map]]
 name = "recursive_enums_bad.jakt"
-title = "NOT IMPLEMENTED Enums Recursive Enums Bad ID=CD5AKNN"
+title = "Enums Recursive Enums Bad ID=CD5AKNN"
 corpus_file_path = "test/corpus/enums/recursive_enums_bad.txt"
 jakt_sample_path = "samples/enums/recursive_enums_bad.jakt"
 jakt_sample_hash = "161e9f2dbf25f22b9b0eaf0c272d5ee4"
@@ -984,7 +984,7 @@ implemented = 0
 
 [[map]]
 name = "underlying.jakt"
-title = "NOT IMPLEMENTED Enums Underlying ID=MUE7N6J"
+title = "Enums Underlying ID=MUE7N6J"
 corpus_file_path = "test/corpus/enums/underlying.txt"
 jakt_sample_path = "samples/enums/underlying.jakt"
 jakt_sample_hash = "9b07c222d05f3c9a86bcfbe7ab8ec7da"
@@ -1000,7 +1000,7 @@ implemented = 0
 
 [[map]]
 name = "argument_labels_bad.jakt"
-title = "NOT IMPLEMENTED Functions Argument Labels Bad ID=WWD0HVG"
+title = "Functions Argument Labels Bad ID=WWD0HVG"
 corpus_file_path = "test/corpus/functions/argument_labels_bad.txt"
 jakt_sample_path = "samples/functions/argument_labels_bad.jakt"
 jakt_sample_hash = "815858e17a3c2f86cf2cc0334e9d5dc7"
@@ -1024,7 +1024,7 @@ implemented = 0
 
 [[map]]
 name = "call_missing_function.jakt"
-title = "NOT IMPLEMENTED Functions Call Missing Function ID=T3A2KWZ"
+title = "Functions Call Missing Function ID=T3A2KWZ"
 corpus_file_path = "test/corpus/functions/call_missing_function.txt"
 jakt_sample_path = "samples/functions/call_missing_function.jakt"
 jakt_sample_hash = "c194f4bbcb0227f923a9be3c1b99f440"
@@ -1040,7 +1040,7 @@ implemented = 0
 
 [[map]]
 name = "call_with_bad_args.jakt"
-title = "NOT IMPLEMENTED Functions Call With Bad Args ID=36HKDR4"
+title = "Functions Call With Bad Args ID=36HKDR4"
 corpus_file_path = "test/corpus/functions/call_with_bad_args.txt"
 jakt_sample_path = "samples/functions/call_with_bad_args.jakt"
 jakt_sample_hash = "cf116d7182757e36374520a1ed59d854"
@@ -1064,7 +1064,7 @@ implemented = 0
 
 [[map]]
 name = "call_wrong_arg_count.jakt"
-title = "NOT IMPLEMENTED Functions Call Wrong Arg Count ID=JZNLGK9"
+title = "Functions Call Wrong Arg Count ID=JZNLGK9"
 corpus_file_path = "test/corpus/functions/call_wrong_arg_count.txt"
 jakt_sample_path = "samples/functions/call_wrong_arg_count.jakt"
 jakt_sample_hash = "41e9d33b8c824e984e36e004e876c865"
@@ -1160,7 +1160,7 @@ implemented = 0
 
 [[map]]
 name = "implicit_argument_label_on_dereference.jakt"
-title = "NOT IMPLEMENTED Functions Implicit Argument Label On Dereference ID=CSZT59S"
+title = "Functions Implicit Argument Label On Dereference ID=CSZT59S"
 corpus_file_path = "test/corpus/functions/implicit_argument_label_on_dereference.txt"
 jakt_sample_path = "samples/functions/implicit_argument_label_on_dereference.jakt"
 jakt_sample_hash = "d7100978cbaf25d2b88aff48481007b5"
@@ -1184,18 +1184,10 @@ implemented = 0
 
 [[map]]
 name = "return_no_value_in_function_returning_value.jakt"
-title = "NOT IMPLEMENTED Functions Return No Value In Function Returning Value ID=GQIORWU"
+title = "Functions Return No Value In Function Returning Value ID=GQIORWU"
 corpus_file_path = "test/corpus/functions/return_no_value_in_function_returning_value.txt"
 jakt_sample_path = "samples/functions/return_no_value_in_function_returning_value.jakt"
 jakt_sample_hash = "bd4c0e54aed684ea2b406b08f34a19c2"
-implemented = 0
-
-[[map]]
-name = "explicit_type_vars.jakt"
-title = "Generics Explicit Type Vars ID=UHDYM6W"
-corpus_file_path = "test/corpus/generics/explicit_type_vars.txt"
-jakt_sample_path = "samples/generics/explicit_type_vars.jakt"
-jakt_sample_hash = "0f88901d69321d207be057e9f4330a2c"
 implemented = 0
 
 [[map]]
@@ -1288,7 +1280,7 @@ implemented = 0
 
 [[map]]
 name = "generic_struct_mismatch.jakt"
-title = "NOT IMPLEMENTED Generics Generic Struct Mismatch ID=EAEU7SH"
+title = "Generics Generic Struct Mismatch ID=EAEU7SH"
 corpus_file_path = "test/corpus/generics/generic_struct_mismatch.txt"
 jakt_sample_path = "samples/generics/generic_struct_mismatch.jakt"
 jakt_sample_hash = "51dfee937f7da65f35845422e1f1bc5e"
@@ -1304,7 +1296,7 @@ implemented = 0
 
 [[map]]
 name = "iterator.jakt"
-title = "NOT IMPLEMENTED Generics Iterator ID=5UCCJTB"
+title = "Generics Iterator ID=5UCCJTB"
 corpus_file_path = "test/corpus/generics/iterator.txt"
 jakt_sample_path = "samples/generics/iterator.jakt"
 jakt_sample_hash = "72bed9ae137cb270d4ca2c7eda0cb703"
@@ -1319,8 +1311,16 @@ jakt_sample_hash = "9a032fd9330e50bd818e8f72a2347b4a"
 implemented = 0
 
 [[map]]
+name = "explicit_type_vars.jakt"
+title = "Generics Explicit Type Vars ID=UHDYM6W"
+corpus_file_path = "test/corpus/generics/explicit_type_vars.txt"
+jakt_sample_path = "samples/generics/explicit_type_vars.jakt"
+jakt_sample_hash = "0f88901d69321d207be057e9f4330a2c"
+implemented = 0
+
+[[map]]
 name = "block_statements_not_string.jakt"
-title = "NOT IMPLEMENTED Inline Cpp Block Statements Not String ID=UYP8T1D"
+title = "Inline Cpp Block Statements Not String ID=UYP8T1D"
 corpus_file_path = "test/corpus/inline_cpp/block_statements_not_string.txt"
 jakt_sample_path = "samples/inline_cpp/block_statements_not_string.jakt"
 jakt_sample_hash = "4aeed5aef5c2b23d9b47defc50ea22ad"
@@ -1328,7 +1328,7 @@ implemented = 0
 
 [[map]]
 name = "escaped_string.jakt"
-title = "NOT IMPLEMENTED Inline cpp escaped string"
+title = "Inline cpp escaped string"
 corpus_file_path = "test/corpus/inline_cpp/escaped_string.txt"
 jakt_sample_path = "samples/inline_cpp/escaped_string.jakt"
 jakt_sample_hash = "b41961dd4ffd272597a0809d2b53bdd1"
@@ -1344,7 +1344,7 @@ implemented = 0
 
 [[map]]
 name = "outside_unsafe_block.jakt"
-title = "NOT IMPLEMENTED Inline Cpp Outside Unsafe Block ID=DUEP4I3"
+title = "Inline Cpp Outside Unsafe Block ID=DUEP4I3"
 corpus_file_path = "test/corpus/inline_cpp/outside_unsafe_block.txt"
 jakt_sample_path = "samples/inline_cpp/outside_unsafe_block.jakt"
 jakt_sample_hash = "52977e60e826462065d04a459c248e8e"
@@ -1384,7 +1384,7 @@ implemented = 0
 
 [[map]]
 name = "incompatible_literal.jakt"
-title = "NOT IMPLEMENTED Math Incompatible Literal ID=7QDA3VN"
+title = "Math Incompatible Literal ID=7QDA3VN"
 corpus_file_path = "test/corpus/math/incompatible_literal.txt"
 jakt_sample_path = "samples/math/incompatible_literal.jakt"
 jakt_sample_hash = "0009ab25fb641601c7cc7dbd6f6ff117"
@@ -1400,7 +1400,7 @@ implemented = 0
 
 [[map]]
 name = "increment_decrement_bad.jakt"
-title = "NOT IMPLEMENTED Math Increment Decrement Bad ID=IYDJRZU"
+title = "Math Increment Decrement Bad ID=IYDJRZU"
 corpus_file_path = "test/corpus/math/increment_decrement_bad.txt"
 jakt_sample_path = "samples/math/increment_decrement_bad.jakt"
 jakt_sample_hash = "7745a5309989daac9ffc7fe672d31578"
@@ -1416,7 +1416,7 @@ implemented = 0
 
 [[map]]
 name = "integer_promotion_bad.jakt"
-title = "NOT IMPLEMENTED Math Integer Promotion Bad ID=3T6I3YG"
+title = "Math Integer Promotion Bad ID=3T6I3YG"
 corpus_file_path = "test/corpus/math/integer_promotion_bad.txt"
 jakt_sample_path = "samples/math/integer_promotion_bad.jakt"
 jakt_sample_hash = "2492c4b4cfaabe297bcf122646eb05f9"
@@ -1480,7 +1480,7 @@ implemented = 0
 
 [[map]]
 name = "too_large_literal.jakt"
-title = "NOT IMPLEMENTED Math Too Large Literal ID=YR5E85A"
+title = "Math Too Large Literal ID=YR5E85A"
 corpus_file_path = "test/corpus/math/too_large_literal.txt"
 jakt_sample_path = "samples/math/too_large_literal.jakt"
 jakt_sample_hash = "0771a533d6ba7837698e0f9d2f52902f"
@@ -1488,7 +1488,7 @@ implemented = 0
 
 [[map]]
 name = "too_small_literal.jakt"
-title = "NOT IMPLEMENTED Math Too Small Literal ID=1N56494"
+title = "Math Too Small Literal ID=1N56494"
 corpus_file_path = "test/corpus/math/too_small_literal.txt"
 jakt_sample_path = "samples/math/too_small_literal.jakt"
 jakt_sample_hash = "54f51daf5c2e784007314cdce63f9a5f"
@@ -1504,7 +1504,7 @@ implemented = 0
 
 [[map]]
 name = "bogus_namespace1.jakt"
-title = "NOT IMPLEMENTED Namespaces Bogus Namespace1 ID=NA2IXWQ"
+title = "Namespaces Bogus Namespace1 ID=NA2IXWQ"
 corpus_file_path = "test/corpus/namespaces/bogus_namespace1.txt"
 jakt_sample_path = "samples/namespaces/bogus_namespace1.jakt"
 jakt_sample_hash = "479b367d48ad3556b82104b104a32780"
@@ -1512,7 +1512,7 @@ implemented = 0
 
 [[map]]
 name = "bogus_namespace2.jakt"
-title = "NOT IMPLEMENTED Namespaces Bogus Namespace2 ID=VTNXGAS"
+title = "Namespaces Bogus Namespace2 ID=VTNXGAS"
 corpus_file_path = "test/corpus/namespaces/bogus_namespace2.txt"
 jakt_sample_path = "samples/namespaces/bogus_namespace2.jakt"
 jakt_sample_hash = "3ed547bb3e920509a0892745d4549f8e"
@@ -1584,7 +1584,7 @@ implemented = 0
 
 [[map]]
 name = "invalid_unwrap.jakt"
-title = "NOT IMPLEMENTED Optional Invalid Unwrap ID=SLYQDDX"
+title = "Optional Invalid Unwrap ID=SLYQDDX"
 corpus_file_path = "test/corpus/optional/invalid_unwrap.txt"
 jakt_sample_path = "samples/optional/invalid_unwrap.jakt"
 jakt_sample_hash = "044049113de6c34770ba64010da3ffaa"
@@ -1624,7 +1624,7 @@ implemented = 0
 
 [[map]]
 name = "bad_pointer_deref.jakt"
-title = "NOT IMPLEMENTED Pointers Bad Pointer Deref ID=NC99Y66"
+title = "Pointers Bad Pointer Deref ID=NC99Y66"
 corpus_file_path = "test/corpus/pointers/bad_pointer_deref.txt"
 jakt_sample_path = "samples/pointers/bad_pointer_deref.jakt"
 jakt_sample_hash = "545d50e5faccebcae338f8c1c4fe5f37"
@@ -1632,7 +1632,7 @@ implemented = 0
 
 [[map]]
 name = "bad_raw_ptr.jakt"
-title = "NOT IMPLEMENTED Pointers Bad Raw Ptr ID=8QF78V5"
+title = "Pointers Bad Raw Ptr ID=8QF78V5"
 corpus_file_path = "test/corpus/pointers/bad_raw_ptr.txt"
 jakt_sample_path = "samples/pointers/bad_raw_ptr.jakt"
 jakt_sample_hash = "6594f2f1082bf939fa0a8c66f6ddd8ac"
@@ -1656,7 +1656,7 @@ implemented = 0
 
 [[map]]
 name = "range_omit.jakt"
-title = "NOT IMPLEMENTED Ranges omit"
+title = "Ranges Omit ID=IVXZ4JW"
 corpus_file_path = "test/corpus/ranges/range_omit.txt"
 jakt_sample_path = "samples/ranges/range_omit.jakt"
 jakt_sample_hash = "3cc53d38484e70c6dab111c1ce067442"
@@ -1680,7 +1680,7 @@ implemented = 0
 
 [[map]]
 name = "empty_literal_without_hint.jakt"
-title = "NOT IMPLEMENTED Sets Empty Literal Without Hint ID=J3ULAUB"
+title = "Sets Empty Literal Without Hint ID=J3ULAUB"
 corpus_file_path = "test/corpus/sets/empty_literal_without_hint.txt"
 jakt_sample_path = "samples/sets/empty_literal_without_hint.jakt"
 jakt_sample_hash = "93eb0833c785070acbe325118ed910d8"
@@ -1744,7 +1744,7 @@ implemented = 0
 
 [[map]]
 name = "overloaded_strings.jakt"
-title = "NOT IMPLEMENTED Strings Overloaded Strings ID=J9CY7A4"
+title = "Strings Overloaded Strings ID=J9CY7A4"
 corpus_file_path = "test/corpus/strings/overloaded_strings.txt"
 jakt_sample_path = "samples/strings/overloaded_strings.jakt"
 jakt_sample_hash = "b3e65b9eebb0734204dfe76fb9178c4e"
@@ -1792,7 +1792,7 @@ implemented = 0
 
 [[map]]
 name = "field_default_values.jakt"
-title = "NOT IMPLEMENTED Structs Field Default Values ID=2OMOS64"
+title = "Structs Field Default Values ID=2OMOS64"
 corpus_file_path = "test/corpus/structs/field_default_values.txt"
 jakt_sample_path = "samples/structs/field_default_values.jakt"
 jakt_sample_hash = "c774410d4769dcb278648941059847ea"
@@ -1904,7 +1904,7 @@ implemented = 0
 
 [[map]]
 name = "optional.jakt"
-title = "NOT IMPLEMENTED Tuples Optional ID=KBFR6UE"
+title = "Tuples Optional ID=KBFR6UE"
 corpus_file_path = "test/corpus/tuples/optional.txt"
 jakt_sample_path = "samples/tuples/optional.jakt"
 jakt_sample_hash = "628ce1ef15ee10ad5021c75b4fa7508c"
@@ -1944,7 +1944,7 @@ implemented = 0
 
 [[map]]
 name = "integer_promotion_bad1.jakt"
-title = "NOT IMPLEMENTED Variables Integer Promotion Bad1 ID=VU1P6Z9"
+title = "Variables Integer Promotion Bad1 ID=VU1P6Z9"
 corpus_file_path = "test/corpus/variables/integer_promotion_bad1.txt"
 jakt_sample_path = "samples/variables/integer_promotion_bad1.jakt"
 jakt_sample_hash = "da987ec9fdcfb977c4f02a6c0bca6b07"
@@ -1952,7 +1952,7 @@ implemented = 0
 
 [[map]]
 name = "integer_promotion_bad2.jakt"
-title = "NOT IMPLEMENTED Variables Integer Promotion Bad2 ID=GM060HR"
+title = "Variables Integer Promotion Bad2 ID=GM060HR"
 corpus_file_path = "test/corpus/variables/integer_promotion_bad2.txt"
 jakt_sample_path = "samples/variables/integer_promotion_bad2.jakt"
 jakt_sample_hash = "40edbf5d7f5ce46c2e107872a066bb9d"
@@ -1984,7 +1984,7 @@ implemented = 0
 
 [[map]]
 name = "var_bad_assignment.jakt"
-title = "NOT IMPLEMENTED Variables Var Bad Assignment ID=CXLRC7S"
+title = "Variables Var Bad Assignment ID=CXLRC7S"
 corpus_file_path = "test/corpus/variables/var_bad_assignment.txt"
 jakt_sample_path = "samples/variables/var_bad_assignment.jakt"
 jakt_sample_hash = "d9b475cc29eeb5cb6340589a43c8174a"
@@ -2000,7 +2000,7 @@ implemented = 0
 
 [[map]]
 name = "var_redefinition.jakt"
-title = "NOT IMPLEMENTED Variables Var Redefinition ID=75TN8WR"
+title = "Variables Var Redefinition ID=75TN8WR"
 corpus_file_path = "test/corpus/variables/var_redefinition.txt"
 jakt_sample_path = "samples/variables/var_redefinition.jakt"
 jakt_sample_hash = "c0c34c0622870663e77a354f5030a20c"
@@ -2024,7 +2024,7 @@ implemented = 0
 
 [[map]]
 name = "question_mark_required.jakt"
-title = "NOT IMPLEMENTED Weak Question Mark Required ID=4PDVENH"
+title = "Weak Question Mark Required ID=4PDVENH"
 corpus_file_path = "test/corpus/weak/question_mark_required.txt"
 jakt_sample_path = "samples/weak/question_mark_required.jakt"
 jakt_sample_hash = "6b511253bb3893f9ccdae0aef0c241b1"
@@ -2040,7 +2040,7 @@ implemented = 0
 
 [[map]]
 name = "reject_immutable_weak.jakt"
-title = "NOT IMPLEMENTED Weak Reject Immutable Weak ID=7ZLSHE7"
+title = "Weak Reject Immutable Weak ID=7ZLSHE7"
 corpus_file_path = "test/corpus/weak/reject_immutable_weak.txt"
 jakt_sample_path = "samples/weak/reject_immutable_weak.jakt"
 jakt_sample_hash = "12abb926cc8b20a2bc947cd8f2cb89cf"
@@ -2072,7 +2072,7 @@ implemented = 0
 
 [[map]]
 name = "import_extern_c.jakt"
-title = "NOT IMPLEMENTED Imports Import Extern C ID=M1UA2GI"
+title = "Imports Import Extern C ID=M1UA2GI"
 corpus_file_path = "test/corpus/imports/import_extern_c.txt"
 jakt_sample_path = "samples/imports/import_extern_c.jakt"
 jakt_sample_hash = "51539bff661436c5e73f329f0cd3bd35"
@@ -2088,7 +2088,7 @@ implemented = 0
 
 [[map]]
 name = "invalid_module.jakt"
-title = "NOT IMPLEMENTED Imports Invalid Module ID=Q75Z6NJ"
+title = "Imports Invalid Module ID=Q75Z6NJ"
 corpus_file_path = "test/corpus/imports/invalid_module.txt"
 jakt_sample_path = "samples/imports/invalid_module.jakt"
 jakt_sample_hash = "22fd80fb70265e4cb04d5342c81a3c72"
@@ -2152,7 +2152,7 @@ implemented = 0
 
 [[map]]
 name = "match_catch_all_bad.jakt"
-title = "NOT IMPLEMENTED Match Match Catch All Bad ID=R0KI5ZI"
+title = "Match Match Catch All Bad ID=R0KI5ZI"
 corpus_file_path = "test/corpus/match/match_catch_all_bad.txt"
 jakt_sample_path = "samples/match/match_catch_all_bad.jakt"
 jakt_sample_hash = "7f99c769682fb94eabcbbadfb4beffea"
@@ -2160,7 +2160,7 @@ implemented = 0
 
 [[map]]
 name = "match_default_binding.jakt"
-title = "NOT IMPLEMENTED Match Match Default Binding ID=A997GHR"
+title = "Match Match Default Binding ID=A997GHR"
 corpus_file_path = "test/corpus/match/match_default_binding.txt"
 jakt_sample_path = "samples/match/match_default_binding.jakt"
 jakt_sample_hash = "fc7080f945604cb4676a0bd2cd75bccc"
@@ -2168,7 +2168,7 @@ implemented = 0
 
 [[map]]
 name = "match_enum_else_binding.jakt"
-title = "NOT IMPLEMENTED Match Match Enum Else Binding ID=1YP74IX"
+title = "Match Match Enum Else Binding ID=1YP74IX"
 corpus_file_path = "test/corpus/match/match_enum_else_binding.txt"
 jakt_sample_path = "samples/match/match_enum_else_binding.jakt"
 jakt_sample_hash = "96190f204d458d6b61a5e54a5689d6a3"
@@ -2248,7 +2248,7 @@ implemented = 0
 
 [[map]]
 name = "c.jakt"
-title = "NOT IMPLEMENTED Modules C ID=33R7L2X"
+title = "Modules C ID=33R7L2X"
 corpus_file_path = "test/corpus/modules/c.txt"
 jakt_sample_path = "samples/modules/c.jakt"
 jakt_sample_hash = "44b8a1a8b2d9d245c1efdf30432ea6e4"
@@ -2264,7 +2264,7 @@ implemented = 0
 
 [[map]]
 name = "common_import.jakt"
-title = "NOT IMPLEMENTED Modules Common Import ID=PLT62SZ"
+title = "Modules Common Import ID=PLT62SZ"
 corpus_file_path = "test/corpus/modules/common_import.txt"
 jakt_sample_path = "samples/modules/common_import.jakt"
 jakt_sample_hash = "b446094bcd59db94a803542028e3b6fb"
@@ -2272,7 +2272,7 @@ implemented = 0
 
 [[map]]
 name = "generic_module_scope.jakt"
-title = "NOT IMPLEMENTED Modules Generic Module Scope ID=9HOIAN2"
+title = "Modules Generic Module Scope ID=9HOIAN2"
 corpus_file_path = "test/corpus/modules/generic_module_scope.txt"
 jakt_sample_path = "samples/modules/generic_module_scope.jakt"
 jakt_sample_hash = "34960ddf6a6e456212dda6d99db6ccd9"
@@ -2280,7 +2280,7 @@ implemented = 0
 
 [[map]]
 name = "std_module.jakt"
-title = "NOT IMPLEMENTED Modules Std Module ID=TNP91RX"
+title = "Modules Std Module ID=TNP91RX"
 corpus_file_path = "test/corpus/modules/std_module.txt"
 jakt_sample_path = "samples/modules/std_module.jakt"
 jakt_sample_hash = "02249b4ed77b3ee05587c3af028f8fae"
@@ -2296,7 +2296,7 @@ implemented = 0
 
 [[map]]
 name = "submodule.jakt"
-title = "NOT IMPLEMENTED Modules Subfolder Submodule ID=F00OXJG"
+title = "Modules Subfolder Submodule ID=F00OXJG"
 corpus_file_path = "test/corpus/modules/subfolder/submodule.txt"
 jakt_sample_path = "samples/modules/subfolder/submodule.jakt"
 jakt_sample_hash = "edd21f7ea7e98231cea34ae58e8f757f"
@@ -2344,7 +2344,7 @@ implemented = 0
 
 [[map]]
 name = "is_guard_no_leaks.jakt"
-title = "NOT IMPLEMENTED Guard Is Guard No Leaks ID=UNW6X5I"
+title = "Guard Is Guard No Leaks ID=UNW6X5I"
 corpus_file_path = "test/corpus/guard/is_guard_no_leaks.txt"
 jakt_sample_path = "samples/guard/is_guard_no_leaks.jakt"
 jakt_sample_hash = "6ca5822407ab60233aef2ef92abbcfbc"
@@ -2352,7 +2352,7 @@ implemented = 0
 
 [[map]]
 name = "no_else.jakt"
-title = "NOT IMPLEMENTED Guard No Else ID=39WQ9HX"
+title = "Guard No Else ID=39WQ9HX"
 corpus_file_path = "test/corpus/guard/no_else.txt"
 jakt_sample_path = "samples/guard/no_else.jakt"
 jakt_sample_hash = "4ee2437e9a15259a7f2eb390a35afe3f"
@@ -2360,7 +2360,7 @@ implemented = 0
 
 [[map]]
 name = "no_scope_exit.jakt"
-title = "NOT IMPLEMENTED Guard No Scope Exit ID=70RRSLY"
+title = "Guard No Scope Exit ID=70RRSLY"
 corpus_file_path = "test/corpus/guard/no_scope_exit.txt"
 jakt_sample_path = "samples/guard/no_scope_exit.jakt"
 jakt_sample_hash = "3b793993d816ac2ad032148df1f85fe3"
@@ -2392,7 +2392,7 @@ implemented = 0
 
 [[map]]
 name = "capture_this.jakt"
-title = "NOT IMPLEMENTED Closures Capture This ID=ABYE1VL"
+title = "Closures Capture This ID=ABYE1VL"
 corpus_file_path = "test/corpus/closures/capture_this.txt"
 jakt_sample_path = "samples/closures/capture_this.jakt"
 jakt_sample_hash = "a7027066d45f5751297ea5d81832c25d"
@@ -2440,7 +2440,7 @@ implemented = 0
 
 [[map]]
 name = "no_returning_functions.jakt"
-title = "NOT IMPLEMENTED Closures No Returning Functions ID=PFVT76U"
+title = "Closures No Returning Functions ID=PFVT76U"
 corpus_file_path = "test/corpus/closures/no_returning_functions.txt"
 jakt_sample_path = "samples/closures/no_returning_functions.jakt"
 jakt_sample_hash = "f9affc4b9387c8feebaafdee88eb6491"
@@ -2448,7 +2448,7 @@ implemented = 0
 
 [[map]]
 name = "trailing_closure_parameter.jakt"
-title = "NOT IMPLEMENTED Closures Trailing Closure Parameter ID=9JTP8N4"
+title = "Closures Trailing Closure Parameter ID=9JTP8N4"
 corpus_file_path = "test/corpus/closures/trailing_closure_parameter.txt"
 jakt_sample_path = "samples/closures/trailing_closure_parameter.jakt"
 jakt_sample_hash = "62f65a13c6ecbdc8c73c94b65a625ff7"
@@ -2456,7 +2456,7 @@ implemented = 0
 
 [[map]]
 name = "no_reference_struct_fields.jakt"
-title = "NOT IMPLEMENTED References No Reference Struct Fields ID=J1HST9L"
+title = "References No Reference Struct Fields ID=J1HST9L"
 corpus_file_path = "test/corpus/references/no_reference_struct_fields.txt"
 jakt_sample_path = "samples/references/no_reference_struct_fields.jakt"
 jakt_sample_hash = "37518e2d54cba5b44d20b4e3a077e13f"
@@ -2488,7 +2488,7 @@ implemented = 0
 
 [[map]]
 name = "no_mutable_reference_parameter.jakt"
-title = "NOT IMPLEMENTED References No Mutable Reference Parameter ID=DASLPB3"
+title = "References No Mutable Reference Parameter ID=DASLPB3"
 corpus_file_path = "test/corpus/references/no_mutable_reference_parameter.txt"
 jakt_sample_path = "samples/references/no_mutable_reference_parameter.jakt"
 jakt_sample_hash = "8a1bd7ecebf50b2368db1499172ae97c"
@@ -2496,7 +2496,7 @@ implemented = 0
 
 [[map]]
 name = "no_mutable_reference_to_immutable_binding.jakt"
-title = "NOT IMPLEMENTED References No Mutable Reference To Immutable Binding ID=QWMZDO1"
+title = "References No Mutable Reference To Immutable Binding ID=QWMZDO1"
 corpus_file_path = "test/corpus/references/no_mutable_reference_to_immutable_binding.txt"
 jakt_sample_path = "samples/references/no_mutable_reference_to_immutable_binding.jakt"
 jakt_sample_hash = "0889cf5bb29edabbc501c8ade5641a4d"
@@ -2504,7 +2504,7 @@ implemented = 0
 
 [[map]]
 name = "no_reference_return_type.jakt"
-title = "NOT IMPLEMENTED References No Reference Return Type ID=WYV6QFB"
+title = "References No Reference Return Type ID=WYV6QFB"
 corpus_file_path = "test/corpus/references/no_reference_return_type.txt"
 jakt_sample_path = "samples/references/no_reference_return_type.jakt"
 jakt_sample_hash = "60467a4943f810e1d29b612f4364b566"
@@ -2512,7 +2512,7 @@ implemented = 0
 
 [[map]]
 name = "reference_locals.jakt"
-title = "NOT IMPLEMENTED References Reference Locals ID=TNB2DAV"
+title = "References Reference Locals ID=TNB2DAV"
 corpus_file_path = "test/corpus/references/reference_locals.txt"
 jakt_sample_path = "samples/references/reference_locals.jakt"
 jakt_sample_hash = "55851b56c8096e7d9c71721114082239"
@@ -2520,7 +2520,7 @@ implemented = 0
 
 [[map]]
 name = "reference_write_through.jakt"
-title = "NOT IMPLEMENTED References Reference Write Through ID=IG6JWKY"
+title = "References Reference Write Through ID=IG6JWKY"
 corpus_file_path = "test/corpus/references/reference_write_through.txt"
 jakt_sample_path = "samples/references/reference_write_through.jakt"
 jakt_sample_hash = "53ec649e5e1eec643812318c21075f91"
@@ -2584,7 +2584,7 @@ implemented = 0
 
 [[map]]
 name = "basic.jakt"
-title = "NOT IMPLEMENTED Traits Basic ID=YMFOFRG"
+title = "Traits Basic ID=YMFOFRG"
 corpus_file_path = "test/corpus/traits/basic.txt"
 jakt_sample_path = "samples/traits/basic.jakt"
 jakt_sample_hash = "3e2ae8176cf2b77f2a1d743af65f6a0f"
@@ -2592,7 +2592,7 @@ implemented = 0
 
 [[map]]
 name = "default_implementation.jakt"
-title = "NOT IMPLEMENTED Traits Default Implementation ID=F6RZHOB"
+title = "Traits Default Implementation ID=F6RZHOB"
 corpus_file_path = "test/corpus/traits/default_implementation.txt"
 jakt_sample_path = "samples/traits/default_implementation.jakt"
 jakt_sample_hash = "27b0bfb97c2f96e4f1642d693701d124"
@@ -2619,7 +2619,7 @@ name = "stores_arguments.jakt"
 title = "NOT IMPLEMENTED Attributes Stores Arguments ID=7BNZAIN"
 corpus_file_path = "test/corpus/attributes/stores_arguments.txt"
 jakt_sample_path = "samples/attributes/stores_arguments.jakt"
-jakt_sample_hash = "6935d077dcf7dfbc4d1574eef85b0aa8"
+jakt_sample_hash = "9fc90a6260f586edd207395020d1f59f"
 implemented = 0
 
 [[map]]
