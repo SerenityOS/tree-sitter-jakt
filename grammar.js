@@ -684,8 +684,8 @@ module.exports = grammar({
       $.binary_literal,
       $.float_literal,
       $.array_literal,
-      $.tuple_literal,
       $.dictionary_literal,
+      $.tuple_literal,
       $.set_literal,
       $.destructuring_literal,
     )),
@@ -803,7 +803,7 @@ module.exports = grammar({
       '}'
     )),
 
-    dictionary_element: $ =>seq(field('key', $._literal), ':', field('value', $._literal)),
+    dictionary_element: $ =>seq(field('key', $._literal), ':', field('value', $._expression)),
 
     escape_sequence: $ => token.immediate(
       seq('\\',

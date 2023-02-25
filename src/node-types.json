@@ -1023,7 +1023,7 @@
         "required": true,
         "types": [
           {
-            "type": "_literal",
+            "type": "_expression",
             "named": true
           }
         ]
