@@ -821,6 +821,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "extern_specifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1285,6 +1295,10 @@
       "required": false,
       "types": [
         {
+          "type": "extern_specifier",
+          "named": true
+        },
+        {
           "type": "restricted_specifier",
           "named": true
         },
@@ -1405,15 +1419,79 @@
     }
   },
   {
+    "type": "extern_class_declaration",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "field_declaration_list",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
+      "parent": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "extern_specifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "extern_function_declaration",
     "named": true,
     "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "trait_requirement",
             "named": true
           }
         ]
@@ -1437,7 +1515,21 @@
             "named": true
           },
           {
+            "type": "optional_type",
+            "named": true
+          },
+          {
             "type": "pointer_type",
+            "named": true
+          }
+        ]
+      },
+      "throws": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "throws_specifier",
             "named": true
           }
         ]
@@ -1445,10 +1537,18 @@
     },
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "extern_specifier",
+          "named": true
+        },
+        {
+          "type": "restricted_specifier",
+          "named": true
+        },
+        {
+          "type": "visibility_specifier",
           "named": true
         }
       ]
@@ -1668,6 +1768,10 @@
       "multiple": false,
       "required": false,
       "types": [
+        {
+          "type": "extern_specifier",
+          "named": true
+        },
         {
           "type": "restricted_specifier",
           "named": true
@@ -1924,6 +2028,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "extern_class_declaration",
+          "named": true
+        },
         {
           "type": "extern_function_declaration",
           "named": true
