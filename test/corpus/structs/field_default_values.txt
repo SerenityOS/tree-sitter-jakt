@@ -1,43 +1,225 @@
-; ================================================================================
-; NOT IMPLEMENTED Structs Field Default Values ID=2OMOS64
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "Jane\n100\nJane\n100\nJane\n100\n"
-; 
-; struct Person1 {
-;     private name: String = "Jane"
-;     age: i64
-;     fn getName(this) -> String => .name
-;     fn getAge(this) -> i64 => .age
-; }
-; 
-; struct Person2 {
-;     name: String
-;     private age: i64 = 100
-;     fn getName(this) -> String => .name
-;     fn getAge(this) -> i64 => .age
-; }
-; 
-; struct Person3 {
-;     private name: String = "Jane"
-;     private age: i64 = 100
-;     fn getName(this) -> String => .name
-;     fn getAge(this) -> i64 => .age
-; }
-; 
-; fn main() {
-;     let p1 = Person1(age: 100)
-;     println("{}", p1.getName())
-;     println("{}", p1.getAge())
-;     let p2 = Person2(name: "Jane")
-;     println("{}", p2.getName())
-;     println("{}", p2.getAge())
-;     let p3 = Person3()
-;     println("{}", p3.getName())
-;     println("{}", p3.getAge())
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Structs Field Default Values ID=2OMOS64
+================================================================================
+
+/// Expect:
+/// - output: "Jane\n100\nJane\n100\nJane\n100\n"
+
+struct Person1 {
+    private name: String = "Jane"
+    age: i64
+    fn getName(this) -> String => .name
+    fn getAge(this) -> i64 => .age
+}
+
+struct Person2 {
+    name: String
+    private age: i64 = 100
+    fn getName(this) -> String => .name
+    fn getAge(this) -> i64 => .age
+}
+
+struct Person3 {
+    private name: String = "Jane"
+    private age: i64 = 100
+    fn getName(this) -> String => .name
+    fn getAge(this) -> i64 => .age
+}
+
+fn main() {
+    let p1 = Person1(age: 100)
+    println("{}", p1.getName())
+    println("{}", p1.getAge())
+    let p2 = Person2(name: "Jane")
+    println("{}", p2.getName())
+    println("{}", p2.getAge())
+    let p3 = Person3()
+    println("{}", p3.getName())
+    println("{}", p3.getAge())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (visibility_specifier)
+        (field_identifier)
+        (primitive_type)
+        (string_literal))
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (return_expression
+          (this_reference_shorthand
+            (identifier))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (return_expression
+          (this_reference_shorthand
+            (identifier))))))
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (field_declaration
+        (visibility_specifier)
+        (field_identifier)
+        (primitive_type)
+        (integer_literal))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (return_expression
+          (this_reference_shorthand
+            (identifier))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (return_expression
+          (this_reference_shorthand
+            (identifier))))))
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (visibility_specifier)
+        (field_identifier)
+        (primitive_type)
+        (string_literal))
+      (field_declaration
+        (visibility_specifier)
+        (field_identifier)
+        (primitive_type)
+        (integer_literal))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (return_expression
+          (this_reference_shorthand
+            (identifier))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (return_expression
+          (this_reference_shorthand
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))))
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (string_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))))
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))))))))

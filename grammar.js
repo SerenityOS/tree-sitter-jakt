@@ -554,6 +554,10 @@ module.exports = grammar({
       field('name', $._field_identifier),
       ':',
       field('type', choice($._type, $.optional_type)),
+      optional(seq(
+        '=',
+        field('value', $._expression)
+      ))
     ),
 
     _field_identifier: $ => prec(1, alias($.identifier, $.field_identifier)),
