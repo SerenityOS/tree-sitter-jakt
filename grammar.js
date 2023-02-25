@@ -221,9 +221,7 @@ module.exports = grammar({
       '{',
       repeat(seq(
         alias('"', $.cpp_code_start),
-        choice(
-          alias($._string_content, $.cpp_code),
-        ),
+        alias($._string_content, $.cpp_code),
         alias('"', $.cpp_code_end),
         optional(terminator),
       )),

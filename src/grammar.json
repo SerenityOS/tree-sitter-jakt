@@ -549,18 +549,13 @@
                 "value": "cpp_code_start"
               },
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_string_content"
-                    },
-                    "named": true,
-                    "value": "cpp_code"
-                  }
-                ]
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_string_content"
+                },
+                "named": true,
+                "value": "cpp_code"
               },
               {
                 "type": "ALIAS",
