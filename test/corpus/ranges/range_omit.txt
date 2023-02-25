@@ -2,22 +2,25 @@
 Ranges Omit ID=IVXZ4JW
 ================================================================================
 
+/// Expect:
+/// - output: "0..2\n0\n1\n1..9223372036854775807\n[2, 3, 4]\n[1, 2]\n[1, 2, 3, 4]\n1..5\n0..9\n2..2\n0..9223372036854775807\n"
+
 struct B {
     r: Range<i64>
     r_omit: Range<i64>
 }
 
-function print_range(anon r: Range<i64>) {
+fn print_range(anon r: Range<i64>) {
     println("{}", r)
 }
 
-function build_range(start: i64, end: i64) -> Range<i64> {
+fn build_range(start: i64, end: i64) -> Range<i64> {
     return start..end
 }
 
-function n() => 2
+fn n() => 2
 
-function main() {
+fn main() {
     let range = 1..2
     let range_omit_start = ..2
 
@@ -46,3 +49,194 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type))))
+      (field_declaration
+        (field_identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)))))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (primitive_type)))
+    (block
+      (return_statement
+        (range_expression
+          (identifier)
+          (identifier)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (return_expression
+      (integer_literal)))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (range_expression
+          (integer_literal)
+          (integer_literal)))
+      (let_declaration
+        (identifier)
+        (range_expression))
+      (integer_literal)
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (for_expression
+        (identifier)
+        (identifier)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (identifier))))))
+      (let_declaration
+        (identifier)
+        (range_expression
+          (integer_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (let_declaration
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (array_expression
+              (identifier)
+              (range_expression
+                (integer_literal))))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (array_expression
+              (identifier)
+              (range_expression)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (array_expression
+              (identifier)
+              (range_expression)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (identifier)
+                  (integer_literal))
+                (argument
+                  (identifier)
+                  (integer_literal)))))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (range_expression))
+          (argument
+            (integer_literal))))
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (range_expression
+                (call_expression
+                  (identifier)
+                  (arguments))
+                (call_expression
+                  (identifier)
+                  (arguments))))
+            (argument
+              (identifier)
+              (range_expression)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier))))))))
