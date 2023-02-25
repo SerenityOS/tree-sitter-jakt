@@ -787,7 +787,7 @@ module.exports = grammar({
 
     tuple_type: $ => seq(
       '(',
-      sepBy(',', seq($._type, optional(','))),
+      sepBy(',', seq(choice($._type, $.optional_type), optional(','))),
       ')'
     ),
 

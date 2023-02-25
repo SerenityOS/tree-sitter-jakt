@@ -16,3 +16,31 @@ fn main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (tuple_type
+      (optional_type
+        (primitive_type))
+      (optional_type
+        (primitive_type)))
+    (block
+      (return_statement
+        (tuple_literal
+          (boolean_literal)
+          (none_expression)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (identifier)
+              (arguments))))))))
