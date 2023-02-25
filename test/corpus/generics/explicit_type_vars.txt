@@ -25,8 +25,8 @@ fn main() {
       (mutable_declaration
         (mutable_specifier)
         (identifier)
-        (generic_call_expression
-          (generic_type
+        (call_expression
+          (generic_function
             (identifier)
             (generic_arguments
               (primitive_type)

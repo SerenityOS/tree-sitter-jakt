@@ -1,18 +1,20 @@
 const PREC = {
-  bitwisenot: 15,
-  field: 14,
-  call: 13,
-  range: 12,
-  unary: 11,
-  multiplicative: 10,
-  additive: 9,
-  shift: 8,
-  bitand: 7,
-  bitxor: 6,
-  bitor: 5,
-  comparative: 4,
-  and: 3,
+  bitwisenot: 16,
+  field: 15,
+  call: 14,
+  range: 13,
+  unary: 12,
+  multiplicative: 11,
+  additive: 10,
+  shift: 9,
+  bitand: 8,
+  bitxor: 7,
+  bitor: 6,
+  comparative: 5,
+  not: 4,
+  is: 3,
   or: 2,
+  and: 1,
   assign: 0,
 }
 
@@ -76,6 +78,8 @@ module.exports = grammar({
     [$.set_literal, $.block],
     [$.parenthesized_expression, $.tuple_literal],
     [$.destructuring_literal, $._expression],
+    [$.namespace_scope_expression, $.generic_type],
+    [$._expression, $.generic_type],
   ],
 
   rules: {
@@ -118,27 +122,29 @@ module.exports = grammar({
       $.closure_function,
     ),
 
+    logical_not_expression: $ => prec.left(PREC.not, seq(
+      field('opeator', 'not'),
+      field('operand', $._expression),
+    )),
 
     _expression: $ => choice(
       $.identifier,
       $._literal,
+      $.logical_not_expression,
       $.this_reference,
       $.this_reference_shorthand,
-      $.logical_expression,
       $.unary_expression,
       $.bitwisenot_expression,
       $.binary_expression,
       $.optional_expression,
       $.optional_value_expression,
       $.call_expression,
-      $.generic_call_expression,
       $.range_expression,
       $.for_expression,
       $.field_expression,
       $.static_call_expression,
       $.namespace_call_expression,
       $.namespace_scope_expression,
-      $.is_expression,
       $.type_conversion_expression,
       $.assignment_expression,
       $.none_expression,
@@ -274,14 +280,12 @@ module.exports = grammar({
     ),
 
     call_expression: $ => prec.right(PREC.call, seq(
-      field('callee', $._expression),
+      field('function', choice(
+          $._expression,
+          alias($.generic_type, $.generic_function),
+      )),
       field('arguments', $.arguments),
     )),
-
-    generic_call_expression: $ => prec(PREC.call, prec.left(seq(
-      field('fn', $.generic_type),
-      field('arguments', $.arguments),
-    ))),
 
     range_expression: $ => prec.right(PREC.range,
       choice(
@@ -307,12 +311,6 @@ module.exports = grammar({
       field('arguments', $.arguments),
     ))),
 
-    is_expression: $ =>  prec.left(seq(
-      field('left', $._expression),
-      'is',
-      field('right', $._expression),
-    )),
-
     static_call_expression: $ => prec(1, prec.left(seq(
       field('name', alias($.identifier, $.scoped_identifier)),
       '::',
@@ -325,18 +323,6 @@ module.exports = grammar({
       choice('as?', 'as!'),
       prec.right(choice(alias($.identifier, $.generic_identifier), $._primitive_types)),
     ),
-
-    logical_expression: $ =>  prec.right(choice(
-        seq(
-          field('opeator', 'not'),
-          field('operand', $._expression),
-        ),
-        seq(
-          field('left', $._expression),
-          field('operator', choice('and', 'or')),
-          field('right', $._expression),
-        ),
-    )),
 
     assignment_expression: $ => prec.right(PREC.assign, seq(
       field('left', $._expression),
@@ -607,6 +593,9 @@ module.exports = grammar({
 
     binary_expression: $ => {
       const table = [
+        [PREC.and, 'and'],
+        [PREC.or, 'or'],
+        [PREC.is, 'is'],
         [PREC.bitand, '&', '&='],
         [PREC.bitor, '|', '|='],
         [PREC.bitxor, '^', '^='],
@@ -616,7 +605,7 @@ module.exports = grammar({
         [PREC.multiplicative, choice('*', '/','%')],
       ];
 
-      return choice(...table.map(([precedence, operator]) => prec.right(precedence, seq(
+      return choice(...table.map(([precedence, operator]) => prec.left(precedence, seq(
         field('left', $._expression),
         field('operator', operator),
         field('right', $._expression),
@@ -815,28 +804,26 @@ module.exports = grammar({
       optional(field('body', choice($.return_expression, $.block))),
     )),
 
-    generic_type: $ => prec(1, seq(
-      field("type_name", $.identifier),
-      field("type_arguments", $.generic_arguments),
-    )),
+    generic_type: $ => seq(
+      field("name", $.identifier),
+      field("arguments", $.generic_arguments),
+    ),
 
     generic_arguments: $ => seq(
       '<',
-      sepBy(optional(','), $._generic_argument),
+        sepBy1(',', choice(
+          alias($._type_identifier, $.generic_type_identifier),
+          $._primitive_types,
+        )),
       '>',
     ),
-
-    _generic_argument: $ => prec.left(choice(
-        choice($._type_identifier, $._primitive_types),
-        seq($._primitive_types, ',', $._primitive_types),
-    )),
 
     generic_function_declaration: $ => prec.right(seq(
       'fn',
       field('name', $.generic_type),
       field('parameters', $.parameters),
       optional(field('throws', $.throws_specifier)),
-      optional(seq('->', field('return_type', choice($._type_identifier,$.generic_type, $.optional_type)))),
+      optional(seq('->', field('return_type', choice(alias($._type_identifier, $.generic_type_identifier),$.generic_type, $.optional_type)))),
       optional(field('body', choice($.return_expression, $.block))),
     )),
 

@@ -1,21 +1,68 @@
-; ================================================================================
-; NOT IMPLEMENTED Inline cpp escaped string
-; ================================================================================
-;
-; This will error until it worthwhile to fix, needs work in scanner.c with backtracking
-;
-; for reasons escapes are allowed in inline cpp, see
-;
-; https://discord.com/channels/830522505605283862/977264443773833296/977958750512111656
-;
-; function main() {
-;     unsafe {
-;         cpp {
-;             "printf(\"\\\"test\\\"\n\");"
-;         }
-;     }
-; }
-;
-; --------------------------------------------------------------------------------
-;
-; (source_file
+================================================================================
+Inline cpp escaped string
+================================================================================
+
+This will error until it worthwhile to fix, needs work in scanner.c with backtracking
+
+for reasons escapes are allowed in inline cpp, see
+
+https://discord.com/channels/830522505605283862/977264443773833296/977958750512111656
+
+function main() {
+    unsafe {
+        cpp {
+            "printf(\"\\\"test\\\"\n\");"
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (ERROR)
+  (identifier)
+  (identifier)
+  (identifier)
+  (field_expression
+    (identifier)
+    (field_identifier))
+  (identifier)
+  (identifier)
+  (for_expression
+    (identifier)
+    (ERROR
+      (identifier)
+      (identifier)
+      (identifier))
+    (ERROR
+      (identifier)
+      (identifier)
+      (identifier))
+    (call_expression
+      (identifier)
+      (ERROR
+        (line_comment)
+        (identifier)
+        (identifier))
+      (arguments))
+    (block
+      (unsafe_block
+        (cpp_block
+          (ERROR
+            (cpp_code_start)
+            (escape_sequence)
+            (escape_sequence)
+            (escape_sequence)
+            (identifier)
+            (escape_sequence)
+            (escape_sequence)
+            (escape_sequence)
+            (escape_sequence)))))))

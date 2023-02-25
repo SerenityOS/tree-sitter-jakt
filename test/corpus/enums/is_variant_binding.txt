@@ -59,7 +59,7 @@ fn main() {
               (identifier)
               (string_literal)))))
       (if_statement
-        (is_expression
+        (binary_expression
           (identifier)
           (call_expression
             (identifier)
@@ -68,7 +68,7 @@ fn main() {
                 (identifier)))))
         (block
           (if_statement
-            (is_expression
+            (binary_expression
               (identifier)
               (call_expression
                 (identifier)

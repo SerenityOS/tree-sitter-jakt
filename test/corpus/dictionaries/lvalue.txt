@@ -23,14 +23,13 @@ fn main() {
       (mutable_declaration
         (mutable_specifier)
         (identifier)
-        (binary_expression
-          (binary_expression
+        (call_expression
+          (generic_function
             (identifier)
-            (identifier))
-          (ERROR
-            (identifier))
-          (destructuring_literal
-            (MISSING identifier))))
+            (generic_arguments
+              (primitive_type)
+              (primitive_type)))
+          (arguments)))
       (assignment_expression
         (array_expression
           (identifier)

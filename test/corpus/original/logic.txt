@@ -1,0 +1,69 @@
+================================================================================
+Logic with is expressions and conflict with generic arguments
+================================================================================
+
+if 5 > 3 and foo is Bar(a) and bar is Bar(b) and a < b and 4 < 5 { }
+
+// Note the whitespace around the generic types. This compiles in the jakt compiler.
+fn dump < T > (anon v: [T]) => v[0]
+
+mut item = Dictionary < String , i64 > ();
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_statement
+    (binary_expression
+      (binary_expression
+        (binary_expression
+          (binary_expression
+            (binary_expression
+              (integer_literal)
+              (integer_literal))
+            (binary_expression
+              (identifier)
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (identifier))))))
+          (binary_expression
+            (identifier)
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (identifier))))))
+        (binary_expression
+          (identifier)
+          (identifier)))
+      (binary_expression
+        (integer_literal)
+        (integer_literal)))
+    (block))
+  (line_comment)
+  (generic_function_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (generic_type_identifier)))
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (array_type
+          (type_identifier))))
+    (return_expression
+      (array_expression
+        (identifier)
+        (integer_literal))))
+  (mutable_declaration
+    (mutable_specifier)
+    (identifier)
+    (call_expression
+      (generic_function
+        (identifier)
+        (generic_arguments
+          (primitive_type)
+          (primitive_type)))
+      (arguments))))

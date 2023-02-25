@@ -27,7 +27,7 @@ fn main() {
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (field_declaration_list
       (field_declaration
         (field_identifier)
@@ -36,7 +36,7 @@ fn main() {
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (field_declaration_list
       (field_declaration
         (field_identifier)

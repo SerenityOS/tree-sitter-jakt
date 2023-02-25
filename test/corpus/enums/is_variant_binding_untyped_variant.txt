@@ -44,8 +44,8 @@ fn main() {
           (scoped_identifier)
           (field_identifier)))
       (if_statement
-        (logical_expression
-          (is_expression
+        (binary_expression
+          (binary_expression
             (identifier)
             (call_expression
               (identifier)

@@ -26,7 +26,7 @@ fn main() {
     (parameters)
     (block
       (if_statement
-        (logical_expression
+        (logical_not_expression
           (parenthesized_expression
             (binary_expression
               (integer_literal)
@@ -41,7 +41,7 @@ fn main() {
         (identifier)
         (boolean_literal))
       (if_statement
-        (logical_expression
+        (logical_not_expression
           (identifier))
         (block
           (call_expression

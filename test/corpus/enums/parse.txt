@@ -83,7 +83,7 @@ fn main() {}
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (enum_variant_list
       (enum_tuple_variant
         (identifier)
@@ -94,8 +94,8 @@ fn main() {}
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)
-        (type_identifier)))
+        (generic_type_identifier)
+        (generic_type_identifier)))
     (enum_variant_list
       (enum_tuple_variant
         (identifier)

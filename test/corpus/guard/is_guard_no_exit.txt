@@ -52,8 +52,8 @@ fn main() {
             (argument
               (integer_literal)))))
       (guard_statement
-        (logical_expression
-          (is_expression
+        (binary_expression
+          (binary_expression
             (identifier)
             (call_expression
               (identifier)

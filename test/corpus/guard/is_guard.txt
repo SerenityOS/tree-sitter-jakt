@@ -55,7 +55,7 @@ fn main() -> c_int {
             (argument
               (integer_literal)))))
       (guard_statement
-        (is_expression
+        (binary_expression
           (identifier)
           (call_expression
             (identifier)

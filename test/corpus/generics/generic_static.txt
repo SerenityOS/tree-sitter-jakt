@@ -27,12 +27,12 @@ fn main() {
         (generic_type
           (identifier)
           (generic_arguments
-            (type_identifier)))
+            (generic_type_identifier)))
         (parameters
           (parameter
             (identifier)
             (type_identifier)))
-        (type_identifier)
+        (generic_type_identifier)
         (block
           (return_statement
             (identifier))))))

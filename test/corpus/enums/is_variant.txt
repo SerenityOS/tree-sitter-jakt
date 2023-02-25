@@ -42,6 +42,6 @@ fn main() {
           (argument
             (string_literal))
           (argument
-            (is_expression
+            (binary_expression
               (identifier)
               (identifier))))))))

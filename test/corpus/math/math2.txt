@@ -26,12 +26,12 @@ fn main() {
             (string_literal))
           (argument
             (binary_expression
-              (integer_literal)
               (binary_expression
+                (integer_literal)
                 (binary_expression
                   (integer_literal)
-                  (integer_literal))
-                (integer_literal))))))
+                  (integer_literal)))
+              (integer_literal)))))
       (call_expression
         (identifier)
         (arguments

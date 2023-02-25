@@ -1,14 +1,21 @@
-; ================================================================================
-; NOT IMPLEMENTED Inline Cpp Outside Unsafe Block ID=DUEP4I3
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Use of inline cpp block outside of unsafe block\n"
-; 
-; fn main() {
-;     cpp {}
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Inline Cpp Outside Unsafe Block ID=DUEP4I3
+================================================================================
+
+/// Expect:
+/// - error: "Use of inline cpp block outside of unsafe block\n"
+
+fn main() {
+    cpp {}
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (cpp_block))))

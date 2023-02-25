@@ -24,7 +24,7 @@ fn main() {
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (parameters
       (parameter
         (anonymous_specifier)
@@ -35,7 +35,7 @@ fn main() {
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (block
       (return_statement
         (call_expression

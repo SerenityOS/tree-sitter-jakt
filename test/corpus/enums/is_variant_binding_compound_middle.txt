@@ -50,33 +50,33 @@ fn main() {
             (argument
               (integer_literal)))))
       (if_statement
-        (logical_expression
+        (binary_expression
           (binary_expression
-            (integer_literal)
-            (integer_literal))
-          (logical_expression
-            (is_expression
-              (identifier)
-              (call_expression
-                (identifier)
-                (arguments
-                  (argument
-                    (identifier)))))
-            (logical_expression
-              (is_expression
+            (binary_expression
+              (binary_expression
+                (binary_expression
+                  (integer_literal)
+                  (integer_literal))
+                (binary_expression
+                  (identifier)
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (argument
+                        (identifier))))))
+              (binary_expression
                 (identifier)
                 (call_expression
                   (identifier)
                   (arguments
                     (argument
-                      (identifier)))))
-              (ERROR
-                (identifier)
-                (type_identifier)
-                (type_identifier))
-              (binary_expression
-                (integer_literal)
-                (integer_literal)))))
+                      (identifier))))))
+            (binary_expression
+              (identifier)
+              (identifier)))
+          (binary_expression
+            (integer_literal)
+            (integer_literal)))
         (block
           (call_expression
             (identifier)

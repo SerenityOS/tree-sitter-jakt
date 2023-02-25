@@ -23,7 +23,7 @@ fn main() {
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (field_declaration_list
       (function_declaration
         (visibility_specifier)

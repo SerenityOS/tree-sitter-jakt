@@ -30,7 +30,7 @@ fn main() {
         (identifier)
         (integer_literal))
       (if_statement
-        (logical_expression
+        (binary_expression
           (binary_expression
             (identifier)
             (integer_literal))
@@ -50,7 +50,7 @@ fn main() {
         (identifier)
         (boolean_literal))
       (if_statement
-        (logical_expression
+        (binary_expression
           (identifier)
           (identifier))
         (block

@@ -48,7 +48,7 @@ fn main() {
     (primitive_type)
     (block
       (if_statement
-        (logical_expression
+        (logical_not_expression
           (boolean_literal))
         (block
           (throw_statement
