@@ -46,7 +46,7 @@ fn main() {
               (argument
                 (identifier))))))
       (while_statement
-        (logical_expression
+        (logical_not_expression
           (call_expression
             (field_expression
               (identifier)

@@ -46,10 +46,10 @@ fn main() {
             (mutable_specifier)
             (this_reference)))
         (block
-          (field_expression
-            (update_expression
-              (identifier))
-            (field_identifier))))))
+          (update_expression
+            (field_expression
+              (this_reference)
+              (field_identifier)))))))
   (function_declaration
     (identifier)
     (parameters)
