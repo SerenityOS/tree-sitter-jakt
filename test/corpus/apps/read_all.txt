@@ -23,6 +23,8 @@ fn main(args: [String]) throws {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters
@@ -52,11 +54,7 @@ fn main(args: [String]) throws {
         (identifier)
         (call_expression
           (field_expression
-            (call_expression
-              (field_expression
-                (identifier)
-                (field_identifier))
-              (arguments))
+            (identifier)
             (field_identifier))
           (arguments))
         (block

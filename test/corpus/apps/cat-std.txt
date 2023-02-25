@@ -26,6 +26,8 @@ fn main(args: [String]) -> c_int {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters
@@ -33,6 +35,7 @@ fn main(args: [String]) -> c_int {
         (identifier)
         (array_type
           (primitive_type))))
+    (primitive_type)
     (block
       (if_statement
         (binary_expression
@@ -97,4 +100,6 @@ fn main(args: [String]) -> c_int {
                   (argument
                     (array_expression
                       (identifier)
-                      (identifier))))))))))))
+                      (identifier)))))))))
+      (return_statement
+        (integer_literal)))))

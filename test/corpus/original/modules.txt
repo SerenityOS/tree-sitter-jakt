@@ -12,3 +12,22 @@ import jakt::arguments { ArgsParser }
     (field_identifier)
     (import_block
       (identifier))))
+
+================================================================================
+Nested module import
+================================================================================
+
+import jakt::libc::io { fopen, fclose, fgetc, feof }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_statement
+    (scoped_identifier)
+    (field_identifier)
+    (field_identifier)
+    (import_block
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier))))

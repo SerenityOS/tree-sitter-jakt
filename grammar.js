@@ -244,7 +244,7 @@ module.exports = grammar({
           seq($.extern_specifier, 'c', $.c_header_identfier),
           seq($.extern_specifier, $.cpp_header_identfier),
           seq($.identifier, optional(seq($.import_as_clause, $.identifier))),
-          field("namespace", seq(alias($.identifier, $.scoped_identifier),  '::', $._field_identifier)),
+          field("namespace", seq(alias($.identifier, $.scoped_identifier), '::', sepBy1('::', $._field_identifier))),
       )),
       optional(field('body', $.import_block)),
     )),
