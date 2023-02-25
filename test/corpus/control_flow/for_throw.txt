@@ -21,3 +21,44 @@ fn main() -> c_int {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
+  (struct_declaration
+    (type_identifier)
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (primitive_type)))
+    (field_declaration_list
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (optional_type
+          (primitive_type))
+        (block
+          (throw_statement
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
+              (arguments
+                (argument
+                  (string_literal)))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (block
+      (for_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments))
+        (block
+          (return_statement
+            (integer_literal))))
+      (return_statement
+        (integer_literal)))))

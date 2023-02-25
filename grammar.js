@@ -550,7 +550,10 @@ module.exports = grammar({
     _implements: $ => seq(
       'implements',
       '(',
-       sepBy1(optional(','), $.trait_identifier),
+      choice(
+        sepBy1(optional(','), $.trait_identifier),
+        $.generic_type,
+      ),
       ')',
     ),
 

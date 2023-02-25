@@ -1111,6 +1111,10 @@
             "named": false
           },
           {
+            "type": "generic_type",
+            "named": true
+          },
+          {
             "type": "implements",
             "named": false
           },
@@ -2711,6 +2715,10 @@
           {
             "type": ",",
             "named": false
+          },
+          {
+            "type": "generic_type",
+            "named": true
           },
           {
             "type": "implements",
