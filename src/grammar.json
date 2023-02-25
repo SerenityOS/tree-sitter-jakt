@@ -3845,6 +3845,10 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "match_else_binding"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "match_pattern"
               }
             ]
@@ -3894,6 +3898,27 @@
     "match_else": {
       "type": "STRING",
       "value": "else"
+    },
+    "match_else_binding": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "else"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "_literal": {
       "type": "PREC_LEFT",

@@ -675,7 +675,7 @@ module.exports = grammar({
     ),
 
     last_match_arm: $ => seq(
-      field('pattern', choice($.match_else, $.match_pattern)),
+      field('pattern', choice($.match_else, $.match_else_binding, $.match_pattern)),
       '=>',
       field('value', choice($._expression, $.block, $.closure_function))
     ),
@@ -685,6 +685,7 @@ module.exports = grammar({
     ),
 
     match_else: $ => 'else',
+    match_else_binding: $ => seq('else', '(', $.identifier, ')'),
 
     _literal: $ => prec.left(choice(
       $.string_literal,
