@@ -489,9 +489,20 @@ module.exports = grammar({
           $.enum_variant,
           $.enum_tuple_variant,
           $.enum_struct_variant,
+          $.enum_field_declaration,
           alias($.function_declaration, $.enum_method_variant),
       ))),
       '}'
+    ),
+
+    enum_field_declaration: $ => seq(
+      field('name', $._field_identifier),
+      ':',
+      field('type', choice($._type, $.optional_type)),
+      optional(seq(
+        '=',
+        field('value', $._expression)
+      ))
     ),
 
     enum_variant: $ => seq(
@@ -650,10 +661,8 @@ module.exports = grammar({
 
     match_block: $ => seq(
       '{',
-      optional(seq(
-        repeat($.match_arm),
-        alias($.last_match_arm, $.match_arm)
-      )),
+      repeat(choice(",", $.match_arm)),
+      alias($.last_match_arm, $.match_arm),
       '}'
     ),
 

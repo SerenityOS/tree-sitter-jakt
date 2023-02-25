@@ -1151,6 +1151,46 @@
     }
   },
   {
+    "type": "enum_field_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "field_identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_type",
+            "named": true
+          },
+          {
+            "type": "optional_type",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "enum_integral_type",
     "named": true,
     "fields": {},
@@ -1341,6 +1381,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "enum_field_declaration",
+          "named": true
+        },
         {
           "type": "enum_method_variant",
           "named": true
@@ -2075,7 +2119,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "match_arm",
