@@ -2600,7 +2600,7 @@ implemented = 0
 
 [[map]]
 name = "deprecated.jakt"
-title = "NOT IMPLEMENTED Attributes Deprecated ID=SSGUM8M"
+title = "Attributes Deprecated ID=SSGUM8M"
 corpus_file_path = "test/corpus/attributes/deprecated.txt"
 jakt_sample_path = "samples/attributes/deprecated.jakt"
 jakt_sample_hash = "f65eded4362ac33bcd10e5a99a651a8a"
@@ -2608,7 +2608,7 @@ implemented = 0
 
 [[map]]
 name = "external_name.jakt"
-title = "NOT IMPLEMENTED Attributes External Name ID=4NXZU5I"
+title = "Attributes External Name ID=4NXZU5I"
 corpus_file_path = "test/corpus/attributes/external_name.txt"
 jakt_sample_path = "samples/attributes/external_name.jakt"
 jakt_sample_hash = "4a86877d3fa8723a1bfb44369d00b4f3"
@@ -2616,7 +2616,7 @@ implemented = 0
 
 [[map]]
 name = "stores_arguments.jakt"
-title = "NOT IMPLEMENTED Attributes Stores Arguments ID=7BNZAIN"
+title = "Attributes Stores Arguments ID=7BNZAIN"
 corpus_file_path = "test/corpus/attributes/stores_arguments.txt"
 jakt_sample_path = "samples/attributes/stores_arguments.jakt"
 jakt_sample_hash = "9fc90a6260f586edd207395020d1f59f"
@@ -2624,7 +2624,7 @@ implemented = 0
 
 [[map]]
 name = "comptime_generate_json_parser.jakt"
-title = "NOT IMPLEMENTED Static Reflection Comptime Generate Json Parser ID=59ZSFW3"
+title = "Static Reflection Comptime Generate Json Parser ID=59ZSFW3"
 corpus_file_path = "test/corpus/static_reflection/comptime_generate_json_parser.txt"
 jakt_sample_path = "samples/static_reflection/comptime_generate_json_parser.jakt"
 jakt_sample_hash = "6c439df5db60395d8ac2d37f9e9e6f6f"
@@ -2632,7 +2632,7 @@ implemented = 0
 
 [[map]]
 name = "json.jakt"
-title = "NOT IMPLEMENTED Static Reflection Json ID=KLO9YTF"
+title = "Static Reflection Json ID=KLO9YTF"
 corpus_file_path = "test/corpus/static_reflection/json.txt"
 jakt_sample_path = "samples/static_reflection/json.jakt"
 jakt_sample_hash = "7bcb918e16a66f7cbe673498c0aa7b32"
