@@ -1,21 +1,55 @@
-; ================================================================================
-; NOT IMPLEMENTED Attributes External Name ID=4NXZU5I
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "Well hello friends!\n"
-; 
-; [[name=Foo]] struct Bar {
-;     [[name=bar]] fn foo(this) {
-;         println("Well hello friends!")
-;     }
-; }
-; 
-; fn main() {
-;     let bar = Bar()
-;     unsafe { cpp { "bar.bar();" } }
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Attributes External Name ID=4NXZU5I
+================================================================================
+
+/// Expect:
+/// - output: "Well hello friends!\n"
+
+[[name=Foo]] struct Bar {
+    [[name=bar]] fn foo(this) {
+        println("Well hello friends!")
+    }
+}
+
+fn main() {
+    let bar = Bar()
+    unsafe { cpp { "bar.bar();" } }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (struct_declaration
+    (attributes
+      (identifier))
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (attributes
+          (identifier))
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (unsafe_block
+        (cpp_block
+          (cpp_code_start)
+          (cpp_code)
+          (cpp_code_end))))))

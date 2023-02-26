@@ -1,21 +1,57 @@
-; ================================================================================
-; NOT IMPLEMENTED Attributes Deprecated ID=SSGUM8M
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Call to deprecated function: Use println() instead"
-; 
-; struct Bar {
-;     [[deprecated("Use println() instead")]] fn foo(this) {
-;         println("Well hello friends!")
-;     }
-; }
-; 
-; fn main() {
-;     let bar = Bar()
-;     bar.foo()
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Attributes Deprecated ID=SSGUM8M
+================================================================================
+
+/// Expect:
+/// - error: "Call to deprecated function: Use println() instead"
+
+struct Bar {
+    [[deprecated("Use println() instead")]] fn foo(this) {
+        println("Well hello friends!")
+    }
+}
+
+fn main() {
+    let bar = Bar()
+    bar.foo()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (attributes
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments)))))

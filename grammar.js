@@ -575,7 +575,7 @@ module.exports = grammar({
             ),
 
             struct_declaration: $ => seq(
-              optional($.extern_specifier),
+              optional(choice($.attributes, $.extern_specifier)),
               'struct',
               field('name', choice($._type_identifier, $.generic_type)),
               optional(field('implements', $._implements)),
@@ -845,8 +845,21 @@ module.exports = grammar({
           ),
         )),
 
+    attributes: $ => seq(
+    '[[',
+      choice(
+        $.call_expression,
+        seq(
+          field('exernal', 'name'),
+          '=',
+          field('name', $.identifier)
+        ),
+      ),
+    ']]',
+    ),
+
     function_declaration: $ => prec.right(seq(
-      optional(choice($.restricted_specifier, $.visibility_specifier, $.extern_specifier)),
+      optional(choice($.attributes, $.restricted_specifier, $.visibility_specifier, $.extern_specifier)),
       'fn',
       field('name', choice($.identifier, $.trait_requirement)),
       field('parameters', $.parameters),

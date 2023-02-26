@@ -558,6 +558,42 @@
     }
   },
   {
+    "type": "attributes",
+    "named": true,
+    "fields": {
+      "exernal": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "name",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "call_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "binary_expression",
     "named": true,
     "fields": {
@@ -1371,6 +1407,10 @@
       "required": false,
       "types": [
         {
+          "type": "attributes",
+          "named": true
+        },
+        {
           "type": "extern_specifier",
           "named": true
         },
@@ -1616,6 +1656,10 @@
       "required": false,
       "types": [
         {
+          "type": "attributes",
+          "named": true
+        },
+        {
           "type": "extern_specifier",
           "named": true
         },
@@ -1844,6 +1888,10 @@
       "multiple": false,
       "required": false,
       "types": [
+        {
+          "type": "attributes",
+          "named": true
+        },
         {
           "type": "extern_specifier",
           "named": true
@@ -3017,6 +3065,10 @@
       "required": false,
       "types": [
         {
+          "type": "attributes",
+          "named": true
+        },
+        {
           "type": "extern_specifier",
           "named": true
         }
@@ -3581,7 +3633,15 @@
     "named": false
   },
   {
+    "type": "[[",
+    "named": false
+  },
+  {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "]]",
     "named": false
   },
   {
@@ -3771,6 +3831,10 @@
   {
     "type": "mutable_specifier",
     "named": true
+  },
+  {
+    "type": "name",
+    "named": false
   },
   {
     "type": "namespace",
