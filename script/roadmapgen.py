@@ -381,6 +381,25 @@ def run_tree_sitter_test(test: Test):
     console.log(f"treesitter test for '{test.title}' succeeded")
 
 
+def run_original_tree_sitter_test(test: str) -> bool:
+    """Runs an original Treesitter test.
+
+    Returns boolean on success or fail.
+    """
+    try:
+        subprocess.run(
+            ["tree-sitter", "test", "--filter", f"{test}"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=True,
+        )
+    except subprocess.CalledProcessError:
+        console.log(f"original treesitter test failed for '{test}'")
+        return False
+    console.log(f"original treesitter test for '{test}' succeeded")
+    return True
+
+
 @app.command()
 def check(
     jakt_path: str = typer.Option(
@@ -405,6 +424,18 @@ def check(
 
     # We'll show this to the user to report results of three-way merge
     merged_map = TestMap(map=[])
+
+    original_test_map: dict[str, bool] = {}
+    original_test_count = 0
+    for root, _, files in os.walk(corpus_tests_path.joinpath("original"), topdown=True):
+        for name in files:
+            file_path = pathlib.Path(root, name)
+            file_text = file_path.read_text()
+            for x in re.findall(corpus_test_header_pattern, file_text):
+                original_test_count += 1
+                original_test_map[
+                    str(file_path.relative_to(os.getcwd()))
+                ] = run_original_tree_sitter_test(x)
 
     for test in ssot.map:
         if (
@@ -435,8 +466,33 @@ def check(
             merged_map.map.append(test)
 
     # print table of changes
+    print_original_test_table(original_test_map)
     print_testmap_table(merged_map)
-    print_test_report(merged_map, corpus_list)
+    print_test_report(merged_map, original_test_map, corpus_list)
+
+
+def print_original_test_table(tests: dict[str, bool]):
+    """Print a pretty table of state changes"""
+    table = Table(show_header=True, header_style="bold magenta")
+    table.add_column("#")
+    table.add_column("Corpus Path (Original samples)", justify="left")
+    table.add_column("Pass/Fail", justify="center")
+    for num, test in enumerate(tests):
+        if not tests[test]:
+            table.add_row(
+                str(num + 1),
+                test,
+                ":heavy_multiplication_x:",
+                style=Style(color="red"),
+            )
+        else:
+            table.add_row(
+                str(num + 1),
+                test,
+                ":heavy_check_mark:",
+                style=Style(color="green"),
+            )
+    console.log(table)
 
 
 def print_testmap_table(tests: TestMap):
@@ -505,7 +561,9 @@ def print_testmap_table(tests: TestMap):
     console.log(table)
 
 
-def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
+def print_test_report(
+    tests: TestMap, original_tests: dict[str, bool], corpus_list: dict[str, list]
+):
     """Print a pretty table of state changes"""
     falty_count = 0
     falty_new = 0
@@ -548,6 +606,7 @@ def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
     table = Table(box=box.MINIMAL_DOUBLE_HEAD)
     table.add_column("Count", justify="right")
     table.add_column("Description", justify="left")
+    table.add_row(str(len(original_tests)), "Original Samples")
     jakt_passable_tests = len(tests.map) - falty_count
     table.add_row(str(jakt_passable_tests), "Jakt 'good' Samples (no expected errors)")
     table.add_row(
