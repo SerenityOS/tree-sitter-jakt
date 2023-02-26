@@ -31,7 +31,7 @@ fn main() {
             (match_arm
               (match_pattern
                 (boolean_literal))
-              (closure_function
+              (closure_function_expression
                 (parameters
                   (parameter
                     (identifier)
@@ -41,7 +41,7 @@ fn main() {
                   (identifier))))
             (match_arm
               (match_else)
-              (closure_function
+              (closure_function_expression
                 (parameters
                   (parameter
                     (identifier)

@@ -1,407 +1,2535 @@
-; ================================================================================
-; NOT IMPLEMENTED Static Reflection Json ID=KLO9YTF
-; ================================================================================
-; 
-; /// Expect: Skip
-; 
-; fn error(anon s: StringView) -> Error => Error::from_string_literal(s)
-; 
-; enum JsonToken {
-;     position: usize
-; 
-;     OpenBrace
-;     CloseBrace
-;     OpenBracket
-;     CloseBracket
-;     Colon
-;     Comma
-;     JsonString(String)
-;     Number(String)
-;     True
-;     False
-;     Null
-; }
-; 
-; struct JsonParser {
-;     data: String
-;     index: usize
-; 
-;     fn create(anon data: String) -> JsonParser => JsonParser(data: data, index: 0)
-; 
-;     fn to_object<U>(mut this, anon x: &mut U) throws {
-;         from_json(&mut this, x)
-;     }
-; 
-;     fn peek(mut this) throws -> JsonToken? {
-;         let start = .index + 0
-;         let value = .next()
-;         .index = start
-;         return value
-;     }
-; 
-;     fn next(mut this) throws -> JsonToken? {
-;         loop {
-;             if .index >= .data.length() { break }
-;             let c = .data.byte_at(.index)
-;             defer .index += 1
-; 
-;             return match c {
-;                 b' ' | b'\n' | b'\r' | b'\t' => { continue }
-;                 b'{' => JsonToken::OpenBrace(position: .index)
-;                 b'}' => JsonToken::CloseBrace(position: .index)
-;                 b'[' => JsonToken::OpenBracket(position: .index)
-;                 b']' => JsonToken::CloseBracket(position: .index)
-;                 b':' => JsonToken::Colon(position: .index)
-;                 b',' => JsonToken::Comma(position: .index)
-;                 b'"' => {
-;                     let position = .index
-;                     mut builder = StringBuilder::create()
-;                     mut escaped = false
-;                     .index += 1
-; 
-;                     while .index < .data.length() {
-;                         let c = .data.byte_at(.index)
-;                         .index += 1
-; 
-;                         match c {
-;                             b'"' => {
-;                                 if escaped {
-;                                     builder.append(c)
-;                                     escaped = false
-;                                 } else {
-;                                     .index -= 1
-;                                     break
-;                                 }
-;                             }
-;                             b'\\' => {
-;                                 if escaped {
-;                                     builder.append(c)
-;                                     escaped = false
-;                                 } else {
-;                                     escaped = true
-;                                 }
-;                             }
-;                             else => {
-;                                 builder.append(c)
-;                                 escaped = false
-;                             }
-;                         }
-;                     }
-; 
-;                     yield JsonToken::JsonString(position, builder.to_string())
-;                 }
-;                 b'0'..b'9' => {
-;                     let position = .index
-;                     mut builder = StringBuilder::create()
-;                     mut seen_dot = false
-;                     while .index < .data.length() {
-;                         let c = .data.byte_at(.index)
-;                         if c >= b'0' and c <= b'9' {
-;                             builder.append(c)
-;                             .index += 1
-;                         } else if not seen_dot and c == b'.' {
-;                             builder.append(c)
-;                             seen_dot = true
-;                         } else {
-;                             break
-;                         }
-;                     }
-; 
-;                     yield JsonToken::Number(position, builder.to_string())
-;                 }
-;                 b't' => {
-;                     guard .index + 3 < .data.length() and
-;                         .data.byte_at(.index + 1) == b'r' and
-;                         .data.byte_at(.index + 2) == b'u' and
-;                         .data.byte_at(.index + 3) == b'e' else {
-;                         throw error("Invalid JSON: expected 'true'")
-;                     }
-; 
-;                     defer .index += 3
-;                     yield JsonToken::True(position: .index)
-;                 }
-; 
-;                 b'f' => {
-;                     guard .index + 4 < .data.length() and
-;                         .data.byte_at(.index + 1) == b'a' and
-;                         .data.byte_at(.index + 2) == b'l' and
-;                         .data.byte_at(.index + 3) == b's' and
-;                         .data.byte_at(.index + 4) == b'e' else {
-;                         throw error("Invalid JSON: expected 'false'")
-;                     }
-; 
-;                     defer .index += 4
-;                     yield JsonToken::False(position: .index)
-;                 }
-; 
-;                 b'n' => {
-;                     guard .index + 3 < .data.length() and
-;                         .data.byte_at(.index + 1) == b'u' and
-;                         .data.byte_at(.index + 2) == b'l' and
-;                         .data.byte_at(.index + 3) == b'l' else {
-;                         throw error("Invalid JSON: expected 'null'")
-;                     }
-; 
-;                     defer .index += 3
-;                     yield JsonToken::Null(position: .index)
-;                 }
-; 
-;                 else => {
-;                     throw error("Invalid JSON: Unexpected character")
-;                 }
-;             }
-;         }
-; 
-;         return None
-;     }
-; }
-; 
-; fn force_to<T, U>(anon v: U) -> T {
-;     return v as! T
-; }
-; 
-; comptime make_json_decoder<T>() throws -> fn(anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
-;     let dep = true
-; 
-;     return match reflect T {
-;         Unknown | Never | Void => {
-;             throw error("No can do")
-;         }
-;         Bool => fn[comptime dep](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
-;             let token = parser.next()
-;             if token.has_value() {
-;                 match token! {
-;                     True => { x = true }
-;                     False => { x = false }
-;                     else => {
-;                         throw error("Invalid bool")
-;                     }
-;                 }
-;             } else {
-;                 throw error("Invalid bool")
-;             }
-; 
-;             return
-;         }
-;         Usize | U8 | U16 | U32 | U64 => fn[comptime dep](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
-;             let token = parser.next()
-;             if token.has_value() {
-;                 if token! is Number(json) {
-;                     let parsed = json.to_uint()
-;                     if parsed.has_value() {
-;                         x = force_to<T>(parsed!)
-;                         return
-;                     }
-;                 }
-;             }
-; 
-;             throw error("Invalid uint")
-;         }
-;         CChar | CInt | I8 | I16 | I32 | I64 => fn[comptime dep](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
-;             let token = parser.next()
-;             if token.has_value() {
-;                 if token! is Number(json) {
-;                     let parsed = json.to_int()
-;                     if parsed.has_value() {
-;                         x = force_to<T>(parsed!)
-;                         return
-;                     }
-;                 }
-;             }
-; 
-;             throw error("Invalid int")
-;         }
-;         F32 | F64 => fn[comptime dep](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
-;             let token = parser.next()
-;             if token.has_value() {
-;                 match token! {
-;                     Number(json) => {
-;                         throw error("Not implemented")
-;                     }
-;                     else => {}
-;                 }
-;             }
-; 
-;             throw error("Invalid float")
-;         }
-;         JaktString => fn[comptime dep](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
-;             let token = parser.next()
-;             if token.has_value() {
-;                 if token! is JsonString(json) {
-;                     x = json
-;                     return
-;                 }
-;             }
-; 
-;             throw error("Invalid string")
-;         }
-;         StructureOrEnum(record) => match record.record_type {
-;             Struct(fields) | Class(fields) => {
-;                 mut field_decoders: [fn(anon x: &mut T, anon parser: &mut JsonParser) throws -> void] = []
-;                 mut field_indices: [String:usize] = [:]
-; 
-;                 for field in fields {
-;                     let name = field.variable.name
-;                     field_indices.set(name, field_decoders.size())
-;                     field_decoders.push(fn[comptime name](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
-;                         from_json(parser, &mut x.[name])
-;                         return
-;                     })
-;                 }
-; 
-;                 yield fn[comptime field_decoders, comptime field_indices](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
-;                     let token = parser.next()
-;                     guard token.has_value() and token! is OpenBrace else {
-;                         throw error("Invalid JSON: Expected '{'")
-;                     }
-; 
-;                     mut seen_fields: {String} = {}
-;                     mut first = true
-;                     mut seen_comma = false
-; 
-;                     loop {
-;                         let token = parser.next()
-;                         guard token.has_value() else {
-;                             throw error("Invalid JSON: Expected a token")
-;                         }
-; 
-;                         let done = match token! {
-;                             CloseBrace => true
-;                             Comma => {
-;                                 if first or seen_comma {
-;                                     throw error("Invalid JSON: Unexpected comma")
-;                                 }
-;                                 first = false
-;                                 seen_comma = true
-;                                 yield false
-;                             }
-;                             JsonString(field_name) => {
-;                                 seen_comma = false
-;                                 let token = parser.next()
-;                                 guard token.has_value() and token! is Colon else {
-;                                     throw error("Invalid JSON: Expected ':'")
-;                                 }
-; 
-;                                 if not field_indices.contains(field_name) {
-;                                     throw error("Unexpected unknown field in object")
-;                                 }
-; 
-;                                 if seen_fields.contains(field_name) {
-;                                     throw error("Duplicate field in object")
-;                                 }
-; 
-;                                 seen_fields.add(field_name)
-; 
-;                                 let decoder = &field_decoders[field_indices[field_name]]
-;                                 decoder(x, parser)
-; 
-;                                 first = false
-; 
-;                                 yield false
-;                             }
-;                             else => {
-;                                 throw error("Invalid JSON: Expected a field name")
-;                             }
-;                         }
-; 
-;                         guard not done else {
-;                             break
-;                         }
-;                     }
-; 
-;                     for field in field_indices.keys() {
-;                         if not seen_fields.contains(field) {
-;                             throw error("Missing field in object")
-;                         }
-;                     }
-; 
-;                     return
-;                 }
-;             }
-;             else => {
-;                 throw error("NYI")
-;             }
-;         }
-;         else => {
-;             throw error("NYI")
-;         }
-;     }
-; }
-; 
-; fn from_json<U>(anon parser: &mut JsonParser, anon x: &mut U) throws -> void {
-;     let function = make_json_decoder<U>()
-;     function(x, parser)
-; }
-; 
-; fn from_json<U>(anon json: String, anon x: &mut U) throws -> void {
-;     let function = make_json_decoder<U>()
-;     mut parser = JsonParser::create(json)
-;     function(x, &mut parser)
-; }
-; 
-; fn convert(x: &bool) throws -> String => format("{}", x)
-; fn convert(x: &i8) throws -> String => format("{}", x)
-; fn convert(x: &i16) throws -> String => format("{}", x)
-; fn convert(x: &i32) throws -> String => format("{}", x)
-; fn convert(x: &i64) throws -> String => format("{}", x)
-; fn convert(x: &u8) throws -> String => format("{}", x)
-; fn convert(x: &u16) throws -> String => format("{}", x)
-; fn convert(x: &u32) throws -> String => format("{}", x)
-; fn convert(x: &u64) throws -> String => format("{}", x)
-; fn convert(x: &String) throws -> String => format("\"{}\"", x)
-; fn convert(x: &c_char) throws -> String => format("'{:c}'", x)
-; fn convert<T>(x: &T) throws -> String => format(":shrug:")
-; 
-; fn quote_for_json(anon s: String) throws -> String {
-;     mut builder = StringBuilder::create()
-;     builder.append(b'"')
-;     builder.append_escaped_for_json(s)
-;     builder.append(b'"')
-;     return builder.to_string()
-; }
-; 
-; comptime make_json_encoder<T>() throws -> fn(anon x: &T) throws -> String => match reflect T {
-;     StructureOrEnum(record) => match record.record_type {
-;         Struct(fields) | Class(fields) => {
-;             mut field_converters: [fn(anon x: &T) throws -> String] = []
-; 
-;             for field in fields {
-;                 let name = field.variable.name
-;                 field_converters.push(fn[comptime name](anon x: &T) throws -> String {
-;                     let value = x.[name]
-;                     return quote_for_json(name) + ":" + to_json(&value)
-;                 })
-;             }
-; 
-;             yield fn[comptime field_converters](anon x: &T) throws -> String {
-;                 mut builder = StringBuilder::create()
-;                 builder.append(b'{')
-;                 mut first = true
-;                 for i in 0..field_converters.size() {
-;                     let converter = &field_converters[i]
-;                     if not first {
-;                         builder.append(b',')
-;                     }
-;                     first = false
-;                     let value = converter(x)
-;                     builder.append(value)
-;                 }
-;                 builder.append(b'}')
-;                 return builder.to_string()
-;             }
-;         }
-;         else => {
-;             throw error("NYI")
-;         }
-;     }
-;     else => fn(anon x: &T) throws -> String => convert(x)
-; }
-; 
-; fn to_json<U>(anon x: &U) throws -> String {
-;     let converter = make_json_encoder<U>()
-;     return converter(x)
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Static Reflection Json ID=KLO9YTF
+================================================================================
+
+/// Expect: Skip
+
+fn error(anon s: StringView) -> Error => Error::from_string_literal(s)
+
+enum JsonToken {
+    position: usize
+
+    OpenBrace
+    CloseBrace
+    OpenBracket
+    CloseBracket
+    Colon
+    Comma
+    JsonString(String)
+    Number(String)
+    True
+    False
+    Null
+}
+
+struct JsonParser {
+    data: String
+    index: usize
+
+    fn create(anon data: String) -> JsonParser => JsonParser(data: data, index: 0)
+
+    fn to_object<U>(mut this, anon x: &mut U) throws {
+        from_json(&mut this, x)
+    }
+
+    fn peek(mut this) throws -> JsonToken? {
+        let start = .index + 0
+        let value = .next()
+        .index = start
+        return value
+    }
+
+    fn next(mut this) throws -> JsonToken? {
+        loop {
+            if .index >= .data.length() { break }
+            let c = .data.byte_at(.index)
+            defer .index += 1
+
+            return match c {
+                b' ' | b'\n' | b'\r' | b'\t' => { continue }
+                b'{' => JsonToken::OpenBrace(position: .index)
+                b'}' => JsonToken::CloseBrace(position: .index)
+                b'[' => JsonToken::OpenBracket(position: .index)
+                b']' => JsonToken::CloseBracket(position: .index)
+                b':' => JsonToken::Colon(position: .index)
+                b',' => JsonToken::Comma(position: .index)
+                b'"' => {
+                    let position = .index
+                    mut builder = StringBuilder::create()
+                    mut escaped = false
+                    .index += 1
+
+                    while .index < .data.length() {
+                        let c = .data.byte_at(.index)
+                        .index += 1
+
+                        match c {
+                            b'"' => {
+                                if escaped {
+                                    builder.append(c)
+                                    escaped = false
+                                } else {
+                                    .index -= 1
+                                    break
+                                }
+                            }
+                            b'\\' => {
+                                if escaped {
+                                    builder.append(c)
+                                    escaped = false
+                                } else {
+                                    escaped = true
+                                }
+                            }
+                            else => {
+                                builder.append(c)
+                                escaped = false
+                            }
+                        }
+                    }
+
+                    yield JsonToken::JsonString(position, builder.to_string())
+                }
+                b'0'..b'9' => {
+                    let position = .index
+                    mut builder = StringBuilder::create()
+                    mut seen_dot = false
+                    while .index < .data.length() {
+                        let c = .data.byte_at(.index)
+                        if c >= b'0' and c <= b'9' {
+                            builder.append(c)
+                            .index += 1
+                        } else if not seen_dot and c == b'.' {
+                            builder.append(c)
+                            seen_dot = true
+                        } else {
+                            break
+                        }
+                    }
+
+                    yield JsonToken::Number(position, builder.to_string())
+                }
+                b't' => {
+                    guard .index + 3 < .data.length() and
+                        .data.byte_at(.index + 1) == b'r' and
+                        .data.byte_at(.index + 2) == b'u' and
+                        .data.byte_at(.index + 3) == b'e' else {
+                        throw error("Invalid JSON: expected 'true'")
+                    }
+
+                    defer .index += 3
+                    yield JsonToken::True(position: .index)
+                }
+
+                b'f' => {
+                    guard .index + 4 < .data.length() and
+                        .data.byte_at(.index + 1) == b'a' and
+                        .data.byte_at(.index + 2) == b'l' and
+                        .data.byte_at(.index + 3) == b's' and
+                        .data.byte_at(.index + 4) == b'e' else {
+                        throw error("Invalid JSON: expected 'false'")
+                    }
+
+                    defer .index += 4
+                    yield JsonToken::False(position: .index)
+                }
+
+                b'n' => {
+                    guard .index + 3 < .data.length() and
+                        .data.byte_at(.index + 1) == b'u' and
+                        .data.byte_at(.index + 2) == b'l' and
+                        .data.byte_at(.index + 3) == b'l' else {
+                        throw error("Invalid JSON: expected 'null'")
+                    }
+
+                    defer .index += 3
+                    yield JsonToken::Null(position: .index)
+                }
+
+                else => {
+                    throw error("Invalid JSON: Unexpected character")
+                }
+            }
+        }
+
+        return None
+    }
+}
+
+fn force_to<T, U>(anon v: U) -> T {
+    return v as! T
+}
+
+comptime make_json_decoder<T>() throws -> fn(anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
+    let dep = true
+
+    return match reflect T {
+        Unknown | Never | Void => {
+            throw error("No can do")
+        }
+        Bool => fn[comptime dep](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
+            let token = parser.next()
+            if token.has_value() {
+                match token! {
+                    True => { x = true }
+                    False => { x = false }
+                    else => {
+                        throw error("Invalid bool")
+                    }
+                }
+            } else {
+                throw error("Invalid bool")
+            }
+
+            return
+        }
+        Usize | U8 | U16 | U32 | U64 => fn[comptime dep](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
+            let token = parser.next()
+            if token.has_value() {
+                if token! is Number(json) {
+                    let parsed = json.to_uint()
+                    if parsed.has_value() {
+                        x = force_to<T>(parsed!)
+                        return
+                    }
+                }
+            }
+
+            throw error("Invalid uint")
+        }
+        CChar | CInt | I8 | I16 | I32 | I64 => fn[comptime dep](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
+            let token = parser.next()
+            if token.has_value() {
+                if token! is Number(json) {
+                    let parsed = json.to_int()
+                    if parsed.has_value() {
+                        x = force_to<T>(parsed!)
+                        return
+                    }
+                }
+            }
+
+            throw error("Invalid int")
+        }
+        F32 | F64 => fn[comptime dep](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
+            let token = parser.next()
+            if token.has_value() {
+                match token! {
+                    Number(json) => {
+                        throw error("Not implemented")
+                    }
+                    else => {}
+                }
+            }
+
+            throw error("Invalid float")
+        }
+        JaktString => fn[comptime dep](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
+            let token = parser.next()
+            if token.has_value() {
+                if token! is JsonString(json) {
+                    x = json
+                    return
+                }
+            }
+
+            throw error("Invalid string")
+        }
+        StructureOrEnum(record) => match record.record_type {
+            Struct(fields) | Class(fields) => {
+                mut field_decoders: [fn(anon x: &mut T, anon parser: &mut JsonParser) throws -> void] = []
+                mut field_indices: [String:usize] = [:]
+
+                for field in fields {
+                    let name = field.variable.name
+                    field_indices.set(name, field_decoders.size())
+                    field_decoders.push(fn[comptime name](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
+                        from_json(parser, &mut x.[name])
+                        return
+                    })
+                }
+
+                yield fn[comptime field_decoders, comptime field_indices](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
+                    let token = parser.next()
+                    guard token.has_value() and token! is OpenBrace else {
+                        throw error("Invalid JSON: Expected '{'")
+                    }
+
+                    mut seen_fields: {String} = {}
+                    mut first = true
+                    mut seen_comma = false
+
+                    loop {
+                        let token = parser.next()
+                        guard token.has_value() else {
+                            throw error("Invalid JSON: Expected a token")
+                        }
+
+                        let done = match token! {
+                            CloseBrace => true
+                            Comma => {
+                                if first or seen_comma {
+                                    throw error("Invalid JSON: Unexpected comma")
+                                }
+                                first = false
+                                seen_comma = true
+                                yield false
+                            }
+                            JsonString(field_name) => {
+                                seen_comma = false
+                                let token = parser.next()
+                                guard token.has_value() and token! is Colon else {
+                                    throw error("Invalid JSON: Expected ':'")
+                                }
+
+                                if not field_indices.contains(field_name) {
+                                    throw error("Unexpected unknown field in object")
+                                }
+
+                                if seen_fields.contains(field_name) {
+                                    throw error("Duplicate field in object")
+                                }
+
+                                seen_fields.add(field_name)
+
+                                let decoder = &field_decoders[field_indices[field_name]]
+                                decoder(x, parser)
+
+                                first = false
+
+                                yield false
+                            }
+                            else => {
+                                throw error("Invalid JSON: Expected a field name")
+                            }
+                        }
+
+                        guard not done else {
+                            break
+                        }
+                    }
+
+                    for field in field_indices.keys() {
+                        if not seen_fields.contains(field) {
+                            throw error("Missing field in object")
+                        }
+                    }
+
+                    return
+                }
+            }
+            else => {
+                throw error("NYI")
+            }
+        }
+        else => {
+            throw error("NYI")
+        }
+    }
+}
+
+fn from_json<U>(anon parser: &mut JsonParser, anon x: &mut U) throws -> void {
+    let function = make_json_decoder<U>()
+    function(x, parser)
+}
+
+fn from_json<U>(anon json: String, anon x: &mut U) throws -> void {
+    let function = make_json_decoder<U>()
+    mut parser = JsonParser::create(json)
+    function(x, &mut parser)
+}
+
+fn convert(x: &bool) throws -> String => format("{}", x)
+fn convert(x: &i8) throws -> String => format("{}", x)
+fn convert(x: &i16) throws -> String => format("{}", x)
+fn convert(x: &i32) throws -> String => format("{}", x)
+fn convert(x: &i64) throws -> String => format("{}", x)
+fn convert(x: &u8) throws -> String => format("{}", x)
+fn convert(x: &u16) throws -> String => format("{}", x)
+fn convert(x: &u32) throws -> String => format("{}", x)
+fn convert(x: &u64) throws -> String => format("{}", x)
+fn convert(x: &String) throws -> String => format("\"{}\"", x)
+fn convert(x: &c_char) throws -> String => format("'{:c}'", x)
+fn convert<T>(x: &T) throws -> String => format(":shrug:")
+
+fn quote_for_json(anon s: String) throws -> String {
+    mut builder = StringBuilder::create()
+    builder.append(b'"')
+    builder.append_escaped_for_json(s)
+    builder.append(b'"')
+    return builder.to_string()
+}
+
+comptime make_json_encoder<T>() throws -> fn(anon x: &T) throws -> String => match reflect T {
+    StructureOrEnum(record) => match record.record_type {
+        Struct(fields) | Class(fields) => {
+            mut field_converters: [fn(anon x: &T) throws -> String] = []
+
+            for field in fields {
+                let name = field.variable.name
+                field_converters.push(fn[comptime name](anon x: &T) throws -> String {
+                    let value = x.[name]
+                    return quote_for_json(name) + ":" + to_json(&value)
+                })
+            }
+
+            yield fn[comptime field_converters](anon x: &T) throws -> String {
+                mut builder = StringBuilder::create()
+                builder.append(b'{')
+                mut first = true
+                for i in 0..field_converters.size() {
+                    let converter = &field_converters[i]
+                    if not first {
+                        builder.append(b',')
+                    }
+                    first = false
+                    let value = converter(x)
+                    builder.append(value)
+                }
+                builder.append(b'}')
+                return builder.to_string()
+            }
+        }
+        else => {
+            throw error("NYI")
+        }
+    }
+    else => fn(anon x: &T) throws -> String => convert(x)
+}
+
+fn to_json<U>(anon x: &U) throws -> String {
+    let converter = make_json_encoder<U>()
+    return converter(x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (type_identifier)))
+    (type_identifier)
+    (return_expression
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
+        (arguments
+          (argument
+            (identifier))))))
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_field_declaration
+        (field_identifier)
+        (primitive_type))
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))))
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (function_declaration
+        (identifier)
+        (parameters
+          (parameter
+            (anonymous_specifier)
+            (identifier)
+            (primitive_type)))
+        (type_identifier)
+        (return_expression
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (identifier)
+                (identifier))
+              (argument
+                (identifier)
+                (integer_literal))))))
+      (generic_function_declaration
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (generic_type_identifier)))
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference))
+          (parameter
+            (anonymous_specifier)
+            (identifier)
+            (reference_type
+              (mutable_specifier)
+              (identifier))))
+        (throws_specifier)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (pointer_expression
+                  (mutable_specifier)
+                  (identifier)))
+              (argument
+                (identifier))))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (optional_type
+          (type_identifier))
+        (block
+          (let_declaration
+            (identifier)
+            (binary_expression
+              (this_reference_shorthand
+                (identifier))
+              (integer_literal)))
+          (let_declaration
+            (identifier)
+            (call_expression
+              (this_reference_shorthand
+                (identifier))
+              (arguments)))
+          (assignment_expression
+            (this_reference_shorthand
+              (identifier))
+            (identifier))
+          (return_statement
+            (identifier))))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (throws_specifier)
+        (optional_type
+          (type_identifier))
+        (block
+          (loop_statement
+            (block
+              (if_statement
+                (binary_expression
+                  (this_reference_shorthand
+                    (identifier))
+                  (call_expression
+                    (field_expression
+                      (this_reference_shorthand
+                        (identifier))
+                      (field_identifier))
+                    (arguments)))
+                (block
+                  (identifier)))
+              (let_declaration
+                (identifier)
+                (call_expression
+                  (field_expression
+                    (this_reference_shorthand
+                      (identifier))
+                    (field_identifier))
+                  (arguments
+                    (argument
+                      (this_reference_shorthand
+                        (identifier))))))
+              (defer_statement
+                (assignment_expression
+                  (this_reference_shorthand
+                    (identifier))
+                  (integer_literal)))
+              (return_statement
+                (match_expression
+                  (identifier)
+                  (match_block
+                    (match_arm
+                      (match_pattern
+                        (binary_expression
+                          (binary_expression
+                            (binary_expression
+                              (byte_literal)
+                              (byte_literal))
+                            (byte_literal))
+                          (byte_literal)))
+                      (block
+                        (continue_statement)))
+                    (match_arm
+                      (match_pattern
+                        (byte_literal))
+                      (static_call_expression
+                        (scoped_identifier)
+                        (field_identifier)
+                        (arguments
+                          (argument
+                            (identifier)
+                            (this_reference_shorthand
+                              (identifier))))))
+                    (match_arm
+                      (match_pattern
+                        (byte_literal))
+                      (static_call_expression
+                        (scoped_identifier)
+                        (field_identifier)
+                        (arguments
+                          (argument
+                            (identifier)
+                            (this_reference_shorthand
+                              (identifier))))))
+                    (match_arm
+                      (match_pattern
+                        (byte_literal))
+                      (static_call_expression
+                        (scoped_identifier)
+                        (field_identifier)
+                        (arguments
+                          (argument
+                            (identifier)
+                            (this_reference_shorthand
+                              (identifier))))))
+                    (match_arm
+                      (match_pattern
+                        (byte_literal))
+                      (static_call_expression
+                        (scoped_identifier)
+                        (field_identifier)
+                        (arguments
+                          (argument
+                            (identifier)
+                            (this_reference_shorthand
+                              (identifier))))))
+                    (match_arm
+                      (match_pattern
+                        (byte_literal))
+                      (static_call_expression
+                        (scoped_identifier)
+                        (field_identifier)
+                        (arguments
+                          (argument
+                            (identifier)
+                            (this_reference_shorthand
+                              (identifier))))))
+                    (match_arm
+                      (match_pattern
+                        (byte_literal))
+                      (static_call_expression
+                        (scoped_identifier)
+                        (field_identifier)
+                        (arguments
+                          (argument
+                            (identifier)
+                            (this_reference_shorthand
+                              (identifier))))))
+                    (match_arm
+                      (match_pattern
+                        (byte_literal))
+                      (block
+                        (let_declaration
+                          (identifier)
+                          (this_reference_shorthand
+                            (identifier)))
+                        (mutable_declaration
+                          (mutable_specifier)
+                          (identifier)
+                          (static_call_expression
+                            (scoped_identifier)
+                            (field_identifier)
+                            (arguments)))
+                        (mutable_declaration
+                          (mutable_specifier)
+                          (identifier)
+                          (boolean_literal))
+                        (assignment_expression
+                          (this_reference_shorthand
+                            (identifier))
+                          (integer_literal))
+                        (while_statement
+                          (binary_expression
+                            (this_reference_shorthand
+                              (identifier))
+                            (call_expression
+                              (field_expression
+                                (this_reference_shorthand
+                                  (identifier))
+                                (field_identifier))
+                              (arguments)))
+                          (block
+                            (let_declaration
+                              (identifier)
+                              (call_expression
+                                (field_expression
+                                  (this_reference_shorthand
+                                    (identifier))
+                                  (field_identifier))
+                                (arguments
+                                  (argument
+                                    (this_reference_shorthand
+                                      (identifier))))))
+                            (assignment_expression
+                              (this_reference_shorthand
+                                (identifier))
+                              (integer_literal))
+                            (match_expression
+                              (identifier)
+                              (match_block
+                                (match_arm
+                                  (match_pattern
+                                    (byte_literal))
+                                  (block
+                                    (if_statement
+                                      (identifier)
+                                      (block
+                                        (call_expression
+                                          (field_expression
+                                            (identifier)
+                                            (field_identifier))
+                                          (arguments
+                                            (argument
+                                              (identifier))))
+                                        (assignment_expression
+                                          (identifier)
+                                          (boolean_literal)))
+                                      (else_clause
+                                        (block
+                                          (assignment_expression
+                                            (this_reference_shorthand
+                                              (identifier))
+                                            (integer_literal))
+                                          (identifier))))))
+                                (match_arm
+                                  (match_pattern
+                                    (byte_literal))
+                                  (block
+                                    (if_statement
+                                      (identifier)
+                                      (block
+                                        (call_expression
+                                          (field_expression
+                                            (identifier)
+                                            (field_identifier))
+                                          (arguments
+                                            (argument
+                                              (identifier))))
+                                        (assignment_expression
+                                          (identifier)
+                                          (boolean_literal)))
+                                      (else_clause
+                                        (block
+                                          (assignment_expression
+                                            (identifier)
+                                            (boolean_literal)))))))
+                                (match_arm
+                                  (match_else)
+                                  (block
+                                    (call_expression
+                                      (field_expression
+                                        (identifier)
+                                        (field_identifier))
+                                      (arguments
+                                        (argument
+                                          (identifier))))
+                                    (assignment_expression
+                                      (identifier)
+                                      (boolean_literal))))))))
+                        (yield_statement
+                          (static_call_expression
+                            (scoped_identifier)
+                            (field_identifier)
+                            (arguments
+                              (argument
+                                (identifier))
+                              (argument
+                                (call_expression
+                                  (field_expression
+                                    (identifier)
+                                    (field_identifier))
+                                  (arguments))))))))
+                    (match_arm
+                      (match_pattern
+                        (range_expression
+                          (byte_literal)
+                          (byte_literal)))
+                      (block
+                        (let_declaration
+                          (identifier)
+                          (this_reference_shorthand
+                            (identifier)))
+                        (mutable_declaration
+                          (mutable_specifier)
+                          (identifier)
+                          (static_call_expression
+                            (scoped_identifier)
+                            (field_identifier)
+                            (arguments)))
+                        (mutable_declaration
+                          (mutable_specifier)
+                          (identifier)
+                          (boolean_literal))
+                        (while_statement
+                          (binary_expression
+                            (this_reference_shorthand
+                              (identifier))
+                            (call_expression
+                              (field_expression
+                                (this_reference_shorthand
+                                  (identifier))
+                                (field_identifier))
+                              (arguments)))
+                          (block
+                            (let_declaration
+                              (identifier)
+                              (call_expression
+                                (field_expression
+                                  (this_reference_shorthand
+                                    (identifier))
+                                  (field_identifier))
+                                (arguments
+                                  (argument
+                                    (this_reference_shorthand
+                                      (identifier))))))
+                            (if_statement
+                              (binary_expression
+                                (binary_expression
+                                  (identifier)
+                                  (byte_literal))
+                                (binary_expression
+                                  (identifier)
+                                  (byte_literal)))
+                              (block
+                                (call_expression
+                                  (field_expression
+                                    (identifier)
+                                    (field_identifier))
+                                  (arguments
+                                    (argument
+                                      (identifier))))
+                                (assignment_expression
+                                  (this_reference_shorthand
+                                    (identifier))
+                                  (integer_literal)))
+                              (else_clause
+                                (if_statement
+                                  (binary_expression
+                                    (logical_not_expression
+                                      (identifier))
+                                    (binary_expression
+                                      (identifier)
+                                      (byte_literal)))
+                                  (block
+                                    (call_expression
+                                      (field_expression
+                                        (identifier)
+                                        (field_identifier))
+                                      (arguments
+                                        (argument
+                                          (identifier))))
+                                    (assignment_expression
+                                      (identifier)
+                                      (boolean_literal)))
+                                  (else_clause
+                                    (block
+                                      (identifier))))))))
+                        (yield_statement
+                          (static_call_expression
+                            (scoped_identifier)
+                            (field_identifier)
+                            (arguments
+                              (argument
+                                (identifier))
+                              (argument
+                                (call_expression
+                                  (field_expression
+                                    (identifier)
+                                    (field_identifier))
+                                  (arguments))))))))
+                    (match_arm
+                      (match_pattern
+                        (byte_literal))
+                      (block
+                        (guard_statement
+                          (binary_expression
+                            (binary_expression
+                              (binary_expression
+                                (binary_expression
+                                  (binary_expression
+                                    (this_reference_shorthand
+                                      (identifier))
+                                    (integer_literal))
+                                  (call_expression
+                                    (field_expression
+                                      (this_reference_shorthand
+                                        (identifier))
+                                      (field_identifier))
+                                    (arguments)))
+                                (binary_expression
+                                  (call_expression
+                                    (field_expression
+                                      (this_reference_shorthand
+                                        (identifier))
+                                      (field_identifier))
+                                    (arguments
+                                      (argument
+                                        (binary_expression
+                                          (this_reference_shorthand
+                                            (identifier))
+                                          (integer_literal)))))
+                                  (byte_literal)))
+                              (binary_expression
+                                (call_expression
+                                  (field_expression
+                                    (this_reference_shorthand
+                                      (identifier))
+                                    (field_identifier))
+                                  (arguments
+                                    (argument
+                                      (binary_expression
+                                        (this_reference_shorthand
+                                          (identifier))
+                                        (integer_literal)))))
+                                (byte_literal)))
+                            (binary_expression
+                              (call_expression
+                                (field_expression
+                                  (this_reference_shorthand
+                                    (identifier))
+                                  (field_identifier))
+                                (arguments
+                                  (argument
+                                    (binary_expression
+                                      (this_reference_shorthand
+                                        (identifier))
+                                      (integer_literal)))))
+                              (byte_literal)))
+                          (block
+                            (throw_statement
+                              (call_expression
+                                (identifier)
+                                (arguments
+                                  (argument
+                                    (string_literal)))))))
+                        (defer_statement
+                          (assignment_expression
+                            (this_reference_shorthand
+                              (identifier))
+                            (integer_literal)))
+                        (yield_statement
+                          (static_call_expression
+                            (scoped_identifier)
+                            (field_identifier)
+                            (arguments
+                              (argument
+                                (identifier)
+                                (this_reference_shorthand
+                                  (identifier))))))))
+                    (match_arm
+                      (match_pattern
+                        (byte_literal))
+                      (block
+                        (guard_statement
+                          (binary_expression
+                            (binary_expression
+                              (binary_expression
+                                (binary_expression
+                                  (binary_expression
+                                    (binary_expression
+                                      (this_reference_shorthand
+                                        (identifier))
+                                      (integer_literal))
+                                    (call_expression
+                                      (field_expression
+                                        (this_reference_shorthand
+                                          (identifier))
+                                        (field_identifier))
+                                      (arguments)))
+                                  (binary_expression
+                                    (call_expression
+                                      (field_expression
+                                        (this_reference_shorthand
+                                          (identifier))
+                                        (field_identifier))
+                                      (arguments
+                                        (argument
+                                          (binary_expression
+                                            (this_reference_shorthand
+                                              (identifier))
+                                            (integer_literal)))))
+                                    (byte_literal)))
+                                (binary_expression
+                                  (call_expression
+                                    (field_expression
+                                      (this_reference_shorthand
+                                        (identifier))
+                                      (field_identifier))
+                                    (arguments
+                                      (argument
+                                        (binary_expression
+                                          (this_reference_shorthand
+                                            (identifier))
+                                          (integer_literal)))))
+                                  (byte_literal)))
+                              (binary_expression
+                                (call_expression
+                                  (field_expression
+                                    (this_reference_shorthand
+                                      (identifier))
+                                    (field_identifier))
+                                  (arguments
+                                    (argument
+                                      (binary_expression
+                                        (this_reference_shorthand
+                                          (identifier))
+                                        (integer_literal)))))
+                                (byte_literal)))
+                            (binary_expression
+                              (call_expression
+                                (field_expression
+                                  (this_reference_shorthand
+                                    (identifier))
+                                  (field_identifier))
+                                (arguments
+                                  (argument
+                                    (binary_expression
+                                      (this_reference_shorthand
+                                        (identifier))
+                                      (integer_literal)))))
+                              (byte_literal)))
+                          (block
+                            (throw_statement
+                              (call_expression
+                                (identifier)
+                                (arguments
+                                  (argument
+                                    (string_literal)))))))
+                        (defer_statement
+                          (assignment_expression
+                            (this_reference_shorthand
+                              (identifier))
+                            (integer_literal)))
+                        (yield_statement
+                          (static_call_expression
+                            (scoped_identifier)
+                            (field_identifier)
+                            (arguments
+                              (argument
+                                (identifier)
+                                (this_reference_shorthand
+                                  (identifier))))))))
+                    (match_arm
+                      (match_pattern
+                        (byte_literal))
+                      (block
+                        (guard_statement
+                          (binary_expression
+                            (binary_expression
+                              (binary_expression
+                                (binary_expression
+                                  (binary_expression
+                                    (this_reference_shorthand
+                                      (identifier))
+                                    (integer_literal))
+                                  (call_expression
+                                    (field_expression
+                                      (this_reference_shorthand
+                                        (identifier))
+                                      (field_identifier))
+                                    (arguments)))
+                                (binary_expression
+                                  (call_expression
+                                    (field_expression
+                                      (this_reference_shorthand
+                                        (identifier))
+                                      (field_identifier))
+                                    (arguments
+                                      (argument
+                                        (binary_expression
+                                          (this_reference_shorthand
+                                            (identifier))
+                                          (integer_literal)))))
+                                  (byte_literal)))
+                              (binary_expression
+                                (call_expression
+                                  (field_expression
+                                    (this_reference_shorthand
+                                      (identifier))
+                                    (field_identifier))
+                                  (arguments
+                                    (argument
+                                      (binary_expression
+                                        (this_reference_shorthand
+                                          (identifier))
+                                        (integer_literal)))))
+                                (byte_literal)))
+                            (binary_expression
+                              (call_expression
+                                (field_expression
+                                  (this_reference_shorthand
+                                    (identifier))
+                                  (field_identifier))
+                                (arguments
+                                  (argument
+                                    (binary_expression
+                                      (this_reference_shorthand
+                                        (identifier))
+                                      (integer_literal)))))
+                              (byte_literal)))
+                          (block
+                            (throw_statement
+                              (call_expression
+                                (identifier)
+                                (arguments
+                                  (argument
+                                    (string_literal)))))))
+                        (defer_statement
+                          (assignment_expression
+                            (this_reference_shorthand
+                              (identifier))
+                            (integer_literal)))
+                        (yield_statement
+                          (static_call_expression
+                            (scoped_identifier)
+                            (field_identifier)
+                            (arguments
+                              (argument
+                                (identifier)
+                                (this_reference_shorthand
+                                  (identifier))))))))
+                    (match_arm
+                      (match_else)
+                      (block
+                        (throw_statement
+                          (call_expression
+                            (identifier)
+                            (arguments
+                              (argument
+                                (string_literal))))))))))))
+          (return_statement
+            (none_expression))))))
+  (generic_function_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (generic_type_identifier)
+        (generic_type_identifier)))
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (type_identifier)))
+    (generic_type_identifier)
+    (block
+      (return_statement
+        (type_conversion_expression
+          (identifier)
+          (generic_identifier)))))
+  (comptime_function_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (generic_type_identifier)))
+    (parameters)
+    (throws_specifier)
+    (closure_function_type
+      (parameters
+        (parameter
+          (anonymous_specifier)
+          (identifier)
+          (reference_type
+            (mutable_specifier)
+            (identifier)))
+        (parameter
+          (anonymous_specifier)
+          (identifier)
+          (reference_type
+            (mutable_specifier)
+            (identifier))))
+      (throws_specifier)
+      (primitive_type))
+    (block
+      (let_declaration
+        (identifier)
+        (boolean_literal))
+      (return_statement
+        (match_expression
+          (reflect_expression
+            (identifier))
+          (match_block
+            (match_arm
+              (match_pattern
+                (binary_expression
+                  (binary_expression
+                    (identifier)
+                    (identifier))
+                  (identifier)))
+              (block
+                (throw_statement
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (argument
+                        (string_literal)))))))
+            (match_arm
+              (match_pattern
+                (identifier))
+              (closure_function_expression
+                (comptime_specifier)
+                (identifier)
+                (parameters
+                  (parameter
+                    (anonymous_specifier)
+                    (identifier)
+                    (reference_type
+                      (mutable_specifier)
+                      (identifier)))
+                  (parameter
+                    (anonymous_specifier)
+                    (identifier)
+                    (reference_type
+                      (mutable_specifier)
+                      (identifier))))
+                (throws_specifier)
+                (primitive_type)
+                (block
+                  (let_declaration
+                    (identifier)
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments)))
+                  (if_statement
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments))
+                    (block
+                      (match_expression
+                        (optional_value_expression
+                          (identifier))
+                        (match_block
+                          (match_arm
+                            (match_pattern
+                              (identifier))
+                            (block
+                              (assignment_expression
+                                (identifier)
+                                (boolean_literal))))
+                          (match_arm
+                            (match_pattern
+                              (identifier))
+                            (block
+                              (assignment_expression
+                                (identifier)
+                                (boolean_literal))))
+                          (match_arm
+                            (match_else)
+                            (block
+                              (throw_statement
+                                (call_expression
+                                  (identifier)
+                                  (arguments
+                                    (argument
+                                      (string_literal))))))))))
+                    (else_clause
+                      (block
+                        (throw_statement
+                          (call_expression
+                            (identifier)
+                            (arguments
+                              (argument
+                                (string_literal))))))))
+                  (return_statement))))
+            (match_arm
+              (match_pattern
+                (binary_expression
+                  (binary_expression
+                    (binary_expression
+                      (binary_expression
+                        (identifier)
+                        (identifier))
+                      (identifier))
+                    (identifier))
+                  (identifier)))
+              (closure_function_expression
+                (comptime_specifier)
+                (identifier)
+                (parameters
+                  (parameter
+                    (anonymous_specifier)
+                    (identifier)
+                    (reference_type
+                      (mutable_specifier)
+                      (identifier)))
+                  (parameter
+                    (anonymous_specifier)
+                    (identifier)
+                    (reference_type
+                      (mutable_specifier)
+                      (identifier))))
+                (throws_specifier)
+                (primitive_type)
+                (block
+                  (let_declaration
+                    (identifier)
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments)))
+                  (if_statement
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments))
+                    (block
+                      (if_statement
+                        (binary_expression
+                          (optional_value_expression
+                            (identifier))
+                          (call_expression
+                            (identifier)
+                            (arguments
+                              (argument
+                                (identifier)))))
+                        (block
+                          (let_declaration
+                            (identifier)
+                            (call_expression
+                              (field_expression
+                                (identifier)
+                                (field_identifier))
+                              (arguments)))
+                          (if_statement
+                            (call_expression
+                              (field_expression
+                                (identifier)
+                                (field_identifier))
+                              (arguments))
+                            (block
+                              (assignment_expression
+                                (identifier)
+                                (call_expression
+                                  (generic_function
+                                    (identifier)
+                                    (generic_arguments
+                                      (generic_type_identifier)))
+                                  (arguments
+                                    (argument
+                                      (optional_value_expression
+                                        (identifier))))))
+                              (return_statement)))))))
+                  (throw_statement
+                    (call_expression
+                      (identifier)
+                      (arguments
+                        (argument
+                          (string_literal))))))))
+            (match_arm
+              (match_pattern
+                (binary_expression
+                  (binary_expression
+                    (binary_expression
+                      (binary_expression
+                        (binary_expression
+                          (identifier)
+                          (identifier))
+                        (identifier))
+                      (identifier))
+                    (identifier))
+                  (identifier)))
+              (closure_function_expression
+                (comptime_specifier)
+                (identifier)
+                (parameters
+                  (parameter
+                    (anonymous_specifier)
+                    (identifier)
+                    (reference_type
+                      (mutable_specifier)
+                      (identifier)))
+                  (parameter
+                    (anonymous_specifier)
+                    (identifier)
+                    (reference_type
+                      (mutable_specifier)
+                      (identifier))))
+                (throws_specifier)
+                (primitive_type)
+                (block
+                  (let_declaration
+                    (identifier)
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments)))
+                  (if_statement
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments))
+                    (block
+                      (if_statement
+                        (binary_expression
+                          (optional_value_expression
+                            (identifier))
+                          (call_expression
+                            (identifier)
+                            (arguments
+                              (argument
+                                (identifier)))))
+                        (block
+                          (let_declaration
+                            (identifier)
+                            (call_expression
+                              (field_expression
+                                (identifier)
+                                (field_identifier))
+                              (arguments)))
+                          (if_statement
+                            (call_expression
+                              (field_expression
+                                (identifier)
+                                (field_identifier))
+                              (arguments))
+                            (block
+                              (assignment_expression
+                                (identifier)
+                                (call_expression
+                                  (generic_function
+                                    (identifier)
+                                    (generic_arguments
+                                      (generic_type_identifier)))
+                                  (arguments
+                                    (argument
+                                      (optional_value_expression
+                                        (identifier))))))
+                              (return_statement)))))))
+                  (throw_statement
+                    (call_expression
+                      (identifier)
+                      (arguments
+                        (argument
+                          (string_literal))))))))
+            (match_arm
+              (match_pattern
+                (binary_expression
+                  (identifier)
+                  (identifier)))
+              (closure_function_expression
+                (comptime_specifier)
+                (identifier)
+                (parameters
+                  (parameter
+                    (anonymous_specifier)
+                    (identifier)
+                    (reference_type
+                      (mutable_specifier)
+                      (identifier)))
+                  (parameter
+                    (anonymous_specifier)
+                    (identifier)
+                    (reference_type
+                      (mutable_specifier)
+                      (identifier))))
+                (throws_specifier)
+                (primitive_type)
+                (block
+                  (let_declaration
+                    (identifier)
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments)))
+                  (if_statement
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments))
+                    (block
+                      (match_expression
+                        (optional_value_expression
+                          (identifier))
+                        (match_block
+                          (match_arm
+                            (match_pattern
+                              (call_expression
+                                (identifier)
+                                (arguments
+                                  (argument
+                                    (identifier)))))
+                            (block
+                              (throw_statement
+                                (call_expression
+                                  (identifier)
+                                  (arguments
+                                    (argument
+                                      (string_literal)))))))
+                          (match_arm
+                            (match_else)
+                            (block))))))
+                  (throw_statement
+                    (call_expression
+                      (identifier)
+                      (arguments
+                        (argument
+                          (string_literal))))))))
+            (match_arm
+              (match_pattern
+                (identifier))
+              (closure_function_expression
+                (comptime_specifier)
+                (identifier)
+                (parameters
+                  (parameter
+                    (anonymous_specifier)
+                    (identifier)
+                    (reference_type
+                      (mutable_specifier)
+                      (identifier)))
+                  (parameter
+                    (anonymous_specifier)
+                    (identifier)
+                    (reference_type
+                      (mutable_specifier)
+                      (identifier))))
+                (throws_specifier)
+                (primitive_type)
+                (block
+                  (let_declaration
+                    (identifier)
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments)))
+                  (if_statement
+                    (call_expression
+                      (field_expression
+                        (identifier)
+                        (field_identifier))
+                      (arguments))
+                    (block
+                      (if_statement
+                        (binary_expression
+                          (optional_value_expression
+                            (identifier))
+                          (call_expression
+                            (identifier)
+                            (arguments
+                              (argument
+                                (identifier)))))
+                        (block
+                          (assignment_expression
+                            (identifier)
+                            (identifier))
+                          (return_statement)))))
+                  (throw_statement
+                    (call_expression
+                      (identifier)
+                      (arguments
+                        (argument
+                          (string_literal))))))))
+            (match_arm
+              (match_pattern
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (argument
+                      (identifier)))))
+              (match_expression
+                (field_expression
+                  (identifier)
+                  (field_identifier))
+                (match_block
+                  (match_arm
+                    (match_pattern
+                      (binary_expression
+                        (call_expression
+                          (identifier)
+                          (arguments
+                            (argument
+                              (identifier))))
+                        (call_expression
+                          (identifier)
+                          (arguments
+                            (argument
+                              (identifier))))))
+                    (block
+                      (mutable_declaration
+                        (mutable_specifier)
+                        (identifier)
+                        (array_type
+                          (closure_function_type
+                            (parameters
+                              (parameter
+                                (anonymous_specifier)
+                                (identifier)
+                                (reference_type
+                                  (mutable_specifier)
+                                  (identifier)))
+                              (parameter
+                                (anonymous_specifier)
+                                (identifier)
+                                (reference_type
+                                  (mutable_specifier)
+                                  (identifier))))
+                            (throws_specifier)
+                            (primitive_type)))
+                        (array_literal))
+                      (mutable_declaration
+                        (mutable_specifier)
+                        (identifier)
+                        (dictionary_type
+                          (primitive_type)
+                          (primitive_type))
+                        (dictionary_literal))
+                      (for_expression
+                        (identifier)
+                        (identifier)
+                        (block
+                          (let_declaration
+                            (identifier)
+                            (field_expression
+                              (field_expression
+                                (identifier)
+                                (field_identifier))
+                              (field_identifier)))
+                          (call_expression
+                            (field_expression
+                              (identifier)
+                              (field_identifier))
+                            (arguments
+                              (argument
+                                (identifier))
+                              (argument
+                                (call_expression
+                                  (field_expression
+                                    (identifier)
+                                    (field_identifier))
+                                  (arguments)))))
+                          (call_expression
+                            (field_expression
+                              (identifier)
+                              (field_identifier))
+                            (arguments
+                              (argument
+                                (closure_function_expression
+                                  (comptime_specifier)
+                                  (identifier)
+                                  (parameters
+                                    (parameter
+                                      (anonymous_specifier)
+                                      (identifier)
+                                      (reference_type
+                                        (mutable_specifier)
+                                        (identifier)))
+                                    (parameter
+                                      (anonymous_specifier)
+                                      (identifier)
+                                      (reference_type
+                                        (mutable_specifier)
+                                        (identifier))))
+                                  (throws_specifier)
+                                  (primitive_type)
+                                  (block
+                                    (call_expression
+                                      (identifier)
+                                      (arguments
+                                        (argument
+                                          (identifier))
+                                        (argument
+                                          (field_expression
+                                            (pointer_expression
+                                              (mutable_specifier)
+                                              (identifier))
+                                            (field_identifier)))))
+                                    (return_statement))))))))
+                      (yield_statement
+                        (closure_function_expression
+                          (comptime_specifier)
+                          (identifier)
+                          (comptime_specifier)
+                          (identifier)
+                          (parameters
+                            (parameter
+                              (anonymous_specifier)
+                              (identifier)
+                              (reference_type
+                                (mutable_specifier)
+                                (identifier)))
+                            (parameter
+                              (anonymous_specifier)
+                              (identifier)
+                              (reference_type
+                                (mutable_specifier)
+                                (identifier))))
+                          (throws_specifier)
+                          (primitive_type)
+                          (block
+                            (let_declaration
+                              (identifier)
+                              (call_expression
+                                (field_expression
+                                  (identifier)
+                                  (field_identifier))
+                                (arguments)))
+                            (guard_statement
+                              (binary_expression
+                                (optional_value_expression
+                                  (binary_expression
+                                    (call_expression
+                                      (field_expression
+                                        (identifier)
+                                        (field_identifier))
+                                      (arguments))
+                                    (identifier)))
+                                (identifier))
+                              (block
+                                (throw_statement
+                                  (call_expression
+                                    (identifier)
+                                    (arguments
+                                      (argument
+                                        (string_literal)))))))
+                            (mutable_declaration
+                              (mutable_specifier)
+                              (identifier)
+                              (set_type
+                                (primitive_type))
+                              (set_literal))
+                            (mutable_declaration
+                              (mutable_specifier)
+                              (identifier)
+                              (boolean_literal))
+                            (mutable_declaration
+                              (mutable_specifier)
+                              (identifier)
+                              (boolean_literal))
+                            (loop_statement
+                              (block
+                                (let_declaration
+                                  (identifier)
+                                  (call_expression
+                                    (field_expression
+                                      (identifier)
+                                      (field_identifier))
+                                    (arguments)))
+                                (guard_statement
+                                  (call_expression
+                                    (field_expression
+                                      (identifier)
+                                      (field_identifier))
+                                    (arguments))
+                                  (block
+                                    (throw_statement
+                                      (call_expression
+                                        (identifier)
+                                        (arguments
+                                          (argument
+                                            (string_literal)))))))
+                                (let_declaration
+                                  (identifier)
+                                  (match_expression
+                                    (optional_value_expression
+                                      (identifier))
+                                    (match_block
+                                      (match_arm
+                                        (match_pattern
+                                          (identifier))
+                                        (boolean_literal))
+                                      (match_arm
+                                        (match_pattern
+                                          (identifier))
+                                        (block
+                                          (if_statement
+                                            (binary_expression
+                                              (identifier)
+                                              (identifier))
+                                            (block
+                                              (throw_statement
+                                                (call_expression
+                                                  (identifier)
+                                                  (arguments
+                                                    (argument
+                                                      (string_literal)))))))
+                                          (assignment_expression
+                                            (identifier)
+                                            (boolean_literal))
+                                          (assignment_expression
+                                            (identifier)
+                                            (boolean_literal))
+                                          (yield_statement
+                                            (boolean_literal))))
+                                      (match_arm
+                                        (match_pattern
+                                          (call_expression
+                                            (identifier)
+                                            (arguments
+                                              (argument
+                                                (identifier)))))
+                                        (block
+                                          (assignment_expression
+                                            (identifier)
+                                            (boolean_literal))
+                                          (let_declaration
+                                            (identifier)
+                                            (call_expression
+                                              (field_expression
+                                                (identifier)
+                                                (field_identifier))
+                                              (arguments)))
+                                          (guard_statement
+                                            (binary_expression
+                                              (optional_value_expression
+                                                (binary_expression
+                                                  (call_expression
+                                                    (field_expression
+                                                      (identifier)
+                                                      (field_identifier))
+                                                    (arguments))
+                                                  (identifier)))
+                                              (identifier))
+                                            (block
+                                              (throw_statement
+                                                (call_expression
+                                                  (identifier)
+                                                  (arguments
+                                                    (argument
+                                                      (string_literal)))))))
+                                          (if_statement
+                                            (logical_not_expression
+                                              (call_expression
+                                                (field_expression
+                                                  (identifier)
+                                                  (field_identifier))
+                                                (arguments
+                                                  (argument
+                                                    (identifier)))))
+                                            (block
+                                              (throw_statement
+                                                (call_expression
+                                                  (identifier)
+                                                  (arguments
+                                                    (argument
+                                                      (string_literal)))))))
+                                          (if_statement
+                                            (call_expression
+                                              (field_expression
+                                                (identifier)
+                                                (field_identifier))
+                                              (arguments
+                                                (argument
+                                                  (identifier))))
+                                            (block
+                                              (throw_statement
+                                                (call_expression
+                                                  (identifier)
+                                                  (arguments
+                                                    (argument
+                                                      (string_literal)))))))
+                                          (call_expression
+                                            (field_expression
+                                              (identifier)
+                                              (field_identifier))
+                                            (arguments
+                                              (argument
+                                                (identifier))))
+                                          (let_declaration
+                                            (identifier)
+                                            (array_expression
+                                              (pointer_expression
+                                                (identifier))
+                                              (array_expression
+                                                (identifier)
+                                                (identifier))))
+                                          (call_expression
+                                            (identifier)
+                                            (arguments
+                                              (argument
+                                                (identifier))
+                                              (argument
+                                                (identifier))))
+                                          (assignment_expression
+                                            (identifier)
+                                            (boolean_literal))
+                                          (yield_statement
+                                            (boolean_literal))))
+                                      (match_arm
+                                        (match_else)
+                                        (block
+                                          (throw_statement
+                                            (call_expression
+                                              (identifier)
+                                              (arguments
+                                                (argument
+                                                  (string_literal))))))))))
+                                (guard_statement
+                                  (logical_not_expression
+                                    (identifier))
+                                  (block
+                                    (identifier)))))
+                            (for_expression
+                              (identifier)
+                              (call_expression
+                                (field_expression
+                                  (identifier)
+                                  (field_identifier))
+                                (arguments))
+                              (block
+                                (if_statement
+                                  (logical_not_expression
+                                    (call_expression
+                                      (field_expression
+                                        (identifier)
+                                        (field_identifier))
+                                      (arguments
+                                        (argument
+                                          (identifier)))))
+                                  (block
+                                    (throw_statement
+                                      (call_expression
+                                        (identifier)
+                                        (arguments
+                                          (argument
+                                            (string_literal)))))))))
+                            (return_statement))))))
+                  (match_arm
+                    (match_else)
+                    (block
+                      (throw_statement
+                        (call_expression
+                          (identifier)
+                          (arguments
+                            (argument
+                              (string_literal))))))))))
+            (match_arm
+              (match_else)
+              (block
+                (throw_statement
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (argument
+                        (string_literal))))))))))))
+  (generic_function_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (generic_type_identifier)))
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (reference_type
+          (mutable_specifier)
+          (identifier)))
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (reference_type
+          (mutable_specifier)
+          (identifier))))
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (generic_function
+            (identifier)
+            (generic_arguments
+              (generic_type_identifier)))
+          (arguments)))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier))
+          (argument
+            (identifier))))))
+  (generic_function_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (generic_type_identifier)))
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type))
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (reference_type
+          (mutable_specifier)
+          (identifier))))
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (generic_function
+            (identifier)
+            (generic_arguments
+              (generic_type_identifier)))
+          (arguments)))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier))
+          (argument
+            (pointer_expression
+              (mutable_specifier)
+              (identifier)))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal
+              (escape_sequence)
+              (escape_sequence)))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (generic_function_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (generic_type_identifier)))
+    (parameters
+      (parameter
+        (identifier)
+        (reference_type
+          (identifier))))
+    (throws_specifier)
+    (primitive_type)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type)))
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (byte_literal))))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (identifier))))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (byte_literal))))
+      (return_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))))
+  (comptime_function_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (generic_type_identifier)))
+    (parameters)
+    (throws_specifier)
+    (closure_function_type
+      (parameters
+        (parameter
+          (anonymous_specifier)
+          (identifier)
+          (reference_type
+            (identifier))))
+      (throws_specifier)
+      (primitive_type))
+    (return_expression
+      (match_expression
+        (reflect_expression
+          (identifier))
+        (match_block
+          (match_arm
+            (match_pattern
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (identifier)))))
+            (match_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (match_block
+                (match_arm
+                  (match_pattern
+                    (binary_expression
+                      (call_expression
+                        (identifier)
+                        (arguments
+                          (argument
+                            (identifier))))
+                      (call_expression
+                        (identifier)
+                        (arguments
+                          (argument
+                            (identifier))))))
+                  (block
+                    (mutable_declaration
+                      (mutable_specifier)
+                      (identifier)
+                      (array_type
+                        (closure_function_type
+                          (parameters
+                            (parameter
+                              (anonymous_specifier)
+                              (identifier)
+                              (reference_type
+                                (identifier))))
+                          (throws_specifier)
+                          (primitive_type)))
+                      (array_literal))
+                    (for_expression
+                      (identifier)
+                      (identifier)
+                      (block
+                        (let_declaration
+                          (identifier)
+                          (field_expression
+                            (field_expression
+                              (identifier)
+                              (field_identifier))
+                            (field_identifier)))
+                        (call_expression
+                          (field_expression
+                            (identifier)
+                            (field_identifier))
+                          (arguments
+                            (argument
+                              (closure_function_expression
+                                (comptime_specifier)
+                                (identifier)
+                                (parameters
+                                  (parameter
+                                    (anonymous_specifier)
+                                    (identifier)
+                                    (reference_type
+                                      (identifier))))
+                                (throws_specifier)
+                                (primitive_type)
+                                (block
+                                  (let_declaration
+                                    (identifier)
+                                    (field_expression
+                                      (identifier)
+                                      (field_identifier)))
+                                  (return_statement
+                                    (binary_expression
+                                      (binary_expression
+                                        (call_expression
+                                          (identifier)
+                                          (arguments
+                                            (argument
+                                              (identifier))))
+                                        (string_literal))
+                                      (call_expression
+                                        (identifier)
+                                        (arguments
+                                          (argument
+                                            (pointer_expression
+                                              (identifier))))))))))))))
+                    (yield_statement
+                      (closure_function_expression
+                        (comptime_specifier)
+                        (identifier)
+                        (parameters
+                          (parameter
+                            (anonymous_specifier)
+                            (identifier)
+                            (reference_type
+                              (identifier))))
+                        (throws_specifier)
+                        (primitive_type)
+                        (block
+                          (mutable_declaration
+                            (mutable_specifier)
+                            (identifier)
+                            (static_call_expression
+                              (scoped_identifier)
+                              (field_identifier)
+                              (arguments)))
+                          (call_expression
+                            (field_expression
+                              (identifier)
+                              (field_identifier))
+                            (arguments
+                              (argument
+                                (byte_literal))))
+                          (mutable_declaration
+                            (mutable_specifier)
+                            (identifier)
+                            (boolean_literal))
+                          (for_expression
+                            (identifier)
+                            (range_expression
+                              (integer_literal)
+                              (call_expression
+                                (field_expression
+                                  (identifier)
+                                  (field_identifier))
+                                (arguments)))
+                            (block
+                              (let_declaration
+                                (identifier)
+                                (array_expression
+                                  (pointer_expression
+                                    (identifier))
+                                  (identifier)))
+                              (if_statement
+                                (logical_not_expression
+                                  (identifier))
+                                (block
+                                  (call_expression
+                                    (field_expression
+                                      (identifier)
+                                      (field_identifier))
+                                    (arguments
+                                      (argument
+                                        (byte_literal))))))
+                              (assignment_expression
+                                (identifier)
+                                (boolean_literal))
+                              (let_declaration
+                                (identifier)
+                                (call_expression
+                                  (identifier)
+                                  (arguments
+                                    (argument
+                                      (identifier)))))
+                              (call_expression
+                                (field_expression
+                                  (identifier)
+                                  (field_identifier))
+                                (arguments
+                                  (argument
+                                    (identifier))))))
+                          (call_expression
+                            (field_expression
+                              (identifier)
+                              (field_identifier))
+                            (arguments
+                              (argument
+                                (byte_literal))))
+                          (return_statement
+                            (call_expression
+                              (field_expression
+                                (identifier)
+                                (field_identifier))
+                              (arguments))))))))
+                (match_arm
+                  (match_else)
+                  (block
+                    (throw_statement
+                      (call_expression
+                        (identifier)
+                        (arguments
+                          (argument
+                            (string_literal))))))))))
+          (match_arm
+            (match_else)
+            (closure_function_expression
+              (parameters
+                (parameter
+                  (anonymous_specifier)
+                  (identifier)
+                  (reference_type
+                    (identifier))))
+              (throws_specifier)
+              (primitive_type)
+              (return_expression
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (argument
+                      (identifier)))))))))))
+  (generic_function_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (generic_type_identifier)))
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (reference_type
+          (identifier))))
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (generic_function
+            (identifier)
+            (generic_arguments
+              (generic_type_identifier)))
+          (arguments)))
+      (return_statement
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier))))))))

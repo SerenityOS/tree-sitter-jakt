@@ -1,0 +1,54 @@
+================================================================================
+Static reflect tricky yield
+================================================================================
+
+yield fn[comptime field_decoders, comptime field_indices](anon x: &mut T, anon parser: &mut JsonParser) throws -> void {
+
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (yield_statement
+    (closure_function_expression
+      (comptime_specifier)
+      (identifier)
+      (comptime_specifier)
+      (identifier)
+      (parameters
+        (parameter
+          (anonymous_specifier)
+          (identifier)
+          (reference_type
+            (mutable_specifier)
+            (identifier)))
+        (parameter
+          (anonymous_specifier)
+          (identifier)
+          (reference_type
+            (mutable_specifier)
+            (identifier))))
+      (throws_specifier)
+      (primitive_type)
+      (block))))
+
+================================================================================
+Static reflect new field expression
+================================================================================
+
+from_json(parser, &mut x.[name])
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    (identifier)
+    (arguments
+      (argument
+        (identifier))
+      (argument
+        (field_expression
+          (pointer_expression
+            (mutable_specifier)
+            (identifier))
+          (field_identifier))))))

@@ -44,7 +44,8 @@ fn main() {
       (call_expression
         (identifier)
         (arguments
-          (closure_function
-            (parameters)
-            (return_expression
-              (string_literal))))))))
+          (argument
+            (closure_function_expression
+              (parameters)
+              (return_expression
+                (string_literal)))))))))

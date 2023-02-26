@@ -45,7 +45,7 @@ fn main() {
         (block
           (let_declaration
             (identifier)
-            (closure_function
+            (closure_function_expression
               (capture_reference)
               (parameters)
               (block

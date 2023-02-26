@@ -32,17 +32,18 @@ fn main() {
           (scoped_identifier)
           (field_identifier)
           (arguments
-            (closure_function
-              (parameters
-                (parameter
-                  (identifier)
-                  (primitive_type)))
-              (primitive_type)
-              (block
-                (return_statement
-                  (binary_expression
+            (argument
+              (closure_function_expression
+                (parameters
+                  (parameter
                     (identifier)
-                    (integer_literal))))))))
+                    (primitive_type)))
+                (primitive_type)
+                (block
+                  (return_statement
+                    (binary_expression
+                      (identifier)
+                      (integer_literal)))))))))
       (call_expression
         (identifier)
         (arguments

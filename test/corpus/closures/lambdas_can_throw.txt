@@ -48,16 +48,17 @@ fn main() {
       (call_expression
         (identifier)
         (arguments
-          (closure_function
-            (parameters)
-            (throws_specifier)
-            (primitive_type)
-            (block
-              (return_statement
-                (call_expression
-                  (identifier)
-                  (arguments
-                    (argument
-                      (string_literal))
-                    (argument
-                      (integer_literal))))))))))))
+          (argument
+            (closure_function_expression
+              (parameters)
+              (throws_specifier)
+              (primitive_type)
+              (block
+                (return_statement
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (argument
+                        (string_literal))
+                      (argument
+                        (integer_literal)))))))))))))

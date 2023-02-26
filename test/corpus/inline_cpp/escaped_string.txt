@@ -45,12 +45,12 @@ function main() {
     (ERROR
       (identifier)
       (identifier)
+      (identifier)
       (identifier))
+    (line_comment)
     (call_expression
       (identifier)
       (ERROR
-        (line_comment)
-        (identifier)
         (identifier))
       (arguments))
     (block

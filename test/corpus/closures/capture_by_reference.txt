@@ -60,7 +60,7 @@ fn main() {
         (arguments
           (argument
             (identifier)
-            (closure_function
+            (closure_function_expression
               (capture_reference
                 (identifier))
               (parameters)

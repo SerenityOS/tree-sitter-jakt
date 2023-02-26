@@ -1,32 +1,126 @@
-; ================================================================================
-; NOT IMPLEMENTED Static Reflection Comptime Generate Json Parser ID=59ZSFW3
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "Foo(a: 1, b: \"hello friends\", c: true)\n"
-; 
-; import json { to_json, JsonParser }
-; 
-; struct Foo {
-;     a: i64
-;     b: String
-;     c: bool
-; }
-; 
-; struct Bar {
-;     a: i64
-;     c: bool
-;     b: String
-; }
-; 
-; fn main() {
-;     let json = to_json(&Bar(a: 1, c: true, b: "hello friends"))
-;     mut foo = Foo(a: 0, b: "", c: false)
-;     mut parser = JsonParser::create(json)
-;     parser.to_object(&mut foo)
-;     println("{}", foo)
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Static Reflection Comptime Generate Json Parser ID=59ZSFW3
+================================================================================
+
+/// Expect:
+/// - output: "Foo(a: 1, b: \"hello friends\", c: true)\n"
+
+import json { to_json, JsonParser }
+
+struct Foo {
+    a: i64
+    b: String
+    c: bool
+}
+
+struct Bar {
+    a: i64
+    c: bool
+    b: String
+}
+
+fn main() {
+    let json = to_json(&Bar(a: 1, c: true, b: "hello friends"))
+    mut foo = Foo(a: 0, b: "", c: false)
+    mut parser = JsonParser::create(json)
+    parser.to_object(&mut foo)
+    println("{}", foo)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (import_statement
+    (identifier)
+    (import_block
+      (identifier)
+      (identifier)))
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (field_declaration
+        (field_identifier)
+        (primitive_type))))
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (field_declaration
+        (field_identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (call_expression
+                (pointer_expression
+                  (identifier))
+                (arguments
+                  (argument
+                    (identifier)
+                    (integer_literal))
+                  (argument
+                    (identifier)
+                    (boolean_literal))
+                  (argument
+                    (identifier)
+                    (string_literal))))))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal))
+            (argument
+              (identifier)
+              (string_literal))
+            (argument
+              (identifier)
+              (boolean_literal)))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (identifier)))))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (pointer_expression
+              (mutable_specifier)
+              (identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

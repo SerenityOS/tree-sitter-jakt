@@ -23,10 +23,10 @@ fn main() {}
       (parameters)
       (primitive_type))
     (block
-      (return_statement)
-      (closure_function
-        (parameters)
-        (block))))
+      (return_statement
+        (closure_function_expression
+          (parameters)
+          (block)))))
   (function_declaration
     (identifier)
     (parameters)

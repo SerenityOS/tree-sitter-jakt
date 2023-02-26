@@ -157,28 +157,28 @@ fn main() {
     (generic_type
       (identifier)
       (generic_arguments
-        (generic_type_identifier)))
-    (block
-      (if_statement
-        (call_expression
-          (field_expression
-            (identifier)
-            (field_identifier))
-          (arguments))
-        (block
-          (return_statement
-            (static_call_expression
-              (scoped_identifier)
-              (field_identifier)
-              (arguments
-                (argument
-                  (optional_value_expression
-                    (identifier))))))))
-      (return_statement
-        (static_call_expression
-          (scoped_identifier)
-          (field_identifier)
-          (arguments)))))
+        (generic_type_identifier))))
+  (block
+    (if_statement
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments))
+      (block
+        (return_statement
+          (static_call_expression
+            (scoped_identifier)
+            (field_identifier)
+            (arguments
+              (argument
+                (optional_value_expression
+                  (identifier))))))))
+    (return_statement
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
+        (arguments))))
   (generic_function_declaration
     (generic_type
       (identifier)
@@ -195,39 +195,39 @@ fn main() {
     (generic_type
       (identifier)
       (generic_arguments
-        (generic_type_identifier)))
-    (block
-      (return_statement
-        (match_expression
-          (identifier)
-          (match_block
-            (match_arm
-              (match_pattern
-                (static_call_expression
-                  (scoped_identifier)
-                  (field_identifier)
-                  (arguments
-                    (argument
-                      (identifier)))))
+        (generic_type_identifier))))
+  (block
+    (return_statement
+      (match_expression
+        (identifier)
+        (match_block
+          (match_arm
+            (match_pattern
               (static_call_expression
                 (scoped_identifier)
                 (field_identifier)
                 (arguments
                   (argument
-                    (identifier)
-                    (identifier))
-                  (argument
-                    (identifier)
-                    (string_literal)))))
-            (match_arm
-              (match_pattern
-                (namespace_scope_expression
-                  (scoped_identifier)
-                  (field_identifier)))
-              (static_call_expression
+                    (identifier)))))
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
+              (arguments
+                (argument
+                  (identifier)
+                  (identifier))
+                (argument
+                  (identifier)
+                  (string_literal)))))
+          (match_arm
+            (match_pattern
+              (namespace_scope_expression
                 (scoped_identifier)
-                (field_identifier)
-                (arguments))))))))
+                (field_identifier)))
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
+              (arguments)))))))
   (function_declaration
     (identifier)
     (parameters)

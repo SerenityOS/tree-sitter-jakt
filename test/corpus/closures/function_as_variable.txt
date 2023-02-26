@@ -23,7 +23,7 @@ fn main() {
     (block
       (let_declaration
         (identifier)
-        (closure_function
+        (closure_function_expression
           (parameters)
           (return_expression
             (string_literal))))
@@ -32,7 +32,7 @@ fn main() {
         (closure_function_type
           (parameters)
           (primitive_type))
-        (closure_function
+        (closure_function_expression
           (parameters)
           (return_expression
             (string_literal))))

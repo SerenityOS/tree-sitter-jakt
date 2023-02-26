@@ -112,6 +112,7 @@
 "guard" @keyword
 "yield" @keyword
 "comptime" @keyword
+"reflect" @keyword
 (extern_specifier) @keyword
 
 "fn" @keyword.function
