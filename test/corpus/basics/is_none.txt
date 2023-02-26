@@ -1,0 +1,60 @@
+================================================================================
+Basics Is None ID=CBZO9TL
+================================================================================
+
+/// Expect:
+/// - output: "hello there: 5\n"
+
+fn main() -> c_int {
+    let foo: i64? = Some(5)
+
+    if foo is None {
+        println("no foo")
+        return 1
+    }
+
+    println("hello there: {}", foo!)
+    return 0
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (block
+      (let_declaration
+        (identifier)
+        (optional_type
+          (primitive_type))
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (integer_literal)))))
+      (if_statement
+        (binary_expression
+          (identifier)
+          (none_expression))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))))
+          (return_statement
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (optional_value_expression
+              (identifier)))))
+      (return_statement
+        (integer_literal)))))
