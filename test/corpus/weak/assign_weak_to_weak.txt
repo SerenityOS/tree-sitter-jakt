@@ -1,5 +1,5 @@
 ================================================================================
-Weak Assign Weak To Weak ID=EQP2JBU
+Weak Assign Weak To Weak ID=RS7H67M
 ================================================================================
 
 /// Expect:
@@ -11,7 +11,7 @@ class Foo {
 
 fn main() {
 
-    mut foo: weak Foo? = None
+    mut foo: weak Foo = None
     mut bar = foo
 
     println("OK")
@@ -34,8 +34,7 @@ fn main() {
         (mutable_specifier)
         (identifier)
         (weak_specifier)
-        (optional_type
-          (type_identifier))
+        (type_identifier)
         (none_expression))
       (mutable_declaration
         (mutable_specifier)

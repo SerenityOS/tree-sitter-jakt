@@ -1,5 +1,5 @@
 ================================================================================
-Weak Reassign ID=VL1I4JU
+Weak Reassign ID=E3CE3IH
 ================================================================================
 
 /// Expect:
@@ -13,7 +13,7 @@ fn main() {
     let foo1 = Foo(x: 1)
     let foo2 = Foo(x: 2)
 
-    mut weak_foo: weak Foo? = None
+    mut weak_foo: weak Foo = None
     weak_foo = foo1
     println("{}", weak_foo!.x)
 
@@ -60,8 +60,7 @@ fn main() {
         (mutable_specifier)
         (identifier)
         (weak_specifier)
-        (optional_type
-          (type_identifier))
+        (type_identifier)
         (none_expression))
       (assignment_expression
         (identifier)

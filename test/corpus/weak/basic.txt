@@ -1,5 +1,5 @@
 ================================================================================
-Weak Basic ID=1SAP5CG
+Weak Basic ID=ERXB2D6
 ================================================================================
 
 /// Expect:
@@ -10,7 +10,7 @@ class Foo {
 }
 
 fn main() {
-    mut weak_foo: weak Foo? = None
+    mut weak_foo: weak Foo = None
 
     println("weak_foo has_value? {}", weak_foo.has_value())
 
@@ -49,8 +49,7 @@ fn main() {
         (mutable_specifier)
         (identifier)
         (weak_specifier)
-        (optional_type
-          (type_identifier))
+        (type_identifier)
         (none_expression))
       (call_expression
         (identifier)
