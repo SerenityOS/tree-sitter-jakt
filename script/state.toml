@@ -383,6 +383,14 @@ jakt_sample_hash = "5498b3def838749f8acd979170d96b35"
 implemented = 0
 
 [[map]]
+name = "is_none.jakt"
+title = "Basics Is None ID=CBZO9TL"
+corpus_file_path = "test/corpus/basics/is_none.txt"
+jakt_sample_path = "samples/basics/is_none.jakt"
+jakt_sample_hash = "ef3efc008bb4bfaa78214c35076c4d75"
+implemented = 0
+
+[[map]]
 name = "logical_and.jakt"
 title = "Boolean Logical And ID=XHJLEFV"
 corpus_file_path = "test/corpus/boolean/logical_and.txt"
@@ -1072,7 +1080,7 @@ implemented = 0
 
 [[map]]
 name = "default_arguments.jakt"
-title = "NOT IMPLEMENTED Functions Default Arguments ID=1QBATFT"
+title = "Functions Default Arguments ID=1QBATFT"
 corpus_file_path = "test/corpus/functions/default_arguments.txt"
 jakt_sample_path = "samples/functions/default_arguments.jakt"
 jakt_sample_hash = "b79dedfb6ca5e536d42fa155055fb8fd"
@@ -1080,7 +1088,7 @@ implemented = 0
 
 [[map]]
 name = "default_arguments_bad_type.jakt"
-title = "NOT IMPLEMENTED Functions Default Arguments Bad Type ID=MSZQ76V"
+title = "Functions Default Arguments Bad Type ID=MSZQ76V"
 corpus_file_path = "test/corpus/functions/default_arguments_bad_type.txt"
 jakt_sample_path = "samples/functions/default_arguments_bad_type.jakt"
 jakt_sample_hash = "ce308a4ae9804f3a3ed2f14b9650c50f"
@@ -1088,7 +1096,7 @@ implemented = 0
 
 [[map]]
 name = "default_arguments_complex.jakt"
-title = "NOT IMPLEMENTED Functions Default Arguments Complex ID=YV4MRSW"
+title = "Functions Default Arguments Complex ID=YV4MRSW"
 corpus_file_path = "test/corpus/functions/default_arguments_complex.txt"
 jakt_sample_path = "samples/functions/default_arguments_complex.jakt"
 jakt_sample_hash = "fb1a7a9c31ef2b48450c4b1107dd160c"
@@ -1096,7 +1104,7 @@ implemented = 0
 
 [[map]]
 name = "default_arguments_constructor.jakt"
-title = "NOT IMPLEMENTED Functions Default Arguments Constructor ID=5JLN7DF"
+title = "Functions Default Arguments Constructor ID=5JLN7DF"
 corpus_file_path = "test/corpus/functions/default_arguments_constructor.txt"
 jakt_sample_path = "samples/functions/default_arguments_constructor.jakt"
 jakt_sample_hash = "4f28cad82c73732e0925ec35d3e4308b"
@@ -1104,7 +1112,7 @@ implemented = 0
 
 [[map]]
 name = "default_arguments_default_before_required.jakt"
-title = "NOT IMPLEMENTED Functions Default Arguments Default Before Required ID=9820IJ8"
+title = "Functions Default Arguments Default Before Required ID=9820IJ8"
 corpus_file_path = "test/corpus/functions/default_arguments_default_before_required.txt"
 jakt_sample_path = "samples/functions/default_arguments_default_before_required.jakt"
 jakt_sample_hash = "04540677b84e2626547dbdece1486ddd"
@@ -1112,7 +1120,7 @@ implemented = 0
 
 [[map]]
 name = "default_arguments_enum.jakt"
-title = "NOT IMPLEMENTED Functions Default Arguments Enum ID=SCCJHO5"
+title = "Functions Default Arguments Enum ID=SCCJHO5"
 corpus_file_path = "test/corpus/functions/default_arguments_enum.txt"
 jakt_sample_path = "samples/functions/default_arguments_enum.jakt"
 jakt_sample_hash = "5feed93c7838bd6ec135f395ab7c31da"
@@ -1120,7 +1128,7 @@ implemented = 0
 
 [[map]]
 name = "default_arguments_method.jakt"
-title = "NOT IMPLEMENTED Functions Default Arguments Method ID=W6KHQDE"
+title = "Functions Default Arguments Method ID=W6KHQDE"
 corpus_file_path = "test/corpus/functions/default_arguments_method.txt"
 jakt_sample_path = "samples/functions/default_arguments_method.jakt"
 jakt_sample_hash = "8b0d5ba6826afef087642eadf5804de9"
@@ -1128,7 +1136,7 @@ implemented = 0
 
 [[map]]
 name = "default_arguments_mixed.jakt"
-title = "NOT IMPLEMENTED Functions Default Arguments Mixed ID=T3GXFKR"
+title = "Functions Default Arguments Mixed ID=T3GXFKR"
 corpus_file_path = "test/corpus/functions/default_arguments_mixed.txt"
 jakt_sample_path = "samples/functions/default_arguments_mixed.jakt"
 jakt_sample_hash = "ae4fa46e39f254ecd7bfb2868649d95c"
@@ -1136,7 +1144,7 @@ implemented = 0
 
 [[map]]
 name = "default_arguments_some_defaults.jakt"
-title = "NOT IMPLEMENTED Functions Default Arguments Some Defaults ID=7MEE89Z"
+title = "Functions Default Arguments Some Defaults ID=7MEE89Z"
 corpus_file_path = "test/corpus/functions/default_arguments_some_defaults.txt"
 jakt_sample_path = "samples/functions/default_arguments_some_defaults.jakt"
 jakt_sample_hash = "b3fd29161c22a702ff8939c0cdd863a8"
@@ -1168,7 +1176,7 @@ implemented = 0
 
 [[map]]
 name = "overloading.jakt"
-title = "NOT IMPLEMENTED Functions Overloading ID=U25FJ50"
+title = "Functions Overloading ID=U25FJ50"
 corpus_file_path = "test/corpus/functions/overloading.txt"
 jakt_sample_path = "samples/functions/overloading.jakt"
 jakt_sample_hash = "615b7d49f0729a5642daf53913e10a52"
@@ -2008,42 +2016,26 @@ implemented = 0
 
 [[map]]
 name = "assign_weak_to_weak.jakt"
-title = "Weak Assign Weak To Weak ID=EQP2JBU"
+title = "Weak Assign Weak To Weak ID=RS7H67M"
 corpus_file_path = "test/corpus/weak/assign_weak_to_weak.txt"
 jakt_sample_path = "samples/weak/assign_weak_to_weak.jakt"
-jakt_sample_hash = "6266079d80fd86ba827d7b0ca6395655"
+jakt_sample_hash = "f94ea92bb4f96ee937599737b2416cab"
 implemented = 0
 
 [[map]]
 name = "basic.jakt"
-title = "Weak Basic ID=1SAP5CG"
+title = "Weak Basic ID=ERXB2D6"
 corpus_file_path = "test/corpus/weak/basic.txt"
 jakt_sample_path = "samples/weak/basic.jakt"
-jakt_sample_hash = "59834088fe969d32cc88f7983aa0d164"
-implemented = 0
-
-[[map]]
-name = "question_mark_required.jakt"
-title = "Weak Question Mark Required ID=4PDVENH"
-corpus_file_path = "test/corpus/weak/question_mark_required.txt"
-jakt_sample_path = "samples/weak/question_mark_required.jakt"
-jakt_sample_hash = "6b511253bb3893f9ccdae0aef0c241b1"
+jakt_sample_hash = "885383ac8cae3e2e35dc6f6183975f35"
 implemented = 0
 
 [[map]]
 name = "reassign.jakt"
-title = "Weak Reassign ID=VL1I4JU"
+title = "Weak Reassign ID=E3CE3IH"
 corpus_file_path = "test/corpus/weak/reassign.txt"
 jakt_sample_path = "samples/weak/reassign.jakt"
-jakt_sample_hash = "09c4ffa2c2e9c88feaece488a14856f9"
-implemented = 0
-
-[[map]]
-name = "reject_immutable_weak.jakt"
-title = "Weak Reject Immutable Weak ID=7ZLSHE7"
-corpus_file_path = "test/corpus/weak/reject_immutable_weak.txt"
-jakt_sample_path = "samples/weak/reject_immutable_weak.jakt"
-jakt_sample_hash = "12abb926cc8b20a2bc947cd8f2cb89cf"
+jakt_sample_hash = "c735e5eb9fcc52ee7a38acd62a220606"
 implemented = 0
 
 [[map]]
@@ -2367,6 +2359,14 @@ jakt_sample_hash = "3b793993d816ac2ad032148df1f85fe3"
 implemented = 0
 
 [[map]]
+name = "is_guard_some.jakt"
+title = "Guard Is Guard Some ID=5DFBC62"
+corpus_file_path = "test/corpus/guard/is_guard_some.txt"
+jakt_sample_path = "samples/guard/is_guard_some.jakt"
+jakt_sample_hash = "4dbd794f236a26b8111c052a19180103"
+implemented = 0
+
+[[map]]
 name = "callable_function_expression.jakt"
 title = "Closures Callable Function Expression ID=KRR1GJA"
 corpus_file_path = "test/corpus/closures/callable_function_expression.txt"
@@ -2528,7 +2528,7 @@ implemented = 0
 
 [[map]]
 name = "basic.jakt"
-title = "NOT IMPLEMENTED Compiletime Execution Basic ID=UVQN73S"
+title = "Compiletime Execution Basic ID=UVQN73S"
 corpus_file_path = "test/corpus/compiletime_execution/basic.txt"
 jakt_sample_path = "samples/compiletime_execution/basic.jakt"
 jakt_sample_hash = "ca04256e593f9075e4f3b24c1a2140e6"
@@ -2536,7 +2536,7 @@ implemented = 0
 
 [[map]]
 name = "bitwise.jakt"
-title = "NOT IMPLEMENTED Compiletime Execution Bitwise ID=4FWQBOW"
+title = "Compiletime Execution Bitwise ID=4FWQBOW"
 corpus_file_path = "test/corpus/compiletime_execution/bitwise.txt"
 jakt_sample_path = "samples/compiletime_execution/bitwise.jakt"
 jakt_sample_hash = "1e5902601e2c3f81cbdc1bd634aab6cc"
@@ -2544,7 +2544,7 @@ implemented = 0
 
 [[map]]
 name = "dict.jakt"
-title = "NOT IMPLEMENTED Compiletime Execution Dict ID=I6NFCTB"
+title = "Compiletime Execution Dict ID=I6NFCTB"
 corpus_file_path = "test/corpus/compiletime_execution/dict.txt"
 jakt_sample_path = "samples/compiletime_execution/dict.jakt"
 jakt_sample_hash = "01caa6b3c0d8779eb06687e4e8ce6f26"
@@ -2552,7 +2552,7 @@ implemented = 0
 
 [[map]]
 name = "match.jakt"
-title = "NOT IMPLEMENTED Compiletime Execution Match ID=5XCV895"
+title = "Compiletime Execution Match ID=5XCV895"
 corpus_file_path = "test/corpus/compiletime_execution/match.txt"
 jakt_sample_path = "samples/compiletime_execution/match.jakt"
 jakt_sample_hash = "4566cccd22313ca01a969a12b930de68"
@@ -2560,7 +2560,7 @@ implemented = 0
 
 [[map]]
 name = "optional.jakt"
-title = "NOT IMPLEMENTED Compiletime Execution Optional ID=FHUQ2KK"
+title = "Compiletime Execution Optional ID=FHUQ2KK"
 corpus_file_path = "test/corpus/compiletime_execution/optional.txt"
 jakt_sample_path = "samples/compiletime_execution/optional.jakt"
 jakt_sample_hash = "c5308fa84c81bcc29b941aee4d019e8f"
@@ -2568,7 +2568,7 @@ implemented = 0
 
 [[map]]
 name = "set.jakt"
-title = "NOT IMPLEMENTED Compiletime Execution Set ID=P5NYM2S"
+title = "Compiletime Execution Set ID=P5NYM2S"
 corpus_file_path = "test/corpus/compiletime_execution/set.txt"
 jakt_sample_path = "samples/compiletime_execution/set.jakt"
 jakt_sample_hash = "3fb496d0531b7e19ba4a847d086ada7f"
@@ -2576,7 +2576,7 @@ implemented = 0
 
 [[map]]
 name = "string.jakt"
-title = "NOT IMPLEMENTED Compiletime Execution String ID=MI9OTE5"
+title = "Compiletime Execution String ID=MI9OTE5"
 corpus_file_path = "test/corpus/compiletime_execution/string.txt"
 jakt_sample_path = "samples/compiletime_execution/string.jakt"
 jakt_sample_hash = "6d9db9d30299a26989faf34f3e078b5b"

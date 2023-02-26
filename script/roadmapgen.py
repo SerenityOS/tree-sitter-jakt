@@ -583,7 +583,7 @@ def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
     if deleted > 0:
         color = Style(color="red", bold=True)
         table.add_row(str(deleted), "Deleted Jakt Samples", style=color)
-    table.add_row()
+        table.add_row()
     total_tests = jakt_passable_tests + falty_count
     table.add_row(
         str(unimplemented_count),
@@ -658,11 +658,6 @@ def sync(
             update_corpus_test(v, sample_content)
 
     write_state_file(map)
-
-    console.log(
-        "[yellow][bold]WARNING[/yellow] - "
-        + "please run the `check` command to run tree-sitter tests to finish updating the state[/bold]"
-    )
 
 
 def state_sync_deleted(statefile: TestMap):
