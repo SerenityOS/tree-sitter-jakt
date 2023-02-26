@@ -117,53 +117,6 @@ def convert_jakt_sample_path_to_ts_path(jakt_sample: pathlib.Path) -> pathlib.Pa
     )
 
 
-def calculate_tests_completed(
-    tree_sitter_tests: dict[str, list], jakt_tests: list
-) -> tuple:
-    """Calculate the number of tests completed.
-
-    Returns a tuple of (count_tree_sitter_tests, jakt_samples, percentage_complete).
-    """
-    count: float = 0
-    for jakt_test in jakt_tests:
-        console.log(jakt_test)
-        ts_test_expect_actual = convert_jakt_sample_path_to_ts_path(jakt_test)
-        ts_test_str_path = ts_test_expect_actual.as_posix()
-        console.log(ts_test_str_path)
-        if ts_test_str_path in tree_sitter_tests:
-            console.log(ts_test_str_path)
-            num_tests_implemented = len(tree_sitter_tests[ts_test_str_path])
-            num_tests_not_implemented = 0
-            for test in tree_sitter_tests[ts_test_str_path]:
-                if "NOT IMPLEMENTED" in test:
-                    num_tests_not_implemented += 1
-            if num_tests_not_implemented == 0:
-                count += 1
-            else:
-                count += (
-                    num_tests_implemented - num_tests_not_implemented
-                ) / num_tests_implemented
-    num_tests = len(jakt_tests)
-    return (count, num_tests, (count / num_tests) * 100)
-
-
-def _update_readme(tree_sitter_tests: dict[str, list], jakt_tests: list):
-    """Updates the main tree-sitter-jakt readme with percent completed."""
-    count, num_tests, perc = calculate_tests_completed(tree_sitter_tests, jakt_tests)
-    date_now = date.today().strftime("%B %-d, %Y")
-    perc_line = (
-        f"tree-sitter-jakt implements {count:.2f} of {num_tests} ({perc:.1f}%) of passable Jakt samples as of "
-        + date_now
-    )
-    console.log(f"New percentage line: '{perc_line}'")
-    with fileinput.input(pathlib.Path("README.md"), inplace=True) as f:
-        for line in f:
-            if re.findall(r"^tree-sitter-jakt implements [\d\.]+ of [\d]+.+$", line):
-                print(perc_line)
-            else:
-                print(line, end="")
-
-
 def serializer(cls: Any, o: Any):
     if cls is pathlib.Path:
         if ".txt" in str(o):
@@ -276,7 +229,7 @@ def load_state_file(jakt_path: str) -> TestMap:
         filezm.map.append(
             Test(
                 name=test["name"],
-                title="",
+                title=test["title"],
                 implemented=test["implemented"],
                 corpus_file_path=pathlib.Path(os.getcwd(), test["corpus_file_path"]),
                 jakt_sample_path=pathlib.Path(jakt_path, test["jakt_sample_path"]),
@@ -843,9 +796,38 @@ def update_corpus_test(test: Test, sample_content: bytes):
 @update_app.command("readme")
 def update_readme(ctx: typer.Context):
     """Update the README with percentage completed"""
-    jakt_tests = build_test_list(ctx.obj.jakt_path)
-    ts_tests = build_corpus_list()
-    _update_readme(ts_tests, jakt_tests)
+    generate_treesitter_parser()
+
+    sf: TestMap
+
+    if not state_file.exists():
+        console.log(
+            "[red]ERROR - the state file does not exist, please run the `check` command[/red]"
+        )
+        sys.exit(1)
+    else:
+        sf = load_state_file(ctx.obj.jakt_path)
+
+    done = 0
+    total = len(sf.map)
+    for test in sf.map:
+        run_tree_sitter_test(test)
+        if test.implemented == TestImplemented.IMPLEMENTED:
+            done += 1
+
+    perc = (done / total) * 100
+    date_now = date.today().strftime("%B %-d, %Y")
+    perc_line = (
+        f"tree-sitter-jakt implements {int(perc)}% ({done}/{total}) of the Jakt Samples as of "
+        + date_now
+    )
+    console.log(f"New percentage line: '{perc_line}'")
+    with fileinput.input(pathlib.Path("README.md"), inplace=True) as f:
+        for line in f:
+            if re.findall(r"^tree-sitter-jakt implements [\d\.%]+.*$", line):
+                print(perc_line)
+            else:
+                print(line, end="")
 
 
 @state_app.command("single")
