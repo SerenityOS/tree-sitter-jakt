@@ -111,6 +111,7 @@
 "restricted" @keyword
 "guard" @keyword
 "yield" @keyword
+"comptime" @keyword
 (extern_specifier) @keyword
 
 "fn" @keyword.function

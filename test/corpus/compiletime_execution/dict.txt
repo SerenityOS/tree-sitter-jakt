@@ -1,73 +1,444 @@
-; ================================================================================
-; NOT IMPLEMENTED Compiletime Execution Dict ID=I6NFCTB
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "PASS\n"
-; 
-; comptime is_empty() -> bool {
-;     let dict: Dictionary<String, u8> = [:]
-;     return dict.is_empty()
-; }
-; comptime get() => ["a":'a'].get("a")! == 'a'
-; comptime set() throws -> bool {
-;     mut dict: Dictionary<String, u32> = [:]
-;     dict.set("b", 'b')
-;     return dict.contains("b") and dict.get("b")! == 'b'
-; }
-; comptime remove() -> bool {
-;     mut dict = ["c":'c']
-;     dict.remove("c")
-;     return not dict.contains("c")
-; }
-; comptime capacity() throws -> bool {
-;     mut dict: Dictionary<String, c_char> = [:]
-;     dict.ensure_capacity(5)
-;     return dict.capacity() == 5
-; }
-; comptime clear() -> bool {
-;     mut dict = ["d":'d',"e":'e',"f":'f']
-;     dict.clear()
-;     return dict.is_empty()
-; }
-; comptime size() -> bool {
-;     mut dict = ["g":'g',"h":'h',"i":'i']
-;     return dict.size() == 3
-; }
-; comptime keys() throws -> bool {
-;     mut dict = ["j":'j',"k":'k',"l":'l']
-;     let keys = dict.keys()
-;     return keys[0] == "j" and keys[1] == "k" and keys[2] == "l"
-; }
-; comptime iterator() throws -> bool {
-;     mut dict = ["m":'m',"n":'n',"o":'o']
-;     mut output = ""
-;     for (key, val) in dict {
-;         output += format("{}=>{:c}\n", key, val)
-;     }
-;     return output == "m=>m\nn=>n\no=>o\n"
-; }
-; comptime dictionary_constructor() => Dictionary<String, c_char>().is_empty()
-; 
-; fn main() {
-;     mut success = is_empty()
-;     success &= get()
-;     success &= set()
-;     success &= remove()
-;     success &= capacity()
-;     success &= clear()
-;     success &= size()
-;     success &= keys()
-;     success &= iterator()
-;     success &= dictionary_constructor()
-; 
-;     if success {
-;         println("PASS")
-;     } else {
-;         println("FAIL")
-;     }
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Compiletime Execution Dict ID=I6NFCTB
+================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
+
+comptime is_empty() -> bool {
+    let dict: Dictionary<String, u8> = [:]
+    return dict.is_empty()
+}
+comptime get() => ["a":'a'].get("a")! == 'a'
+comptime set() throws -> bool {
+    mut dict: Dictionary<String, u32> = [:]
+    dict.set("b", 'b')
+    return dict.contains("b") and dict.get("b")! == 'b'
+}
+comptime remove() -> bool {
+    mut dict = ["c":'c']
+    dict.remove("c")
+    return not dict.contains("c")
+}
+comptime capacity() throws -> bool {
+    mut dict: Dictionary<String, c_char> = [:]
+    dict.ensure_capacity(5)
+    return dict.capacity() == 5
+}
+comptime clear() -> bool {
+    mut dict = ["d":'d',"e":'e',"f":'f']
+    dict.clear()
+    return dict.is_empty()
+}
+comptime size() -> bool {
+    mut dict = ["g":'g',"h":'h',"i":'i']
+    return dict.size() == 3
+}
+comptime keys() throws -> bool {
+    mut dict = ["j":'j',"k":'k',"l":'l']
+    let keys = dict.keys()
+    return keys[0] == "j" and keys[1] == "k" and keys[2] == "l"
+}
+comptime iterator() throws -> bool {
+    mut dict = ["m":'m',"n":'n',"o":'o']
+    mut output = ""
+    for (key, val) in dict {
+        output += format("{}=>{:c}\n", key, val)
+    }
+    return output == "m=>m\nn=>n\no=>o\n"
+}
+comptime dictionary_constructor() => Dictionary<String, c_char>().is_empty()
+
+fn main() {
+    mut success = is_empty()
+    success &= get()
+    success &= set()
+    success &= remove()
+    success &= capacity()
+    success &= clear()
+    success &= size()
+    success &= keys()
+    success &= iterator()
+    success &= dictionary_constructor()
+
+    if success {
+        println("PASS")
+    } else {
+        println("FAIL")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (block
+      (let_declaration
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)
+            (primitive_type)))
+        (dictionary_literal))
+      (return_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (return_expression
+      (binary_expression
+        (optional_value_expression
+          (call_expression
+            (field_expression
+              (dictionary_literal
+                (dictionary_element
+                  (string_literal)
+                  (char_literal)))
+              (field_identifier))
+            (arguments
+              (argument
+                (string_literal)))))
+        (char_literal))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)
+            (primitive_type)))
+        (dictionary_literal))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (char_literal))))
+      (return_statement
+        (binary_expression
+          (optional_value_expression
+            (binary_expression
+              (call_expression
+                (field_expression
+                  (identifier)
+                  (field_identifier))
+                (arguments
+                  (argument
+                    (string_literal))))
+              (call_expression
+                (field_expression
+                  (identifier)
+                  (field_identifier))
+                (arguments
+                  (argument
+                    (string_literal))))))
+          (char_literal)))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (dictionary_literal
+          (dictionary_element
+            (string_literal)
+            (char_literal))))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (string_literal))))
+      (return_statement
+        (logical_not_expression
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments
+              (argument
+                (string_literal))))))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)
+            (primitive_type)))
+        (dictionary_literal))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (integer_literal))))
+      (return_statement
+        (binary_expression
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))
+          (integer_literal)))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (dictionary_literal
+          (dictionary_element
+            (string_literal)
+            (char_literal))
+          (dictionary_element
+            (string_literal)
+            (char_literal))
+          (dictionary_element
+            (string_literal)
+            (char_literal))))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments))
+      (return_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (dictionary_literal
+          (dictionary_element
+            (string_literal)
+            (char_literal))
+          (dictionary_element
+            (string_literal)
+            (char_literal))
+          (dictionary_element
+            (string_literal)
+            (char_literal))))
+      (return_statement
+        (binary_expression
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))
+          (integer_literal)))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (dictionary_literal
+          (dictionary_element
+            (string_literal)
+            (char_literal))
+          (dictionary_element
+            (string_literal)
+            (char_literal))
+          (dictionary_element
+            (string_literal)
+            (char_literal))))
+      (let_declaration
+        (identifier)
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))
+      (return_statement
+        (binary_expression
+          (array_expression
+            (binary_expression
+              (binary_expression
+                (array_expression
+                  (binary_expression
+                    (binary_expression
+                      (array_expression
+                        (identifier)
+                        (integer_literal))
+                      (string_literal))
+                    (identifier))
+                  (integer_literal))
+                (string_literal))
+              (identifier))
+            (integer_literal))
+          (string_literal)))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (dictionary_literal
+          (dictionary_element
+            (string_literal)
+            (char_literal))
+          (dictionary_element
+            (string_literal)
+            (char_literal))
+          (dictionary_element
+            (string_literal)
+            (char_literal))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (string_literal))
+      (for_expression
+        (destructuring_literal
+          (identifier)
+          (identifier))
+        (identifier)
+        (block
+          (assignment_expression
+            (identifier)
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (string_literal
+                    (escape_sequence)))
+                (argument
+                  (identifier))
+                (argument
+                  (identifier)))))))
+      (return_statement
+        (binary_expression
+          (identifier)
+          (string_literal
+            (escape_sequence)
+            (escape_sequence)
+            (escape_sequence))))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (return_expression
+      (call_expression
+        (field_expression
+          (call_expression
+            (generic_function
+              (identifier)
+              (generic_arguments
+                (primitive_type)
+                (primitive_type)))
+            (arguments))
+          (field_identifier))
+        (arguments))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (if_statement
+        (identifier)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))
+        (else_clause
+          (block
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (string_literal))))))))))

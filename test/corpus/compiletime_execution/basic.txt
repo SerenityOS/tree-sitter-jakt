@@ -1,23 +1,72 @@
-; ================================================================================
-; NOT IMPLEMENTED Compiletime Execution Basic ID=UVQN73S
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "fibonacci(16) = 987\n"
-; 
-; 
-; comptime fibonacci(anon value: i64) -> i64 {
-;     if value < 2 {
-;         return value
-;     }
-; 
-;     return fibonacci(value - 1) + fibonacci(value - 2)
-; }
-; 
-; fn main() {
-;     println("fibonacci(16) = {}", fibonacci(16));
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Compiletime Execution Basic ID=UVQN73S
+================================================================================
+
+/// Expect:
+/// - output: "fibonacci(16) = 987\n"
+
+
+comptime fibonacci(anon value: i64) -> i64 {
+    if value < 2 {
+        return value
+    }
+
+    return fibonacci(value - 1) + fibonacci(value - 2)
+}
+
+fn main() {
+    println("fibonacci(16) = {}", fibonacci(16));
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (comptime_function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (primitive_type)))
+    (primitive_type)
+    (block
+      (if_statement
+        (binary_expression
+          (identifier)
+          (integer_literal))
+        (block
+          (return_statement
+            (identifier))))
+      (return_statement
+        (binary_expression
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (binary_expression
+                  (identifier)
+                  (integer_literal)))))
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (binary_expression
+                  (identifier)
+                  (integer_literal)))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (integer_literal))))))))))

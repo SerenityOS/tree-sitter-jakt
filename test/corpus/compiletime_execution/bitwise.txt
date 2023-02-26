@@ -1,22 +1,65 @@
-; ================================================================================
-; NOT IMPLEMENTED Compiletime Execution Bitwise ID=4FWQBOW
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "PASS\n"
-; 
-; comptime bitwise() -> i64 {
-;     return ((0x123 ^ 0x456) << 12) | (0x789 & 0xabc)
-; }
-; 
-; fn main() {
-;     if bitwise() == 0x575288 {
-;         println("PASS")
-;     } else {
-;         println("FAIL")
-;     }
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Compiletime Execution Bitwise ID=4FWQBOW
+================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
+
+comptime bitwise() -> i64 {
+    return ((0x123 ^ 0x456) << 12) | (0x789 & 0xabc)
+}
+
+fn main() {
+    if bitwise() == 0x575288 {
+        println("PASS")
+    } else {
+        println("FAIL")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (primitive_type)
+    (block
+      (return_statement
+        (binary_expression
+          (parenthesized_expression
+            (binary_expression
+              (parenthesized_expression
+                (binary_expression
+                  (integer_literal)
+                  (integer_literal)))
+              (integer_literal)))
+          (parenthesized_expression
+            (binary_expression
+              (integer_literal)
+              (integer_literal)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (if_statement
+        (binary_expression
+          (call_expression
+            (identifier)
+            (arguments))
+          (integer_literal))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))
+        (else_clause
+          (block
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (string_literal))))))))))

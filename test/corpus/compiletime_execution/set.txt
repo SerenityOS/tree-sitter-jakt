@@ -1,63 +1,334 @@
-; ================================================================================
-; NOT IMPLEMENTED Compiletime Execution Set ID=P5NYM2S
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "PASS\n"
-; 
-; comptime is_empty() throws -> bool {
-;     let set: Set<u8> = {}
-;     return set.is_empty()
-; }
-; comptime contains() throws => {0u8}.contains(0u8)
-; comptime add() throws -> bool {
-;     mut set: Set<u8> = {}
-;     set.add(1u8)
-;     return set.contains(1u8)
-; }
-; comptime remove() throws -> bool {
-;     mut set: Set<u8> = {2u8}
-;     return set.remove(2u8)
-; }
-; comptime clear() throws -> bool {
-;     mut set: Set<u8> = {3u8}
-;     set.clear()
-;     return set.is_empty()
-; }
-; comptime size() throws => {4u8, 5u8, 6u8, 7u8}.size() == 4
-; comptime capacity() throws -> bool {
-;     mut set: Set<u8> = {}
-;     set.ensure_capacity(5)
-;     return set.capacity() == 5
-; }
-; comptime set_iterator() throws -> bool {
-;     let set = {4u8, 5u8, 6u8, 7u8}
-;     mut output = ""
-;     for val in set {
-;         output += format("{}", val)
-;     }
-;     return output == "4567"
-; }
-; comptime set_constructor() throws => Set<u8>().is_empty()
-; 
-; fn main() {
-;     mut success = is_empty()
-;     success &= contains()
-;     success &= add()
-;     success &= remove()
-;     success &= clear()
-;     success &= size()
-;     success &= capacity()
-;     success &= set_iterator()
-;     success &= set_constructor()
-; 
-;     if success {
-;         println("PASS")
-;     } else {
-;         println("FAIL")
-;     }
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Compiletime Execution Set ID=P5NYM2S
+================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
+
+comptime is_empty() throws -> bool {
+    let set: Set<u8> = {}
+    return set.is_empty()
+}
+comptime contains() throws => {0u8}.contains(0u8)
+comptime add() throws -> bool {
+    mut set: Set<u8> = {}
+    set.add(1u8)
+    return set.contains(1u8)
+}
+comptime remove() throws -> bool {
+    mut set: Set<u8> = {2u8}
+    return set.remove(2u8)
+}
+comptime clear() throws -> bool {
+    mut set: Set<u8> = {3u8}
+    set.clear()
+    return set.is_empty()
+}
+comptime size() throws => {4u8, 5u8, 6u8, 7u8}.size() == 4
+comptime capacity() throws -> bool {
+    mut set: Set<u8> = {}
+    set.ensure_capacity(5)
+    return set.capacity() == 5
+}
+comptime set_iterator() throws -> bool {
+    let set = {4u8, 5u8, 6u8, 7u8}
+    mut output = ""
+    for val in set {
+        output += format("{}", val)
+    }
+    return output == "4567"
+}
+comptime set_constructor() throws => Set<u8>().is_empty()
+
+fn main() {
+    mut success = is_empty()
+    success &= contains()
+    success &= add()
+    success &= remove()
+    success &= clear()
+    success &= size()
+    success &= capacity()
+    success &= set_iterator()
+    success &= set_constructor()
+
+    if success {
+        println("PASS")
+    } else {
+        println("FAIL")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (let_declaration
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)))
+        (set_literal))
+      (return_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (return_expression
+      (call_expression
+        (field_expression
+          (set_literal
+            (integer_literal))
+          (field_identifier))
+        (arguments
+          (argument
+            (integer_literal))))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)))
+        (set_literal))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (integer_literal))))
+      (return_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments
+            (argument
+              (integer_literal)))))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)))
+        (set_literal
+          (integer_literal)))
+      (return_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments
+            (argument
+              (integer_literal)))))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)))
+        (set_literal
+          (integer_literal)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments))
+      (return_statement
+        (call_expression
+          (field_expression
+            (identifier)
+            (field_identifier))
+          (arguments)))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (return_expression
+      (binary_expression
+        (call_expression
+          (field_expression
+            (set_literal
+              (integer_literal)
+              (integer_literal)
+              (integer_literal)
+              (integer_literal))
+            (field_identifier))
+          (arguments))
+        (integer_literal))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)))
+        (set_literal))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (integer_literal))))
+      (return_statement
+        (binary_expression
+          (call_expression
+            (field_expression
+              (identifier)
+              (field_identifier))
+            (arguments))
+          (integer_literal)))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (let_declaration
+        (identifier)
+        (set_literal
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)
+          (integer_literal)))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (string_literal))
+      (for_expression
+        (identifier)
+        (identifier)
+        (block
+          (assignment_expression
+            (identifier)
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (string_literal))
+                (argument
+                  (identifier)))))))
+      (return_statement
+        (binary_expression
+          (identifier)
+          (string_literal)))))
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (return_expression
+      (call_expression
+        (field_expression
+          (call_expression
+            (generic_function
+              (identifier)
+              (generic_arguments
+                (primitive_type)))
+            (arguments))
+          (field_identifier))
+        (arguments))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (assignment_expression
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (if_statement
+        (identifier)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))
+        (else_clause
+          (block
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (string_literal))))))))))

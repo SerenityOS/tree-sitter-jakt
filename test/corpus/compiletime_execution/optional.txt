@@ -1,20 +1,55 @@
-; ================================================================================
-; NOT IMPLEMENTED Compiletime Execution Optional ID=FHUQ2KK
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "PASS\n"
-; 
-; comptime some() => Some(123)
-; 
-; fn main() {
-;     if some()! == 123 {
-;         println("PASS")
-;     } else {
-;         println("FAIL")
-;     }
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Compiletime Execution Optional ID=FHUQ2KK
+================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
+
+comptime some() => Some(123)
+
+fn main() {
+    if some()! == 123 {
+        println("PASS")
+    } else {
+        println("FAIL")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (comptime_function_declaration
+    (identifier)
+    (parameters)
+    (return_expression
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (integer_literal))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (if_statement
+        (binary_expression
+          (optional_value_expression
+            (call_expression
+              (identifier)
+              (arguments)))
+          (integer_literal))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))
+        (else_clause
+          (block
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (string_literal))))))))))

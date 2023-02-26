@@ -528,9 +528,10 @@ def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
             failed_count += 1
 
         if test.changed:
-            jakt_test_changed += 1
             if test.implemented == TestImplemented.IMPLEMENTED:
                 implemented_changed_count += 1
+            else:
+                jakt_test_changed += 1
 
         if test.new:
             if not test.falty:
@@ -573,12 +574,15 @@ def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
         color = Style(color="yellow", bold=True)
         table.add_row(str(jakt_test_changed), "CHANGED Jakt Samples", style=color)
     if implemented_changed_count > 0:
-        color = Style(color="red", bold=True)
+        color = Style(color="yellow", bold=True)
         table.add_row(
             str(implemented_changed_count),
             "CHANGED Implemented Jakt Samples",
             style=color,
         )
+    if deleted > 0:
+        color = Style(color="red", bold=True)
+        table.add_row(str(deleted), "Deleted Jakt Samples", style=color)
     table.add_row()
     total_tests = jakt_passable_tests + falty_count
     table.add_row(
@@ -594,10 +598,6 @@ def print_test_report(tests: TestMap, corpus_list: dict[str, list]):
         f"{(implemented_count / total_tests) * 100:.0f}%",
         "Percentage of Jakt Samples implemented and PASSING for Treesitter",
     )
-    if deleted > 0:
-        table.add_row()
-        color = Style(color="red", bold=True)
-        table.add_row(str(deleted), "Deleted Jakt Samples", style=color)
 
     console.log(table)
     console.log("[yellow][bold]WARNING[/yellow] - state file is unsaved[/bold]")
