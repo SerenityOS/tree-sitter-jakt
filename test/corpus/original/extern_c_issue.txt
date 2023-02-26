@@ -3,11 +3,11 @@ Some issue encoundered early on with extern c block
 ================================================================================
 
 import extern c "GLFW/glfw3.h" {
-    extern function glfwInit() -> bool
-    extern function glfwTerminate() -> void
-    extern function glfwCreateWindow(width: c_int, height: c_int, window_title: raw c_char, monitor: raw GLFWmonitor, share: raw GLFWwindow) -> raw GLFWwindow
-    extern function glfwWindowShouldClose(window: raw GLFWwindow) -> bool
-    extern function glfwSetWindowShouldClose(mut window: raw GLFWwindow, value: c_int) -> void
+    extern fn glfwInit() -> bool
+    extern fn glfwTerminate() -> void
+    extern fn glfwCreateWindow(width: c_int, height: c_int, window_title: raw c_char, monitor: raw GLFWmonitor, share: raw GLFWwindow) -> raw GLFWwindow
+    extern fn glfwWindowShouldClose(window: raw GLFWwindow) -> bool
+    extern fn glfwSetWindowShouldClose(mut window: raw GLFWwindow, value: c_int) -> void
 }
 
 --------------------------------------------------------------------------------

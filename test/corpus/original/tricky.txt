@@ -1,5 +1,5 @@
 ================================================================================
-Generic trick shots #1
+Generic trick shots
 ================================================================================
 
 enum SimpleWithTypeParameter<T> {
@@ -18,7 +18,7 @@ if window == null<GLFWwindow>() {
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (enum_variant_list
       (enum_tuple_variant
         (identifier)
@@ -28,11 +28,11 @@ if window == null<GLFWwindow>() {
   (if_statement
     (binary_expression
       (identifier)
-      (generic_call_expression
-        (generic_type
+      (call_expression
+        (generic_function
           (identifier)
           (generic_arguments
-            (type_identifier)))
+            (generic_type_identifier)))
         (arguments)))
     (block
       (return_statement))))

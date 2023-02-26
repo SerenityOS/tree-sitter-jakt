@@ -2,7 +2,7 @@
 Throw keyword
 ================================================================================
 
-function infinity() throws {
+fn infinity() throws {
     throw error
 }
 

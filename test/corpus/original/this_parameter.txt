@@ -2,7 +2,7 @@
 Original tests this reference for json sample
 ================================================================================
 
-function parse_failure(this, error_message: String) throws -> JsonValue {
+fn parse_failure(this, error_message: String) throws -> JsonValue {
 
 }
 
@@ -26,7 +26,7 @@ This mutable parameter
 ================================================================================
 
 
-function for(mut this) throws -> void {
+fn for(mut this) throws -> void {
 
 }
 

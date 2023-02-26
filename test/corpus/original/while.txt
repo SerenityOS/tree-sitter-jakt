@@ -13,17 +13,17 @@ while j < (values.size() as! i64) - i - 1 {
     (binary_expression
       (identifier)
       (binary_expression
-        (parenthesized_expression
-          (type_conversion_expression
-            (call_expression
-              (field_expression
-                (identifier)
-                (field_identifier))
-              (arguments))
-            (primitive_type)))
         (binary_expression
-          (identifier)
-          (integer_literal))))
+          (parenthesized_expression
+            (type_conversion_expression
+              (call_expression
+                (field_expression
+                  (identifier)
+                  (field_identifier))
+                (arguments))
+              (primitive_type)))
+          (identifier))
+        (integer_literal)))
     (block
       (update_expression
         (identifier)))))

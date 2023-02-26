@@ -2,7 +2,7 @@
 Main function
 ================================================================================
 
-function main() {
+fn main() {
 
 }
 
@@ -18,7 +18,7 @@ function main() {
 Main function with args
 ================================================================================
 
-function main(args: [String]) {
+fn main(args: [String]) {
 
 }
 
@@ -38,7 +38,7 @@ function main(args: [String]) {
 Function declaration with arguments
 ================================================================================
 
-function foo(args: [String], count: i64) {
+fn foo(args: [String], count: i64) {
 
 }
 
@@ -61,7 +61,7 @@ function foo(args: [String], count: i64) {
 Function with return type
 ================================================================================
 
-function foo() -> [String] {
+fn foo() -> [String] {
 
 }
 
@@ -79,7 +79,7 @@ function foo() -> [String] {
 Function declaration with params
 ================================================================================
 
-function foo(boo: i32, baz: f32) -> bool {
+fn foo(boo: i32, baz: f32) -> bool {
     return false
 }
 

@@ -37,7 +37,7 @@ match op {
 Match arm on function is breaking stuff
 ================================================================================
 
-function is_mutable(this) -> bool => match this {
+fn is_mutable(this) -> bool => match this {
     Var(var) => var.is_mutable
     IndexedStruct(expr) => expr.is_mutable()
 }

@@ -2,7 +2,7 @@
 Function declaration with params and return expression
 ================================================================================
 
-function foo(boo: i32, baz: f32) -> bool {
+fn foo(boo: i32, baz: f32) -> bool {
     return false
 }
 

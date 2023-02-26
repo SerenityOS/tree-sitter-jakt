@@ -37,11 +37,11 @@ if window == null<GLFWwindow>() {
   (if_statement
     (binary_expression
       (identifier)
-      (generic_call_expression
-        (generic_type
+      (call_expression
+        (generic_function
           (identifier)
           (generic_arguments
-            (type_identifier)))
+            (generic_type_identifier)))
         (arguments)))
     (block
       (return_statement))))
@@ -50,7 +50,7 @@ if window == null<GLFWwindow>() {
 Generics: return raw T
 ================================================================================
 
-function null<T>() -> raw T {
+fn null<T>() -> raw T {
 }
 
 --------------------------------------------------------------------------------
@@ -60,8 +60,8 @@ function null<T>() -> raw T {
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (parameters)
-    (type_identifier))
-  (identifier)
-  (block))
+    (pointer_type
+      (identifier))
+    (block)))

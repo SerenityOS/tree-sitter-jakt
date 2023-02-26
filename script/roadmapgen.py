@@ -434,7 +434,7 @@ def check(
             for x in re.findall(corpus_test_header_pattern, file_text):
                 original_test_count += 1
                 original_test_map[
-                    str(file_path.relative_to(os.getcwd()))
+                    f'{file_path.relative_to(os.getcwd())}:"{x}"'
                 ] = run_original_tree_sitter_test(x)
 
     for test in ssot.map:

@@ -24,7 +24,7 @@ Structs this shorthand
 
 struct Foo {
     x: u16
-    function boo(this) {
+    fn boo(this) {
         println(.x * 2)
     }
 }

@@ -3,7 +3,7 @@ Semicolons are allowed in some places
 ================================================================================
 
 // Jakt is cool
-function main(args: [String]) {
+fn main(args: [String]) {
 
     mut changeme: String = "default_pass";
     let yakbaited: bool = true;

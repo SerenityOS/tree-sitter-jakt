@@ -2,7 +2,7 @@
 Jakt Nes Monster error: system sum type initializer
 ================================================================================
 
-public function init(system: System) throws -> CPU {
+public fn init(system: System) throws -> CPU {
     let reset_vector = system.read_word(address: 0xfffc)
 
     return CPU (
@@ -96,7 +96,7 @@ public function init(system: System) throws -> CPU {
 Another strange function from the Jakt Nes Monster, unary on this reference
 ================================================================================
 
-function dex(mut this) {
+fn dex(mut this) {
     .pc += 1
     .clock += 2
     .x--
