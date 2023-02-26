@@ -493,360 +493,360 @@ module.exports = grammar({
               $.enum_struct_variant,
               $.enum_field_declaration,
               alias($.function_declaration, $.enum_method_variant),
-          ))),
-          '}'
-        ),
+      ))),
+      '}'
+    ),
 
-        enum_field_declaration: $ => seq(
-          field('name', $._field_identifier),
-          ':',
-          field('type', choice($._type, $.optional_type)),
-          optional(seq(
-            '=',
-            field('value', $._expression)
-          ))
-        ),
+    enum_field_declaration: $ => seq(
+      field('name', $._field_identifier),
+      ':',
+      field('type', choice($._type, $.optional_type)),
+      optional(seq(
+        '=',
+        field('value', $._expression)
+      ))
+    ),
 
-        enum_variant: $ => seq(
-          field('name', $.identifier),
-          optional(seq(
-            '=',
-            field('value', $._expression)
-          ))
-        ),
+    enum_variant: $ => seq(
+      field('name', $.identifier),
+      optional(seq(
+        '=',
+        field('value', $._expression)
+      ))
+    ),
 
-        enum_tuple_variant: $ => seq(
-          field("name", $.identifier),
-          '(',
-          choice(
-            field("type", $._type),
-          ),
-          ')',
-        ),
+    enum_tuple_variant: $ => seq(
+      field("name", $.identifier),
+      '(',
+      choice(
+        field("type", $._type),
+      ),
+      ')',
+    ),
 
-        enum_struct_variant: $ => prec(-1, seq(
-          field("name", $.identifier),
-          '(',
-            optional(
-              repeat1(
-                choice(
-                  seq($.field_declaration, optional(choice('\n', ','))),
-                )
-              )
-            ),
-          ')',
-        )),
-
-        field_declaration_list: $ => seq(
-          '{',
-            optional(
-              repeat1(
-                choice(
-                  $.function_declaration,
-                  seq($.field_declaration, optional(choice('\n', ','))),
-                  $.generic_function_declaration,
-                )
-              )
-            ),
-          '}'
-        ),
-
-        field_declaration: $ => seq(
-          optional($.visibility_specifier),
-          field('name', $._field_identifier),
-          ':',
-          field('type', choice($._type, $.optional_type)),
-          optional(seq(
-            '=',
-            field('value', $._expression)
-          ))
-            ),
-
-            _field_identifier: $ => prec(1, alias($.identifier, $.field_identifier)),
-
-            _implements: $ => seq(
-              'implements',
-              '(',
-              choice(
-                sepBy1(optional(','), $.trait_identifier),
-                $.generic_type,
-              ),
-              ')',
-            ),
-
-            struct_declaration: $ => seq(
-              optional(choice($.attributes, $.extern_specifier)),
-              'struct',
-              field('name', choice($._type_identifier, $.generic_type)),
-              optional(field('implements', $._implements)),
-              field('body', $.field_declaration_list)
-            ),
-
-            trait_declaration: $ => seq(
-              // optional($.extern_specifier),
-              'trait',
-              field('name', choice(alias($.identifier, $.trait_identifier), $.generic_type)),
-              field('body', $.field_declaration_list)
-            ),
-
-        class_declaration: $ => seq(
-          optional($.extern_specifier),
-          'class',
-          field('name', $._type_identifier),
-          optional(seq(':', field('parent', $._type_identifier))),
-          field('body', $.field_declaration_list)
-        ),
-
-        generic_class_declaration: $ => seq(
-          'class',
-          field('name', $.generic_type),
-          optional(seq(':', field('parent', $._type_identifier))),
-          field('body', $.field_declaration_list)
-        ),
-
-        visibility_specifier: $ => choice('public', 'private'),
-
-        mutable_specifier: $ => 'mut',
-
-        weak_specifier: $ => 'weak',
-
-        restricted_specifier: $ => seq(
-            'restricted',
-            '(',
-            sepBy(',', $.identifier),
-            ')'
-        ),
-
-        unary_expression: $ => prec(PREC.unary, seq(
-          '-', $._expression
-        )),
-
-        bitwisenot_expression: $ => prec(PREC.bitwisenot, seq(
-          '~', $._expression
-        )),
-
-        return_statement: $ => prec.right(seq(
-          'return',
-          optional($._expression),
-        )),
-
-        binary_expression: $ => {
-          const table = [
-            [PREC.and, 'and'],
-            [PREC.or, 'or'],
-            [PREC.is, 'is'],
-            [PREC.bitand, '&', '&='],
-            [PREC.bitor, '|', '|='],
-            [PREC.bitxor, '^', '^='],
-            [PREC.comparative, choice('==', '!=', '<', '<=', '>', '>=')],
-            [PREC.shift, choice('<<', '<<<', '>>', '>>>', '<<=', '>>=')],
-            [PREC.additive, choice('+', '-')],
-            [PREC.multiplicative, choice('*', '/','%')],
-          ];
-
-          return choice(...table.map(([precedence, operator]) => prec.left(precedence, seq(
-            field('left', $._expression),
-            field('operator', operator),
-            field('right', $._expression),
-          ))));
-        },
-
-        update_expression: $ => {
-          const value = field('value', choice($.identifier, $.field_expression, $.this_reference_shorthand));
-          const operator = field('operator', choice('--', '++'));
-          return prec.right(PREC.unary, choice(
-            seq(operator, value),
-            seq(value, operator),
-          ));
-        },
-
-        match_expression: $ => seq(
-          'match',
-          field('value', $._expression),
-          field('body', $.match_block)
-        ),
-
-        match_block: $ => seq(
-          '{',
-          repeat(choice(",", $.match_arm)),
-          alias($.last_match_arm, $.match_arm),
-          '}'
-        ),
-
-        match_arm: $ => seq(
-          field('pattern', seq($.match_pattern)),
-          '=>',
-          field('value', choice($._expression, $.block, $.closure_function))
-        ),
-
-        last_match_arm: $ => seq(
-          field('pattern', choice($.match_else, $.match_else_binding, $.match_pattern)),
-          '=>',
-          field('value', choice($._expression, $.block, $.closure_function))
-        ),
-
-        match_pattern: $ => seq(
-          choice($._expression),
-        ),
-
-        match_else: $ => 'else',
-        match_else_binding: $ => seq('else', '(', $.identifier, ')'),
-
-        _literal: $ => prec.left(choice(
-          $.string_literal,
-          $.char_literal,
-          $.byte_literal,
-          $.boolean_literal,
-          $.integer_literal,
-          $.binary_literal,
-          $.float_literal,
-          $.array_literal,
-          $.dictionary_literal,
-          $.tuple_literal,
-          $.set_literal,
-          $.destructuring_literal,
-        )),
-
-        _pattern: $ => choice(
-          $._literal,
-          alias(choice(...primitive_types), $.identifier),
-          $.identifier,
-        ),
-
-        destructuring_literal: $ => seq(
-          '(',
-          repeat1(seq($.identifier, optional(','))),
-          ')',
-        ),
-
-        negative_literal: $ => seq('-', choice($.integer_literal, $.float_literal)),
-
-        integer_literal: $ => token(seq(
-          choice(
-            /[0-9][0-9_]*/,
-            /0x[0-9a-fA-F_]+/,
-            /0o[0-7_]+/,
-          ),
-          optional(choice(...numeric_types))
-        )),
-
-        binary_literal: $ => token(seq(
-          choice(
-            /0b[01_]+/,
-          ),
-        )),
-
-        string_literal: $ => seq(
-          alias(/b?"/, '"'),
-          repeat(choice(
-            $.escape_sequence,
-            $._string_content
-          )),
-          token.immediate('"')
-        ),
-
-        char_literal: $ => token(seq(
-          '\'',
-          optional(choice(
-            seq('\\', choice(
-              /[^xu]/,
-              /u[0-9a-fA-F]{4}/,
-              /u{[0-9a-fA-F]+}/,
-              /x[0-9a-fA-F]{2}/
-            )),
-            /[^\\']/
-          )),
-          '\''
-        )),
-
-        byte_literal: $ => token(seq(
-          'b',
-          '\'',
-          optional(choice(
-            seq('\\', choice(
-              /[^xu]/,
-              /u[0-9a-fA-F]{4}/,
-              /u{[0-9a-fA-F]+}/,
-              /x[0-9a-fA-F]{2}/
-            )),
-            /[^\\']/
-          )),
-          '\''
-        )),
-
-        array_literal: $ => prec(1, seq(
-          '[',
-          optional(choice(
-            sepBy1(optional(','), $._expression),
-            seq(
-              field('element', $._literal),
-              ';',
-              field('length', $._expression)
-            ),
-          )),
-          ']'
-        )),
-
-        tuple_expression: $ => seq(
-          '(',
-          sepBy(',', seq($._expression, optional(','))),
-          ')'
-        ),
-
-        tuple_type: $ => seq(
-          '(',
-          sepBy(',', seq(choice($._type, $.optional_type), optional(','))),
-          ')'
-        ),
-
-        tuple_literal: $ => prec(1, seq(
-          '(',
-          seq($._expression, repeat(seq(',', $._expression))),
-          ')'
-        )),
-
-        dictionary_literal: $ => seq(
-          '[',
-          choice(
-              seq(':'),
-              repeat1(seq($.dictionary_element, optional(','))),
-          ),
-          ']'
-        ),
-
-        set_literal: $ => prec.right(seq(
-          '{',
-              optional(repeat1(seq($._expression, optional(',')))),
-          '}'
-        )),
-
-        dictionary_element: $ =>seq(field('key', $._literal), ':', field('value', $._expression)),
-
-        escape_sequence: $ => token.immediate(
-          seq('\\',
+    enum_struct_variant: $ => prec(-1, seq(
+      field("name", $.identifier),
+      '(',
+        optional(
+          repeat1(
             choice(
-              /[^xu]/,
-              /u[0-9a-fA-F]{4}/,
-              /u{[0-9a-fA-F]+}/,
-              /x[0-9a-fA-F]{2}/
+              seq($.field_declaration, optional(choice('\n', ','))),
             )
-        )),
+          )
+        ),
+      ')',
+    )),
 
-        trait_requirement: $ => seq(
-          field("name", $.identifier),
-          field("arguments", seq(
-            '<',
-            $.trait_identifier,
-            'requires',
-            '(',
-            sepBy1(optional(','), $.trait_identifier),
-            ')',
-            '>',
-          ),
+    field_declaration_list: $ => seq(
+      '{',
+        optional(
+          repeat1(
+            choice(
+              $.function_declaration,
+              seq($.field_declaration, optional(choice('\n', ','))),
+              $.generic_function_declaration,
+            )
+          )
+        ),
+      '}'
+    ),
+
+    field_declaration: $ => seq(
+      optional($.visibility_specifier),
+      field('name', $._field_identifier),
+      ':',
+      field('type', choice($._type, $.optional_type)),
+      optional(seq(
+        '=',
+        field('value', $._expression)
+      ))
+    ),
+
+   _field_identifier: $ => prec(1, alias($.identifier, $.field_identifier)),
+
+   _implements: $ => seq(
+     'implements',
+     '(',
+     choice(
+       sepBy1(optional(','), $.trait_identifier),
+       $.generic_type,
+     ),
+     ')',
+   ),
+
+   struct_declaration: $ => seq(
+     optional(choice($.attributes, $.extern_specifier)),
+     'struct',
+     field('name', choice($._type_identifier, $.generic_type)),
+     optional(field('implements', $._implements)),
+     field('body', $.field_declaration_list)
+   ),
+
+   trait_declaration: $ => seq(
+     // optional($.extern_specifier),
+     'trait',
+     field('name', choice(alias($.identifier, $.trait_identifier), $.generic_type)),
+     field('body', $.field_declaration_list)
+   ),
+
+    class_declaration: $ => seq(
+      optional($.extern_specifier),
+      'class',
+      field('name', $._type_identifier),
+      optional(seq(':', field('parent', $._type_identifier))),
+      field('body', $.field_declaration_list)
+    ),
+
+    generic_class_declaration: $ => seq(
+      'class',
+      field('name', $.generic_type),
+      optional(seq(':', field('parent', $._type_identifier))),
+      field('body', $.field_declaration_list)
+    ),
+
+    visibility_specifier: $ => choice('public', 'private'),
+
+    mutable_specifier: $ => 'mut',
+
+    weak_specifier: $ => 'weak',
+
+    restricted_specifier: $ => seq(
+      'restricted',
+      '(',
+      sepBy(',', $.identifier),
+      ')'
+    ),
+
+    unary_expression: $ => prec(PREC.unary, seq(
+      '-', $._expression
+    )),
+
+    bitwisenot_expression: $ => prec(PREC.bitwisenot, seq(
+      '~', $._expression
+    )),
+
+    return_statement: $ => prec.right(seq(
+      'return',
+      optional($._expression),
+    )),
+
+    binary_expression: $ => {
+      const table = [
+        [PREC.and, 'and'],
+        [PREC.or, 'or'],
+        [PREC.is, 'is'],
+        [PREC.bitand, '&', '&='],
+        [PREC.bitor, '|', '|='],
+        [PREC.bitxor, '^', '^='],
+        [PREC.comparative, choice('==', '!=', '<', '<=', '>', '>=')],
+        [PREC.shift, choice('<<', '<<<', '>>', '>>>', '<<=', '>>=')],
+        [PREC.additive, choice('+', '-')],
+        [PREC.multiplicative, choice('*', '/','%')],
+      ];
+
+      return choice(...table.map(([precedence, operator]) => prec.left(precedence, seq(
+        field('left', $._expression),
+        field('operator', operator),
+        field('right', $._expression),
+      ))));
+    },
+
+    update_expression: $ => {
+      const value = field('value', choice($.identifier, $.field_expression, $.this_reference_shorthand));
+      const operator = field('operator', choice('--', '++'));
+      return prec.right(PREC.unary, choice(
+        seq(operator, value),
+        seq(value, operator),
+      ));
+    },
+
+    match_expression: $ => seq(
+      'match',
+      field('value', $._expression),
+      field('body', $.match_block)
+    ),
+
+    match_block: $ => seq(
+      '{',
+      repeat(choice(",", $.match_arm)),
+      alias($.last_match_arm, $.match_arm),
+      '}'
+    ),
+
+    match_arm: $ => seq(
+      field('pattern', seq($.match_pattern)),
+      '=>',
+      field('value', choice($._expression, $.block, $.closure_function))
+    ),
+
+    last_match_arm: $ => seq(
+      field('pattern', choice($.match_else, $.match_else_binding, $.match_pattern)),
+      '=>',
+      field('value', choice($._expression, $.block, $.closure_function))
+    ),
+
+    match_pattern: $ => seq(
+      choice($._expression),
+    ),
+
+    match_else: $ => 'else',
+    match_else_binding: $ => seq('else', '(', $.identifier, ')'),
+
+    _literal: $ => prec.left(choice(
+      $.string_literal,
+      $.char_literal,
+      $.byte_literal,
+      $.boolean_literal,
+      $.integer_literal,
+      $.binary_literal,
+      $.float_literal,
+      $.array_literal,
+      $.dictionary_literal,
+      $.tuple_literal,
+      $.set_literal,
+      $.destructuring_literal,
+    )),
+
+    _pattern: $ => choice(
+      $._literal,
+      alias(choice(...primitive_types), $.identifier),
+      $.identifier,
+    ),
+
+    destructuring_literal: $ => seq(
+      '(',
+      repeat1(seq($.identifier, optional(','))),
+      ')',
+    ),
+
+    negative_literal: $ => seq('-', choice($.integer_literal, $.float_literal)),
+
+    integer_literal: $ => token(seq(
+      choice(
+        /[0-9][0-9_]*/,
+        /0x[0-9a-fA-F_]+/,
+        /0o[0-7_]+/,
+      ),
+      optional(choice(...numeric_types))
+    )),
+
+    binary_literal: $ => token(seq(
+      choice(
+        /0b[01_]+/,
+      ),
+    )),
+
+    string_literal: $ => seq(
+      alias(/b?"/, '"'),
+      repeat(choice(
+        $.escape_sequence,
+        $._string_content
+      )),
+      token.immediate('"')
+    ),
+
+    char_literal: $ => token(seq(
+      '\'',
+      optional(choice(
+        seq('\\', choice(
+          /[^xu]/,
+          /u[0-9a-fA-F]{4}/,
+          /u{[0-9a-fA-F]+}/,
+          /x[0-9a-fA-F]{2}/
         )),
+        /[^\\']/
+      )),
+      '\''
+    )),
+
+    byte_literal: $ => token(seq(
+      'b',
+      '\'',
+      optional(choice(
+        seq('\\', choice(
+          /[^xu]/,
+          /u[0-9a-fA-F]{4}/,
+          /u{[0-9a-fA-F]+}/,
+          /x[0-9a-fA-F]{2}/
+        )),
+        /[^\\']/
+      )),
+      '\''
+    )),
+
+    array_literal: $ => prec(1, seq(
+      '[',
+      optional(choice(
+        sepBy1(optional(','), $._expression),
+        seq(
+          field('element', $._literal),
+          ';',
+          field('length', $._expression)
+        ),
+      )),
+      ']'
+    )),
+
+    tuple_expression: $ => seq(
+      '(',
+      sepBy(',', seq($._expression, optional(','))),
+      ')'
+    ),
+
+    tuple_type: $ => seq(
+      '(',
+      sepBy(',', seq(choice($._type, $.optional_type), optional(','))),
+      ')'
+    ),
+
+    tuple_literal: $ => prec(1, seq(
+      '(',
+      seq($._expression, repeat(seq(',', $._expression))),
+      ')'
+    )),
+
+    dictionary_literal: $ => seq(
+      '[',
+      choice(
+          seq(':'),
+          repeat1(seq($.dictionary_element, optional(','))),
+      ),
+      ']'
+    ),
+
+    set_literal: $ => prec.right(seq(
+      '{',
+          optional(repeat1(seq($._expression, optional(',')))),
+      '}'
+    )),
+
+    dictionary_element: $ =>seq(field('key', $._literal), ':', field('value', $._expression)),
+
+    escape_sequence: $ => token.immediate(
+      seq('\\',
+        choice(
+          /[^xu]/,
+          /u[0-9a-fA-F]{4}/,
+          /u{[0-9a-fA-F]+}/,
+          /x[0-9a-fA-F]{2}/
+        )
+    )),
+
+    trait_requirement: $ => seq(
+      field("name", $.identifier),
+      field("arguments", seq(
+        '<',
+        $.trait_identifier,
+        'requires',
+        '(',
+        sepBy1(optional(','), $.trait_identifier),
+        ')',
+        '>',
+      ),
+    )),
 
     attributes: $ => seq(
-    '[[',
+      '[[',
       choice(
         $.call_expression,
         seq(
@@ -855,7 +855,7 @@ module.exports = grammar({
           field('name', $.identifier)
         ),
       ),
-    ']]',
+      ']]',
     ),
 
     function_declaration: $ => prec.right(seq(
@@ -884,10 +884,10 @@ module.exports = grammar({
 
     generic_arguments: $ => seq(
       '<',
-        sepBy1(',', choice(
-          alias($._type_identifier, $.generic_type_identifier),
-          $._primitive_types,
-        )),
+      sepBy1(',', choice(
+        alias($._type_identifier, $.generic_type_identifier),
+        $._primitive_types,
+      )),
       '>',
     ),
 
