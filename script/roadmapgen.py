@@ -496,7 +496,7 @@ def print_testmap_table(tests: TestMap):
             renderables.append("")
 
         if test.deleted:
-            color = Style(color="red")
+            color = Style(color="deep_pink1")
             renderables.append(":heavy_check_mark:")
         elif any(str(x.header) in "Deleted" for x in table.columns):
             renderables.append("")
