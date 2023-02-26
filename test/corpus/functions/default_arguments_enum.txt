@@ -1,21 +1,57 @@
-; ================================================================================
-; NOT IMPLEMENTED Functions Default Arguments Enum ID=SCCJHO5
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "42\n"
-; 
-; enum S {
-;     X
-;     fn my_func(this, anon def: i64 = 42) {
-;         println("{}", def)
-;     }
-; }
-; 
-; fn main() {
-;     S::X.my_func()
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Functions Default Arguments Enum ID=SCCJHO5
+================================================================================
+
+/// Expect:
+/// - output: "42\n"
+
+enum S {
+    X
+    fn my_func(this, anon def: i64 = 42) {
+        println("{}", def)
+    }
+}
+
+fn main() {
+    S::X.my_func()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_method_variant
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference))
+          (parameter
+            (anonymous_specifier)
+            (identifier)
+            (primitive_type)
+            (integer_literal)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (identifier))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (field_expression
+          (namespace_scope_expression
+            (scoped_identifier)
+            (field_identifier))
+          (field_identifier))
+        (arguments)))))

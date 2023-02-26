@@ -488,7 +488,7 @@ def print_testmap_table(tests: TestMap):
             renderables.append("")
 
         if test.new:
-            color = Style(color="green")
+            color = Style(color="bright_cyan")
             renderables.append(":heavy_check_mark:")
             if not test.falty:
                 new_count += 1

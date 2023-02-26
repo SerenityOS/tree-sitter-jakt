@@ -1,18 +1,71 @@
-; ================================================================================
-; NOT IMPLEMENTED Functions Default Arguments Default Before Required ID=9820IJ8
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "Hello 5 false WHF 121\n"
-; 
-; fn say(text: String = "Hello", number: i64 = 5, boolean: bool = false, optional: String?, byte: u8) {
-;     println("{} {} {} {} {}", text, number, boolean, optional, byte)
-; }
-; 
-; fn main() {
-;     say(optional: "WHF", byte: b'y')
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Functions Default Arguments Default Before Required ID=9820IJ8
+================================================================================
+
+/// Expect:
+/// - output: "Hello 5 false WHF 121\n"
+
+fn say(text: String = "Hello", number: i64 = 5, boolean: bool = false, optional: String?, byte: u8) {
+    println("{} {} {} {} {}", text, number, boolean, optional, byte)
+}
+
+fn main() {
+    say(optional: "WHF", byte: b'y')
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type)
+        (string_literal))
+      (parameter
+        (identifier)
+        (primitive_type)
+        (integer_literal))
+      (parameter
+        (identifier)
+        (primitive_type)
+        (boolean_literal))
+      (parameter
+        (identifier)
+        (optional_type
+          (primitive_type)))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))
+          (argument
+            (identifier))
+          (argument
+            (identifier))
+          (argument
+            (identifier))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (string_literal))
+          (argument
+            (identifier)
+            (byte_literal)))))))

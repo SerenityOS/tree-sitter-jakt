@@ -1,21 +1,64 @@
-; ================================================================================
-; NOT IMPLEMENTED Functions Default Arguments Method ID=W6KHQDE
-; ================================================================================
-; 
-; /// Expect:
-; /// - output: "Well, hello friends. My name is Jane and I am 36 years old.\n"
-; 
-; class Person {
-;     public fn greet(this, name: String = "Jane", age: i64 = 36) {
-;         println("Well, hello friends. My name is {} and I am {} years old.", name, age)
-;     }
-; }
-; 
-; fn main() {
-;     let p = Person()
-;     p.greet()
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Functions Default Arguments Method ID=W6KHQDE
+================================================================================
+
+/// Expect:
+/// - output: "Well, hello friends. My name is Jane and I am 36 years old.\n"
+
+class Person {
+    public fn greet(this, name: String = "Jane", age: i64 = 36) {
+        println("Well, hello friends. My name is {} and I am {} years old.", name, age)
+    }
+}
+
+fn main() {
+    let p = Person()
+    p.greet()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (visibility_specifier)
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference))
+          (parameter
+            (identifier)
+            (primitive_type)
+            (string_literal))
+          (parameter
+            (identifier)
+            (primitive_type)
+            (integer_literal)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (identifier))
+              (argument
+                (identifier))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments)))))

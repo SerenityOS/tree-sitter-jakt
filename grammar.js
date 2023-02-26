@@ -927,6 +927,10 @@ module.exports = grammar({
           $.optional_type,
         ),
       )),
+      optional(seq(
+        '=',
+        field('value', $._expression)
+      ))
     ),
 
     closure_function_type: $ => seq(

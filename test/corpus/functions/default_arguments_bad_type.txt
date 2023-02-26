@@ -1,18 +1,42 @@
-; ================================================================================
-; NOT IMPLEMENTED Functions Default Arguments Bad Type ID=MSZQ76V
-; ================================================================================
-; 
-; /// Expect:
-; /// - error: "Type mismatch: expected ‘String’, but got ‘i64’\n"
-; 
-; fn say(text: String = 3) {
-;     println("{}", text)
-; }
-; 
-; fn main() {
-;     say()
-; }
-; 
-; --------------------------------------------------------------------------------
-; 
-; (source_file)
+================================================================================
+Functions Default Arguments Bad Type ID=MSZQ76V
+================================================================================
+
+/// Expect:
+/// - error: "Type mismatch: expected ‘String’, but got ‘i64’\n"
+
+fn say(text: String = 3) {
+    println("{}", text)
+}
+
+fn main() {
+    say()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type)
+        (integer_literal)))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments)))))
