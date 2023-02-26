@@ -220,7 +220,6 @@ class TestMap:
         return False
 
 
-# FIXME: user serializer function to create pathlib objs
 def load_state_file(jakt_path: str) -> TestMap:
     """Deserialize toml state file and rebuild the TestMap"""
     files = tomli.loads(state_file.read_text())
