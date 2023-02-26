@@ -1,8 +1,11 @@
 ================================================================================
-Variables var 2
+Variables Var2 ID=2GQX2Y3
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "101\n"
+
+fn main() {
     mut x: i64 = 100
     x = x + 1
     println("{}", x)
@@ -11,6 +14,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

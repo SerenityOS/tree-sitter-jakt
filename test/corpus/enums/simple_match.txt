@@ -1,15 +1,20 @@
 ================================================================================
-Enums simple match
+Enums Simple Match ID=RK7UQF7
 ================================================================================
+
+/// Expect:
+/// - output: "Success! we're fine and there's a 42 in our optional\n"
 
 enum BetterOptional<T> {
     Some(T)
     None
 }
 
-enum BetterResult<T, E> {
+// FIXME: (Err -> E) is a workaround for a clang bug where the specialised template scope is somehow
+//        placed before the namespace whose member is being specialised.
+enum BetterResult<T, Err> {
     ImFineHowAreYou(T)
-    TheWorldIsBurning(E)
+    TheWorldIsBurning(Err)
 }
 
 enum ObjectivelyBetterOptional<T> {
@@ -20,28 +25,28 @@ enum ObjectivelyBetterOptional<T> {
     None
 }
 
-function make_result(okay: bool) -> BetterResult<i64, String> {
+fn make_result(okay: bool) -> BetterResult<i64, String> {
     if okay {
         return BetterResult::ImFineHowAreYou(42)
     }
     return BetterResult::TheWorldIsBurning("666")
 }
 
-function better_optional_from<T>(anon optional: T?) -> BetterOptional<T> {
+fn better_optional_from<T>(anon optional: T?) -> BetterOptional<T> {
     if optional.has_value() {
         return BetterOptional::Some(optional!)
     }
     return BetterOptional::None()
 }
 
-function to_objectively_better_optional<T>(anon optional: BetterOptional<T>) -> ObjectivelyBetterOptional<T> {
+fn to_objectively_better_optional<T>(anon optional: BetterOptional<T>) -> ObjectivelyBetterOptional<T> {
     return match optional {
         BetterOptional::Some(value) => ObjectivelyBetterOptional::Some(value: value, joke_metadata: "I'm a joke")
         BetterOptional::None => ObjectivelyBetterOptional::None()
     }
 }
 
-function main() {
+fn main() {
     match make_result(okay: true) {
         ImFineHowAreYou(x) => {
             let a: i64? = x
@@ -65,23 +70,27 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (enum_variant_list
       (enum_tuple_variant
         (identifier)
         (type_identifier))
       (enum_variant
         (identifier))))
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)
-        (type_identifier)))
+        (generic_type_identifier)
+        (generic_type_identifier)))
     (enum_variant_list
       (enum_tuple_variant
         (identifier)
@@ -93,7 +102,7 @@ function main() {
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (enum_variant_list
       (enum_struct_variant
         (identifier)
@@ -138,7 +147,7 @@ function main() {
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (parameters
       (parameter
         (anonymous_specifier)
@@ -148,7 +157,7 @@ function main() {
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (block
       (if_statement
         (call_expression
@@ -174,7 +183,7 @@ function main() {
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (parameters
       (parameter
         (anonymous_specifier)
@@ -182,11 +191,11 @@ function main() {
         (generic_type
           (identifier)
           (generic_arguments
-            (type_identifier)))))
+            (generic_type_identifier)))))
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (block
       (return_statement
         (match_expression

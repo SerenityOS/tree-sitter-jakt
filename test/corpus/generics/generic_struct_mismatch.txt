@@ -1,0 +1,65 @@
+================================================================================
+Generics Generic Struct Mismatch ID=EAEU7SH
+================================================================================
+
+/// Expect:
+/// - error: "Type mismatch: expected ‘Foo<i64>’, but got ‘Bar<i64>’\n"
+
+struct Foo<T> {
+    x: T
+}
+
+struct Bar<T> {
+    x: T,
+    y: T,
+}
+
+fn main() {
+    let x: Foo<i64> = Bar(x: 1, y: 2)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (struct_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (generic_type_identifier)))
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (type_identifier))))
+  (struct_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (generic_type_identifier)))
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (type_identifier))
+      (field_declaration
+        (field_identifier)
+        (type_identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (generic_type
+          (identifier)
+          (generic_arguments
+            (primitive_type)))
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal))
+            (argument
+              (identifier)
+              (integer_literal))))))))

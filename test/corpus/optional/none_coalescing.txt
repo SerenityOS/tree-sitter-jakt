@@ -1,8 +1,11 @@
 ================================================================================
-Optional none coalescing
+Optional None Coalescing ID=XH55C0S
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "PASS\nPASS\nzero: 0\n"
+
+fn main() {
     let x: String? = "PASS"
     println("{}", x ?? "FAIL")
 
@@ -21,6 +24,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

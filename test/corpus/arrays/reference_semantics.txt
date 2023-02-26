@@ -1,12 +1,15 @@
 ================================================================================
-Arrays reference semantics
+Arrays Reference Semantics ID=XNTCBRJ
 ================================================================================
 
-function change_value(mut vector: [String]) {
+/// Expect:
+/// - output: "foo\nbar\n"
+
+fn change_value(mut vector: [String]) {
     vector[1] = "bar"
 }
 
-function main() {
+fn main() {
     mut v = ["foo", "foo"]
     change_value(vector: v)
 
@@ -20,6 +23,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters

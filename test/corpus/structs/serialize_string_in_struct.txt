@@ -1,18 +1,23 @@
 ================================================================================
-Structs string serialization
+Structs Serialize String In Struct ID=ONK41A0
 ================================================================================
+
+/// Expect:
+/// - output: "Foo(name: \"Bar\")\n"
 
 struct Foo {
     name: String
 }
 
-function main() {
+fn main() {
     println("{}", Foo(name: "Bar"))
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list

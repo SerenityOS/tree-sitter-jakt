@@ -1,8 +1,11 @@
 ================================================================================
-Closures with parameter
+Closures Closure With Parameter ID=Z66ELP3
 ================================================================================
 
-function find(anon arr: [i64], anon cb: function(a: i64) -> bool) -> i64? {
+/// Expect:
+/// - output: "5\n"
+
+fn find(anon arr: [i64], anon cb: fn(a: i64) -> bool) -> i64? {
     for i in 0..arr.size() {
         if cb(a: arr[i]) {
             return arr[i]
@@ -11,14 +14,16 @@ function find(anon arr: [i64], anon cb: function(a: i64) -> bool) -> i64? {
     return None
 }
 
-function main() {
+fn main() {
     mut arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    println("{}", find(arr, function(a: i64) => a == 5))
+    println("{}", find(arr, fn(a: i64) => a == 5))
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters

@@ -1,0 +1,62 @@
+================================================================================
+Arrays Array Insert ID=EQGON66
+================================================================================
+
+/// Expect:
+/// - output: "x:[1, 0]\n"
+
+fn main() {
+    mut x: [i32] = []
+    // Insert before .size()
+    x.insert(before_index: 0, value: 0i32)
+    // Insert before some index that exists
+    x.insert(before_index: 0, value: 1i32)
+    println("x:{}", x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (array_type
+          (primitive_type))
+        (array_literal))
+      (line_comment)
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (identifier)
+            (integer_literal))
+          (argument
+            (identifier)
+            (integer_literal))))
+      (line_comment)
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (identifier)
+            (integer_literal))
+          (argument
+            (identifier)
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

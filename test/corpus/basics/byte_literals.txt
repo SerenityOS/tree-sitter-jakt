@@ -1,17 +1,22 @@
 ================================================================================
-Basics byte literals
+Basics Byte Literals ID=W5MYXCZ
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "b b\n63\n"
+
+fn main() {
     mut b = b'b'
     println("{:c} {:c}", b, b'b')
-    ++b
+    ++b 
     println("{:x}", b)
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

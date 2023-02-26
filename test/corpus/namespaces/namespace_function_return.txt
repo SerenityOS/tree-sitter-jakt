@@ -1,6 +1,9 @@
 ================================================================================
-Namespace function return
+Namespaces Namespace Function Return ID=GML8LSE
 ================================================================================
+
+/// Expect:
+/// - output: "Biz: Biz(a: 10)\n"
 
 namespace Foo {
     namespace Bar {
@@ -8,17 +11,19 @@ namespace Foo {
     }
 }
 
-function get_biz() -> Foo::Bar::Biz {
+fn get_biz() -> Foo::Bar::Biz {
     return Foo::Bar::Biz(a: 10)
 }
 
-function main() {
+fn main() {
     println("Biz: {}", get_biz())
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (namespace_declaration
     (identifier)
     (block

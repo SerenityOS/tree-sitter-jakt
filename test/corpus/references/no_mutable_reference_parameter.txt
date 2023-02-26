@@ -1,0 +1,25 @@
+================================================================================
+References No Mutable Reference Parameter ID=DASLPB3
+================================================================================
+
+/// Expect:
+/// - error: "Reference parameter can not be mutable"
+
+fn foo(anon mut a: &i64) {
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (mutable_specifier)
+        (identifier)
+        (reference_type
+          (primitive_type))))
+    (block)))

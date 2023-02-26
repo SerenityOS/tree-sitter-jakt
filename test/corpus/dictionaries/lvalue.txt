@@ -1,8 +1,11 @@
 ================================================================================
-Dictionaries lvalue
+Dictionaries Lvalue ID=8IODCU7
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "0: foo\n"
+
+fn main() {
     mut dict = Dictionary<i32, String>()
     dict[0] = "foo"
     println("0: {}", dict[0])
@@ -11,6 +14,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)
@@ -18,8 +23,8 @@ function main() {
       (mutable_declaration
         (mutable_specifier)
         (identifier)
-        (generic_call_expression
-          (generic_type
+        (call_expression
+          (generic_function
             (identifier)
             (generic_arguments
               (primitive_type)

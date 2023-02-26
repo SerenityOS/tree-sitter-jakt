@@ -1,6 +1,9 @@
 ================================================================================
-Basics is expression (class)
+Basics Is ID=9VXGFF3
 ================================================================================
+
+/// Expect:
+/// - output: "OK\nOK\n"
 
 class Foo {
     public x: i64
@@ -10,7 +13,7 @@ class Bar {
     public y: i64
 }
 
-function main() {
+fn main() {
     let foo = Foo(x: 1)
 
     if foo is Foo {
@@ -33,6 +36,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (class_declaration
     (type_identifier)
     (field_declaration_list
@@ -60,7 +65,7 @@ function main() {
               (identifier)
               (integer_literal)))))
       (if_statement
-        (is_expression
+        (binary_expression
           (identifier)
           (identifier))
         (block
@@ -70,7 +75,7 @@ function main() {
               (argument
                 (string_literal))))))
       (if_statement
-        (is_expression
+        (binary_expression
           (identifier)
           (identifier))
         (block
@@ -80,7 +85,7 @@ function main() {
               (argument
                 (string_literal))))))
       (if_statement
-        (is_expression
+        (binary_expression
           (call_expression
             (identifier)
             (arguments
@@ -95,7 +100,7 @@ function main() {
               (argument
                 (string_literal))))))
       (if_statement
-        (is_expression
+        (binary_expression
           (call_expression
             (identifier)
             (arguments

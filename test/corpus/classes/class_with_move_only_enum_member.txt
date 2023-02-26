@@ -1,6 +1,9 @@
 ================================================================================
-Classes with move only enum member
+Classes Class With Move Only Enum Member ID=F2M03JD
 ================================================================================
+
+/// Expect:
+/// - output: ""
 
 enum E {
     Okay
@@ -10,13 +13,15 @@ class C {
     public e: E
 }
 
-function main() {
+fn main() {
     let c = C(e: E::Okay())
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (type_identifier)
     (enum_variant_list

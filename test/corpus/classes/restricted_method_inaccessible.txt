@@ -1,0 +1,92 @@
+================================================================================
+Classes Restricted Method Inaccessible ID=1QAVTH1
+================================================================================
+
+/// Expect:
+/// - error: "Cannot access function ‘get_secret’ from this scope\n"
+
+class Limited {
+    restricted(A) fn get_secret() => "Shhhh! Don't tell anyone!"
+    restricted(A,B) fn open_the_bank_vault() => "Open sesame!"
+}
+
+class A {}
+
+class B {}
+
+class C {
+    public fn do_things() {
+        println("The secret is: {}", Limited::get_secret())
+        println("{}", Limited::open_the_bank_vault())
+    }
+}
+
+fn main() {
+    C::do_things()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (restricted_specifier
+          (identifier))
+        (identifier)
+        (parameters)
+        (return_expression
+          (string_literal)))
+      (function_declaration
+        (restricted_specifier
+          (identifier)
+          (identifier))
+        (identifier)
+        (parameters)
+        (return_expression
+          (string_literal)))))
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list))
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list))
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list
+      (function_declaration
+        (visibility_specifier)
+        (identifier)
+        (parameters)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
+                  (arguments)))))
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (static_call_expression
+                  (scoped_identifier)
+                  (field_identifier)
+                  (arguments)))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
+        (arguments)))))

@@ -1,8 +1,11 @@
 ================================================================================
-Arrays slice of a slice
+Arrays Slice Of Slice ID=QANKQU8
 ================================================================================
 
-function slices(anon s: ArraySlice<i64>, mut total: i64) {
+/// Expect:
+/// - output: "21\n"
+
+fn slices(anon s: ArraySlice<i64>, mut total: i64) -> i64 {
     total += s[0]
 
     if s.size() > 1 {
@@ -12,7 +15,7 @@ function slices(anon s: ArraySlice<i64>, mut total: i64) {
     return total
 }
 
-function main() {
+fn main() {
     let arr = [1, 2, 3, 4, 5, 6]
     mut total = 0
 
@@ -24,6 +27,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters
@@ -38,6 +43,7 @@ function main() {
         (mutable_specifier)
         (identifier)
         (primitive_type)))
+    (primitive_type)
     (block
       (assignment_expression
         (identifier)

@@ -1,0 +1,58 @@
+================================================================================
+Functions Call With Bad Args ID=36HKDR4
+================================================================================
+
+/// Expect:
+/// - error: "Type mismatch: expected ‘String’, but got ‘i64’\n"
+
+fn greet(msg: String, msg2: String) {
+    println("{}", msg)
+    println("{}", msg2)
+}
+
+fn main() {
+    greet(msg: 1, msg2: 2)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (integer_literal))
+          (argument
+            (identifier)
+            (integer_literal)))))))

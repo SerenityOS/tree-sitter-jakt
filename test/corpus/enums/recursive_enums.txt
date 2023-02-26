@@ -1,6 +1,9 @@
 ================================================================================
-Enums recursive enums
+Enums Recursive Enums ID=BDZZRGM
 ================================================================================
+
+/// Expect:
+/// - output: "result: 15\n"
 
 enum Operation {
     Add
@@ -11,7 +14,7 @@ boxed enum AST {
     BinaryOperation(lhs: AST, op: Operation, rhs: AST)
 }
 
-function eval(anon ast: AST) -> i64 {
+fn eval(anon ast: AST) -> i64 {
     match ast {
         AST::Int(i) => {
             return i
@@ -26,7 +29,7 @@ function eval(anon ast: AST) -> i64 {
     }
 }
 
-function main() {
+fn main() {
     let ast = AST::BinaryOperation(
         lhs: AST::Int(5), 
         op: Operation::Add(), 
@@ -39,6 +42,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (type_identifier)
     (enum_variant_list
@@ -165,34 +170,3 @@ function main() {
               (arguments
                 (argument
                   (identifier))))))))))
-
-================================================================================
-Enums recursive enums (no commas)
-================================================================================
-
-boxed enum AST {
-    Int(i64)
-    BinaryOperation(lhs: AST, op: Operation, rhs: AST)
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (enum_declaration
-    (boxed_specifier)
-    (type_identifier)
-    (enum_variant_list
-      (enum_tuple_variant
-        (identifier)
-        (primitive_type))
-      (enum_struct_variant
-        (identifier)
-        (field_declaration
-          (field_identifier)
-          (type_identifier))
-        (field_declaration
-          (field_identifier)
-          (type_identifier))
-        (field_declaration
-          (field_identifier)
-          (type_identifier))))))

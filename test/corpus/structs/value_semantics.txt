@@ -1,16 +1,19 @@
 ================================================================================
-Structs value semantics
+Structs Value Semantics ID=R7TRPY3
 ================================================================================
+
+/// Expect:
+/// - output: "5\n5\n5\n"
 
 struct Foo {
     x: i64
 }
 
-function set_x(mut foo: Foo, x: i64) {
+fn set_x(mut foo: Foo, x: i64) {
     foo.x = x
 }
 
-function main() {
+fn main() {
     let foo = Foo(x: 5)
     println("{}", foo.x)
 
@@ -25,6 +28,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list

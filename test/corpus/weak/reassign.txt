@@ -1,12 +1,15 @@
 ================================================================================
-Weak reassign
+Weak Reassign ID=VL1I4JU
 ================================================================================
+
+/// Expect:
+/// - output: "1\n2\nfalse\n"
 
 class Foo {
     public x: i64
 }
 
-function main() {
+fn main() {
     let foo1 = Foo(x: 1)
     let foo2 = Foo(x: 2)
 
@@ -24,6 +27,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (class_declaration
     (type_identifier)
     (field_declaration_list

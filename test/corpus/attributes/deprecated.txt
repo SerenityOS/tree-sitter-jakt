@@ -1,0 +1,21 @@
+; ================================================================================
+; NOT IMPLEMENTED Attributes Deprecated ID=SSGUM8M
+; ================================================================================
+; 
+; /// Expect:
+; /// - error: "Call to deprecated function: Use println() instead"
+; 
+; struct Bar {
+;     [[deprecated("Use println() instead")]] fn foo(this) {
+;         println("Well hello friends!")
+;     }
+; }
+; 
+; fn main() {
+;     let bar = Bar()
+;     bar.foo()
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

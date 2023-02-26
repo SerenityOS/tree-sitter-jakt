@@ -1,17 +1,28 @@
 ================================================================================
-Structs method
+Structs Method ID=P53SFED
 ================================================================================
+
+/// Expect:
+/// - output: "32\n"
 
 struct Rectangle {
     width: i64,
     height: i64,
 
-    function area(this) => this.width * this.height
+    fn area(this) -> i64 => this.width * this.height
+}
+
+fn main() {
+    let rect = Rectangle(width: 4, height: 8)
+
+    println("{}", rect.area())
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list
@@ -26,6 +37,7 @@ struct Rectangle {
         (parameters
           (this_parameter
             (this_reference)))
+        (primitive_type)
         (return_expression
           (binary_expression
             (field_expression
@@ -33,4 +45,30 @@ struct Rectangle {
               (field_identifier))
             (field_expression
               (this_reference)
-              (field_identifier))))))))
+              (field_identifier)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal))
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))))))))

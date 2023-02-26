@@ -1,22 +1,25 @@
 ================================================================================
-Import b
+Modules B ID=3MT9DQY
 ================================================================================
 
-function something_cool() {
+/// Expect: Skip
+
+fn something_cool() {
     println("something_cool")
 }
 
-function something_else_cool() {
+fn something_else_cool() {
     println("something_else_cool")
 }
 
-function not_cool() {
+fn not_cool() {
     println("not_cool")
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

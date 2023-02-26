@@ -1,8 +1,11 @@
 ================================================================================
-Boolean logical or
+Boolean Logical Or ID=ML7DL73
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "OK\n"
+
+fn main() {
     let i = 4
     if i == 5 or 6 > 7 {
         println("FAIL")
@@ -17,6 +20,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)
@@ -25,7 +30,7 @@ function main() {
         (identifier)
         (integer_literal))
       (if_statement
-        (logical_expression
+        (binary_expression
           (binary_expression
             (identifier)
             (integer_literal))
@@ -45,7 +50,7 @@ function main() {
         (identifier)
         (boolean_literal))
       (if_statement
-        (logical_expression
+        (binary_expression
           (identifier)
           (identifier))
         (block

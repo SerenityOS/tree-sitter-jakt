@@ -1,8 +1,11 @@
 ================================================================================
-Sets inference empty
+Sets Inference Empty ID=E0Z7S0F
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "2 2\n"
+
+fn main() {
     mut set1: {String} = {}
     set1.add("hello")
     set1.add("World")
@@ -15,6 +18,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

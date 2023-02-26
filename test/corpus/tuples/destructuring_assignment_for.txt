@@ -1,11 +1,14 @@
 ================================================================================
-Tuples destructuring assignment for
+Tuples Destructuring Assignment For ID=H57SAJV
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "1, Hello\n2, World\n"
+
+fn main() {
     mut list = [(1, "Hello"), (2, "World")]
 
-    for (idx, word) in list.iterator() {
+    for (idx, word) in list {
         println("{}, {}" idx, word)
     }
 }
@@ -13,6 +16,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)
@@ -31,60 +36,7 @@ function main() {
         (destructuring_literal
           (identifier)
           (identifier))
-        (call_expression
-          (field_expression
-            (identifier)
-            (field_identifier))
-          (arguments))
-        (block
-          (call_expression
-            (identifier)
-            (arguments
-              (argument
-                (string_literal))
-              (argument
-                (identifier))
-              (argument
-                (identifier)))))))))
-
-================================================================================
-Tuples destructuring assignment for (no commas)
-================================================================================
-
-function main() {
-    mut list = [(1, "Hello") (2, "World")]
-
-    for (idx word) in list.iterator() {
-        println("{} {}" idx word)
-    }
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (function_declaration
-    (identifier)
-    (parameters)
-    (block
-      (mutable_declaration
-        (mutable_specifier)
         (identifier)
-        (array_literal
-          (tuple_literal
-            (integer_literal)
-            (string_literal))
-          (tuple_literal
-            (integer_literal)
-            (string_literal))))
-      (for_expression
-        (destructuring_literal
-          (identifier)
-          (identifier))
-        (call_expression
-          (field_expression
-            (identifier)
-            (field_identifier))
-          (arguments))
         (block
           (call_expression
             (identifier)
@@ -95,65 +47,3 @@ function main() {
                 (identifier))
               (argument
                 (identifier)))))))))
-
-================================================================================
-Tuples destructuring assignment for (isolated)
-================================================================================
-
-mut list = [(1, "Hello"), (2, "World")]
-
---------------------------------------------------------------------------------
-
-(source_file
-  (mutable_declaration
-    (mutable_specifier)
-    (identifier)
-    (array_literal
-      (tuple_literal
-        (integer_literal)
-        (string_literal))
-      (tuple_literal
-        (integer_literal)
-        (string_literal)))))
-
-================================================================================
-Tuples destructuring assignment for (isolated, no commas)
-================================================================================
-
-mut list = [(1, "Hello") (2, "World")]
-
---------------------------------------------------------------------------------
-
-(source_file
-  (mutable_declaration
-    (mutable_specifier)
-    (identifier)
-    (array_literal
-      (tuple_literal
-        (integer_literal)
-        (string_literal))
-      (tuple_literal
-        (integer_literal)
-        (string_literal)))))
-
-================================================================================
-Tuples destructuring assignment for (isolated, no commas, split)
-================================================================================
-
-mut list = [(1, "Hello") 
-
-(2, "World")]
-
---------------------------------------------------------------------------------
-
-(source_file
-  (mutable_declaration
-    (mutable_specifier)
-    (identifier)
-    (array_literal
-      (tuple_literal
-        (integer_literal)
-        (string_literal))
-      (tuple_literal
-        (integer_literal)
-        (string_literal)))))

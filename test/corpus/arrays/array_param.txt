@@ -1,16 +1,21 @@
 ================================================================================
-Arrays array parameter
+Arrays Array Param ID=1AEJ6O6
 ================================================================================
 
-function get_first(anon v: [String]) => v[0]
+/// Expect:
+/// - output: "one\n"
 
-function main() {
+fn get_first(anon v: [String]) => v[0]
+
+fn main() {
     println("{}", get_first(["one", "two"]))
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters

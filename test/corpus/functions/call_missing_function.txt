@@ -1,0 +1,23 @@
+================================================================================
+Functions Call Missing Function ID=T3A2KWZ
+================================================================================
+
+/// Expect:
+/// - error: "Call to unknown function"
+
+fn main() {
+    missing_function()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments)))))

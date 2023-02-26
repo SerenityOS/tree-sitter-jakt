@@ -1,20 +1,25 @@
 ================================================================================
-Namespace hello namespace
+Namespaces Hello Namespace ID=61PDHNH
 ================================================================================
 
+/// Expect:
+/// - output: "Well, hello friends\n"
+
 namespace Greeters {
-    function greet() {
+    fn greet() {
         println("Well, hello friends")
     }
 }
 
-function main() {
+fn main() {
     Greeters::greet()
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (namespace_declaration
     (identifier)
     (block

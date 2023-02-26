@@ -1,8 +1,11 @@
 ================================================================================
-Math more basic math
+Math Math2 ID=6CKDTX3
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "-40\n10\n"
+
+fn main() {
     println("{}", 5 - 5 * 10 + 5)
     println("{}", 2 * 8 - 12 / 2)
 }
@@ -10,6 +13,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)
@@ -21,12 +26,12 @@ function main() {
             (string_literal))
           (argument
             (binary_expression
-              (integer_literal)
               (binary_expression
+                (integer_literal)
                 (binary_expression
                   (integer_literal)
-                  (integer_literal))
-                (integer_literal))))))
+                  (integer_literal)))
+              (integer_literal)))))
       (call_expression
         (identifier)
         (arguments

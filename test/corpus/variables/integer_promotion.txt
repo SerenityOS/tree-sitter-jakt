@@ -1,57 +1,113 @@
 ================================================================================
-Variable integer promotion
+Variables Integer Promotion ID=A3CACV9
 ================================================================================
 
-mut a: u8 = 100
-a += 100
+/// Expect:
+/// - output: "200\n2000\n200000\n125\n"
 
-mut b: u16 = 1000
-b += 1000
+struct Foo {
+    x: u16
+}
 
-mut c: u32 = 100000
-c += 100000
+fn main() {
+    mut a: u8 = 100
+    a += 100
 
-mut f = Foo(x: 123)
-f.x += 2
+    mut b: u16 = 1000
+    b += 1000
+
+    mut c: u32 = 100000
+    c += 100000
+
+    mut f = Foo(x: 123)
+    f.x += 2
+
+    println("{}", a)
+    println("{}", b)
+    println("{}", c)
+    println("{}", f.x)
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (mutable_declaration
-    (mutable_specifier)
+  (line_comment)
+  (line_comment)
+  (struct_declaration
+    (type_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))))
+  (function_declaration
     (identifier)
-    (primitive_type)
-    (integer_literal))
-  (assignment_expression
-    (identifier)
-    (integer_literal))
-  (mutable_declaration
-    (mutable_specifier)
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (assignment_expression
-    (identifier)
-    (integer_literal))
-  (mutable_declaration
-    (mutable_specifier)
-    (identifier)
-    (primitive_type)
-    (integer_literal))
-  (assignment_expression
-    (identifier)
-    (integer_literal))
-  (mutable_declaration
-    (mutable_specifier)
-    (identifier)
-    (call_expression
-      (identifier)
-      (arguments
-        (argument
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (primitive_type)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (integer_literal))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (primitive_type)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (integer_literal))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (primitive_type)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (integer_literal))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (call_expression
           (identifier)
-          (integer_literal)))))
-  (assignment_expression
-    (field_expression
-      (identifier)
-      (field_identifier))
-    (integer_literal)))
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (assignment_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier))))))))

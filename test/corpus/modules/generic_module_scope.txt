@@ -1,0 +1,42 @@
+================================================================================
+Modules Generic Module Scope ID=9HOIAN2
+================================================================================
+
+/// Expect:
+/// - output: "4\n"
+
+import a
+
+fn main() {
+    let x = a::adder(x: 2)
+
+    println("{}", x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (import_statement
+    (identifier))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

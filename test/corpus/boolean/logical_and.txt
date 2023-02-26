@@ -1,8 +1,11 @@
 ================================================================================
-Boolean logical and
+Boolean Logical And ID=XHJLEFV
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "OK\nOK\n"
+
+fn main() {
     let i = 5
     if i == 5 and 7 > 6 {
         println("OK")
@@ -17,6 +20,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)
@@ -25,7 +30,7 @@ function main() {
         (identifier)
         (integer_literal))
       (if_statement
-        (logical_expression
+        (binary_expression
           (binary_expression
             (identifier)
             (integer_literal))
@@ -45,7 +50,7 @@ function main() {
         (identifier)
         (boolean_literal))
       (if_statement
-        (logical_expression
+        (binary_expression
           (identifier)
           (identifier))
         (block

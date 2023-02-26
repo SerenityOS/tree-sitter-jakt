@@ -1,8 +1,11 @@
 ================================================================================
-Generics generic instantiation
+Generics Generic Instantiation ID=GO5NL5A
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "100\n"
+
+fn main() {
     let item = Optional(100);
 
     println("{}", item!)
@@ -11,6 +14,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

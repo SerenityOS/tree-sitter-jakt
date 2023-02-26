@@ -1,12 +1,15 @@
 ================================================================================
-Function fat arrow return expression
+Functions Fat Arrow ID=6TJ0S00
 ================================================================================
 
-function greet() => println("Well, hello friends.")
-function num() -> i64 => 5
-function str() => "Hello friends."
+/// Expect:
+/// - output: "Well, hello friends.\n5\nGoodbye friends.\n"
 
-function main() {
+fn greet() => println("Well, hello friends.")
+fn num() -> i64 => 5
+fn str() => "Hello friends."
+
+fn main() {
     greet()
     println("{}", num())
     println("{}", str().replace(replace: "Hello", with: "Goodbye"))
@@ -15,6 +18,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

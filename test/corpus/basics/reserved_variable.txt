@@ -1,0 +1,53 @@
+================================================================================
+Basics Reserved Variable ID=VTFA75S
+================================================================================
+
+/// Expect:
+/// - error: "reserved identifier name"
+
+fn main() {
+    let __jakt_var_1 = "hello"
+    try foo() catch {
+        print(__jakt_var_1)
+    }
+}
+
+fn foo() throws -> void {
+    throw Error::from_errno(9000)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (string_literal))
+      (try_statement
+        (call_expression
+          (identifier)
+          (arguments))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (identifier))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (throw_statement
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (integer_literal))))))))

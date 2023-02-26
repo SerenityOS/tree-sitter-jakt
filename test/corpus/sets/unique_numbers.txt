@@ -1,8 +1,11 @@
 ================================================================================
-Sets unique numbers
+Sets Unique Numbers ID=LZBEPRU
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "5\n"
+
+fn main() {
     let nums = [1, 2, 1, 2, 1, 2, 3, 4, 5, 1, 2]
     mut set = {nums[0]}
     for i in 0..nums.size() {
@@ -14,6 +17,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

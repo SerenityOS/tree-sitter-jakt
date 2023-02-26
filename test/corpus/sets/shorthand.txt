@@ -1,8 +1,11 @@
 ================================================================================
-Sets shorthand
+Sets Shorthand ID=UDYTRYJ
 ================================================================================
 
-function get_unique(nums: [i64]) throws -> {i64} {
+/// Expect:
+/// - output: "5\n"
+
+fn get_unique(nums: [i64]) throws -> {i64} {
     mut set = {nums[0]}
     for i in 1..nums.size() {
         set.add(nums[i])
@@ -10,7 +13,7 @@ function get_unique(nums: [i64]) throws -> {i64} {
     return set
 }
 
-function main() {
+fn main() {
     let nums = [1, 2, 3, 4, 5, 5]
     let set = get_unique(nums)
     println("{}", set.size())
@@ -19,6 +22,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters

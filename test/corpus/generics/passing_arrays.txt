@@ -1,21 +1,26 @@
 ================================================================================
-Generics passing an array
+Generics Passing Arrays ID=QFZ9LOH
 ================================================================================
 
-function dump<T>(anon v: [T]) => v[0]
+/// Expect:
+/// - output: "1\n"
 
-function main() {
+fn dump<T>(anon v: [T]) => v[0]
+
+fn main() {
     println("{}", dump([1, 2, 3]))
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (generic_function_declaration
     (generic_type
       (identifier)
       (generic_arguments
-        (type_identifier)))
+        (generic_type_identifier)))
     (parameters
       (parameter
         (anonymous_specifier)

@@ -1,11 +1,14 @@
 ================================================================================
-Modules callback modules
+Modules Callback Modules ID=Z62B3FM
 ================================================================================
+
+/// Expect:
+/// - output: "2\n"
 
 import a
 
-function main() {
-    let foo = a::call_function(function(x: i64) -> i64 {
+fn main() {
+    let foo = a::call_function(fn(x: i64) -> i64 {
         return x + 1
     })
 
@@ -15,6 +18,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (import_statement
     (identifier))
   (function_declaration

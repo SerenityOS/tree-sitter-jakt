@@ -1,11 +1,28 @@
 ================================================================================
-Imports valid import
+Imports Valid Import ID=UV3KKDG
 ================================================================================
 
+/// Expect:
+/// - output: "PASS\n"
+
 import foo
+
+fn main() {
+    foo::bar()
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (import_statement
-    (identifier)))
+    (identifier))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
+        (arguments)))))

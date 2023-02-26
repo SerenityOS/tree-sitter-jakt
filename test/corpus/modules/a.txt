@@ -1,21 +1,30 @@
 ================================================================================
-Import a
+Modules A ID=PQZL92F
 ================================================================================
+
+/// Expect: Skip
 
 import b
 
-function use_cool_things() {
+fn use_cool_things() {
     b::something_cool()
     b::something_else_cool()
 }
 
-function call_function(anon a: function(anon x: i64) -> i64) -> i64 {
+fn call_function(anon a: fn(anon x: i64) -> i64) -> i64 {
     return a(1)
+}
+
+fn module_local_call() => 2
+
+fn adder<T>(x: T) -> T {
+    return x + module_local_call()
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
   (import_statement
     (identifier))
   (function_declaration
@@ -50,4 +59,26 @@ function call_function(anon a: function(anon x: i64) -> i64) -> i64 {
           (identifier)
           (arguments
             (argument
-              (integer_literal))))))))
+              (integer_literal)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (return_expression
+      (integer_literal)))
+  (generic_function_declaration
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (generic_type_identifier)))
+    (parameters
+      (parameter
+        (identifier)
+        (type_identifier)))
+    (generic_type_identifier)
+    (block
+      (return_statement
+        (binary_expression
+          (identifier)
+          (call_expression
+            (identifier)
+            (arguments)))))))

@@ -1,8 +1,11 @@
 ================================================================================
-Tuples basic tuple
+Tuples Tuple ID=SSHQCSZ
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "2\n"
+
+fn main() {
     let x = ("a", 2, true);
 
     println("{}", x.1)
@@ -11,6 +14,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

@@ -1,0 +1,18 @@
+; ================================================================================
+; NOT IMPLEMENTED Functions Default Arguments Some Defaults ID=7MEE89Z
+; ================================================================================
+; 
+; /// Expect:
+; /// - output: "Hello 5 false World\n"
+; 
+; fn say(text: String = "WHF", number: i64 = 5, boolean: bool = false, optional: String? = None) {
+;     println("{} {} {} {}", text, number, boolean, optional)
+; }
+; 
+; fn main() {
+;     say(text: "Hello", optional: "World")
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

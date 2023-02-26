@@ -1,8 +1,9 @@
 [tool.poetry]
-name = "tree-sitter-jakt"
+name = "tree-sitter-jakt (roadmapgen.py)"
 version = "0.1.0"
-description = ""
+description = "A tool used to sync Jakt samples to TS Corpus test suite."
 authors = ["Jesus Alvarez <jeezusjr@gmail.com>"]
+license = "BSD-2-Clause"
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -13,7 +14,8 @@ tomli = "^2.0.1"
 pyserde = {extras = ["toml"], version = "^0.8.0"}
 tomli-w = "^1.0.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
+pyproject-flake8 = "^6.0.0.post1"
 mypy = "^0.960"
 black = "^22.3.0"
 debugpy = "^1.6.0"
@@ -26,3 +28,7 @@ build-backend = "poetry.core.masonry.api"
 pythonpath = ["script"]
 log_cli = true
 log_level = "NOTSET"
+
+[tool.flake8]
+max-line-length = 120
+ignore = ['E203', 'W503']

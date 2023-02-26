@@ -1,0 +1,36 @@
+================================================================================
+Variables Var Bad Assignment ID=CXLRC7S
+================================================================================
+
+/// Expect:
+/// - error: "Assignment to immutable variable"
+
+fn main() {
+    let x: i64 = 100
+    x += 1
+    println("{}", x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

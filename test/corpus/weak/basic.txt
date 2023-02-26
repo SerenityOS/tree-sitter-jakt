@@ -1,12 +1,15 @@
 ================================================================================
-Weak references basic
+Weak Basic ID=1SAP5CG
 ================================================================================
 
+/// Expect:
+/// - output: "weak_foo has_value? false\nweak_foo has_value? true\nweak_foo hello: friends\nweak_foo has_value? false\n"
+
 class Foo {
-    public function hello(this) => "friends"
+    public fn hello(this) => "friends"
 }
 
-function main() {
+fn main() {
     mut weak_foo: weak Foo? = None
 
     println("weak_foo has_value? {}", weak_foo.has_value())
@@ -25,6 +28,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (class_declaration
     (type_identifier)
     (field_declaration_list

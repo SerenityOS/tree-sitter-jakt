@@ -1,12 +1,15 @@
 ================================================================================
-Tuples shorthand
+Tuples Shorthand ID=0SGFOT5
 ================================================================================
 
-function foo() -> (i64, String) {
+/// Expect:
+/// - output: "1 hello\n"
+
+fn foo() -> (i64, String) {
     return (1, "hello")
 }
 
-function main() {
+fn main() {
     let x = foo()
     println("{} {}", x.0, x.1)
 }
@@ -14,6 +17,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

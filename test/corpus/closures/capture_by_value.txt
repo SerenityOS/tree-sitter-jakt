@@ -1,19 +1,24 @@
 ================================================================================
-Closures capture by value
+Closures Capture By Value ID=06EOFI8
 ================================================================================
 
-function test(cb: function() -> void) {
+/// Expect:
+/// - output: "PASS\n"
+
+fn test(cb: fn() -> void) {
     cb()
 }
 
-function main() {
+fn main() {
     let pass = "PASS"
-    test(cb: function[pass]() => println(pass))
+    test(cb: fn[pass]() => println(pass))
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters

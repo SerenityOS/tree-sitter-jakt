@@ -1,19 +1,21 @@
 ================================================================================
-Import foo
+Imports Foo ID=ABA1PQ4
 ================================================================================
 
+/// Expect: Skip
 
-function bar() {
+fn bar() {
     println("PASS")
 }
 
 struct Bar {
-    function foo() -> String => "PASS"
+    fn foo() -> String => "PASS"
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

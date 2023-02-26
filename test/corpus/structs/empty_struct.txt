@@ -1,13 +1,37 @@
 ================================================================================
-Structs empty struct
+Structs Empty Struct ID=GVOY87M
 ================================================================================
 
+/// Expect:
+/// - output: "Compiled!\n"
+
 struct EmptyStruct {
+}
+
+fn main() {
+    let e = EmptyStruct()
+    println("Compiled!")
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
-    (field_declaration_list)))
+    (field_declaration_list))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal)))))))

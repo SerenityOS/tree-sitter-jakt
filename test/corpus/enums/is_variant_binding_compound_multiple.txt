@@ -1,23 +1,28 @@
 ================================================================================
-Enums is variant binding compound multiple
+Enums Is Variant Binding Compound Multiple ID=YLFZ5HD
 ================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
 
 enum Foo {
     Bar(i64)
 }
 
-function main() {
+fn main() {
     let foo = Foo::Bar(5)
     let bar = Foo::Bar(7)
 
     if foo is Bar(a) and bar is Bar(b) and a < b {
         println("PASS")
     }
-}
+} 
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (type_identifier)
     (enum_variant_list
@@ -45,16 +50,9 @@ function main() {
             (argument
               (integer_literal)))))
       (if_statement
-        (logical_expression
-          (is_expression
-            (identifier)
-            (call_expression
-              (identifier)
-              (arguments
-                (argument
-                  (identifier)))))
-          (logical_expression
-            (is_expression
+        (binary_expression
+          (binary_expression
+            (binary_expression
               (identifier)
               (call_expression
                 (identifier)
@@ -63,7 +61,14 @@ function main() {
                     (identifier)))))
             (binary_expression
               (identifier)
-              (identifier))))
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (identifier))))))
+          (binary_expression
+            (identifier)
+            (identifier)))
         (block
           (call_expression
             (identifier)

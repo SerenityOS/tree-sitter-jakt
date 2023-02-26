@@ -1,20 +1,31 @@
 ================================================================================
-Conrol flow if
+Control Flow If ID=N8NHC2J
 ================================================================================
 
-if (true) {
-    println("true")
+/// Expect:
+/// - output: "true\n"
+
+fn main() {
+    if (true) {
+        println("true")
+    }
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (if_statement
-    (parenthesized_expression
-      (boolean_literal))
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
     (block
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (string_literal)))))))
+      (if_statement
+        (parenthesized_expression
+          (boolean_literal))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))))))

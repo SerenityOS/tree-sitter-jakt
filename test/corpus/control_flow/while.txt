@@ -1,30 +1,48 @@
 ================================================================================
-Control flow while
+Control Flow While ID=2KOUGPC
 ================================================================================
 
-while (x > 0) {
-    println("{}", x)
-    x = x - 1
+/// Expect:
+/// - output: "10\n9\n8\n7\n6\n5\n4\n3\n2\n1\n"
+
+fn main() {
+    mut x: i64 = 10
+
+    while (x > 0) {
+        println("{}", x)
+        x = x - 1
+    }
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (while_statement
-    (parenthesized_expression
-      (binary_expression
-        (identifier)
-        (integer_literal)))
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
     (block
-      (call_expression
+      (mutable_declaration
+        (mutable_specifier)
         (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (identifier))))
-      (assignment_expression
-        (identifier)
-        (binary_expression
-          (identifier)
-          (integer_literal))))))
+        (primitive_type)
+        (integer_literal))
+      (while_statement
+        (parenthesized_expression
+          (binary_expression
+            (identifier)
+            (integer_literal)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (identifier))))
+          (assignment_expression
+            (identifier)
+            (binary_expression
+              (identifier)
+              (integer_literal))))))))

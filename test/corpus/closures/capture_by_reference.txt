@@ -1,8 +1,11 @@
 ================================================================================
-Closures capture by reference
+Closures Capture By Reference ID=5GY1WLU
 ================================================================================
 
-function test(cb: function() -> void) {
+/// Expect:
+/// - output: "PASS\n"
+
+fn test(cb: fn() -> void) {
     cb()
 }
 
@@ -10,14 +13,17 @@ class Foo {
     public message: String
 }
 
-function main() {
+fn main() {
     let pass = Foo(message: "PASS")
-    test(cb: function[&pass]() => println(pass.message))
+    test(cb: fn[&pass]() => println(pass.message))
 }
+
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters

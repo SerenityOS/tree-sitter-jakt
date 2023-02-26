@@ -1,0 +1,24 @@
+================================================================================
+Variables Integer Promotion Bad1 ID=VU1P6Z9
+================================================================================
+
+/// Expect:
+/// - error: "Integer promotion failed\n"
+
+fn main() {
+    let i: u8 = 1000;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (integer_literal)))))

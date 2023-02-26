@@ -1,0 +1,41 @@
+================================================================================
+Namespaces Bogus Namespace1 ID=NA2IXWQ
+================================================================================
+
+/// Expect:
+/// - error: "Not a namespace, enum, class, or struct: ‘NS::Foo’\n"
+
+namespace NS {
+    fn foo() {}
+}
+
+fn main() {
+    NS::foo()
+    NS::Foo::foo()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (namespace_declaration
+    (identifier)
+    (block
+      (function_declaration
+        (identifier)
+        (parameters)
+        (block))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (static_call_expression
+        (scoped_identifier)
+        (field_identifier)
+        (arguments))
+      (namespace_call_expression
+        (scoped_identifier)
+        (scoped_identifier)
+        (field_identifier)
+        (arguments)))))

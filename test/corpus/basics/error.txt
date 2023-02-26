@@ -1,0 +1,24 @@
+================================================================================
+Basics Error ID=XDQ4SH1
+================================================================================
+
+/// Expect:
+/// - error: "unknown character"
+
+fn main() {
+    !@#$!@@#%#$@
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (ERROR
+        (UNEXPECTED '@')
+        (UNEXPECTED '@')
+        (UNEXPECTED '#')))))

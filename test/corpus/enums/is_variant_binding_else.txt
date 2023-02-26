@@ -1,12 +1,15 @@
 ================================================================================
-Enums is variant binding else
+Enums Is Variant Binding Else ID=8LZ7YH1
 ================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
 
 enum E {
     A(i64)
 }
 
-function main() {
+fn main() {
     let e = E::A(1)
 
     if e is A(x) and x == 2 {
@@ -19,6 +22,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (type_identifier)
     (enum_variant_list
@@ -38,8 +43,8 @@ function main() {
             (argument
               (integer_literal)))))
       (if_statement
-        (logical_expression
-          (is_expression
+        (binary_expression
+          (binary_expression
             (identifier)
             (call_expression
               (identifier)

@@ -23,44 +23,22 @@
 
 ; Function calls
 (call_expression
-  callee: (identifier) @function)
+  function: (identifier) @function)
 
 (call_expression
-  callee: (field_expression
+  function: (field_expression
              value: (identifier) @namespace
              field: (field_identifier) @function.method))
 
 ; Function definitions
 (function_declaration (identifier) @function.method)
 
-(generic_arguments (type_identifier) @variable.builtin)
-
 (generic_type
-  type_name: (identifier) @type @generic-type
-  type_arguments: (generic_arguments (type_identifier)* @variable.builtin))
+  name: (identifier) @type @generic_type
+  arguments: (generic_arguments (generic_type_identifier) @variable.builtin))
 
-
-(generic_function_declaration
-  name: (generic_type) @generic-type
-  parameters: (parameters [
-                (parameter
-                  pattern: (identifier) @type @generic-param
-                  type: [
-                    (type_identifier) @variable.builtin
-                    (array_type (type_identifier) @variable.builtin)
-                  ])
-                (parameter
-                  type: (closure_function_type
-                  parameters: (parameters[
-                                (parameter
-                                  pattern: (identifier) @type
-                                  type: (type_identifier) @variable.builtin)]))
-                 )
-              ])
-  return_type: [
-    (generic_type) @generic-type
-    (type_identifier) @variable.builtin
-])
+(generic_type_identifier) @variable.builtin
+(trait_identifier) @variable.builtin
 
 [
   (enum_tuple_variant)
@@ -71,7 +49,7 @@
   name: (identifier) @operator) ; @operator to disable coloring, @none does not work :(
 
 (enum_declaration
-  name: (generic_type) @generic-type
+  name: (generic_type) @generic_type
   body: (enum_variant_list
            (enum_tuple_variant
              name: (identifier)
@@ -83,7 +61,7 @@
           (primitive_type)))
 
 (struct_declaration
-  name: (generic_type) @generic-type
+  name: (generic_type) @generic_type
   body: (field_declaration_list
            (field_declaration
              name: (field_identifier)
@@ -126,6 +104,7 @@
 "let" @keyword
 "enum" @keyword
 "struct" @keyword
+"trait" @keyword
 "class" @keyword
 "defer" @keyword
 "match" @keyword
@@ -134,7 +113,9 @@
 "yield" @keyword
 (extern_specifier) @keyword
 
-"function" @keyword.function
+"fn" @keyword.function
+"implements" @define
+"requires" @define
 "return" @keyword.return
 
 [

@@ -1,20 +1,25 @@
 ================================================================================
-Generics static
+Generics Generic Static ID=1GQBKP4
 ================================================================================
 
+/// Expect:
+/// - output: "1\n"
+
 struct Test {
-    function test<T>(foo: T) -> T {
+    fn test<T>(foo: T) -> T {
         return foo;
     }
 }
 
-function main() {
+fn main() {
     println("{}", Test::test(foo: 1));
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list
@@ -22,12 +27,12 @@ function main() {
         (generic_type
           (identifier)
           (generic_arguments
-            (type_identifier)))
+            (generic_type_identifier)))
         (parameters
           (parameter
             (identifier)
             (type_identifier)))
-        (type_identifier)
+        (generic_type_identifier)
         (block
           (return_statement
             (identifier))))))

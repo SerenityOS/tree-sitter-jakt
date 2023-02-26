@@ -1,10 +1,13 @@
 ================================================================================
-Dictionaries count words
+Dictionaries Count Words ID=W9V4VPN
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "the: 2\n"
+
+fn main() {
     let text = "midway upon the journey of our life I found myself within a forest dark for the straightforward pathway had been lost"
-    let words = text.split(' ')
+    let words = text.split(c' ')
 
     mut counts = Dictionary<String, i64>();
 
@@ -18,6 +21,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)
@@ -33,12 +38,14 @@ function main() {
             (field_identifier))
           (arguments
             (argument
+              (identifier))
+            (argument
               (char_literal)))))
       (mutable_declaration
         (mutable_specifier)
         (identifier)
-        (generic_call_expression
-          (generic_type
+        (call_expression
+          (generic_function
             (identifier)
             (generic_arguments
               (primitive_type)

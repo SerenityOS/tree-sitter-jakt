@@ -1,15 +1,66 @@
 ================================================================================
-Enum on single line
+Enums One Line Enum Declaration ID=ILM1883
 ================================================================================
 
+/// Expect:
+/// - output: "Granny Smith\n"
+
 enum Apple { GrannySmith }
+
+fn apple_name(apple: Apple) {
+    match (apple) {
+        Apple::GrannySmith => {
+            println("Granny Smith")
+        }
+    }
+}
+
+fn main() {
+    apple_name(apple: Apple::GrannySmith())
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (type_identifier)
     (enum_variant_list
       (enum_variant
-        (identifier)))))
-
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (type_identifier)))
+    (block
+      (match_expression
+        (destructuring_literal
+          (identifier))
+        (match_block
+          (match_arm
+            (match_pattern
+              (namespace_scope_expression
+                (scoped_identifier)
+                (field_identifier)))
+            (block
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (string_literal))))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
+              (arguments))))))))

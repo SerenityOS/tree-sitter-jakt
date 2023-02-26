@@ -1,0 +1,23 @@
+================================================================================
+Arrays Empty Literal Without Hint ID=IB4QYL4
+================================================================================
+
+/// Expect:
+/// - error: "Cannot infer generic type for Array<T>\n"
+
+fn main() {
+    let x = []
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (array_literal)))))

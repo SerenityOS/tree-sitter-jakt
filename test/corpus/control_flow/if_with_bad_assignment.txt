@@ -1,0 +1,39 @@
+================================================================================
+Control Flow If With Bad Assignment ID=2SSLIVW
+================================================================================
+
+/// Expect:
+/// - error: "Assignment is not allowed in this position"
+
+fn main() {
+    mut x = 100;
+
+    if (x = 99) {
+        println("true")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (integer_literal))
+      (if_statement
+        (parenthesized_expression
+          (assignment_expression
+            (identifier)
+            (integer_literal)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))))))

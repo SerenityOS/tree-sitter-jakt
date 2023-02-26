@@ -1,0 +1,190 @@
+================================================================================
+Traits Basic ID=YMFOFRG
+================================================================================
+
+/// Expect:
+/// - output: "100\n69\n"
+
+// trait definition
+trait Hashable {
+    fn hash(this) -> u64
+}
+
+trait Bar {
+    fn bar(mut this)
+}
+
+
+// implementation on a struct
+struct S implements(Hashable, Bar) {
+    fn hash(this) => 100u64
+    fn bar(mut this) {
+        println("S::bar")
+    }
+}
+
+enum Baz implements(Hashable) {
+    Foo
+    Bar
+
+    fn hash(this) -> u64 => match this {
+        Foo => 44u64
+        Bar => 100u64
+    }
+}
+
+// implementing traits for builtin types can be done
+// through a newtype pattern.
+struct U64Hash implements(Hashable) {
+    value: u64
+
+    fn hash(this) -> u64 => .value
+}
+
+// trait requiremennt on function
+fn print_hash<T requires(Hashable)>(anon value: T) {
+    println("{}", value.hash())
+}
+
+fn main() {
+    print_hash(S())
+    print_hash(U64Hash(value: 69u64))
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (line_comment)
+  (trait_declaration
+    (trait_identifier)
+    (field_declaration_list
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type))))
+  (trait_declaration
+    (trait_identifier)
+    (field_declaration_list
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference))))))
+  (line_comment)
+  (struct_declaration
+    (type_identifier)
+    (trait_identifier)
+    (trait_identifier)
+    (field_declaration_list
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (return_expression
+          (integer_literal)))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))))))))
+  (enum_declaration
+    (type_identifier)
+    (trait_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))
+      (enum_method_variant
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (return_expression
+          (match_expression
+            (this_reference)
+            (match_block
+              (match_arm
+                (match_pattern
+                  (identifier))
+                (integer_literal))
+              (match_arm
+                (match_pattern
+                  (identifier))
+                (integer_literal))))))))
+  (line_comment)
+  (line_comment)
+  (struct_declaration
+    (type_identifier)
+    (trait_identifier)
+    (field_declaration_list
+      (field_declaration
+        (field_identifier)
+        (primitive_type))
+      (function_declaration
+        (identifier)
+        (parameters
+          (this_parameter
+            (this_reference)))
+        (primitive_type)
+        (return_expression
+          (this_reference_shorthand
+            (identifier))))))
+  (line_comment)
+  (function_declaration
+    (trait_requirement
+      (identifier)
+      (trait_identifier)
+      (trait_identifier))
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (type_identifier)))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (call_expression
+              (identifier)
+              (arguments)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (identifier)
+                  (integer_literal))))))))))

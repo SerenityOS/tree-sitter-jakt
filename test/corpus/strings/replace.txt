@@ -1,8 +1,11 @@
 ================================================================================
-Strings hello darkness my old friend
+Strings Replace ID=48DF4EY
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "Hello friends\n"
+
+fn main() {
     let original: String = "Hello darkness"
     let corrected = original.replace(replace: "darkness", with: "friends")
     println("{}", corrected);
@@ -11,6 +14,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

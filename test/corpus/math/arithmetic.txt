@@ -1,38 +1,90 @@
 ================================================================================
-Math arithmetic
+Math Arithmetic ID=4PDGYDS
 ================================================================================
 
-let a = 123 + 10
-let b = 123 - 10
-let c = 123 * 10
-let d = 123 / 10
-let e = 123 % 10
+/// Expect:
+/// - output: "133\n113\n1230\n12\n3\n"
+
+fn main() {
+    let a = 123 + 10
+    let b = 123 - 10
+    let c = 123 * 10
+    let d = 123 / 10
+    let e = 123 % 10
+
+    println("{}", a)
+    println("{}", b)
+    println("{}", c)
+    println("{}", d)
+    println("{}", e)
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (let_declaration
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (binary_expression
-      (integer_literal)
-      (integer_literal)))
-  (let_declaration
-    (identifier)
-    (binary_expression
-      (integer_literal)
-      (integer_literal)))
-  (let_declaration
-    (identifier)
-    (binary_expression
-      (integer_literal)
-      (integer_literal)))
-  (let_declaration
-    (identifier)
-    (binary_expression
-      (integer_literal)
-      (integer_literal)))
-  (let_declaration
-    (identifier)
-    (binary_expression
-      (integer_literal)
-      (integer_literal))))
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (binary_expression
+          (integer_literal)
+          (integer_literal)))
+      (let_declaration
+        (identifier)
+        (binary_expression
+          (integer_literal)
+          (integer_literal)))
+      (let_declaration
+        (identifier)
+        (binary_expression
+          (integer_literal)
+          (integer_literal)))
+      (let_declaration
+        (identifier)
+        (binary_expression
+          (integer_literal)
+          (integer_literal)))
+      (let_declaration
+        (identifier)
+        (binary_expression
+          (integer_literal)
+          (integer_literal)))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

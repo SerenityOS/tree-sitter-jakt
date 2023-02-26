@@ -1,0 +1,28 @@
+================================================================================
+Optional Invalid Unwrap ID=SLYQDDX
+================================================================================
+
+/// Expect:
+/// - error: "Forced unwrap only works on Optional\n"
+
+fn main() {
+    let foo = 123
+    let bar = foo!
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (let_declaration
+        (identifier)
+        (optional_value_expression
+          (identifier))))))

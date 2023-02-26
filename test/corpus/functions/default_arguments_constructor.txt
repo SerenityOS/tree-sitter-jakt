@@ -1,0 +1,24 @@
+; ================================================================================
+; NOT IMPLEMENTED Functions Default Arguments Constructor ID=5JLN7DF
+; ================================================================================
+; 
+; /// Expect:
+; /// - output: "0, 0\n"
+; 
+; class Point {
+;     public x: i64
+;     public y: i64
+; 
+;     public fn make(x: i64 = 0, y: i64 = 0) throws -> Point {
+;         return Point(x, y)
+;     }
+; }
+; 
+; fn main() {
+;     let p = Point::make()
+;     println("{}, {}", p.x, p.y)
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

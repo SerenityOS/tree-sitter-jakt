@@ -1,0 +1,33 @@
+================================================================================
+Math Increment Decrement Bad ID=IYDJRZU
+================================================================================
+
+/// Expect:
+/// - error: "Increment/decrement of immutable variable"
+
+fn main() {
+    let x = 10
+
+    println("{}", ++x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (update_expression
+              (identifier))))))))

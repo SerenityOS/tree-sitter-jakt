@@ -1,27 +1,114 @@
-; ================================================================================
-; Enum with underlying type #1
-; ================================================================================
-;
-; enum CuteLittleEnum: u64 {
-;     A = 1
-;     B
-;     C = 69
-; }
-;
-; --------------------------------------------------------------------------------
-;
-; (source_file)
+================================================================================
+Enums Underlying ID=MUE7N6J
+================================================================================
 
-; ================================================================================
-; Enum with underlying type #2
-; ================================================================================
-;
-; enum CuterLittlerEnum: u32 {
-;     A
-;     B
-;     C
-; }
-;
-; --------------------------------------------------------------------------------
-;
-; (source_file)
+/// Expect:
+/// - output: "A = 1, B = 2, C = 69\nA = 0, B = 1, C = 2\n"
+
+enum CuteLittleEnum: u64 {
+    A = 1
+    B
+    C = 69
+}
+
+enum CuterLittlerEnum: u32 {
+    A
+    B
+    C
+}
+
+fn main() throws -> c_int {
+    println("A = {}, B = {}, C = {}",
+        CuteLittleEnum::A as! u64,
+        CuteLittleEnum::B as! u64,
+        CuteLittleEnum::C as! u64)
+    println("A = {}, B = {}, C = {}",
+        CuterLittlerEnum::A as! u32,
+        CuterLittlerEnum::B as! u32,
+        CuterLittlerEnum::C as! u32)
+    return 0
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (enum_declaration
+    (enum_integral_type
+      (identifier)
+      (primitive_type))
+    (enum_variant_list
+      (enum_variant
+        (identifier)
+        (integer_literal))
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier)
+        (integer_literal))))
+  (enum_declaration
+    (enum_integral_type
+      (identifier)
+      (primitive_type))
+    (enum_variant_list
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))
+      (enum_variant
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (primitive_type)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (type_conversion_expression
+              (namespace_scope_expression
+                (scoped_identifier)
+                (field_identifier))
+              (primitive_type)))
+          (argument
+            (type_conversion_expression
+              (namespace_scope_expression
+                (scoped_identifier)
+                (field_identifier))
+              (primitive_type)))
+          (argument
+            (type_conversion_expression
+              (namespace_scope_expression
+                (scoped_identifier)
+                (field_identifier))
+              (primitive_type)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (type_conversion_expression
+              (namespace_scope_expression
+                (scoped_identifier)
+                (field_identifier))
+              (primitive_type)))
+          (argument
+            (type_conversion_expression
+              (namespace_scope_expression
+                (scoped_identifier)
+                (field_identifier))
+              (primitive_type)))
+          (argument
+            (type_conversion_expression
+              (namespace_scope_expression
+                (scoped_identifier)
+                (field_identifier))
+              (primitive_type)))))
+      (return_statement
+        (integer_literal)))))

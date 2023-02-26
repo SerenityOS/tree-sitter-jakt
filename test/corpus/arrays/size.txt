@@ -1,8 +1,11 @@
 ================================================================================
-Arrays size
+Arrays Size ID=W2H6I3K
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "4\n"
+
+fn main() {
     let vec = [1, 2, 3, 4]
 
     println("{}", vec.size())
@@ -11,6 +14,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

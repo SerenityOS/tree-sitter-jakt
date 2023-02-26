@@ -1,0 +1,44 @@
+================================================================================
+References No Mutable Reference To Immutable Binding ID=QWMZDO1
+================================================================================
+
+/// Expect:
+/// - error: "Cannot make mutable reference to immutable value"
+
+fn foo(anon x: &mut i64) {
+}
+
+fn main() {
+    let i = 0
+    foo(&mut i)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (anonymous_specifier)
+        (identifier)
+        (reference_type
+          (mutable_specifier)
+          (primitive_type))))
+    (block))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (pointer_expression
+              (mutable_specifier)
+              (identifier))))))))

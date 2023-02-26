@@ -1,16 +1,21 @@
 ================================================================================
-Modules basic modules
+Modules Basic Modules ID=DKWDBWS
 ================================================================================
+
+/// Expect:
+/// - output: "not_cool\n"
 
 import b
 
-function main() {
+fn main() {
     b::not_cool()
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (import_statement
     (identifier))
   (function_declaration

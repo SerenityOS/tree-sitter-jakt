@@ -1,0 +1,36 @@
+================================================================================
+Modules Subfolder Submodule ID=F00OXJG
+================================================================================
+
+/// Expect: Skip
+
+import extern "Hello.h" {
+    extern fn get_hello() -> String
+
+    extern class Printer {
+        public fn print_something() -> void
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (import_statement
+    (extern_specifier)
+    (cpp_header_identfier)
+    (import_block
+      (extern_function_declaration
+        (extern_specifier)
+        (identifier)
+        (parameters)
+        (primitive_type))
+      (extern_class_declaration
+        (extern_specifier)
+        (type_identifier)
+        (field_declaration_list
+          (function_declaration
+            (visibility_specifier)
+            (identifier)
+            (parameters)
+            (primitive_type)))))))

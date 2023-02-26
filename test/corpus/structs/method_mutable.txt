@@ -1,20 +1,23 @@
 ================================================================================
-Structs mutable method
+Structs Method Mutable ID=10PII2G
 ================================================================================
+
+/// Expect:
+/// - output: "128\n"
 
 struct Rectangle {
     width: i64,
     height: i64,
 
-    function grow(mut this) {
+    fn grow(mut this) {
         this.width *= 2;
         this.height *= 2;
     }
 
-    function area(this) => this.width * this.height
+    fn area(this) -> i64 => this.width * this.height
 }
 
-function main() {
+fn main() {
     mut rect = Rectangle(width: 4, height: 8)
 
     rect.grow()
@@ -25,6 +28,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list
@@ -56,6 +61,7 @@ function main() {
         (parameters
           (this_parameter
             (this_reference)))
+        (primitive_type)
         (return_expression
           (binary_expression
             (field_expression

@@ -1,8 +1,11 @@
 ================================================================================
-Arrays lvalue
+Arrays Lvalue ID=OR0XBTL
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "55\n"
+
+fn main() {
     mut x = [1, 2, 3]
     x[1] = 55
 
@@ -12,6 +15,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

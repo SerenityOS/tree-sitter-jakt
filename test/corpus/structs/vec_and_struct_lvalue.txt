@@ -1,13 +1,16 @@
 ================================================================================
-Structs lvalue struct vector
+Structs Vec And Struct Lvalue ID=09ZVSBJ
 ================================================================================
+
+/// Expect:
+/// - output: "Jane\nfoobar\n"
 
 struct Person {
     name: String
     age: i64
 }
 
-function main() {
+fn main() {
     mut arr = [
         Person(name: "Jane", age: 100), 
         Person(name: "Björn", age: 200)
@@ -22,95 +25,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (struct_declaration
-    (type_identifier)
-    (field_declaration_list
-      (field_declaration
-        (field_identifier)
-        (primitive_type))
-      (field_declaration
-        (field_identifier)
-        (primitive_type))))
-  (function_declaration
-    (identifier)
-    (parameters)
-    (block
-      (mutable_declaration
-        (mutable_specifier)
-        (identifier)
-        (array_literal
-          (call_expression
-            (identifier)
-            (arguments
-              (argument
-                (identifier)
-                (string_literal))
-              (argument
-                (identifier)
-                (integer_literal))))
-          (call_expression
-            (identifier)
-            (arguments
-              (argument
-                (identifier)
-                (string_literal))
-              (argument
-                (identifier)
-                (integer_literal))))))
-      (assignment_expression
-        (field_expression
-          (array_expression
-            (identifier)
-            (integer_literal))
-          (field_identifier))
-        (string_literal))
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (field_expression
-              (array_expression
-                (identifier)
-                (integer_literal))
-              (field_identifier)))))
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (field_expression
-              (array_expression
-                (identifier)
-                (integer_literal))
-              (field_identifier))))))))
-
-================================================================================
-Structs lvalue struct vector (no commas)
-================================================================================
-
-struct Person {
-    name: String
-    age: i64
-}
-
-function main() {
-    mut arr = [
-        Person(name: "Jane" age: 100) 
-        Person(name: "Björn" age: 200)
-    ]
-
-    arr[1].name = "foobar";
-
-    println("{}" arr[0].name)
-    println("{}" arr[1].name)
-}
-
---------------------------------------------------------------------------------
-
-(source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list

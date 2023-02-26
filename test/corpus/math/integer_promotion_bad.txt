@@ -1,0 +1,24 @@
+================================================================================
+Math Integer Promotion Bad ID=3T6I3YG
+================================================================================
+
+/// Expect:
+/// - error: "Integer promotion failed"
+
+fn main() {
+    let a: i16 = 64000
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (integer_literal)))))

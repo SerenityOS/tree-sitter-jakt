@@ -1,0 +1,32 @@
+================================================================================
+Enums Empty Enum ID=R0XQD1H
+================================================================================
+
+/// Expect:
+/// - error: "Empty enums are not allowed"
+
+enum Foo {
+    fn oops(mut this) { }
+}
+
+fn main() { }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_method_variant
+        (identifier)
+        (parameters
+          (this_parameter
+            (mutable_specifier)
+            (this_reference)))
+        (block))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block)))

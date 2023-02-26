@@ -1,17 +1,20 @@
 ================================================================================
-Imports extern cpp
+Imports Import Extern Cpp ID=V85YTVM
 ================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
 
 import extern "vector" {
     namespace std {
         extern struct vector<T> {
-            function vector<T>() -> vector<T>
-            function empty(this) -> bool
+            fn vector<T>() -> vector<T>
+            fn empty(this) -> bool
         }
     }
 }
 
-function main() {
+fn main() {
     let v = std::vector<i32>()
     if v.empty() {
         println("PASS")
@@ -21,6 +24,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (import_statement
     (extern_specifier)
     (cpp_header_identfier)
@@ -33,18 +38,18 @@ function main() {
             (generic_type
               (identifier)
               (generic_arguments
-                (type_identifier)))
+                (generic_type_identifier)))
             (field_declaration_list
               (generic_function_declaration
                 (generic_type
                   (identifier)
                   (generic_arguments
-                    (type_identifier)))
+                    (generic_type_identifier)))
                 (parameters)
                 (generic_type
                   (identifier)
                   (generic_arguments
-                    (type_identifier))))
+                    (generic_type_identifier))))
               (function_declaration
                 (identifier)
                 (parameters

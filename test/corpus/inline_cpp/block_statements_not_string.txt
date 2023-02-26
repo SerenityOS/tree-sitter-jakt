@@ -1,0 +1,31 @@
+================================================================================
+Inline Cpp Block Statements Not String ID=UYP8T1D
+================================================================================
+
+/// Expect:
+/// - error: "Expected block of strings\n"
+
+fn main() {
+    unsafe {
+        cpp {
+            foo()
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (unsafe_block
+        (cpp_block
+          (MISSING "}"))
+        (call_expression
+          (identifier)
+          (arguments)))))
+  (ERROR))

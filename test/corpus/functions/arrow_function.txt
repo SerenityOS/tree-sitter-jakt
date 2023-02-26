@@ -1,12 +1,28 @@
 ================================================================================
-Arrow function
+Functions Arrow Function ID=OEIITAW
 ================================================================================
 
-function area(width: i64, height: i64) => width * height
+/// Expect:
+/// - output: "50\nHello, friends!\n"
+
+fn area(width: i64, height: i64) => width * height
+fn greeting(name: String) throws -> String => format("Hello, {}!", name)
+fn greet(name: String) throws {
+    println("{}", greeting(name))
+} 
+
+fn main() {
+    let a = area(width: 5, height: 10)
+    println("{}", a)
+
+    greet(name: "friends")
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters
@@ -19,17 +35,7 @@ function area(width: i64, height: i64) => width * height
     (return_expression
       (binary_expression
         (identifier)
-        (identifier)))))
-
-================================================================================
-Arrow function with return
-================================================================================
-
-function greeting(name: String) throws -> String => format("Hello, {}!", name)
-
---------------------------------------------------------------------------------
-
-(source_file
+        (identifier))))
   (function_declaration
     (identifier)
     (parameters
@@ -45,4 +51,51 @@ function greeting(name: String) throws -> String => format("Hello, {}!", name)
           (argument
             (string_literal))
           (argument
-            (identifier)))))))
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (throws_specifier)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (identifier)))))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal))
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (string_literal)))))))

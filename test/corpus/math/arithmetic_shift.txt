@@ -1,8 +1,11 @@
 ================================================================================
-Math arithmetic shift operators
+Math Arithmetic Shift ID=CN7Y7IZ
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "-50\n-200\n"
+
+fn main() {
     let x: i64 = -100
 
     println("{}", x >>> 1)
@@ -12,6 +15,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

@@ -1,8 +1,11 @@
 ================================================================================
-Dictionaries contains
+Dictionaries Contains ID=M9FOK6D
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "true\nfalse\n"
+
+fn main() {
     let dict = ["a": 1, "b": 2]
     println("{}", dict.contains("b"))
     println("{}", dict.contains("c"))
@@ -11,6 +14,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

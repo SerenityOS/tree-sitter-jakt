@@ -1,8 +1,11 @@
 ================================================================================
-Control flow loop
+Control Flow Loop ID=ES1WVPS
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "0\n1\n2\n3\n4\n"
+
+fn main() {
     mut i = 0
     loop {
         if i == 5 {
@@ -16,6 +19,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

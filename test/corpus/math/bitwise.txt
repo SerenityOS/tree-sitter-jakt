@@ -1,8 +1,11 @@
 ================================================================================
-Math bitwise
+Math Bitwise ID=NFHYNDW
 ================================================================================
 
-function check(anon a: i64, anon b: i64) -> i64 {
+/// Expect:
+/// - output: "No error\n"
+
+fn check(anon a: i64, anon b: i64) -> i64 {
     if a != b {
         println("Not equal!")
         println("{}", a)
@@ -12,7 +15,7 @@ function check(anon a: i64, anon b: i64) -> i64 {
     return 0
 }
 
-function main() {
+fn main() {
     mut errors = 0
 
     mut a = 1
@@ -41,6 +44,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters

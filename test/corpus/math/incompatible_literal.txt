@@ -1,0 +1,69 @@
+================================================================================
+Math Incompatible Literal ID=7QDA3VN
+================================================================================
+
+/// Expect:
+/// - error: "Binary arithmetic operation between incompatible types (‘u8’ and ‘u16’)\n"
+
+fn main() {
+    let x: u8 = 12;
+    let y: u16 = 34;
+    println("{}", x + y);
+    println("{}", x - y);
+    println("{}", x * y);
+    println("{}", x / y);
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (integer_literal))
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (binary_expression
+              (identifier)
+              (identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (binary_expression
+              (identifier)
+              (identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (binary_expression
+              (identifier)
+              (identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (binary_expression
+              (identifier)
+              (identifier))))))))

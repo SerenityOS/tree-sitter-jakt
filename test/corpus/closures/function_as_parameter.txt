@@ -1,18 +1,23 @@
 ================================================================================
-Closures function as parameter
+Closures Function As Parameter ID=LWANAP8
 ================================================================================
 
-function hello(anon who: function() -> String) {
+/// Expect:
+/// - output: "well, hello friends.\n"
+
+fn hello(anon who: fn() -> String) {
     println("well, hello {}", who())
 }
 
-function main() {
-    hello(function() => "friends.")
+fn main() {
+    hello(fn() => "friends.")
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters

@@ -1,0 +1,50 @@
+================================================================================
+References Reference Write Through ID=IG6JWKY
+================================================================================
+
+/// Expect:
+/// - error: "Attempt to rebind a reference will result in write-through\n"
+
+fn main() {
+    let i = 0
+    mut ref = &i
+    {
+        let x = 1
+        ref = &x
+    }
+    println("{}", *ref)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (pointer_expression
+          (identifier)))
+      (block
+        (let_declaration
+          (identifier)
+          (integer_literal))
+        (assignment_expression
+          (identifier)
+          (pointer_expression
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (pointer_expression
+              (identifier))))))))

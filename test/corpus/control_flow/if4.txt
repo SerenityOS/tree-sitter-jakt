@@ -1,8 +1,11 @@
 ================================================================================
-Control flow if else if
+Control Flow If4 ID=W5Y33VE
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "it is 80\n"
+
+fn main() {
     let x: i64 = 80;
 
     if x == 100 {
@@ -15,6 +18,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

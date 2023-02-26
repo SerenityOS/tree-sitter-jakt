@@ -1,10 +1,27 @@
 ================================================================================
-This is a comment
+Basics Comments ID=X5GMQQC
 ================================================================================
 
-// This is a comment
+/// Expect:
+/// - output: "hello\n"
+
+fn main() {
+    // This is a comment
+    println("hello")
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (line_comment))
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (line_comment)
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal)))))))

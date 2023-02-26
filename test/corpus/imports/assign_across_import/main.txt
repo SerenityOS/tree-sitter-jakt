@@ -1,10 +1,12 @@
 ================================================================================
-Import assign across import
+Imports Assign Across Import Main ID=ZUWB2HH
 ================================================================================
 
+/// Expect:
+/// - output: ""
 import helper { S }
 
-function main() {
+fn main() {
     mut s = S(value: None)
     // String? is not instantiated in the current module
     // but was in the helper. Let's see if typechecker
@@ -16,6 +18,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (import_statement
     (identifier)
     (import_block

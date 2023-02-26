@@ -1,12 +1,15 @@
 ================================================================================
-Enums is variant binding compound middle
+Enums Is Variant Binding Compound Middle ID=TQHMVE8
 ================================================================================
+
+/// Expect:
+/// - output: "PASS\n"
 
 enum Foo {
     Bar(i64)
 }
 
-function main() {
+fn main() {
     let foo = Foo::Bar(5)
     let bar = Foo::Bar(7)
 
@@ -18,6 +21,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (type_identifier)
     (enum_variant_list
@@ -45,33 +50,33 @@ function main() {
             (argument
               (integer_literal)))))
       (if_statement
-        (logical_expression
+        (binary_expression
           (binary_expression
-            (integer_literal)
-            (integer_literal))
-          (logical_expression
-            (is_expression
-              (identifier)
-              (call_expression
-                (identifier)
-                (arguments
-                  (argument
-                    (identifier)))))
-            (logical_expression
-              (is_expression
+            (binary_expression
+              (binary_expression
+                (binary_expression
+                  (integer_literal)
+                  (integer_literal))
+                (binary_expression
+                  (identifier)
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (argument
+                        (identifier))))))
+              (binary_expression
                 (identifier)
                 (call_expression
                   (identifier)
                   (arguments
                     (argument
-                      (identifier)))))
-              (logical_expression
-                (binary_expression
-                  (identifier)
-                  (identifier))
-                (binary_expression
-                  (integer_literal)
-                  (integer_literal))))))
+                      (identifier))))))
+            (binary_expression
+              (identifier)
+              (identifier)))
+          (binary_expression
+            (integer_literal)
+            (integer_literal)))
         (block
           (call_expression
             (identifier)

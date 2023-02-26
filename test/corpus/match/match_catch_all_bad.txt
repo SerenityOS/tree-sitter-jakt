@@ -1,0 +1,49 @@
+================================================================================
+Match Match Catch All Bad ID=R0KI5ZI
+================================================================================
+
+/// Expect:
+/// - error: "Multiple catch-all cases in match are not allowed\n"
+
+enum Foo {
+    A
+}
+
+fn main() {
+    let x = Foo::A()
+    match x {
+        else => 1
+        else => 2
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_variant
+        (identifier))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments)))
+      (match_expression
+        (identifier)
+        (match_block
+          (ERROR
+            (match_arm
+              (match_else)
+              (integer_literal)))
+          (match_arm
+            (match_else)
+            (integer_literal)))))))

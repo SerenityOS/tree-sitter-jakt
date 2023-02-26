@@ -1,18 +1,21 @@
 ================================================================================
-Structs this dot method shorthand
+Structs This Dot Shorthand Method ID=M8TFZZG
 ================================================================================
+
+/// Expect:
+/// - output: "300\n"
 
 struct Size {
     width: i64
     height: i64
 
-    function area(this) => .width * .height
+    fn area(this) -> i64 => .width * .height
 
-    function volume(this) => .area() * 10
+    fn volume(this) -> i64 => .area() * 10
 }
 
 
-function main() {
+fn main() {
     let s = Size(width: 5, height: 6)
     println("{}", s.volume())
 }
@@ -20,6 +23,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list
@@ -34,6 +39,7 @@ function main() {
         (parameters
           (this_parameter
             (this_reference)))
+        (primitive_type)
         (return_expression
           (binary_expression
             (this_reference_shorthand
@@ -45,6 +51,7 @@ function main() {
         (parameters
           (this_parameter
             (this_reference)))
+        (primitive_type)
         (return_expression
           (binary_expression
             (call_expression

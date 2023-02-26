@@ -1,35 +1,46 @@
 ================================================================================
-Variables blocks and scopes
+Variables Blocks And Scopes ID=1GNNZWC
 ================================================================================
 
-let x = 10
-{
-    let x = 20
+/// Expect:
+/// - output: "20\n10\n"
+
+fn main() {
+    let x = 10
+    {
+        let x = 20
+        println("{}", x)
+    }
     println("{}", x)
 }
-println("{}", x)
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (let_declaration
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (integer_literal))
-  (block
-    (let_declaration
-      (identifier)
-      (integer_literal))
-    (call_expression
-      (identifier)
-      (arguments
-        (argument
-          (string_literal))
-        (argument
-          (identifier)))))
-  (call_expression
-    (identifier)
-    (arguments
-      (argument
-        (string_literal))
-      (argument
-        (identifier)))))
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (block
+        (let_declaration
+          (identifier)
+          (integer_literal))
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (string_literal))
+            (argument
+              (identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

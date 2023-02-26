@@ -1,50 +1,61 @@
 ================================================================================
-String type methods
+Strings Length And Is Empty ID=S1Z1VWG
 ================================================================================
 
-let x = "Well, hello friends"
+/// Expect:
+/// - output: "19\nfalse\ntrue\n"
 
-println("{}", x.length())
-println("{}", x.is_empty())
+fn main() {
+    let x = "Well, hello friends"
 
-println("{}", "".is_empty())
+    println("{}", x.length())
+    println("{}", x.is_empty())
+
+    println("{}", "".is_empty())
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (let_declaration
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (string_literal))
-  (call_expression
-    (identifier)
-    (arguments
-      (argument
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
         (string_literal))
-      (argument
-        (call_expression
-          (field_expression
-            (identifier)
-            (field_identifier))
-          (arguments)))))
-  (call_expression
-    (identifier)
-    (arguments
-      (argument
-        (string_literal))
-      (argument
-        (call_expression
-          (field_expression
-            (identifier)
-            (field_identifier))
-          (arguments)))))
-  (call_expression
-    (identifier)
-    (arguments
-      (argument
-        (string_literal))
-      (argument
-        (call_expression
-          (field_expression
-            (string_literal)
-            (field_identifier))
-          (arguments))))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (string_literal)
+                (field_identifier))
+              (arguments))))))))

@@ -1,16 +1,51 @@
 ================================================================================
-Basics octal literals
+Basics Octal Literals ID=BX5WEE5
 ================================================================================
 
-0o11
-0o1401
-0o623_5126
-0o777777777_77777
+/// Expect:
+/// - output: "9\n769\n1653334\n4398046511103\n"
+
+fn main() {
+    println("{}", 0o11)
+    println("{}", 0o1401)
+    println("{}", 0o623_5126)
+    println("{}", 0o777777777_77777)
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (integer_literal)
-  (integer_literal)
-  (integer_literal)
-  (integer_literal))
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (integer_literal)))))))

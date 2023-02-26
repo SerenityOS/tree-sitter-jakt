@@ -1,0 +1,33 @@
+================================================================================
+Weak Reject Immutable Weak ID=7ZLSHE7
+================================================================================
+
+/// Expect:
+/// - error: "Weak reference must be mutable\n"
+
+class Foo {
+}
+
+fn main() {
+    let foo: weak Foo? = None
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (class_declaration
+    (type_identifier)
+    (field_declaration_list))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (type_identifier))
+      (assignment_expression
+        (optional_value_expression
+          (identifier))
+        (none_expression)))))

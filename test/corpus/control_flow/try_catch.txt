@@ -1,21 +1,46 @@
 ================================================================================
-Control flow try catch (helpers)
+Control Flow Try Catch ID=9G77SE9
 ================================================================================
 
-function notoss() throws -> i32 {
+/// Expect:
+/// - output: "Caught 1234\nCaught 6969\nCaught 5252\n"
+
+fn notoss() throws -> i32 {
     if not true {
         throw Error::from_errno(123456)
     }
     return 5
 }
 
-function toss(anon value: i32) throws {
+fn toss(anon value: i32) throws {
     throw Error::from_errno(value)
+}
+
+fn main() {
+    try toss(1234) catch error {
+        println("Caught {}", error.code())
+    }
+
+    try {
+        toss(6969)
+    } catch error {
+        println("Caught {}", error.code())
+    }
+
+    try {
+        notoss()
+        toss(5252)
+        println("FAIL")
+    } catch error {
+        println("Caught {}", error.code())
+    }
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)
@@ -23,7 +48,7 @@ function toss(anon value: i32) throws {
     (primitive_type)
     (block
       (if_statement
-        (logical_expression
+        (logical_not_expression
           (boolean_literal))
         (block
           (throw_statement
@@ -50,113 +75,75 @@ function toss(anon value: i32) throws {
           (field_identifier)
           (arguments
             (argument
-              (identifier))))))))
-
-================================================================================
-Control flow try catch 1
-================================================================================
-
-try toss(1234) catch error {
-    println("Caught {}", error.code())
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (try_statement
-    (call_expression
-      (identifier)
-      (arguments
-        (argument
-          (integer_literal))))
+              (identifier)))))))
+  (function_declaration
     (identifier)
+    (parameters)
     (block
-      (call_expression
+      (try_statement
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (integer_literal))))
         (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (call_expression
-              (field_expression
-                (identifier)
-                (field_identifier))
-              (arguments))))))))
-
-================================================================================
-Control flow try catch 2
-================================================================================
-
-try {
-    toss(6969)
-} catch error {
-    println("Caught {}", error.code())
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (try_statement
-    (block
-      (call_expression
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (call_expression
+                  (field_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments)))))))
+      (try_statement
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (integer_literal)))))
         (identifier)
-        (arguments
-          (argument
-            (integer_literal)))))
-    (identifier)
-    (block
-      (call_expression
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (call_expression
+                  (field_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments)))))))
+      (try_statement
+        (block
+          (call_expression
+            (identifier)
+            (arguments))
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (integer_literal))))
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))
         (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (call_expression
-              (field_expression
-                (identifier)
-                (field_identifier))
-              (arguments))))))))
-
-================================================================================
-Control flow try catch 2 (now with more call expressions)
-================================================================================
-
-try {
-    notoss()
-    toss(5252)
-    println("FAIL")
-} catch error {
-    println("Caught {}", error.code())
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (try_statement
-    (block
-      (call_expression
-        (identifier)
-        (arguments))
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (integer_literal))))
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (string_literal)))))
-    (identifier)
-    (block
-      (call_expression
-        (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (call_expression
-              (field_expression
-                (identifier)
-                (field_identifier))
-              (arguments))))))))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (call_expression
+                  (field_expression
+                    (identifier)
+                    (field_identifier))
+                  (arguments))))))))))

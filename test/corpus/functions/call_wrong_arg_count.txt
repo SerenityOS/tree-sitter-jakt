@@ -1,0 +1,45 @@
+================================================================================
+Functions Call Wrong Arg Count ID=JZNLGK9
+================================================================================
+
+/// Expect:
+/// - error: "Wrong number of arguments\n"
+
+fn foo(a: i32, b: i32, c: i32) {
+}
+
+fn main() {
+    foo(a: 1, b: 2)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters
+      (parameter
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (block))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (integer_literal))
+          (argument
+            (identifier)
+            (integer_literal)))))))

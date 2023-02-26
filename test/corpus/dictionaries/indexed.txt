@@ -1,8 +1,11 @@
 ================================================================================
-Dictionaries indexed
+Dictionaries Indexed ID=TLF3PX7
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "1\n"
+
+fn main() {
     let dict = ["a": 1, "b": 2]
 
     println("{}", dict["a"])
@@ -11,6 +14,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

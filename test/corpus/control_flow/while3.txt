@@ -1,27 +1,45 @@
 ================================================================================
-Control flow while 3
+Control Flow While3 ID=O46DZQ6
 ================================================================================
 
-while (x < 10) {
-    println("{}", x)
-    ++x
+/// Expect:
+/// - output: "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n"
+
+fn main() {
+    mut x: i64 = 0
+
+    while (x < 10) {
+        println("{}", x)
+        ++x
+    }
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (while_statement
-    (parenthesized_expression
-      (binary_expression
-        (identifier)
-        (integer_literal)))
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
     (block
-      (call_expression
+      (mutable_declaration
+        (mutable_specifier)
         (identifier)
-        (arguments
-          (argument
-            (string_literal))
-          (argument
-            (identifier))))
-      (update_expression
-        (identifier)))))
+        (primitive_type)
+        (integer_literal))
+      (while_statement
+        (parenthesized_expression
+          (binary_expression
+            (identifier)
+            (integer_literal)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (identifier))))
+          (update_expression
+            (identifier)))))))

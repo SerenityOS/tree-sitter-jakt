@@ -1,8 +1,11 @@
 ================================================================================
-Basics format
+Basics Format ID=3A4BV26
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "Hello friends 123\n"
+
+fn main() {
     let hello = "Hello"
     let friends = "friends"
     let number = 123
@@ -13,6 +16,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

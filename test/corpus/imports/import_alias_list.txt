@@ -1,16 +1,40 @@
 ================================================================================
-Import alias list
+Imports Import Alias List ID=R7SAE2W
 ================================================================================
 
+/// Expect:
+/// - output: "PASS\nPASS\n"
 import foo as baz { Bar, bar }
+
+fn main() {
+    bar()
+    println(Bar::foo())
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (import_statement
     (identifier)
     (import_as_clause)
     (identifier)
     (import_block
       (identifier)
-      (identifier))))
+      (identifier)))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (static_call_expression
+              (scoped_identifier)
+              (field_identifier)
+              (arguments))))))))

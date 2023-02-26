@@ -1,0 +1,161 @@
+================================================================================
+Match Match Default Binding ID=A997GHR
+================================================================================
+
+/// Expect:
+/// - output: "I found an A 1\nJust 2\n"
+
+enum Foo {
+    A(x: i64)
+    B
+    C(x: i64)
+}
+
+fn main() {
+    let a = Foo::A(x: 1)
+
+    match a {
+        A(x) => println("I found an A {}", x)
+        C(x) | B default(x = 2) => println("Just {}", x)
+    }
+
+    mut b = Foo::B
+
+    match b {
+        A(x) => println("I found an A {}", x)
+        C(&mut x) | B default(mut x = 2) => {
+            println("Just {}", x)
+            x = 42
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_struct_variant
+        (identifier)
+        (field_declaration
+          (field_identifier)
+          (primitive_type)))
+      (enum_variant
+        (identifier))
+      (enum_struct_variant
+        (identifier)
+        (field_declaration
+          (field_identifier)
+          (primitive_type)))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (match_expression
+        (identifier)
+        (match_block
+          (match_arm
+            (match_pattern
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (identifier)))))
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (string_literal))
+                (argument
+                  (identifier)))))
+          (match_arm
+            (match_pattern
+              (call_expression
+                (binary_expression
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (argument
+                        (identifier))))
+                  (identifier))
+                (ERROR
+                  (identifier))
+                (arguments
+                  (argument
+                    (assignment_expression
+                      (identifier)
+                      (integer_literal))))))
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (string_literal))
+                (argument
+                  (identifier)))))))
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (namespace_scope_expression
+          (scoped_identifier)
+          (field_identifier)))
+      (match_expression
+        (identifier)
+        (match_block
+          (match_arm
+            (match_pattern
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (identifier)))))
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (string_literal))
+                (argument
+                  (identifier)))))
+          (match_arm
+            (match_pattern
+              (call_expression
+                (binary_expression
+                  (call_expression
+                    (identifier)
+                    (arguments
+                      (argument
+                        (pointer_expression
+                          (mutable_specifier)
+                          (identifier)))))
+                  (identifier))
+                (ERROR
+                  (identifier))
+                (arguments
+                  (argument
+                    (identifier))
+                  (argument
+                    (assignment_expression
+                      (identifier)
+                      (integer_literal))))))
+            (block
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (string_literal))
+                  (argument
+                    (identifier))))
+              (assignment_expression
+                (identifier)
+                (integer_literal)))))))))

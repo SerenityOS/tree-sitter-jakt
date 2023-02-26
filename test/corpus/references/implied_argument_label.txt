@@ -1,14 +1,17 @@
 ================================================================================
-References implied argument label
+References Implied Argument Label ID=KLHMZEP
 ================================================================================
 
-function foo(a: &i64) {
+/// Expect:
+/// - output: "PASS\n"
+
+fn foo(a: &i64) {
 }
 
-function bar(b: &mut i64) {
+fn bar(b: &mut i64) {
 }
 
-function main() {
+fn main() {
     let a = 0
     foo(&a)
 
@@ -21,6 +24,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters

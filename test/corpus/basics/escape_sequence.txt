@@ -1,13 +1,38 @@
 ================================================================================
-Basics char escape sequence
+Basics Escape Sequence ID=16S6JIS
 ================================================================================
 
-let str_c: c_char = '\n'
+/// Expect:
+/// - output: "hello\nworld"
+
+fn main() {
+    let str_c: c_char = '\n'
+    print("hello{}", str_c)
+    print("world")
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (let_declaration
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (primitive_type)
-    (char_literal)))
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (primitive_type)
+        (char_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal)))))))

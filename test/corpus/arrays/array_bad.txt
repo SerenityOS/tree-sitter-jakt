@@ -1,0 +1,26 @@
+================================================================================
+Arrays Array Bad ID=VUKBIN0
+================================================================================
+
+/// Expect:
+/// - error: "Type 'String' does not match type 'i64' of previous values in array"
+
+fn main() {
+    let x = [1, "2", 3]
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (array_literal
+          (integer_literal)
+          (string_literal)
+          (integer_literal))))))

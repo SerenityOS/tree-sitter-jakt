@@ -1,18 +1,58 @@
 ================================================================================
-Function call with two args
+Functions Call With Two Args ID=4I4EMNN
 ================================================================================
 
-greet(msg: "Well", msg2: "hello friends.")
+/// Expect:
+/// - output: "Well\nhello friends.\n"
+
+fn greet(msg: String, msg2: String) {
+    println("{}", msg)
+    println("{}", msg2)
+}
+
+fn main() {
+    greet(msg: "Well", msg2: "hello friends.")
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (call_expression
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (arguments
-      (argument
+    (parameters
+      (parameter
         (identifier)
-        (string_literal))
-      (argument
+        (primitive_type))
+      (parameter
         (identifier)
-        (string_literal)))))
+        (primitive_type)))
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (identifier)
+            (string_literal))
+          (argument
+            (identifier)
+            (string_literal)))))))

@@ -1,8 +1,11 @@
 ================================================================================
-Control flow if with binary operator
+Control Flow If2 ID=RTVJ6VC
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "true\n"
+
+fn main() {
     let x: i64 = 100;
 
     if (x == 100) {
@@ -13,6 +16,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

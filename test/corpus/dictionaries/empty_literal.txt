@@ -1,8 +1,11 @@
 ================================================================================
-Dictionaries empty literal
+Dictionaries Empty Literal ID=EOIIM34
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "20\n"
+
+fn main() {
     mut dict: [String: [i64: i64]] = [:]
     dict.set(key: "a", value: [10: 20])
     println("{}", dict.get("a")!.get(10)!)
@@ -11,6 +14,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

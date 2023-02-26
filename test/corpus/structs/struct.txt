@@ -1,13 +1,16 @@
 ================================================================================
-Stricts basic struct
+Structs Struct ID=A5NE9NY
 ================================================================================
+
+/// Expect:
+/// - output: "Jane\n100\n"
 
 struct Person {
     name: String
     age: i64
 }
 
-function main() {
+fn main() {
     let p = Person(name: "Jane", age: 100)
 
     println("{}", p.name)
@@ -17,6 +20,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list

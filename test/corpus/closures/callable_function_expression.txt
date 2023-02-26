@@ -1,11 +1,14 @@
 ================================================================================
-Closures callable function expression
+Closures Callable Function Expression ID=KRR1GJA
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "1\n"
+
+fn main() {
     let a = match true {
-        true => function(x: i32) -> i32 => x
-        else => function(x: i32) -> i32 => x + 1
+        true => fn(x: i32) -> i32 => x
+        else => fn(x: i32) -> i32 => x + 1
     }
 
     println("{}", a(x: 1))
@@ -14,6 +17,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

@@ -1,0 +1,83 @@
+================================================================================
+Guard Is Guard No Leaks ID=UNW6X5I
+================================================================================
+
+/// Expect:
+/// - error: "Variable 'x' not found"
+
+enum Foo {
+    Bar(i64)
+}
+
+fn main() {
+    let foo = Foo::Bar(5)
+    let bar = Foo::Bar(7)
+
+    guard foo is Bar(x) and x > 10 else {
+        println("not matched: {}", x)
+        return 0
+    }
+
+    println("hello there: {}", x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (integer_literal)))))
+      (let_declaration
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (integer_literal)))))
+      (guard_statement
+        (binary_expression
+          (binary_expression
+            (identifier)
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (identifier)))))
+          (binary_expression
+            (identifier)
+            (integer_literal)))
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal))
+              (argument
+                (identifier))))
+          (return_statement
+            (integer_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

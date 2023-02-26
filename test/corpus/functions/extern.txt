@@ -1,8 +1,11 @@
 ================================================================================
-Functions extern
+Functions Extern ID=31IDSPK
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "Five plus ten = 15\n"
+
+fn main() {
     let s = String::number(5 + 10)
     println("Five plus ten = {}", s)
 }
@@ -10,6 +13,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

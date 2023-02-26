@@ -1,26 +1,32 @@
 ================================================================================
-Guard is guard compound matched
+Guard Is Guard Compound Matched ID=YQBI3IW
 ================================================================================
+
+/// Expect:
+/// - output: "hello there: 5\n"
 
 enum Foo {
     Bar(i64)
 }
 
-function main() {
+fn main() -> c_int {
     let foo = Foo::Bar(5)
     let bar = Foo::Bar(7)
 
     guard foo is Bar(x) and x < 10 else {
         println("not matched")
-        return -1
+        return 1
     }
 
     println("hello there: {}", x)
+    return 0
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (type_identifier)
     (enum_variant_list
@@ -30,6 +36,7 @@ function main() {
   (function_declaration
     (identifier)
     (parameters)
+    (primitive_type)
     (block
       (let_declaration
         (identifier)
@@ -48,8 +55,8 @@ function main() {
             (argument
               (integer_literal)))))
       (guard_statement
-        (logical_expression
-          (is_expression
+        (binary_expression
+          (binary_expression
             (identifier)
             (call_expression
               (identifier)
@@ -66,12 +73,13 @@ function main() {
               (argument
                 (string_literal))))
           (return_statement
-            (unary_expression
-              (integer_literal)))))
+            (integer_literal))))
       (call_expression
         (identifier)
         (arguments
           (argument
             (string_literal))
           (argument
-            (identifier)))))))
+            (identifier))))
+      (return_statement
+        (integer_literal)))))

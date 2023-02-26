@@ -1,13 +1,16 @@
 ================================================================================
-Match match yield after guard
+Match Match Yield After Guard ID=LJLM4H1
 ================================================================================
+
+/// Expect:
+/// - output: "3\n"
 
 enum Foo {
     Bar(id: i64)
     Baz
 }
 
-function main() {
+fn main() -> c_int {
     let a = Foo::Bar(id: 3)
 
     let b = match a {
@@ -22,11 +25,14 @@ function main() {
     }
 
     println("{}", b)
+    return 0
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (type_identifier)
     (enum_variant_list
@@ -40,6 +46,7 @@ function main() {
   (function_declaration
     (identifier)
     (parameters)
+    (primitive_type)
     (block
       (let_declaration
         (identifier)
@@ -81,4 +88,6 @@ function main() {
           (argument
             (string_literal))
           (argument
-            (identifier)))))))
+            (identifier))))
+      (return_statement
+        (integer_literal)))))

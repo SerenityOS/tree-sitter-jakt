@@ -1,15 +1,27 @@
 ================================================================================
-Classes class
+Classes Class ID=LPFL4BE
 ================================================================================
+
+/// Expect:
+/// - output: "Jane\n100\n"
 
 class Person {
     public name: String
     public age: i64
 }
 
+fn main() {
+    let p = Person(name: "Jane", age: 100)
+
+    println("{}", p.name)
+    println("{}", p.age)
+}
+
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (class_declaration
     (type_identifier)
     (field_declaration_list
@@ -20,4 +32,37 @@ class Person {
       (field_declaration
         (visibility_specifier)
         (field_identifier)
-        (primitive_type)))))
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (identifier)
+              (string_literal))
+            (argument
+              (identifier)
+              (integer_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier))))))))

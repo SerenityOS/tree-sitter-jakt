@@ -1,14 +1,17 @@
 ================================================================================
-Classes throwing method
+Classes Throwing Method ID=4VKLLTB
 ================================================================================
 
+/// Expect:
+/// - output: "PASS\n"
+
 class Foo {
-    public function toss(this) throws {
+    public fn toss(this) throws {
         throw Error::from_errno(0)
     }
 }
 
-function main() {
+fn main() {
     let foo = Foo()
     try foo.toss() catch error {
         println("PASS")
@@ -18,6 +21,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (class_declaration
     (type_identifier)
     (field_declaration_list

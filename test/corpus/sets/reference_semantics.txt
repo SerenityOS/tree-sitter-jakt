@@ -1,13 +1,16 @@
 ================================================================================
-Sets reference semantics
+Sets Reference Semantics ID=1PPLFT6
 ================================================================================
 
-function foo(mut set: {i64}) throws {
+/// Expect:
+/// - output: "5\n"
+
+fn foo(mut set: {i64}) throws {
     set.add(4)
     set.add(5)
 }
 
-function main() {
+fn main() {
     mut set = {1, 2, 3}
     foo(set)
     println("{}", set.size());
@@ -16,6 +19,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters

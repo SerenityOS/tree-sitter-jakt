@@ -1,54 +1,65 @@
 ================================================================================
-String builder
+Strings String Builder ID=YUOST9D
 ================================================================================
 
-mut s = StringBuilder::create()
+/// Expect:
+/// - output: "abc123\n"
 
-s.append_c_string("abc".c_string());
-s.append_c_string("123".c_string());
+fn main() {
+    mut s = StringBuilder::create()
 
-println("{}", s.to_string())
+    s.append_c_string("abc".c_string());
+    s.append_c_string("123".c_string());
+
+    println("{}", s.to_string())
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (mutable_declaration
-    (mutable_specifier)
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (static_call_expression
-      (scoped_identifier)
-      (field_identifier)
-      (arguments)))
-  (call_expression
-    (field_expression
-      (identifier)
-      (field_identifier))
-    (arguments
-      (argument
-        (call_expression
-          (field_expression
-            (string_literal)
-            (field_identifier))
-          (arguments)))))
-  (call_expression
-    (field_expression
-      (identifier)
-      (field_identifier))
-    (arguments
-      (argument
-        (call_expression
-          (field_expression
-            (string_literal)
-            (field_identifier))
-          (arguments)))))
-  (call_expression
-    (identifier)
-    (arguments
-      (argument
-        (string_literal))
-      (argument
-        (call_expression
-          (field_expression
-            (identifier)
-            (field_identifier))
-          (arguments))))))
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments)))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (call_expression
+              (field_expression
+                (string_literal)
+                (field_identifier))
+              (arguments)))))
+      (call_expression
+        (field_expression
+          (identifier)
+          (field_identifier))
+        (arguments
+          (argument
+            (call_expression
+              (field_expression
+                (string_literal)
+                (field_identifier))
+              (arguments)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (call_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (arguments))))))))

@@ -1,16 +1,51 @@
 ================================================================================
-Binary literal
+Basics Binary Literals ID=XH077LW
 ================================================================================
 
-0b10000000
-0b111
-0b11111111111110101
-0b0101_0101_0101_0101
+/// Expect:
+/// - output: "128\n7\n131061\n21845\n"
+
+fn main() {
+    println("{}", 0b10000000)
+    println("{}", 0b111)
+    println("{}", 0b11111111111110101)
+    println("{}", 0b0101_0101_0101_0101)
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (binary_literal)
-  (binary_literal)
-  (binary_literal)
-  (binary_literal))
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (binary_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (binary_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (binary_literal))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (binary_literal)))))))

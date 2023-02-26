@@ -1,8 +1,11 @@
 ================================================================================
-Optional some
+Optional Some ID=5O6RQPM
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "5\n"
+
+fn main() {
     let i = Some(5)
     println("{}", i ?? 0)
 }
@@ -10,6 +13,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

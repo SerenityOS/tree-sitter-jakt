@@ -1,0 +1,39 @@
+================================================================================
+Control Flow If Else Identical Error ID=RH5DPRZ
+================================================================================
+
+/// Expect:
+/// - error: "if and else have identical blocks"
+
+fn main() {
+    if true {
+        println("hello")
+    } else {
+        println("hello")
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (if_statement
+        (boolean_literal)
+        (block
+          (call_expression
+            (identifier)
+            (arguments
+              (argument
+                (string_literal)))))
+        (else_clause
+          (block
+            (call_expression
+              (identifier)
+              (arguments
+                (argument
+                  (string_literal))))))))))

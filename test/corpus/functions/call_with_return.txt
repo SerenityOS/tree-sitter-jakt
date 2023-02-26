@@ -1,18 +1,23 @@
 ================================================================================
-Function call with return
+Functions Call With Return ID=BLBT38Y
 ================================================================================
 
-function greet() -> String {
+/// Expect:
+/// - output: "Well, hello friends.\n"
+
+fn greet() -> String {
     return "Well, hello friends."
 }
 
-function main() {
+fn main() {
     println("{}", greet())
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

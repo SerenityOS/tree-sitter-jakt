@@ -1,22 +1,25 @@
 ================================================================================
-Control flow try expression
+Control Flow Try Expression ID=1IQNY1Y
 ================================================================================
+
+/// Expect:
+/// - output: "123\nPASS\n"
 
 struct Foo {
     x: usize
 }
 
-function throw_for_fun() throws -> Foo {
+fn throw_for_fun() throws -> Foo {
     throw Error::from_errno(123)
 }
 
-function pretend_to_throw_for_fun() throws -> Foo {
+fn pretend_to_throw_for_fun() throws -> Foo {
     return Foo(x: 123)
 }
 
-function main() {
+fn main() -> c_int {
     println("{}", (try pretend_to_throw_for_fun())?.x)
-    try throw_for_fun() catch {
+    let foo = try throw_for_fun() catch {
         println("PASS")
         return 0
     }
@@ -28,6 +31,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list
@@ -63,6 +68,7 @@ function main() {
   (function_declaration
     (identifier)
     (parameters)
+    (primitive_type)
     (block
       (call_expression
         (identifier)
@@ -78,18 +84,21 @@ function main() {
                       (identifier)
                       (arguments)))))
               (field_identifier)))))
-      (try_statement
-        (call_expression
-          (identifier)
-          (arguments))
-        (block
+      (let_declaration
+        (identifier)
+        (try_expression
           (call_expression
             (identifier)
-            (arguments
-              (argument
-                (string_literal))))
-          (return_statement
-            (integer_literal))))
+            (arguments))))
+      (identifier)
+      (block
+        (call_expression
+          (identifier)
+          (arguments
+            (argument
+              (string_literal))))
+        (return_statement
+          (integer_literal)))
       (call_expression
         (identifier)
         (arguments

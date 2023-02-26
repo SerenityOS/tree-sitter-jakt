@@ -1,8 +1,11 @@
 ================================================================================
-Pointers raw pointer
+Pointers Raw Ptr ID=DTB7P1O
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "10\n"
+
+fn main() {
     let x = 10
     let y = &raw x
 
@@ -14,6 +17,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

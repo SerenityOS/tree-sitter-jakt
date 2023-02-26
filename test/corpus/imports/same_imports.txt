@@ -1,12 +1,15 @@
 ================================================================================
-Imports same imports
+Imports Same Imports ID=3IDFA2Z
 ================================================================================
+
+/// Expect:
+/// - output: "PASS\nPASS\n"
 
 // sanity check: importing twice should not exclude anything previously imported
 import foo { bar }
 import foo { Bar }
 
-function main() {
+fn main() {
     bar()
     println("{}", Bar::foo())
 }
@@ -14,6 +17,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (line_comment)
   (import_statement
     (identifier)

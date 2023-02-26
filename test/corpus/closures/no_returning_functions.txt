@@ -1,0 +1,33 @@
+================================================================================
+Closures No Returning Functions ID=PFVT76U
+================================================================================
+
+/// Expect:
+/// - error: "Returning a function is not currently supported\n"
+
+fn test() -> fn() -> void {
+    return fn() {}
+}
+
+fn main() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (closure_function_type
+      (parameters)
+      (primitive_type))
+    (block
+      (return_statement)
+      (closure_function
+        (parameters)
+        (block))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block)))

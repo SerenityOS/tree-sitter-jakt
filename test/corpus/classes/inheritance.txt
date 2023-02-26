@@ -1,9 +1,12 @@
 ================================================================================
-Classes inheritance
+Classes Inheritance ID=SZ71PUT
 ================================================================================
 
- class Parent {
-    public function greet(this) {
+/// Expect:
+/// - output: "I am the parent\n"
+
+class Parent {
+    public fn greet(this) {
         println("I am the parent")
     }
 }
@@ -11,7 +14,7 @@ Classes inheritance
 class Child: Parent {
 }
 
-function main() {
+fn main() {
     let child = Child()
     child.greet()
 }
@@ -19,6 +22,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (class_declaration
     (type_identifier)
     (field_declaration_list

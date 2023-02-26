@@ -1,0 +1,35 @@
+================================================================================
+Variables Var Redefinition ID=75TN8WR
+================================================================================
+
+/// Expect:
+/// - error: "Redefinition of variable ‘x’\n"
+
+fn main() {
+    let x = 10
+    let x = 20
+    println("{}", x)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier)))))))

@@ -1,12 +1,15 @@
 ================================================================================
-Enum methods!
+Enums Methods ID=D2YNG3A
 ================================================================================
+
+/// Expect:
+/// - output: "Foo's name is anon:1 and bar's name is Test!\n"
 
 enum Foo {
     Id(i32)
     Name(String)
 
-    private function name_impl(this) throws -> String? {
+    private fn name_impl(this) throws -> String? {
         match this {
             Name(name) => {
                 return name
@@ -17,12 +20,10 @@ enum Foo {
         }
     }
 
-    function name(this) throws {
-        return this.name_impl()
-    }
+    fn name(this) throws => this.name_impl()
 }
 
-function main() {
+fn main() {
     let foo = Foo::Id(1)
     let bar = Foo::Name("Test")
     println("Foo's name is {} and bar's name is {}!", foo.name(), bar.name())
@@ -31,6 +32,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (enum_declaration
     (type_identifier)
     (enum_variant_list
@@ -85,13 +88,12 @@ function main() {
           (this_parameter
             (this_reference)))
         (throws_specifier)
-        (block
-          (return_statement
-            (call_expression
-              (field_expression
-                (this_reference)
-                (field_identifier))
-              (arguments)))))))
+        (return_expression
+          (call_expression
+            (field_expression
+              (this_reference)
+              (field_identifier))
+            (arguments))))))
   (function_declaration
     (identifier)
     (parameters)

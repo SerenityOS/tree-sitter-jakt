@@ -1,10 +1,13 @@
 ================================================================================
-Arrays array iterator
+Arrays Array Iterator ID=HHKYI23
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "foo\nbar\nbaz\n"
+
+fn main() {
     let words = ["foo", "bar", "baz"]
-    for word in words.iterator() {
+    for word in words {
         println("{}", word)
     }
 }
@@ -12,6 +15,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)
@@ -24,11 +29,7 @@ function main() {
           (string_literal)))
       (for_expression
         (identifier)
-        (call_expression
-          (field_expression
-            (identifier)
-            (field_identifier))
-          (arguments))
+        (identifier)
         (block
           (call_expression
             (identifier)

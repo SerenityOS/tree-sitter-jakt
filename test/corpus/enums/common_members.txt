@@ -1,0 +1,178 @@
+================================================================================
+Enums Common Members ID=R9XMPCJ
+================================================================================
+
+/// Expect:
+/// - output: "You gave me a mild mustard that's not on sale, and expires tomorrow lol\n"
+
+enum Sauce {
+    expiry_date: String
+    on_sale: bool = false
+
+    Mustard(mild: bool)
+    Ketchup(spicy: bool)
+    Mayo(String)
+}
+
+fn gib_sauce() throws -> Sauce {
+    return Sauce::Mustard(expiry_date: "tomorrow lol", mild: true)
+}
+
+fn main() {
+    let sauce = gib_sauce()
+    let name = match sauce {
+        Mustard(mild) => format("{} mustard", match mild { true => "mild", else => "regular" })
+        Ketchup(spicy) => format("{} ketchup", match spicy { true => "spicy", else => "regular" })
+        Mayo(name) => format("{} mayo", name)
+    }
+    println(
+        "You gave me a {} that's {}on sale, and expires {}"
+        name
+        match sauce.on_sale { true => "", else => "not " }
+        sauce.expiry_date
+    )
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (enum_declaration
+    (type_identifier)
+    (enum_variant_list
+      (enum_field_declaration
+        (field_identifier)
+        (primitive_type))
+      (enum_field_declaration
+        (field_identifier)
+        (primitive_type)
+        (boolean_literal))
+      (enum_struct_variant
+        (identifier)
+        (field_declaration
+          (field_identifier)
+          (primitive_type)))
+      (enum_struct_variant
+        (identifier)
+        (field_declaration
+          (field_identifier)
+          (primitive_type)))
+      (enum_tuple_variant
+        (identifier)
+        (primitive_type))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (throws_specifier)
+    (type_identifier)
+    (block
+      (return_statement
+        (static_call_expression
+          (scoped_identifier)
+          (field_identifier)
+          (arguments
+            (argument
+              (identifier)
+              (string_literal))
+            (argument
+              (identifier)
+              (boolean_literal)))))))
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (identifier)
+          (arguments)))
+      (let_declaration
+        (identifier)
+        (match_expression
+          (identifier)
+          (match_block
+            (match_arm
+              (match_pattern
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (argument
+                      (identifier)))))
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (string_literal))
+                  (argument
+                    (match_expression
+                      (identifier)
+                      (match_block
+                        (match_arm
+                          (match_pattern
+                            (boolean_literal))
+                          (string_literal))
+                        (match_arm
+                          (match_else)
+                          (string_literal))))))))
+            (match_arm
+              (match_pattern
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (argument
+                      (identifier)))))
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (string_literal))
+                  (argument
+                    (match_expression
+                      (identifier)
+                      (match_block
+                        (match_arm
+                          (match_pattern
+                            (boolean_literal))
+                          (string_literal))
+                        (match_arm
+                          (match_else)
+                          (string_literal))))))))
+            (match_arm
+              (match_pattern
+                (call_expression
+                  (identifier)
+                  (arguments
+                    (argument
+                      (identifier)))))
+              (call_expression
+                (identifier)
+                (arguments
+                  (argument
+                    (string_literal))
+                  (argument
+                    (identifier))))))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (identifier))
+          (argument
+            (match_expression
+              (field_expression
+                (identifier)
+                (field_identifier))
+              (match_block
+                (match_arm
+                  (match_pattern
+                    (boolean_literal))
+                  (string_literal))
+                (match_arm
+                  (match_else)
+                  (string_literal)))))
+          (argument
+            (field_expression
+              (identifier)
+              (field_identifier))))))))

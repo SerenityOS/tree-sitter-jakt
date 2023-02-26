@@ -1,11 +1,14 @@
 ================================================================================
-Control flow for loop
+Control Flow For ID=DLA0D5N
 ================================================================================
 
-struct Countdown {
+/// Expect:
+/// - output: "10\n9\n8\n7\n6\n5\n4\n3\n2\n1\n0\n"
+
+struct Countdown implements(Iterable<i64>) {
     from: i64
 
-    function next(mut this) -> i64? {
+    fn next(mut this) -> i64? {
         if this.from == -1 {
             return None
         }
@@ -16,7 +19,7 @@ struct Countdown {
     }
 }
 
-function main() {
+fn main() {
     for x in Countdown(from: 10) {
         println("{}", x)
     }
@@ -25,8 +28,14 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
+    (generic_type
+      (identifier)
+      (generic_arguments
+        (primitive_type)))
     (field_declaration_list
       (field_declaration
         (field_identifier)
@@ -55,10 +64,10 @@ function main() {
             (field_expression
               (this_reference)
               (field_identifier)))
-          (field_expression
-            (update_expression
-              (identifier))
-            (field_identifier))
+          (update_expression
+            (field_expression
+              (this_reference)
+              (field_identifier)))
           (return_statement
             (identifier))))))
   (function_declaration

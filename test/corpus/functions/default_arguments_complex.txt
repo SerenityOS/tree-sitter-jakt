@@ -1,0 +1,18 @@
+; ================================================================================
+; NOT IMPLEMENTED Functions Default Arguments Complex ID=YV4MRSW
+; ================================================================================
+; 
+; /// Expect:
+; /// - output: "WHF 5 false None\n"
+; 
+; fn say(text: String = "WHF", number: i64 = 5, boolean: bool = false, optional: String? = None) {
+;     println("{} {} {} {}", text, number, boolean, optional)
+; }
+; 
+; fn main() {
+;     say()
+; }
+; 
+; --------------------------------------------------------------------------------
+; 
+; (source_file)

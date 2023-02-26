@@ -1,16 +1,19 @@
 ================================================================================
-Structs this dot shorthand
+Structs This Dot Shorthand ID=2252WOY
 ================================================================================
+
+/// Expect:
+/// - output: "30\n"
 
 struct Size {
     width: i64
     height: i64
 
-    function area(this) => .width * .height
+    fn area(this) -> i64 => .width * .height
 }
 
 
-function main() {
+fn main() {
     let s = Size(width: 5, height: 6)
     println("{}", s.area())
 }
@@ -18,6 +21,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (struct_declaration
     (type_identifier)
     (field_declaration_list
@@ -32,6 +37,7 @@ function main() {
         (parameters
           (this_parameter
             (this_reference)))
+        (primitive_type)
         (return_expression
           (binary_expression
             (this_reference_shorthand

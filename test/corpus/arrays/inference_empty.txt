@@ -1,8 +1,11 @@
 ================================================================================
-Enums inference empty
+Arrays Inference Empty ID=0VE4QG3
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "2 2\n"
+
+fn main() {
     mut set1: [i64] = []
     set1.push(1)
     set1.push(2)
@@ -15,6 +18,8 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)

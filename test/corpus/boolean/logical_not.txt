@@ -1,8 +1,11 @@
 ================================================================================
-Boolean logical not
+Boolean Logical Not ID=FY6YH9I
 ================================================================================
 
-function main() {
+/// Expect:
+/// - output: "happiness\n"
+
+fn main() {
     if not (1 < 2) {
         println("whoops")
     }
@@ -16,12 +19,14 @@ function main() {
 --------------------------------------------------------------------------------
 
 (source_file
+  (line_comment)
+  (line_comment)
   (function_declaration
     (identifier)
     (parameters)
     (block
       (if_statement
-        (logical_expression
+        (logical_not_expression
           (parenthesized_expression
             (binary_expression
               (integer_literal)
@@ -36,7 +41,7 @@ function main() {
         (identifier)
         (boolean_literal))
       (if_statement
-        (logical_expression
+        (logical_not_expression
           (identifier))
         (block
           (call_expression

@@ -1,0 +1,29 @@
+================================================================================
+Variables Integer Promotion Bad2 ID=GM060HR
+================================================================================
+
+/// Expect:
+/// - error: "Integer promotion failed\n"
+
+fn main() {
+    mut i: u8 = 0;
+    i += 1000;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    (identifier)
+    (parameters)
+    (block
+      (mutable_declaration
+        (mutable_specifier)
+        (identifier)
+        (primitive_type)
+        (integer_literal))
+      (assignment_expression
+        (identifier)
+        (integer_literal)))))

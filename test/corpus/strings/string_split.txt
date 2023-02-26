@@ -1,18 +1,42 @@
 ================================================================================
-String split
+Strings String Split ID=3KHLFZC
 ================================================================================
 
-let result = "foo bar".split(' ')
+/// Expect:
+/// - output: "bar\n"
+
+fn main() {
+    let result = "foo bar".split(c' ')
+
+    println("{}", result[1])
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (let_declaration
+  (line_comment)
+  (line_comment)
+  (function_declaration
     (identifier)
-    (call_expression
-      (field_expression
-        (string_literal)
-        (field_identifier))
-      (arguments
-        (argument
-          (char_literal))))))
+    (parameters)
+    (block
+      (let_declaration
+        (identifier)
+        (call_expression
+          (field_expression
+            (string_literal)
+            (field_identifier))
+          (arguments
+            (argument
+              (identifier))
+            (argument
+              (char_literal)))))
+      (call_expression
+        (identifier)
+        (arguments
+          (argument
+            (string_literal))
+          (argument
+            (array_expression
+              (identifier)
+              (integer_literal))))))))
